@@ -20,6 +20,18 @@
     },
     {
       "name": "tween"
-    }
+    },
+    {
+			"name": "polyfill",
+			"path": "polyfill"
+		},
+		{
+			"name": "fairygui",
+			"path": "libs/fairygui"
+		},
+		{
+			"name": "rawinflate",
+			"path": "libs/rawinflate"
+		}
   ]
 }

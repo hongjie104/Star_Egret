@@ -1,23 +1,25 @@
 {
-	"groups":[
-	{
-		"keys":"bg_jpg,egret_icon_png,description_json",
-		"name":"preload"
-	}],
-	"resources":[
-	{
-		"name":"bg_jpg",
-		"type":"image",
-		"url":"assets/bg.jpg"
-	},
-	{
-		"name":"egret_icon_png",
-		"type":"image",
-		"url":"assets/egret_icon.png"
-	},
-	{
-		"name":"description_json",
-		"type":"json",
-		"url":"config/description.json"
-	}]
+	"groups": [
+		{
+			"keys": "Package1@atlas_sp8ru_jpg,Package1@atlas0_png,Package1",
+			"name": "preload"
+		}
+	],
+	"resources": [
+		{
+			"name": "Package1@atlas_sp8ru_jpg",
+			"type": "image",
+			"url": "assets/Package1@atlas_sp8ru.jpg"
+		},
+		{
+			"name": "Package1@atlas0_png",
+			"type": "image",
+			"url": "assets/Package1@atlas0.png"
+		},
+		{
+			"name": "Package1",
+			"type": "bin",
+			"url": "assets/Package1.fui"
+		}
+	]
 }
