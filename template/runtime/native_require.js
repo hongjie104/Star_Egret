@@ -9,8 +9,11 @@ var game_file_list = [
 	"libs/modules/tween/tween.js",
 	"libs/fairygui/fairygui.js",
 	"polyfill/promise.js",
+	"libs/rawinflate/rawinflate.min.js",
 	"bin-debug/LoadingUI.js",
 	"bin-debug/Main.js",
+	"bin-debug/MainScene.js",
+	"bin-debug/PlayScene.js",
 	//----auto game_file_list end----
 ];
 
@@ -46,8 +49,8 @@ egret_native.egretStart = function () {
 		entryClassName: "Main",
 		frameRate: 30,
 		scaleMode: "fixedWidth",
-		contentWidth: 640,
-		contentHeight: 1136,
+		contentWidth: 750,
+		contentHeight: 1334,
 		showPaintRect: false,
 		showFPS: false,
 		fpsStyles: "x:0,y:0,size:12,textColor:0xffffff,bgAlpha:0.9",

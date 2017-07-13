@@ -10,6 +10,8 @@ class Main extends egret.DisplayObjectContainer {
      */
     private loadingView: LoadingUI;
 
+    private _playScene: PlayScene = null;
+
     public constructor() {
         super();
         this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
@@ -97,7 +99,8 @@ class Main extends egret.DisplayObjectContainer {
         Main.stageWidth = this.stage.stageWidth;
         Main.stageHeight = this.stage.stageHeight;
 
-        fairygui.GRoot.inst.addChild(Main.createPanel('Game'));
+        this._playScene = PlayScene.instance;
+        this.addChild(this._playScene);
     }
 
     static createPanel(panelName: string): fairygui.GComponent {
@@ -106,6 +109,10 @@ class Main extends egret.DisplayObjectContainer {
         p.viewWidth = Main.stageWidth;
         p.viewHeight = Main.stageHeight;
         return p;
+    }
+
+    static createComponent(name: string): fairygui.GComponent {
+        return fairygui.UIPackage.createObject("Package1", name).asCom;
     }
 }
 
