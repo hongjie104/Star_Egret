@@ -6,7 +6,7 @@ class PlayScene extends egret.DisplayObjectContainer {
 
 	private _isActionRunning = false;
 
-	_starDataArr: number[][] = [
+	private _starDataArr: number[][] = [
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -19,7 +19,7 @@ class PlayScene extends egret.DisplayObjectContainer {
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 	];
 
-	_starArr: fairygui.GComponent[] = [];
+	private _starArr: fairygui.GComponent[] = [];
 
 	public constructor() {
 		super();
@@ -44,9 +44,6 @@ class PlayScene extends egret.DisplayObjectContainer {
 				star.x = p.x;
 				star.y = p.y - Main.stageHeight;
 				this._playPanel.addChild(star);
-				// star.runAction(cc.sequence(cc.delayTime(actionDelay), cc.moveBy(.2, 0, -utils.getVisibleSize().height)));
-				console.log(actionDelay);
-
 				egret.Tween.get(star).wait(actionDelay).to({ y: p.y }, 200);
 			}
 		}
@@ -141,16 +138,6 @@ class PlayScene extends egret.DisplayObjectContainer {
 						let moveData = starMoveData[i];
 						actionCount++;
 						const star = this._starArr[this._getStarIndex(moveData.fromRow, moveData.fromCol)];
-
-						// star.runAction(cc.sequence(
-						// 	cc.moveTo(.2, utils.getStarPosition(moveData.toRow, moveData.toCol)),
-						// 	cc.callFunc(() => {
-						// 		star.attr({ row: moveData.toRow, col: moveData.toCol });
-						// 		if (--actionCount == 0) {
-						// 			this._isActionRunning = false;
-						// 		}
-						// 	})
-						// ));
 						const p: egret.Point = this.getStarPoint(moveData.toRow, moveData.toCol);
 						egret.Tween.get(star).to({ y: p.y, x: p.x }, 200).call(() => {
 							star.data = {
