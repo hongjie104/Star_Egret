@@ -10,10 +10,13 @@ var game_file_list = [
 	"libs/fairygui/fairygui.js",
 	"polyfill/promise.js",
 	"libs/rawinflate/rawinflate.min.js",
+	"bin-debug/level/LevelScene.js",
+	"bin-debug/level/LevelTree.js",
 	"bin-debug/LoadingUI.js",
 	"bin-debug/Main.js",
 	"bin-debug/MainScene.js",
 	"bin-debug/PlayScene.js",
+	"bin-debug/StarEvent.js",
 	//----auto game_file_list end----
 ];
 

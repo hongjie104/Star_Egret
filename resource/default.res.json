@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "Package1@atlas_sp8ru_jpg,Package1@atlas0_png,Package1",
+			"keys": "Package1@atlas_sp8ru_jpg,Package1@atlas0_png,Package1,Package1@atlas_12czcy_jpg,Package1@atlas_12czcz_jpg,Package1@atlas_12czcx_jpg",
 			"name": "preload"
 		}
 	],
@@ -20,6 +20,21 @@
 			"name": "Package1",
 			"type": "bin",
 			"url": "assets/Package1.fui"
+		},
+		{
+			"name": "Package1@atlas_12czcy_jpg",
+			"type": "image",
+			"url": "assets/Package1@atlas_12czcy.jpg"
+		},
+		{
+			"name": "Package1@atlas_12czcz_jpg",
+			"type": "image",
+			"url": "assets/Package1@atlas_12czcz.jpg"
+		},
+		{
+			"name": "Package1@atlas_12czcx_jpg",
+			"type": "image",
+			"url": "assets/Package1@atlas_12czcx.jpg"
 		}
 	]
 }
