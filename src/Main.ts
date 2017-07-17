@@ -92,6 +92,8 @@ class Main extends egret.DisplayObjectContainer {
      * Create a game scene
      */
     private createGameScene() {
+        LocalStorage.init();
+
         fairygui.UIPackage.addPackage("Package1");
         this.stage.addChild(fairygui.GRoot.inst.displayObject);
         Main.stageWidth = this.stage.stageWidth;

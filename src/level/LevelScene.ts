@@ -6,6 +6,8 @@ class LevelScene extends egret.DisplayObjectContainer {
 
 	private _treeArr: LevelTree[] = [];
 
+	private _treeHeight = 0;
+
 	public constructor() {
 		super();
 
@@ -35,19 +37,22 @@ class LevelScene extends egret.DisplayObjectContainer {
 		displayObject = this._rootTree.tree.displayObject;
 		displayObject.y = h;
 		scrollViewContent.addChild(displayObject);
+		this._treeHeight = h + displayObject.height;
 
-		//创建 ScrollView
+		// 创建 ScrollView
 		const scrollView: egret.ScrollView = new egret.ScrollView();
 		scrollView.bounces = false;
-		//设置滚动内容
+		// 设置滚动内容
 		scrollView.setContent(scrollViewContent);
-		//设置滚动区域宽高
+		// 设置滚动区域宽高
 		scrollView.width = Main.stageWidth;
 		scrollView.height = Main.stageHeight;
 		this.addChild(scrollView);
+
+		scrollView.setScrollTop(this._treeHeight - Main.stageHeight);
 	}
 
-	private _onEnterLevel(evt:StarEvent):void {
+	private _onEnterLevel(evt: StarEvent): void {
 		this.dispatchEvent(evt);
 	}
 
