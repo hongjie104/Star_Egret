@@ -117,3 +117,61 @@ class Main extends egret.DisplayObjectContainer {
 }
 
 
+/*
+level 
+1       1000
+2       3500    2500
+3       6000    2500
+4       10000   4000
+5       12000   2000
+6       15000   3000
+7       30000   15000
+8       36000   6000
+9       45000   9000
+10      55000   10000
+11      66000   11000
+12      78000   12000
+13      91000   13000
+14      105000  14000
+*/
+
+/*
+2 20
+3 45
+4 80
+5 125
+6 180
+7 245
+8 320
+9 405
+11 605
+13 845
+14 980
+19 1805
+29 4205
+*/
+
+/*
+def test(num):
+    if num == 2:
+        return 20
+    if num == 3:
+        return 25
+    if num == 4:
+        return 45
+    else:
+        return (num - 1) * 10 + 5
+
+def test1(num):
+    if num == 2:
+        return 20
+    if num == 3:
+        return 45
+    r = 0
+    for x in xrange(2, num + 1):
+        r += test(x)
+    return r - 10
+
+
+print(test1(15))
+*/

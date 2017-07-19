@@ -47,15 +47,19 @@ class PlayScene extends egret.DisplayObjectContainer {
 				egret.Tween.get(star).wait(actionDelay).to({ y: p.y }, 200);
 			}
 		}
+
+		// this.touchEnabled = true;		
+		// this.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onStarClicked, this);
 	}
 
 	private _onStarClicked(evt: egret.TouchEvent): void {
 		if (!this._isActionRunning) {
-			// this._isActionRunning = true;
-
-			const col = Math.floor(evt.stageX / 75);
-			const row = Math.floor((evt.stageY - (Main.stageHeight - 75 * 10)) / 75);
-			const result = this._findSameStarIndex(row, col);
+			this._isActionRunning = true;
+			// const col = Math.floor(evt.stageX / 75);
+			// const row = Math.floor((evt.stageY - (Main.stageHeight - 75 * 10)) / 75);
+			// const result = this._findSameStarIndex(row, col);
+			const starTouched = evt.currentTarget as fairygui.GComponent;
+			const result = this._findSameStarIndex(starTouched.data['row'], starTouched.data['col']);
 			if (result.length > 1) {
 				const starDataArr = this._starDataArr;
 				let rowAndCol: { row: number, col: number };
