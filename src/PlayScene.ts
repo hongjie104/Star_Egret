@@ -33,6 +33,13 @@ class PlayScene extends egret.DisplayObjectContainer {
 	 */
 	private _addScore = 0;
 
+	/**
+	 * 当前关卡的目标分数
+	 */
+	private _targetSocre = 0;
+
+	private _isWinPanelShowed = false;
+
 	public constructor() {
 		super();
 
@@ -44,11 +51,22 @@ class PlayScene extends egret.DisplayObjectContainer {
 	}
 
 	private _reset(): void {
+		this._isWinPanelShowed = false;
 		// 初始化顶挂上的数值
-		this._topBar.getChild('n5').text = `LEVEL ${LocalStorage.getItem(LocalStorageKey.curLevel) + 1}`;
+		const curLevel = LocalStorage.getItem(LocalStorageKey.curLevel) + 1;
+		this._topBar.getChild('n5').text = `LEVEL ${curLevel}`;
 		this._initScore = LocalStorage.getItem(LocalStorageKey.totalScore);
 		this._addScore = 0;
 		this._topBar.getChild('n6').text = this._initScore.toString();
+		// 当前关卡的最高分
+		const levelScoreArr = LocalStorage.getItem(LocalStorageKey.levelScore) as Array<number>;
+		while (curLevel > levelScoreArr.length) {
+			levelScoreArr.push(0);
+		}
+		this._topBar.getChild('n7').text = levelScoreArr[curLevel - 1].toString();
+		// 过关的分数
+		this._targetSocre = Util.getTargetScore(curLevel);
+		this._topBar.getChild('n8').text = this._targetSocre.toString();
 
 		// 初始化星星
 		this._starArr.length = 0;
@@ -89,6 +107,21 @@ class PlayScene extends egret.DisplayObjectContainer {
 				const addScore = Util.getScore(result.length);
 				this._addScore += addScore;
 				this._topBar.getChild('n6').text = (this._initScore + this._addScore).toString();
+				// 判断一下，是否达到了目标分数
+				if (!this._isWinPanelShowed) {
+					if (this._initScore + this._addScore >= this._targetSocre) {
+						this._isWinPanelShowed = true;
+						const winPanel = Main.createPanel('胜利弹窗1');
+						fairygui.GRoot.inst.addChild(winPanel);
+						winPanel.getController('c1').selectedIndex = 1;
+						winPanel.getTransition('t0').play();
+						const btnContainer = winPanel.getChild('n0').asCom;
+						btnContainer.getChild('n17').addClickListener(this._onFetchAward, this);
+						btnContainer.getChild('n18').addClickListener(this._onFetchAward, this);
+						btnContainer.getChild('n19').addClickListener(this._onFetchAward, this);
+						btnContainer.getChild('n20').addClickListener(this._onFetchAward, this);
+					}
+				}
 
 				const starDataArr = this._starDataArr;
 				let rowAndCol: { row: number, col: number };
@@ -198,15 +231,15 @@ class PlayScene extends egret.DisplayObjectContainer {
 		let isCanGoOn = false;
 		const starDataArr = this._starDataArr;
 		let val = -1;
-		for (let r = 0; r < 9; r++) {
-			for (let c = 0; c < 9; c++) {
+		for (let r = 0; r < 10; r++) {
+			for (let c = 0; c < 10; c++) {
 				val = starDataArr[r][c];
 				if (val !== -1) {
-					if (val === starDataArr[r][c + 1]) {
+					if (c < 9 && val === starDataArr[r][c + 1]) {
 						isCanGoOn = true;
 						break;
 					}
-					if (val === starDataArr[r + 1][c]) {
+					if (r < 9 && val === starDataArr[r + 1][c]) {
 						isCanGoOn = true;
 						break;
 					}
@@ -235,9 +268,11 @@ class PlayScene extends egret.DisplayObjectContainer {
 		star.removeFromParent();
 		star.dispose();
 		if (goToNextLevel) {
-			const curLevel = LocalStorage.getItem(LocalStorageKey.curLevel);
-			LocalStorage.setItem(LocalStorageKey.curLevel, curLevel + 1);
+			const curLevel = LocalStorage.getItem(LocalStorageKey.curLevel) + 1;
+			LocalStorage.setItem(LocalStorageKey.curLevel, curLevel);
 			LocalStorage.setItem(LocalStorageKey.totalScore, this._initScore + this._addScore);
+			const levelScore = LocalStorage.getItem(LocalStorageKey.levelScore) as Array<number>;
+			levelScore[curLevel - 1] = this._addScore;
 			LocalStorage.saveToLocal();
 			this._reset();
 		}
@@ -316,6 +351,19 @@ class PlayScene extends egret.DisplayObjectContainer {
 		let x = zeroX + col * w;
 		let y = zeroY + row * h;
 		return new egret.Point(x, y);
+	}
+
+	private _onFetchAward(evt: egret.TouchEvent): void {
+		const btn = evt.currentTarget as fairygui.GButton;
+		const winPanel = btn.parent.parent;
+		winPanel.getTransition('t2').play(() => {
+			const btnContainer = winPanel.getChild('n0').asCom;
+			btnContainer.getChild('n17').removeClickListener(this._onFetchAward, this);
+			btnContainer.getChild('n18').removeClickListener(this._onFetchAward, this);
+			btnContainer.getChild('n19').removeClickListener(this._onFetchAward, this);
+			btnContainer.getChild('n20').removeClickListener(this._onFetchAward, this);
+			winPanel.removeFromParent();
+		});
 	}
 
 	static get instance(): PlayScene {
