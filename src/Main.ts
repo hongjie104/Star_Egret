@@ -105,12 +105,43 @@ class Main extends egret.DisplayObjectContainer {
     }
 
     private _onEnterLevel(evt: StarEvent): void {
-        const levelScene = LevelScene.instance;
-        if (levelScene.parent) {
-            levelScene.parent.removeChild(levelScene);
-        }
-        const playScene = PlayScene.instance;
-        this.addChild(playScene);
+        const levelSelector = Main.createPanel('选关弹窗1');
+        levelSelector.x = (Main.stageWidth - levelSelector.initWidth) >> 1;
+        levelSelector.y = (Main.stageHeight - levelSelector.initHeight) >> 1;
+        const uiPanel = levelSelector.getChild('n0').asCom;
+        // 本关的最高分
+        const levelScore = LocalStorage.getItem(LocalStorageKey.levelScore) as Array<number>;
+        uiPanel.getChild('n9').text = evt.level > levelScore.length ? '0' : levelScore[evt.level - 1].toString();
+        uiPanel.getChild('n12').text = evt.level.toString();
+        uiPanel.getChild('n4').addClickListener(this._onLevelSelectorCancel, this);
+        uiPanel.getChild('n5').addClickListener(this._onLevelSelectorOK, this);
+
+        levelSelector.getController('c1').selectedIndex = 1;
+        levelSelector.getTransition('t0').play();
+        fairygui.GRoot.inst.addChild(levelSelector);
+    }
+
+    private _onLevelSelectorCancel(evt: egret.TouchEvent, cb?: Function): void {
+        const levelSelector = (evt.currentTarget as fairygui.GButton).parent.parent;
+        const uiPanel = levelSelector.getChild('n0').asCom;
+        uiPanel.getChild('n4').removeClickListener(this._onLevelSelectorCancel, this);
+        uiPanel.getChild('n5').removeClickListener(this._onLevelSelectorOK, this);
+        levelSelector.getTransition('t2').play(() => {
+            levelSelector.removeFromParent();
+            levelSelector.dispose();
+            if (cb) cb.call(this);
+        }, this);
+    }
+
+    private _onLevelSelectorOK(evt: egret.TouchEvent): void {
+        this._onLevelSelectorCancel(evt, () => {
+            const levelScene = LevelScene.instance;
+            if (levelScene.parent) {
+                levelScene.parent.removeChild(levelScene);
+            }
+            const playScene = PlayScene.instance;
+            this.addChild(playScene);
+        });
     }
 
     static createPanel(panelName: string): fairygui.GComponent {

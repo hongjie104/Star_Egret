@@ -112,6 +112,8 @@ class PlayScene extends egret.DisplayObjectContainer {
 					if (this._initScore + this._addScore >= this._targetSocre) {
 						this._isWinPanelShowed = true;
 						const winPanel = Main.createPanel('胜利弹窗1');
+						winPanel.x = (Main.stageWidth - winPanel.initWidth) >> 1;
+						winPanel.y = (Main.stageHeight - winPanel.initHeight) >> 1;
 						fairygui.GRoot.inst.addChild(winPanel);
 						winPanel.getController('c1').selectedIndex = 1;
 						winPanel.getTransition('t0').play();
@@ -363,6 +365,7 @@ class PlayScene extends egret.DisplayObjectContainer {
 			btnContainer.getChild('n19').removeClickListener(this._onFetchAward, this);
 			btnContainer.getChild('n20').removeClickListener(this._onFetchAward, this);
 			winPanel.removeFromParent();
+			winPanel.dispose();
 		});
 	}
 
