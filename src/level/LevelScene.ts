@@ -59,6 +59,15 @@ class LevelScene extends egret.DisplayObjectContainer {
 		this.addChild(this._scrollView);
 		this._scrollView.addEventListener(egret.Event.CHANGE, this._onScrollViewChanged, this);
 		this._scrollView.setScrollTop(this._treeHeight - Main.stageHeight);
+
+		this.updateLevelBtnStatus(LocalStorage.getItem(LocalStorageKey.curLevel));
+	}
+
+	updateLevelBtnStatus(curLevel: number): void {
+		const treeArr = this._treeArr;
+		for (let i = 0; i < treeArr.length; i++) {
+			treeArr[i].updateBtnStatus(curLevel);
+		}
 	}
 
 	private _onEnterLevel(evt: StarEvent): void {
@@ -83,7 +92,7 @@ class LevelScene extends egret.DisplayObjectContainer {
 			this._scrollContentContainer.addChild(tree.tree.displayObject);
 			// 之前的tree的y值都增加
 			const vh = tree.tree.displayObject.height;
-			for(let i = 0; i < numTree;i++){
+			for (let i = 0; i < numTree; i++) {
 				this._treeArr[i].tree.displayObject.y += vh;
 			}
 			this._treeHeight += vh;

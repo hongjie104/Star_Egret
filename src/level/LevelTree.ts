@@ -21,9 +21,32 @@ class LevelTree extends egret.EventDispatcher {
 		return this._tree;
 	}
 
+	updateBtnStatus(curLevel: number): void {
+		const tree = this._tree;
+		let levelBtn: fairygui.GButton;
+		let levelBtnLevel: number = 0;
+		for (let i = 0; i < tree.numChildren; i++) {
+			levelBtn = tree.getChildAt(i) as fairygui.GButton;
+			if (levelBtn) {
+				levelBtnLevel = levelBtn.data;
+				if (levelBtnLevel > 0) {
+					if (levelBtnLevel <= curLevel) {
+						levelBtn.getController('c1').selectedIndex = 1;
+					} else if (levelBtnLevel === curLevel + 1) {
+						levelBtn.getController('c1').selectedIndex = 2;
+					} else {
+						levelBtn.getController('c1').selectedIndex = 0;
+					}
+				}
+			}
+		}
+	}
+
 	private _onLevelBtnClicked(evt: egret.TouchEvent): void {
 		const btn = evt.currentTarget as fairygui.GButton;
 		const level: number = btn.data;
-		this.dispatchEvent(new StarEvent(StarEvent.ENTER_LEVEL, level));
+		if (level <= LocalStorage.getItem(LocalStorageKey.curLevel) + 1) {
+			this.dispatchEvent(new StarEvent(StarEvent.ENTER_LEVEL, level));
+		}
 	}
 }

@@ -4,6 +4,8 @@ class PlayScene extends egret.DisplayObjectContainer {
 
 	private _playPanel: fairygui.GComponent = null;
 
+	private _topBar: fairygui.GComponent = null;
+
 	private _isActionRunning = false;
 
 	private _starDataArr: number[][] = [
@@ -21,13 +23,35 @@ class PlayScene extends egret.DisplayObjectContainer {
 
 	private _starArr: fairygui.GComponent[] = [];
 
+	/**
+	 * 这一局开始的时候就有的分数
+	 */
+	private _initScore = 0;
+
+	/**
+	 * 这一局中，因为消除而获得的分数
+	 */
+	private _addScore = 0;
+
 	public constructor() {
 		super();
 
 		this._playPanel = Main.createPanel('Game');
 		fairygui.GRoot.inst.addChild(this._playPanel);
+		this._topBar = this._playPanel.getChild('n1').asCom;
+
+		this._reset();
+	}
+
+	private _reset(): void {
+		// 初始化顶挂上的数值
+		this._topBar.getChild('n5').text = `LEVEL ${LocalStorage.getItem(LocalStorageKey.curLevel) + 1}`;
+		this._initScore = LocalStorage.getItem(LocalStorageKey.totalScore);
+		this._addScore = 0;
+		this._topBar.getChild('n6').text = this._initScore.toString();
 
 		// 初始化星星
+		this._starArr.length = 0;
 		let random = 0, actionDelay = 0;
 		for (let col = 0; col < 10; col++) {
 			actionDelay = 10 * col;
@@ -40,7 +64,7 @@ class PlayScene extends egret.DisplayObjectContainer {
 				star.addClickListener(this._onStarClicked, this);
 				star.data = { row, col };
 				this._starArr.push(star);
-				let p: egret.Point = this.getStarPoint(row, col);
+				let p: egret.Point = this._getStarPoint(row, col);
 				star.x = p.x;
 				star.y = p.y - Main.stageHeight;
 				this._playPanel.addChild(star);
@@ -61,16 +85,18 @@ class PlayScene extends egret.DisplayObjectContainer {
 			const starTouched = evt.currentTarget as fairygui.GComponent;
 			const result = this._findSameStarIndex(starTouched.data['row'], starTouched.data['col']);
 			if (result.length > 1) {
+				// 算一下这一次消除得了多少分
+				const addScore = Util.getScore(result.length);
+				this._addScore += addScore;
+				this._topBar.getChild('n6').text = (this._initScore + this._addScore).toString();
+
 				const starDataArr = this._starDataArr;
 				let rowAndCol: { row: number, col: number };
-				let removedStar: fairygui.GComponent = null;
 				for (let i = 0; i < result.length; i++) {
 					rowAndCol = result[i];
 					let starIndex = this._getStarIndex(rowAndCol.row, rowAndCol.col);
-					// this._starArr.splice(starIndex, 1)[0].destroy();
-					removedStar = this._starArr.splice(starIndex, 1)[0];
-					removedStar.removeFromParent();
-					removedStar.dispose();
+					if (starIndex !== -1)
+						this._removeStar(this._starArr.splice(starIndex, 1)[0]);
 					starDataArr[rowAndCol.row][rowAndCol.col] = -1;
 				}
 
@@ -142,7 +168,7 @@ class PlayScene extends egret.DisplayObjectContainer {
 						let moveData = starMoveData[i];
 						actionCount++;
 						const star = this._starArr[this._getStarIndex(moveData.fromRow, moveData.fromCol)];
-						const p: egret.Point = this.getStarPoint(moveData.toRow, moveData.toCol);
+						const p: egret.Point = this._getStarPoint(moveData.toRow, moveData.toCol);
 						egret.Tween.get(star).to({ y: p.y, x: p.x }, 200).call(() => {
 							star.data = {
 								// attr({ row: moveData.toRow, col: moveData.toCol });
@@ -151,15 +177,69 @@ class PlayScene extends egret.DisplayObjectContainer {
 							};
 							if (--actionCount == 0) {
 								this._isActionRunning = false;
+								this._checkCanGoOn();
 							}
 						});
 					}
 				} else {
 					this._isActionRunning = false;
+					this._checkCanGoOn();
 				}
 			} else {
 				this._isActionRunning = false;
 			}
+		}
+	}
+
+	/**
+	 * 每一次消除后都要判断一下，是否还能继续消除
+	 */
+	private _checkCanGoOn(): void {
+		let isCanGoOn = false;
+		const starDataArr = this._starDataArr;
+		let val = -1;
+		for (let r = 0; r < 9; r++) {
+			for (let c = 0; c < 9; c++) {
+				val = starDataArr[r][c];
+				if (val !== -1) {
+					if (val === starDataArr[r][c + 1]) {
+						isCanGoOn = true;
+						break;
+					}
+					if (val === starDataArr[r + 1][c]) {
+						isCanGoOn = true;
+						break;
+					}
+				}
+			}
+			if (isCanGoOn) break;
+		}
+		if (!isCanGoOn) {
+			let starIndex = -1;
+			let waitTime = 0;
+			// 消除剩下的星星，然后到下一关
+			for (let c = 9; c > -1; c--) {
+				for (let r = 0; r < 10; r++) {
+					if (starDataArr[r][c] !== -1) {
+						starIndex = this._getStarIndex(r, c);
+						let removedStar = this._starArr.splice(starIndex, 1)[0];
+						waitTime += 500;
+						egret.Tween.get(removedStar).wait(waitTime).call(this._removeStar, this, [removedStar, r === 9 && c === 0]);
+					}
+				}
+			}
+		}
+	}
+
+	private _removeStar(star: fairygui.GComponent, goToNextLevel: boolean = false): void {
+		star.removeFromParent();
+		star.dispose();
+		if (goToNextLevel) {
+			const curLevel = LocalStorage.getItem(LocalStorageKey.curLevel);
+			LocalStorage.setItem(LocalStorageKey.curLevel, curLevel + 1);
+			LocalStorage.setItem(LocalStorageKey.totalScore, this._initScore + this._addScore);
+			LocalStorage.saveToLocal();
+			this._reset();
 		}
 	}
 
@@ -227,7 +307,7 @@ class PlayScene extends egret.DisplayObjectContainer {
 		return -1;
 	}
 
-	getStarPoint(row: number, col: number): egret.Point {
+	private _getStarPoint(row: number, col: number): egret.Point {
 		// 一个star的宽度和高度都是75
 		const w = 75;
 		const h = 75;

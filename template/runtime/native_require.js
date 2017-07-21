@@ -18,6 +18,7 @@ var game_file_list = [
 	"bin-debug/MainScene.js",
 	"bin-debug/PlayScene.js",
 	"bin-debug/StarEvent.js",
+	"bin-debug/Util.js",
 	//----auto game_file_list end----
 ];
 
