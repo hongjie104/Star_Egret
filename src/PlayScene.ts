@@ -21,7 +21,7 @@ class PlayScene extends egret.DisplayObjectContainer {
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 	];
 
-	private _starArr: fairygui.GComponent[] = [];
+	private _starArr: fairygui.GImage[] = [];
 
 	/**
 	 * 这一局开始的时候就有的分数
@@ -78,7 +78,9 @@ class PlayScene extends egret.DisplayObjectContainer {
 
 				random = Math.floor(Math.random() * 5);
 				this._starDataArr[row][col] = random;
-				let star: fairygui.GComponent = Main.createComponent(`star${random + 1}`);
+				// let star: fairygui.GComponent = Main.createComponent(`star${random + 1}`);
+				let star = fairygui.UIPackage.createObject("Package1", `star001_0${random + 1}`).asImage;
+				star.displayObject.touchEnabled = true;
 				star.addClickListener(this._onStarClicked, this);
 				star.data = { row, col };
 				this._starArr.push(star);
@@ -266,7 +268,7 @@ class PlayScene extends egret.DisplayObjectContainer {
 		}
 	}
 
-	private _removeStar(star: fairygui.GComponent, goToNextLevel: boolean = false): void {
+	private _removeStar(star: fairygui.GImage, goToNextLevel: boolean = false): void {
 		star.removeFromParent();
 		star.dispose();
 		if (goToNextLevel) {
@@ -334,7 +336,7 @@ class PlayScene extends egret.DisplayObjectContainer {
 	}
 
 	private _getStarIndex(row: number, col: number): number {
-		let star: fairygui.GComponent = null;
+		let star: fairygui.GImage = null;
 		for (let i = 0; i < this._starArr.length; i++) {
 			star = this._starArr[i];
 			if (star.data['row'] == row && star.data['col'] == col) {

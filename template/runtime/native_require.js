@@ -13,7 +13,7 @@ var game_file_list = [
 	"bin-debug/level/LevelScene.js",
 	"bin-debug/level/LevelTree.js",
 	"bin-debug/LoadingUI.js",
-	"bin-debug/LocalStorageKey.js",
+	"bin-debug/LocalStorage.js",
 	"bin-debug/Main.js",
 	"bin-debug/MainScene.js",
 	"bin-debug/PlayScene.js",
