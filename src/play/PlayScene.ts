@@ -21,7 +21,7 @@ class PlayScene extends egret.DisplayObjectContainer {
 		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 	];
 
-	private _starArr: fairygui.GImage[] = [];
+	private _starArr: Star[] = [];
 
 	/**
 	 * 这一局开始的时候就有的分数
@@ -78,32 +78,23 @@ class PlayScene extends egret.DisplayObjectContainer {
 
 				random = Math.floor(Math.random() * 5);
 				this._starDataArr[row][col] = random;
-				// let star: fairygui.GComponent = Main.createComponent(`star${random + 1}`);
-				let star = fairygui.UIPackage.createObject("Package1", `star001_0${random + 1}`).asImage;
-				star.displayObject.touchEnabled = true;
-				star.addClickListener(this._onStarClicked, this);
-				star.data = { row, col };
+				let star = new Star(random, row, col);
+				star.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onStarClicked, this);
 				this._starArr.push(star);
 				let p: egret.Point = this._getStarPoint(row, col);
 				star.x = p.x;
 				star.y = p.y - Main.stageHeight;
-				this._playPanel.addChild(star);
+				this._playPanel.displayListContainer.addChild(star);
 				egret.Tween.get(star).wait(actionDelay).to({ y: p.y }, 200);
 			}
 		}
-
-		// this.touchEnabled = true;		
-		// this.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onStarClicked, this);
 	}
 
 	private _onStarClicked(evt: egret.TouchEvent): void {
 		if (!this._isActionRunning) {
 			this._isActionRunning = true;
-			// const col = Math.floor(evt.stageX / 75);
-			// const row = Math.floor((evt.stageY - (Main.stageHeight - 75 * 10)) / 75);
-			// const result = this._findSameStarIndex(row, col);
-			const starTouched = evt.currentTarget as fairygui.GComponent;
-			const result = this._findSameStarIndex(starTouched.data['row'], starTouched.data['col']);
+			const starTouched = evt.currentTarget as Star;
+			const result = this._findSameStarIndex(starTouched.row, starTouched.col);
 			if (result.length > 1) {
 				// 算一下这一次消除得了多少分
 				const addScore = Util.getScore(result.length);
@@ -207,11 +198,8 @@ class PlayScene extends egret.DisplayObjectContainer {
 						const star = this._starArr[this._getStarIndex(moveData.fromRow, moveData.fromCol)];
 						const p: egret.Point = this._getStarPoint(moveData.toRow, moveData.toCol);
 						egret.Tween.get(star).to({ y: p.y, x: p.x }, 200).call(() => {
-							star.data = {
-								// attr({ row: moveData.toRow, col: moveData.toCol });
-								row: moveData.toRow,
-								col: moveData.toCol
-							};
+							star.row = moveData.toRow;
+							star.col = moveData.toCol;
 							if (--actionCount == 0) {
 								this._isActionRunning = false;
 								this._checkCanGoOn();
@@ -268,7 +256,7 @@ class PlayScene extends egret.DisplayObjectContainer {
 		}
 	}
 
-	private _removeStar(star: fairygui.GImage, goToNextLevel: boolean = false): void {
+	private _removeStar(star: Star, goToNextLevel: boolean = false): void {
 		star.removeFromParent();
 		star.dispose();
 		if (goToNextLevel) {
@@ -336,10 +324,10 @@ class PlayScene extends egret.DisplayObjectContainer {
 	}
 
 	private _getStarIndex(row: number, col: number): number {
-		let star: fairygui.GImage = null;
+		let star: Star = null;
 		for (let i = 0; i < this._starArr.length; i++) {
 			star = this._starArr[i];
-			if (star.data['row'] == row && star.data['col'] == col) {
+			if (star.row == row && star.col == col) {
 				return i;
 			}
 		}

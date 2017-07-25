@@ -16,7 +16,8 @@ var game_file_list = [
 	"bin-debug/LocalStorage.js",
 	"bin-debug/Main.js",
 	"bin-debug/MainScene.js",
-	"bin-debug/PlayScene.js",
+	"bin-debug/play/PlayScene.js",
+	"bin-debug/play/Star.js",
 	"bin-debug/StarEvent.js",
 	"bin-debug/Util.js",
 	//----auto game_file_list end----
