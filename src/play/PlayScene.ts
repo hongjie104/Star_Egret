@@ -96,6 +96,18 @@ class PlayScene extends egret.DisplayObjectContainer {
 			const starTouched = evt.currentTarget as Star;
 			const result = this._findSameStarIndex(starTouched.row, starTouched.col);
 			if (result.length > 1) {
+				// // 播放个粒子动画
+				// //获取纹理
+				// const texture = RES.getRes("bluestar_png");
+				// //获取配置
+				// const config = RES.getRes("bluestar_json");
+				// //创建 GravityParticleSystem
+				// let system = new particle.GravityParticleSystem(texture, config);
+				// //启动粒子库
+				// system.start();
+				// //将例子系统添加到舞台
+				// this._playPanel.displayListContainer.addChild(system);
+
 				// 算一下这一次消除得了多少分
 				const addScore = Util.getScore(result.length);
 				this._addScore += addScore;

@@ -32,6 +32,10 @@
 		{
 			"name": "rawinflate",
 			"path": "libs/rawinflate"
+		},
+    {
+			"name": "particle",
+			"path": "libs/particle"
 		}
   ]
 }

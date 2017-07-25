@@ -8,6 +8,7 @@ var game_file_list = [
 	"libs/modules/res/res.js",
 	"libs/modules/tween/tween.js",
 	"libs/fairygui/fairygui.js",
+	"libs/particle/particle.js",
 	"polyfill/promise.js",
 	"libs/rawinflate/rawinflate.min.js",
 	"bin-debug/level/LevelScene.js",
