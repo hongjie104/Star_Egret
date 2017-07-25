@@ -42,6 +42,8 @@ class PlayScene extends egret.DisplayObjectContainer {
 
 	private _isRemovingLeftStars = false;
 
+	private _xiaoChuStar: { row: number, col: number }[];
+
 	public constructor() {
 		super();
 
@@ -100,124 +102,148 @@ class PlayScene extends egret.DisplayObjectContainer {
 			const starTouched = evt.currentTarget as Star;
 			const result = this._findSameStarIndex(starTouched.row, starTouched.col);
 			if (result.length > 1) {
-				// 算一下这一次消除得了多少分
-				const addScore = Util.getScore(result.length);
-				this._addScore += addScore;
-				this._topBar.getChild('n6').text = (this._initScore + this._addScore).toString();
-				// 判断一下，是否达到了目标分数
-				if (!this._isWinPanelShowed) {
-					if (this._initScore + this._addScore >= this._targetSocre) {
-						this._isWinPanelShowed = true;
-						const winPanel = Main.createPanel('胜利弹窗1');
-						winPanel.x = (Main.stageWidth - winPanel.initWidth) >> 1;
-						winPanel.y = (Main.stageHeight - winPanel.initHeight) >> 1;
-						fairygui.GRoot.inst.addChild(winPanel);
-						winPanel.getController('c1').selectedIndex = 1;
-						winPanel.getTransition('t0').play();
-						const btnContainer = winPanel.getChild('n0').asCom;
-						btnContainer.getChild('n17').addClickListener(this._onFetchAward, this);
-						btnContainer.getChild('n18').addClickListener(this._onFetchAward, this);
-						btnContainer.getChild('n19').addClickListener(this._onFetchAward, this);
-						btnContainer.getChild('n20').addClickListener(this._onFetchAward, this);
-					}
-				}
-
-				const starDataArr = this._starDataArr;
-				let rowAndCol: { row: number, col: number };
-				for (let i = 0; i < result.length; i++) {
-					rowAndCol = result[i];
-					let starIndex = this._getStarIndex(rowAndCol.row, rowAndCol.col);
-					if (starIndex !== -1) {
-						this._removeStar(this._starArr.splice(starIndex, 1)[0], false, true);
-					}
-					starDataArr[rowAndCol.row][rowAndCol.col] = -1;
-				}
-
-				// 先整体往下，再往左
-				const starMoveData: { fromRow: number, fromCol: number, toRow: number, toCol: number }[] = [];
-				for (let r = 9; r > -1; r--) {
-					for (let c = 0; c < 10; c++) {
-						if (starDataArr[r][c] == -1) {
-							let rowTop = r - 1;
-							while (rowTop >= 0 && starDataArr[rowTop][c] == -1) {
-								rowTop -= 1;
+				// if (LocalStorage.getItem(LocalStorageKey.touchType) === 2) {
+				if (true) {
+					if (!this._xiaoChuStar) {
+						this._xiaoChuStar = result;
+						let rowAndCol: { row: number, col: number };
+						let starIndex = -1;
+						for (let i = 0; i < result.length; i++) {
+							rowAndCol = result[i];
+							starIndex = this._getStarIndex(rowAndCol.row, rowAndCol.col);
+							if (starIndex !== -1) {
+								this._starArr[starIndex].isSelected = true;
 							}
-							if (rowTop >= 0) {
-								starDataArr[r][c] = starDataArr[rowTop][c];
-								starDataArr[rowTop][c] = -1;
+						}
+						this._isActionRunning = false;
+					} else {
+						this._xiaoChu(this._xiaoChuStar);
+						this._xiaoChuStar = null;
+					}
+				} else {
+					this._xiaoChu(result);
+				}
+			} else {
+				this._isActionRunning = false;
+			}
+		}
+	}
+
+	private _xiaoChu(result: { row: number, col: number }[]): void {
+		// 算一下这一次消除得了多少分
+		const addScore = Util.getScore(result.length);
+		this._addScore += addScore;
+		this._topBar.getChild('n6').text = (this._initScore + this._addScore).toString();
+		// 判断一下，是否达到了目标分数
+		if (!this._isWinPanelShowed) {
+			if (this._initScore + this._addScore >= this._targetSocre) {
+				this._isWinPanelShowed = true;
+				const winPanel = Main.createPanel('胜利弹窗1');
+				winPanel.x = (Main.stageWidth - winPanel.initWidth) >> 1;
+				winPanel.y = (Main.stageHeight - winPanel.initHeight) >> 1;
+				fairygui.GRoot.inst.addChild(winPanel);
+				winPanel.getController('c1').selectedIndex = 1;
+				winPanel.getTransition('t0').play();
+				const btnContainer = winPanel.getChild('n0').asCom;
+				btnContainer.getChild('n17').addClickListener(this._onFetchAward, this);
+				btnContainer.getChild('n18').addClickListener(this._onFetchAward, this);
+				btnContainer.getChild('n19').addClickListener(this._onFetchAward, this);
+				btnContainer.getChild('n20').addClickListener(this._onFetchAward, this);
+			}
+		}
+
+		const starDataArr = this._starDataArr;
+		let rowAndCol: { row: number, col: number };
+		for (let i = 0; i < result.length; i++) {
+			rowAndCol = result[i];
+			let starIndex = this._getStarIndex(rowAndCol.row, rowAndCol.col);
+			if (starIndex !== -1) {
+				this._removeStar(this._starArr.splice(starIndex, 1)[0], false, true);
+			}
+			starDataArr[rowAndCol.row][rowAndCol.col] = -1;
+		}
+
+		// 先整体往下，再往左
+		const starMoveData: { fromRow: number, fromCol: number, toRow: number, toCol: number }[] = [];
+		for (let r = 9; r > -1; r--) {
+			for (let c = 0; c < 10; c++) {
+				if (starDataArr[r][c] == -1) {
+					let rowTop = r - 1;
+					while (rowTop >= 0 && starDataArr[rowTop][c] == -1) {
+						rowTop -= 1;
+					}
+					if (rowTop >= 0) {
+						starDataArr[r][c] = starDataArr[rowTop][c];
+						starDataArr[rowTop][c] = -1;
+						starMoveData.push({
+							fromRow: rowTop,
+							fromCol: c,
+							toRow: r,
+							toCol: c
+						});
+					}
+				}
+			}
+		}
+		let isColEmpty = false;
+		let b = false;
+		for (let c = 8; c > -1; c--) {
+			isColEmpty = true;
+			for (let r = 0; r < 10; r++) {
+				if (starDataArr[r][c] != -1) {
+					isColEmpty = false;
+					break;
+				}
+			}
+			if (isColEmpty) {
+				for (let newCol = c + 1; newCol < 10; newCol++) {
+					for (let r = 0; r < 10; r++) {
+						starDataArr[r][newCol - 1] = starDataArr[r][newCol];
+						starDataArr[r][newCol] = -1;
+						// 不等于-1，才有移动的需求
+						if (starDataArr[r][newCol - 1] != -1) {
+							b = false;
+							for (let i = 0; i < starMoveData.length; i++) {
+								if (starMoveData[i].toRow == r && starMoveData[i].toCol == newCol) {
+									starMoveData[i].toRow = r;
+									starMoveData[i].toCol = newCol - 1;
+									b = true;
+									break;
+								}
+							}
+							if (!b) {
 								starMoveData.push({
-									fromRow: rowTop,
-									fromCol: c,
+									fromRow: r,
+									fromCol: newCol,
 									toRow: r,
-									toCol: c
+									toCol: newCol - 1
 								});
 							}
 						}
 					}
 				}
-				let isColEmpty = false;
-				let b = false;
-				for (let c = 8; c > -1; c--) {
-					isColEmpty = true;
-					for (let r = 0; r < 10; r++) {
-						if (starDataArr[r][c] != -1) {
-							isColEmpty = false;
-							break;
-						}
-					}
-					if (isColEmpty) {
-						for (let newCol = c + 1; newCol < 10; newCol++) {
-							for (let r = 0; r < 10; r++) {
-								starDataArr[r][newCol - 1] = starDataArr[r][newCol];
-								starDataArr[r][newCol] = -1;
-								// 不等于-1，才有移动的需求
-								if (starDataArr[r][newCol - 1] != -1) {
-									b = false;
-									for (let i = 0; i < starMoveData.length; i++) {
-										if (starMoveData[i].toRow == r && starMoveData[i].toCol == newCol) {
-											starMoveData[i].toRow = r;
-											starMoveData[i].toCol = newCol - 1;
-											b = true;
-											break;
-										}
-									}
-									if (!b) {
-										starMoveData.push({
-											fromRow: r,
-											fromCol: newCol,
-											toRow: r,
-											toCol: newCol - 1
-										});
-									}
-								}
-							}
-						}
-					}
-				}
-				const starMoveDataLength = starMoveData.length;
-				if (starMoveDataLength > 0) {
-					let actionCount = 0;
-					for (let i = 0; i < starMoveDataLength; i++) {
-						let moveData = starMoveData[i];
-						actionCount++;
-						const star = this._starArr[this._getStarIndex(moveData.fromRow, moveData.fromCol)];
-						const p: egret.Point = this._getStarPoint(moveData.toRow, moveData.toCol);
-						egret.Tween.get(star).to({ y: p.y, x: p.x }, 200).call(() => {
-							star.row = moveData.toRow;
-							star.col = moveData.toCol;
-							if (--actionCount == 0) {
-								this._isActionRunning = false;
-								this._checkCanGoOn();
-							}
-						});
-					}
-				} else {
-					this._isActionRunning = false;
-					this._checkCanGoOn();
-				}
-			} else {
-				this._isActionRunning = false;
 			}
+		}
+		const starMoveDataLength = starMoveData.length;
+		if (starMoveDataLength > 0) {
+			let actionCount = 0;
+			for (let i = 0; i < starMoveDataLength; i++) {
+				let moveData = starMoveData[i];
+				actionCount++;
+				const star = this._starArr[this._getStarIndex(moveData.fromRow, moveData.fromCol)];
+				const p: egret.Point = this._getStarPoint(moveData.toRow, moveData.toCol);
+				egret.Tween.get(star).to({ y: p.y, x: p.x }, 200, p.y === star.y ? null : egret.Ease.backIn).call(() => {
+					star.row = moveData.toRow;
+					star.col = moveData.toCol;
+					if (--actionCount == 0) {
+						this._isActionRunning = false;
+						this._checkCanGoOn();
+					}
+				});
+			}
+		} else {
+			this._isActionRunning = false;
+			this._checkCanGoOn();
 		}
 	}
 
@@ -284,6 +310,7 @@ class PlayScene extends egret.DisplayObjectContainer {
 			let system = new particle.GravityParticleSystem(texture, config);
 			system.x = star.x + 75 / 2;
 			system.y = star.y + 75 / 2;
+			// system.emissionTime = 200;
 			//启动粒子库
 			system.start();
 			//将例子系统添加到舞台
