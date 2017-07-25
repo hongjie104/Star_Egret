@@ -40,6 +40,8 @@ class PlayScene extends egret.DisplayObjectContainer {
 
 	private _isWinPanelShowed = false;
 
+	private _isRemovingLeftStars = false;
+
 	public constructor() {
 		super();
 
@@ -51,6 +53,7 @@ class PlayScene extends egret.DisplayObjectContainer {
 	}
 
 	private _reset(): void {
+		this._isRemovingLeftStars = false;
 		this._isWinPanelShowed = false;
 		// 初始化顶挂上的数值
 		const curLevel = LocalStorage.getItem(LocalStorageKey.curLevel) + 1;
@@ -91,23 +94,12 @@ class PlayScene extends egret.DisplayObjectContainer {
 	}
 
 	private _onStarClicked(evt: egret.TouchEvent): void {
+		if (this._isRemovingLeftStars) return;
 		if (!this._isActionRunning) {
 			this._isActionRunning = true;
 			const starTouched = evt.currentTarget as Star;
 			const result = this._findSameStarIndex(starTouched.row, starTouched.col);
 			if (result.length > 1) {
-				// // 播放个粒子动画
-				// //获取纹理
-				// const texture = RES.getRes("bluestar_png");
-				// //获取配置
-				// const config = RES.getRes("bluestar_json");
-				// //创建 GravityParticleSystem
-				// let system = new particle.GravityParticleSystem(texture, config);
-				// //启动粒子库
-				// system.start();
-				// //将例子系统添加到舞台
-				// this._playPanel.displayListContainer.addChild(system);
-
 				// 算一下这一次消除得了多少分
 				const addScore = Util.getScore(result.length);
 				this._addScore += addScore;
@@ -135,8 +127,9 @@ class PlayScene extends egret.DisplayObjectContainer {
 				for (let i = 0; i < result.length; i++) {
 					rowAndCol = result[i];
 					let starIndex = this._getStarIndex(rowAndCol.row, rowAndCol.col);
-					if (starIndex !== -1)
-						this._removeStar(this._starArr.splice(starIndex, 1)[0]);
+					if (starIndex !== -1) {
+						this._removeStar(this._starArr.splice(starIndex, 1)[0], false, true);
+					}
 					starDataArr[rowAndCol.row][rowAndCol.col] = -1;
 				}
 
@@ -255,12 +248,13 @@ class PlayScene extends egret.DisplayObjectContainer {
 			let starIndex = -1;
 			let waitTime = 0;
 			// 消除剩下的星星，然后到下一关
+			this._isRemovingLeftStars = true;
 			for (let c = 9; c > -1; c--) {
 				for (let r = 0; r < 10; r++) {
 					if (starDataArr[r][c] !== -1) {
 						starIndex = this._getStarIndex(r, c);
 						let removedStar = this._starArr.splice(starIndex, 1)[0];
-						waitTime += 500;
+						waitTime += 100;
 						egret.Tween.get(removedStar).wait(waitTime).call(this._removeStar, this, [removedStar, r === 9 && c === 0]);
 					}
 				}
@@ -268,7 +262,7 @@ class PlayScene extends egret.DisplayObjectContainer {
 		}
 	}
 
-	private _removeStar(star: Star, goToNextLevel: boolean = false): void {
+	private _removeStar(star: Star, goToNextLevel: boolean = false, playParticle: boolean = false): void {
 		star.removeFromParent();
 		star.dispose();
 		if (goToNextLevel) {
@@ -279,6 +273,26 @@ class PlayScene extends egret.DisplayObjectContainer {
 			levelScore[curLevel - 1] = this._addScore;
 			LocalStorage.saveToLocal();
 			this._reset();
+		}
+		if (playParticle) {
+			// 播放个粒子动画
+			//获取纹理
+			const texture = RES.getRes("bluestar_png");
+			//获取配置
+			const config = RES.getRes("bluestar_json");
+			//创建 GravityParticleSystem
+			let system = new particle.GravityParticleSystem(texture, config);
+			system.x = star.x + 75 / 2;
+			system.y = star.y + 75 / 2;
+			//启动粒子库
+			system.start();
+			//将例子系统添加到舞台
+			this._playPanel.displayListContainer.addChild(system);
+			egret.Tween.get(system).wait(200).call(() => {
+				system.stop();
+			}).wait(400).call(() => {
+				system.parent.removeChild(system);
+			});
 		}
 	}
 
