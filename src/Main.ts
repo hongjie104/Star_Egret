@@ -152,8 +152,15 @@ class Main extends egret.DisplayObjectContainer {
         return p;
     }
 
-    static createComponent(name: string): fairygui.GComponent {
-        return fairygui.UIPackage.createObject("Package1", name).asCom;
+    static createComponent(name: string, w?: number, h?: number): fairygui.GComponent {
+        const p = fairygui.UIPackage.createObject("Package1", name).asCom;
+        if (w) {
+            p.viewWidth = w;
+        }
+        if (h) {
+            p.viewHeight = h;
+        }
+        return p;
     }
 
     static createComponentFromURL(url: string): fairygui.GComponent {

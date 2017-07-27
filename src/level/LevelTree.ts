@@ -2,7 +2,7 @@ class LevelTree extends egret.EventDispatcher {
 
 	protected _tree: fairygui.GComponent;
 
-	public constructor(protected _treeName: string, width: number, height: number, starLevel: number, numBtn: number) {
+	public constructor(protected _treeName: string, width: number, height: number, numBtn: number, starLevel: number) {
 		super();
 		this._tree = Main.createComponent(this._treeName);
 		this._tree.viewWidth = Main.stageWidth;
