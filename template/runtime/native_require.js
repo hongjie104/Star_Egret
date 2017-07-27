@@ -23,6 +23,7 @@ var game_file_list = [
 	"bin-debug/RankPanel.js",
 	"bin-debug/StarEvent.js",
 	"bin-debug/Util.js",
+	"bin-debug/WinPanel.js",
 	//----auto game_file_list end----
 ];
 

@@ -139,17 +139,7 @@ class PlayScene extends egret.DisplayObjectContainer {
 		if (!this._isWinPanelShowed) {
 			if (this._initScore + this._addScore >= this._targetSocre) {
 				this._isWinPanelShowed = true;
-				const winPanel = Main.createPanel('胜利弹窗1');
-				winPanel.x = (Main.stageWidth - winPanel.initWidth) >> 1;
-				winPanel.y = (Main.stageHeight - winPanel.initHeight) >> 1;
-				fairygui.GRoot.inst.addChild(winPanel);
-				winPanel.getController('c1').selectedIndex = 1;
-				winPanel.getTransition('t0').play();
-				const btnContainer = winPanel.getChild('n0').asCom;
-				btnContainer.getChild('n17').addClickListener(this._onFetchAward, this);
-				btnContainer.getChild('n18').addClickListener(this._onFetchAward, this);
-				btnContainer.getChild('n19').addClickListener(this._onFetchAward, this);
-				btnContainer.getChild('n20').addClickListener(this._onFetchAward, this);
+				WinPanel.instance.show();
 			}
 		}
 
@@ -397,20 +387,6 @@ class PlayScene extends egret.DisplayObjectContainer {
 		let x = zeroX + col * w;
 		let y = zeroY + row * h;
 		return new egret.Point(x, y);
-	}
-
-	private _onFetchAward(evt: egret.TouchEvent): void {
-		const btn = evt.currentTarget as fairygui.GButton;
-		const winPanel = btn.parent.parent;
-		winPanel.getTransition('t2').play(() => {
-			const btnContainer = winPanel.getChild('n0').asCom;
-			btnContainer.getChild('n17').removeClickListener(this._onFetchAward, this);
-			btnContainer.getChild('n18').removeClickListener(this._onFetchAward, this);
-			btnContainer.getChild('n19').removeClickListener(this._onFetchAward, this);
-			btnContainer.getChild('n20').removeClickListener(this._onFetchAward, this);
-			winPanel.removeFromParent();
-			winPanel.dispose();
-		});
 	}
 
 	static get instance(): PlayScene {
