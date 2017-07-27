@@ -127,8 +127,13 @@ class LevelScene extends egret.DisplayObjectContainer {
 		this._scrollView.setScrollTop(this._treeHeight - Main.stageHeight - scrollTop + (Main.stageHeight >> 1) + (85 >> 1));
 		this.updateLevelBtnStatus(curLevel);
 
+		this.reset();
+	}
+
+	reset(): void {
 		// 初始化顶部
 		this._topBar = Main.createComponent('选关顶挂', 750, 100);
+		fairygui.GRoot.inst.removeChildren();
 		fairygui.GRoot.inst.addChild(this._topBar);
 	}
 

@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "Package1@atlas_sp8ru_jpg,Package1@atlas0_png,Package1,Package1@atlas_12czcy_jpg,Package1@atlas_12czcz_jpg,Package1@atlas_12czcx_jpg,bluestar_json,bluestar_png",
+			"keys": "Package1@atlas_sp8ru_jpg,Package1@atlas0_png,Package1,Package1@atlas_12czcy_jpg,Package1@atlas_12czcz_jpg,Package1@atlas_12czcx_jpg,star001_01_2_json,star001_01_2_png,star001_02_2_json,star001_02_2_png,star001_03_2_json,star001_03_2_png,star001_04_2_json,star001_04_2_png,star001_05_2_json,star001_05_2_png",
 			"name": "preload"
 		}
 	],
@@ -37,14 +37,54 @@
 			"url": "assets/Package1@atlas_12czcx.jpg"
 		},
 		{
-			"name": "bluestar_json",
+			"name": "star001_01_2_json",
 			"type": "json",
-			"url": "assets/bluestar.json"
+			"url": "assets/star001_01_2.json"
 		},
 		{
-			"name": "bluestar_png",
+			"name": "star001_01_2_png",
 			"type": "image",
-			"url": "assets/bluestar.png"
+			"url": "assets/star001_01_2.png"
+		},
+		{
+			"name": "star001_02_2_json",
+			"type": "json",
+			"url": "assets/star001_02_2.json"
+		},
+		{
+			"name": "star001_02_2_png",
+			"type": "image",
+			"url": "assets/star001_02_2.png"
+		},
+		{
+			"name": "star001_03_2_json",
+			"type": "json",
+			"url": "assets/star001_03_2.json"
+		},
+		{
+			"name": "star001_03_2_png",
+			"type": "image",
+			"url": "assets/star001_03_2.png"
+		},
+		{
+			"name": "star001_04_2_json",
+			"type": "json",
+			"url": "assets/star001_04_2.json"
+		},
+		{
+			"name": "star001_04_2_png",
+			"type": "image",
+			"url": "assets/star001_04_2.png"
+		},
+		{
+			"name": "star001_05_2_json",
+			"type": "json",
+			"url": "assets/star001_05_2.json"
+		},
+		{
+			"name": "star001_05_2_png",
+			"type": "image",
+			"url": "assets/star001_05_2.png"
 		}
 	]
 }

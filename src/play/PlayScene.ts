@@ -303,9 +303,9 @@ class PlayScene extends egret.DisplayObjectContainer {
 		if (playParticle) {
 			// 播放个粒子动画
 			//获取纹理
-			const texture = RES.getRes("bluestar_png");
+			const texture = RES.getRes(`star001_0${star.type + 1}_2_png`);
 			//获取配置
-			const config = RES.getRes("bluestar_json");
+			const config = RES.getRes(`star001_0${star.type + 1}_2_json`);
 			//创建 GravityParticleSystem
 			let system = new particle.GravityParticleSystem(texture, config);
 			system.x = star.x + 75 / 2;
