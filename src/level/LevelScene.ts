@@ -135,6 +135,10 @@ class LevelScene extends egret.DisplayObjectContainer {
 		this._topBar = Main.createComponent('选关顶挂', 750, 100);
 		fairygui.GRoot.inst.removeChildren();
 		fairygui.GRoot.inst.addChild(this._topBar);
+
+		this._topBar.getChild('n7').addClickListener(() => {
+			PayPanel.instance.show()
+		}, this);
 	}
 
 	updateLevelBtnStatus(curLevel: number): void {

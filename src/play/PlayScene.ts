@@ -48,6 +48,7 @@ class PlayScene extends egret.DisplayObjectContainer {
 		super();
 
 		this._playPanel = Main.createPanel('Game');
+		fairygui.GRoot.inst.removeChildren();
 		fairygui.GRoot.inst.addChild(this._playPanel);
 		this._topBar = this._playPanel.getChild('n1').asCom;
 
