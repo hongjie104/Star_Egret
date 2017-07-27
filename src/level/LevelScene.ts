@@ -137,7 +137,11 @@ class LevelScene extends egret.DisplayObjectContainer {
 		fairygui.GRoot.inst.addChild(this._topBar);
 
 		this._topBar.getChild('n7').addClickListener(() => {
-			PayPanel.instance.show()
+			PayPanel.instance.show();
+		}, this);
+
+		this._topBar.getChild('n5').addClickListener(() => {
+			RankPanel.instance.show();
 		}, this);
 	}
 
