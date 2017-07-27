@@ -4,6 +4,8 @@ class WinPanel {
 
 	private _winPanel: fairygui.GComponent;
 
+	private _isShowing = false;
+
 	public constructor() {
 		this._winPanel = Main.createComponent('胜利弹窗1', 670, 500);
 		this._winPanel.x = (Main.stageWidth - this._winPanel.initWidth) >> 1;
@@ -17,9 +19,16 @@ class WinPanel {
 		ui.getChild('n20').addClickListener(this._onFetchAward, this);
 	}
 
+	get isShowing(): boolean {
+		return this._isShowing;
+	}
+
 	show(): void {
+		// const curLevel = LocalStorage.getItem(LocalStorageKey.curLevel) + 1;
+		// const score = +LocalStorage.getItem(LocalStorageKey.levelScore)[curLevel];
 		fairygui.GRoot.inst.addChild(this._winPanel);
 		this._winPanel.getTransition('t0').play();
+		this._isShowing = true;
 	}
 
 	private _onFetchAward(evt: egret.TouchEvent): void {
@@ -27,6 +36,7 @@ class WinPanel {
 		const winPanel = this._winPanel;
 		winPanel.getTransition('t2').play(() => {
 			winPanel.removeFromParent();
+			this._isShowing = false;
 		});
 	}
 
