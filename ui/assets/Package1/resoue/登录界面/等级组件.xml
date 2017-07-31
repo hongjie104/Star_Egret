@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="615,690">
+  <displayList>
+    <image id="n1_h838" name="n1" src="h838c1r" xy="17,49" size="580,641">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </image>
+    <image id="n25_nb58" name="n25" src="nb58c2b" xy="1,30">
+      <relation target="n1_h838" sidePair="top-top,right-right"/>
+    </image>
+    <image id="n33_nb58" name="n33" src="vdprc4d" xy="230,6">
+      <relation target="n25_nb58" sidePair="center-center,top-top"/>
+    </image>
+    <component id="n34_nb58" name="n34" src="nb58c2x" xy="565,14">
+      <relation target="n25_nb58" sidePair="top-top,right-right"/>
+    </component>
+    <component id="n53_t9b6" name="n53" src="h838c1x" xy="215,562">
+      <relation target="n1_h838" sidePair="center-center,bottom-bottom"/>
+    </component>
+    <text id="n59_vdpr" name="n59" xy="70,161" size="160,44" group="n65_vdpr" font="黑体" fontSize="30" color="#333333" leading="10" bold="true" text="当前等级：&#xA;"/>
+    <text id="n60_vdpr" name="n60" xy="226,152" size="64,49" group="n65_vdpr" font="ui://yejc893v12czc1f" fontSize="45" color="#ffffff" leading="10" strokeColor="#666666" text="99"/>
+    <text id="n61_vdpr" name="n61" xy="72,235" size="449,37" group="n65_vdpr" font="黑体" fontSize="30" color="#ff3300" leading="10" autoSize="none" bold="true" text="目标等级：     奖励：  x"/>
+    <text id="n62_vdpr" name="n62" xy="226,228" size="64,49" group="n65_vdpr" font="ui://yejc893v12czc1f" fontSize="45" color="#ffffff" leading="10" strokeColor="#666666" text="99"/>
+    <image id="n63_vdpr" name="n63" src="h838c1y" xy="372,225" group="n65_vdpr"/>
+    <text id="n64_vdpr" name="n64" xy="451,227" size="53,56" group="n65_vdpr" font="黑体" fontSize="45" color="#ff0000" leading="10" bold="true" text="99"/>
+    <group id="n65_vdpr" name="n65" xy="70,152" size="451,133" advanced="true">
+      <relation target="n1_h838" sidePair="top-top,left-left"/>
+    </group>
+    <text id="n66_vdpr" name="n66" xy="61,304" size="500,227" group="n69_vdpr" font="黑体" fontSize="22" color="#855a2e" leading="10" autoSize="none" bold="true" text="经验获取规则：&#xA;每消除 个星星获取  点经验；&#xA;连消除    个星星，额外获得  点经验&#xA;连消除     个星星，额外获得  点经验；&#xA;连消除  个以上星星，额外获得      点经验；&#xA;&#xA;等级挑战，周周来战！等级越高，奖励越多！"/>
+    <text id="n67_vdpr" name="n67" xy="130,336" size="65,122" group="n69_vdpr" font="黑体" fontSize="22" color="#ff6600" leading="10" bold="true" text="1&#xA;5-10&#xA;10-20&#xA;20"/>
+    <text id="n68_vdpr" name="n68" xy="257,335" size="275,181" group="n69_vdpr" font="黑体" fontSize="22" color="#ff6600" leading="10" autoSize="none" bold="true" text=" 1&#xA;         2&#xA;          10&#xA;           20-50"/>
+    <group id="n69_vdpr" name="n69" xy="61,304" size="500,227" advanced="true">
+      <relation target="n65_vdpr" sidePair="top-bottom,center-center"/>
+    </group>
+  </displayList>
+</component>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="615,1000">
+  <displayList>
+    <image id="n1_h838" name="n1" src="h838c1r" xy="17,66" size="580,928">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </image>
+    <image id="n25_nb58" name="n25" src="nb58c2b" xy="1,47">
+      <relation target="n1_h838" sidePair="top-top,right-right"/>
+    </image>
+    <image id="n33_nb58" name="n33" src="vdprc4b" xy="230,23">
+      <relation target="n25_nb58" sidePair="center-center,top-top"/>
+    </image>
+    <component id="n34_nb58" name="n34" src="nb58c2x" xy="565,31">
+      <relation target="n25_nb58" sidePair="top-top,right-right"/>
+    </component>
+    <component id="n53_t9b6" name="n53" src="h838c1x" xy="215,891">
+      <relation target="n1_h838" sidePair="center-center,bottom-bottom"/>
+    </component>
+    <loader id="n57_vdpr" name="n57" xy="57,155" size="500,700"/>
+  </displayList>
+</component>

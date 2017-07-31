@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="650,1000">
+  <controller name="c1" pages="0,没,1,弹出" selected="1">
+    <action type="play_transition" fromPage="1" toPage="0" transition="t1" stopOnExit="true"/>
+    <action type="play_transition" fromPage="0" toPage="1" transition="t0" stopOnExit="true"/>
+  </controller>
+  <displayList>
+    <graph id="n1_rwnu" name="n1" xy="-880,35" pivot="0.5,0.5" size="236,245" type="rect" fillColor="#ff000000">
+      <gearDisplay controller="c1" pages="1"/>
+    </graph>
+    <component id="n0_h838" name="n0" src="nb58c2a" xy="22,50" pivot="0.5,0.5">
+      <gearDisplay controller="c1" pages="1"/>
+    </component>
+  </displayList>
+  <transition name="t0">
+    <item time="0" type="Alpha" target="n0_h838" tween="true" startValue="0" endValue="1" duration="8" ease="Linear"/>
+    <item time="0" type="Alpha" target="n1_rwnu" value="0.75"/>
+    <item time="0" type="Scale" target="n0_h838" tween="true" startValue="0.5,0.5" endValue="1,1" duration="8" ease="Back.Out"/>
+    <item time="0" type="Size" target="n1_rwnu" value="1249,1828.03"/>
+    <item time="0" type="XY" target="n1_rwnu" value="-291.5,-459.51"/>
+  </transition>
+  <transition name="t2">
+    <item time="0" type="Alpha" target="n0_h838" tween="true" startValue="1" endValue="0" duration="8" ease="Linear"/>
+    <item time="0" type="Scale" target="n0_h838" tween="true" startValue="1,1" endValue="0.5,0.5" duration="8" ease="Back.In"/>
+    <item time="8" type="Scale" target="n0_h838" tween="true" startValue="0.5,0.5" ease="Back.Out"/>
+  </transition>
+</component>

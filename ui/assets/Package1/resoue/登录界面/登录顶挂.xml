@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="750,70">
+  <displayList>
+    <image id="n0_sp8r" name="n0" src="t9b6c46" xy="4,0">
+      <relation target="" sidePair="top-top,center-center"/>
+    </image>
+    <component id="n9_sp8r" name="n9" src="sp8rg" xy="84,23">
+      <ProgressBar value="100" max="100"/>
+    </component>
+    <text id="n2_sp8r" name="n2" xy="586,13" size="99,34" font="黑体" fontSize="30" color="#ffffff" align="center" vAlign="middle" autoSize="shrink" bold="true" strokeColor="#1d4675" strokeSize="2" text="999999">
+      <relation target="n0_sp8r" sidePair="right-right,top-top"/>
+    </text>
+    <text id="n4_sp8r" name="n4" xy="69,23" size="24,24" font="黑体" fontSize="20" color="#ffffff" autoSize="none" bold="true" strokeColor="#1d4675" strokeSize="2" text="99">
+      <relation target="n0_sp8r" sidePair="right-right,top-top"/>
+    </text>
+    <text id="n7_sp8r" name="n7" xy="294,14" size="197,34" font="黑体" fontSize="30" color="#ffffff" align="center" vAlign="middle" autoSize="shrink" bold="true" strokeColor="#1d4675" strokeSize="2" text="9999999">
+      <relation target="n0_sp8r" sidePair="left-left,top-top"/>
+    </text>
+    <component id="n14_rwnu" name="n14" src="rwnuc3l" xy="554,6">
+      <relation target="n0_sp8r" sidePair="right-right,top-top"/>
+    </component>
+  </displayList>
+</component>

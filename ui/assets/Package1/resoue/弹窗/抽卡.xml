@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="102,108" pivot="0.5,0.5" extention="Button">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
+  <controller name="c1" pages="0,没抽,1,抽中的,2,没抽中的" selected="1"/>
+  <displayList>
+    <image id="n1" name="n1" src="h838c20" xy="0,0">
+      <gearDisplay controller="c1" pages="0"/>
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <loader id="n4_h838" name="n4" xy="12,12" size="76,80" align="center" vAlign="middle">
+      <gearDisplay controller="c1" pages="1,2"/>
+      <relation target="n2_h838" sidePair="center-center,middle-middle"/>
+    </loader>
+    <image id="n2_h838" name="n2" src="iz250" xy="5,8">
+      <gearDisplay controller="c1" pages="1,2"/>
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </image>
+    <text id="n3_h838" name="n3" xy="78,75" size="15,24" font="黑体" fontSize="20" text="9">
+      <gearDisplay controller="c1" pages="1,2"/>
+      <relation target="n2_h838" sidePair="right-right,bottom-bottom"/>
+    </text>
+    <movieclip id="n5_rwnu" name="n5" src="rwnuc3b" xy="-5,3" size="107,105" aspect="true">
+      <gearDisplay controller="c1" pages="1"/>
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </movieclip>
+  </displayList>
+  <Button downEffect="scale" downEffectValue="0.90"/>
+</component>

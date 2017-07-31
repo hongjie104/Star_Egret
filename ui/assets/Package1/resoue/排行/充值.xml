@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="615,700">
+  <displayList>
+    <image id="n1_h838" name="n1" src="h838c1r" xy="17,55" size="580,627">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </image>
+    <image id="n25_nb58" name="n25" src="nb58c2b" xy="1,36">
+      <relation target="n1_h838" sidePair="top-top,right-right"/>
+    </image>
+    <image id="n33_nb58" name="n33" src="rwnuc3f" xy="154,12">
+      <relation target="n25_nb58" sidePair="center-center,top-top"/>
+    </image>
+    <component id="n34_nb58" name="n34" src="nb58c2x" xy="565,20">
+      <relation target="n25_nb58" sidePair="top-top,right-right"/>
+    </component>
+    <image id="n46_rwnu" name="n46" src="rwnuc3g" xy="40,130" group="n48_rwnu"/>
+    <text id="n47_rwnu" name="n47" xy="309,207" size="122,60" group="n48_rwnu" font="ui://yejc893v12czc1f" fontSize="50" color="#ffffff" align="center" vAlign="middle" autoSize="shrink" text="150"/>
+    <text id="n49_rwnu" name="n49" xy="306,324" size="128,60" group="n48_rwnu" font="ui://yejc893v12czc1f" fontSize="50" color="#ffffff" align="center" autoSize="shrink" text="78"/>
+    <text id="n50_rwnu" name="n50" xy="262,439" size="286,60" group="n48_rwnu" font="黑体" fontSize="30" color="#ffffff" vAlign="middle" autoSize="shrink" text="1234567890"/>
+    <group id="n48_rwnu" name="n48" xy="40,130" size="537,397" advanced="true">
+      <relation target="n1_h838" sidePair="center-center,top-top"/>
+    </group>
+    <component id="n51_rwnu" name="n51" src="rwnuc3h" xy="173,517" aspect="true">
+      <relation target="n1_h838" sidePair="center-center,bottom-bottom"/>
+    </component>
+    <text id="n52_rwnu" name="n52" xy="162,630" size="305,24" font="黑体" fontSize="20" color="#999999" align="center" vAlign="middle" text="点击购买，您将通过短信支付10元">
+      <relation target="n1_h838" sidePair="center-center,top-bottom"/>
+    </text>
+  </displayList>
+</component>

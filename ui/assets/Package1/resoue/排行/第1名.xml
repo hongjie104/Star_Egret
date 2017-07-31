@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="504,100">
+  <displayList>
+    <image id="n0_nb58" name="n0" src="nb58c2c" xy="0,0"/>
+    <text id="n1_nb58" name="n1" xy="98,9" size="257,39" font="黑体" fontSize="35" color="#660000" vAlign="middle" letterSpacing="-2" autoSize="none" bold="true" shadowColor="#66ffff" shadowOffset="1,1" text="玩家的名字">
+      <relation target="n0_nb58" sidePair="left-left,top-top"/>
+    </text>
+    <text id="n2_nb58" name="n2" xy="98,46" size="234,44" font="ui://yejc893v12czc1f" fontSize="40" color="#ffffff" letterSpacing="-3" bold="true" text="1234567890">
+      <relation target="n0_nb58" sidePair="left-left,bottom-bottom"/>
+    </text>
+    <component id="n3_nb58" name="n3" src="nb58c2k" xy="410,9">
+      <relation target="n0_nb58" sidePair="right-right,middle-middle"/>
+    </component>
+  </displayList>
+</component>

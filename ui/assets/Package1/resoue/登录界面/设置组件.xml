@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="615,850">
+  <controller name="c1" pages="0,主界面的时候,1,游戏中暂停" selected="0"/>
+  <displayList>
+    <image id="n1_h838" name="n1" src="h838c1r" xy="19,25" size="580,826">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </image>
+    <image id="n25_nb58" name="n25" src="nb58c2b" xy="3,6">
+      <relation target="n1_h838" sidePair="top-top,right-right"/>
+    </image>
+    <image id="n33_nb58" name="n33" src="vdprc4c" xy="232,-18">
+      <relation target="n25_nb58" sidePair="center-center,top-top"/>
+    </image>
+    <component id="n34_nb58" name="n34" src="nb58c2x" xy="567,-10">
+      <relation target="n25_nb58" sidePair="top-top,right-right"/>
+    </component>
+    <component id="n57_vdpr" name="n57" src="vdprc4t" xy="115,123" group="n61_vdpr"/>
+    <component id="n58_vdpr" name="n58" src="vdprc4q" xy="115,246" group="n61_vdpr"/>
+    <component id="n59_vdpr" name="n59" src="vdprc4o" xy="115,369" group="n61_vdpr"/>
+    <component id="n60_vdpr" name="n60" src="vdprc4p" xy="115,493" group="n61_vdpr"/>
+    <group id="n61_vdpr" name="n61" xy="115,123" size="398,488" advanced="true">
+      <relation target="n1_h838" sidePair="center-center,top-top"/>
+    </group>
+    <component id="n62_vdpr" name="n62" src="vdprc4y" xy="115,644">
+      <gearDisplay controller="c1" pages="1"/>
+      <relation target="n61_vdpr" sidePair="top-bottom,center-center"/>
+    </component>
+  </displayList>
+</component>

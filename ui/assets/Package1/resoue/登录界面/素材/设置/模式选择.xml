@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="398,118" pivot="0.5,0.5" extention="Button">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
+  <controller name="c1" pages="0,模式1,1,模式2" selected="0"/>
+  <displayList>
+    <image id="n1" name="n1" src="vdprc4m" xy="0,0">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n2_vdpr" name="n2" src="vdprc4i" xy="48,22">
+      <gearDisplay controller="c1" pages="0"/>
+    </image>
+    <image id="n3_vdpr" name="n3" src="vdprc4j" xy="55,22">
+      <gearDisplay controller="c1" pages="1"/>
+    </image>
+  </displayList>
+  <Button downEffect="scale" downEffectValue="0.90"/>
+</component>

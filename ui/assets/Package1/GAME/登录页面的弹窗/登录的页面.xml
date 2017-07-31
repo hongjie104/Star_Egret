@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="750,1334">
+  <displayList>
+    <image id="n14_t9b6" name="n14" src="sp8ru" xy="0,0"/>
+    <component id="n0_t9b6" name="n0" src="t9b6c41" xy="99,1202" group="n3_t9b6"/>
+    <component id="n1_t9b6" name="n1" src="t9b6c42" xy="331,1205" group="n3_t9b6"/>
+    <component id="n2_t9b6" name="n2" src="t9b6c43" xy="536,1207" group="n3_t9b6"/>
+    <group id="n3_t9b6" name="n3" xy="99,1202" size="552,123" advanced="true" collapsed="true">
+      <relation target="" sidePair="center-center,bottom-bottom"/>
+    </group>
+    <component id="n4_t9b6" name="n4" src="t9b6c3w" xy="174,738" group="n7_t9b6"/>
+    <component id="n5_t9b6" name="n5" src="t9b6c3x" xy="174,879" group="n7_t9b6"/>
+    <component id="n6_t9b6" name="n6" src="t9b6c3y" xy="174,1020" group="n7_t9b6"/>
+    <group id="n7_t9b6" name="n7" xy="174,738" size="398,400" advanced="true" collapsed="true">
+      <relation target="n3_t9b6" sidePair="center-center,bottom-top"/>
+    </group>
+    <component id="n8_t9b6" name="n8" src="t9b6c3z" xy="596,704" group="n10_t9b6"/>
+    <component id="n9_t9b6" name="n9" src="t9b6c40" xy="584,905" group="n10_t9b6"/>
+    <group id="n10_t9b6" name="n10" xy="584,704" size="158,353" advanced="true" collapsed="true">
+      <relation target="n7_t9b6" sidePair="left-right,top-top"/>
+    </group>
+    <component id="n13_t9b6" name="n13" src="t9b6c45" xy="0,0">
+      <relation target="" sidePair="top-top,center-center"/>
+    </component>
+  </displayList>
+</component>

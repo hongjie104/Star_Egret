@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="750,1334">
+  <displayList>
+    <loader id="n0_sp8r" name="n0" xy="0,0" size="750,1334" url="ui://yejc893vsp8ru">
+      <relation target="" sidePair="bottom-bottom,center-center"/>
+    </loader>
+    <component id="n1_sp8r" name="n1" src="sp8re" xy="0,0">
+      <relation target="" sidePair="top-top,center-center"/>
+    </component>
+  </displayList>
+</component>

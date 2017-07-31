@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="75,75" extention="Button">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
+  <controller name="c1" pages="0,普通状态,1,提示状态,2,消失时候状态" selected="2" transitions="1-0=t1,0-1=t0"/>
+  <displayList>
+    <image id="n1" name="n1" src="iz258" xy="0,0" pivot="0.5,0.5">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <image id="n2_sp8r" name="n2" src="sp8rk" xy="-1,-1">
+      <gearDisplay controller="c1" pages="2"/>
+    </image>
+  </displayList>
+  <Button downEffect="scale" downEffectValue="0.90"/>
+  <transition name="t0">
+    <item time="0" type="Scale" target="n1" tween="true" startValue="1,1" endValue="0.8,0.8" duration="12" repeat="-1" yoyo="true"/>
+    <item time="12" type="Scale" target="n1" tween="true" startValue="0.8,0.8" endValue="1,1" duration="12" ease="Quad.In"/>
+    <item time="24" type="Scale" target="n1" tween="true" startValue="1,1" repeat="-1" yoyo="true"/>
+  </transition>
+  <transition name="t1">
+    <item time="0" type="XY" target="n2_sp8r" value="-1,-1"/>
+  </transition>
+</component>

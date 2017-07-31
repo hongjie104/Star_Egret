@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="750,846">
+  <displayList>
+    <image id="n0_12czc" name="n0" src="12czcz" xy="0,0" locked="true">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </image>
+    <component id="n1_12czc" name="n1" src="12czc14" xy="411,651"/>
+    <component id="n2_12czc" name="n2" src="12czc14" xy="293,602"/>
+    <component id="n3_12czc" name="n3" src="12czc14" xy="172,502"/>
+    <component id="n4_12czc" name="n4" src="12czc14" xy="493,452"/>
+    <component id="n5_12czc" name="n7" src="12czc14" xy="500,252"/>
+    <component id="n6_12czc" name="n6" src="12czc14" xy="332,276"/>
+    <component id="n7_12czc" name="n9" src="12czc14" xy="283,11"/>
+    <component id="n8_12czc" name="n8" src="12czc14" xy="136,65"/>
+    <component id="n9_12czc" name="n5" src="12czc14" xy="180,325"/>
+  </displayList>
+</component>

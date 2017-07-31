@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="77,77" pivot="0.5,0.5" extention="Button">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
+  <displayList>
+    <image id="n2_nb58" name="n2" src="nb58c2n" xy="0,0"/>
+  </displayList>
+  <Button downEffect="scale" downEffectValue="0.90"/>
+</component>

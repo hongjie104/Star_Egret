@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="92,92" pivot="0.5,0.5" extention="Button">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
+  <controller name="c1" pages="0,正常,1,动一下" selected="0" transitions="0-1=t0"/>
+  <displayList>
+    <image id="n1" name="n1" src="iz251" xy="0,0" pivot="0.5,0.5">
+      <relation target="" sidePair="width-width,height-height"/>
+    </image>
+    <text id="n2_sp8r" name="n2" xy="66,67" size="25,22" font="黑体" fontSize="18" align="center" vAlign="middle" bold="true" text="99">
+      <relation target="n1" sidePair="right-right,bottom-bottom"/>
+    </text>
+  </displayList>
+  <Button downEffect="scale" downEffectValue="0.90"/>
+  <transition name="t0">
+    <item time="0" type="Pivot" target="n1" value="0.5,1"/>
+    <item time="0" type="Scale" target="n1" tween="true" startValue="1,1" endValue="1,0.9" duration="4"/>
+    <item time="4" type="Scale" target="n1" tween="true" startValue="1,0.9" endValue="1,1.05" duration="4" ease="Quad.In"/>
+    <item time="8" type="Scale" target="n1" tween="true" startValue="1,1.05" endValue="1,0.95" duration="2"/>
+    <item time="10" type="Scale" target="n1" tween="true" startValue="1,0.95" endValue="1,1.02" duration="2"/>
+    <item time="12" type="Scale" target="n1" tween="true" startValue="1,1.02" endValue="1,0.98" duration="2"/>
+    <item time="14" type="Scale" target="n1" tween="true" startValue="1,0.98" endValue="1,1" duration="2"/>
+  </transition>
+</component>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="615,900">
+  <controller name="c1" pages="0,周排行,1,月排行" selected="0"/>
+  <displayList>
+    <image id="n1_h838" name="n1" src="h838c1r" xy="17,12" size="580,887">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </image>
+    <text id="n22_h838" name="n22" xy="175,100" size="258,24" font="黑体" fontSize="20" color="#347eb4" align="right" bold="true" text="周排行奖励每周日24点结算">
+      <gearDisplay controller="c1" pages="0"/>
+      <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
+    </text>
+    <image id="n25_nb58" name="n25" src="nb58c2b" xy="0,-5">
+      <relation target="n25_nb58" sidePair="top-top,right-right"/>
+    </image>
+    <image id="n26_nb58" name="n26" src="h838c1q" xy="45,128" size="524,638">
+      <relation target="n1_h838" sidePair="center-center,top-top"/>
+    </image>
+    <list id="n27_nb58" name="n27" xy="56,133" size="507,625" overflow="scroll" align="right">
+      <gearDisplay controller="c1" pages="0"/>
+      <relation target="n1_h838" sidePair="center-center,middle-middle"/>
+      <item url="ui://yejc893vnb58c2j"/>
+      <item url="ui://yejc893vnb58c2o"/>
+      <item url="ui://yejc893vnb58c2p"/>
+      <item url="ui://yejc893vnb58c2q"/>
+    </list>
+    <text id="n28_nb58" name="n28" xy="73,784" size="185,79" group="n31_nb58" font="黑体" fontSize="30" color="#333333" leading="15" text="本人周排名：&#xA;分数："/>
+    <text id="n29_nb58" name="n29" xy="242,779" size="161,44" group="n31_nb58" font="黑体" fontSize="40" color="#660000" leading="10" autoSize="none" bold="true" text="999999&#xA;"/>
+    <text id="n30_nb58" name="n30" xy="151,826" size="253,44" group="n31_nb58" font="黑体" fontSize="40" color="#660000" leading="10" autoSize="none" bold="true" text="1234567890"/>
+    <group id="n31_nb58" name="n31" xy="73,779" size="331,91" advanced="true">
+      <gearDisplay controller="c1" pages="0"/>
+      <relation target="n1_h838" sidePair="bottom-bottom,left-left"/>
+    </group>
+    <component id="n32_nb58" name="n32" src="nb58c2s" xy="448,784">
+      <gearDisplay controller="c1" pages="0"/>
+      <relation target="n1_h838" sidePair="right-right,bottom-bottom"/>
+    </component>
+    <image id="n33_nb58" name="n33" src="nb58c2u" xy="214,-25">
+      <gearDisplay controller="c1" pages="0"/>
+      <relation target="n25_nb58" sidePair="center-center,top-top"/>
+    </image>
+    <component id="n34_nb58" name="n34" src="nb58c2x" xy="564,-21">
+      <relation target="n1_h838" sidePair=""/>
+    </component>
+    <image id="n35_rwnu" name="n35" src="nb58c2v" xy="214,-25">
+      <gearDisplay controller="c1" pages="1"/>
+    </image>
+    <text id="n36_rwnu" name="n36" xy="173,100" size="269,24" font="黑体" fontSize="20" color="#347eb4" align="right" bold="true" text="月排行奖励每月1日00点结算">
+      <gearDisplay controller="c1" pages="1"/>
+      <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
+    </text>
+    <list id="n37_rwnu" name="n37" xy="56,133" size="507,625" overflow="scroll" align="right">
+      <gearDisplay controller="c1" pages="1"/>
+      <relation target="n1_h838" sidePair="center-center,middle-middle"/>
+      <item url="ui://yejc893vnb58c2j"/>
+      <item url="ui://yejc893vnb58c2o"/>
+      <item url="ui://yejc893vnb58c2p"/>
+      <item url="ui://yejc893vnb58c2q"/>
+    </list>
+    <text id="n38_rwnu" name="n38" xy="73,784" size="185,79" group="n41_rwnu" font="黑体" fontSize="30" color="#333333" leading="15" text="本人月排名：&#xA;分数："/>
+    <text id="n39_rwnu" name="n39" xy="242,779" size="161,44" group="n41_rwnu" font="黑体" fontSize="40" color="#660000" leading="10" autoSize="none" bold="true" text="999999&#xA;"/>
+    <text id="n40_rwnu" name="n40" xy="151,826" size="253,44" group="n41_rwnu" font="黑体" fontSize="40" color="#660000" leading="10" autoSize="none" bold="true" text="1234567890"/>
+    <group id="n41_rwnu" name="n41" xy="73,779" size="331,91" advanced="true">
+      <gearDisplay controller="c1" pages="1"/>
+      <relation target="n1_h838" sidePair="bottom-bottom,left-left"/>
+    </group>
+    <component id="n42_rwnu" name="n42" src="nb58c2s" xy="448,784">
+      <gearDisplay controller="c1" pages="1"/>
+      <relation target="n1_h838" sidePair="right-right,bottom-bottom"/>
+    </component>
+    <component id="n43_rwnu" name="n43" src="rwnuc33" xy="456,902" group="n45_rwnu"/>
+    <component id="n44_rwnu" name="n44" src="rwnuc34" xy="320,900" group="n45_rwnu"/>
+    <group id="n45_rwnu" name="n45" xy="320,900" size="271,100" advanced="true">
+      <relation target="n1_h838" sidePair="top-bottom,right-right"/>
+    </group>
+  </displayList>
+</component>

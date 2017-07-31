@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="93,85" pivot="0.5,0.5" extention="Button" bgColor="#ff0000">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
+  <controller name="c1" pages="0,锁起来的,1,正常,2,当前最高关卡数" selected="0">
+    <action type="play_transition" fromPage="1" toPage="2" transition="t0" stopOnExit="true"/>
+  </controller>
+  <displayList>
+    <image id="n4_12czc" name="n4" src="12czc1g" xy="-58,-62" pivot="0.5,0.5">
+      <gearDisplay controller="c1" pages="2"/>
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </image>
+    <text id="n3_12czc" name="n3" xy="0,0" size="93,85" font="ui://yejc893v12czc1f" fontSize="40" color="#ffffff" align="center" vAlign="middle" letterSpacing="-4" autoSize="shrink" text="300">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </text>
+    <image id="n1" name="n1" src="12czc11" xy="0,0">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </image>
+    <image id="n2_12czc" name="n2" src="12czc10" xy="58,54" size="42,56">
+      <gearDisplay controller="c1" pages="0"/>
+      <relation target="n1" sidePair="right-right,top-bottom"/>
+    </image>
+  </displayList>
+  <Button downEffect="scale" downEffectValue="0.90"/>
+  <transition name="t0">
+    <item time="0" type="Pivot" target="n4_12czc" value="0.5,0.5"/>
+    <item time="0" type="Rotation" target="n4_12czc" tween="true" startValue="0" endValue="90" duration="24" ease="Linear" yoyo="true"/>
+    <item time="24" type="Rotation" target="n4_12czc" tween="true" startValue="90" endValue="180" duration="24" ease="Linear"/>
+    <item time="48" type="Rotation" target="n4_12czc" tween="true" startValue="180" endValue="270" duration="24" ease="Linear"/>
+    <item time="72" type="Rotation" target="n4_12czc" tween="true" startValue="270" endValue="360" duration="24" ease="Linear"/>
+    <item time="96" type="Rotation" target="n4_12czc" tween="true" startValue="360" repeat="-1" yoyo="true"/>
+  </transition>
+</component>

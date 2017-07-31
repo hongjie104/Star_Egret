@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="750,158">
+  <displayList>
+    <image id="n0_sp8r" name="n0" src="iz257" xy="4,0">
+      <relation target="" sidePair="top-top,center-center"/>
+    </image>
+    <component id="n1_sp8r" name="n1" src="sp8rf" xy="651,2">
+      <relation target="n0_sp8r" sidePair="middle-middle,right-right"/>
+    </component>
+    <text id="n2_sp8r" name="n2" xy="537,16" size="85,33" font="黑体" fontSize="24" color="#ffffff" autoSize="none" bold="true" strokeColor="#1d4675" strokeSize="2" text="999999">
+      <relation target="n0_sp8r" sidePair="right-right,top-top"/>
+    </text>
+    <text id="n4_sp8r" name="n4" xy="515,75" size="24,24" font="黑体" fontSize="20" color="#ffffff" autoSize="none" bold="true" strokeColor="#1d4675" strokeSize="2" text="99">
+      <relation target="n0_sp8r" sidePair="right-right,top-top"/>
+    </text>
+    <text id="n5_sp8r" name="n5" xy="271,8" size="206,41" font="黑体" fontSize="30" color="#000033" align="center" autoSize="none" bold="true" text="LEVEL 1">
+      <relation target="n0_sp8r" sidePair="top-top,center-center"/>
+    </text>
+    <text id="n6_sp8r" name="n6" xy="308,73" size="131,50" font="黑体" fontSize="40" color="#ffffff" align="center" vAlign="middle" autoSize="shrink" bold="true" strokeColor="#1d4675" strokeSize="2" text="999999">
+      <relation target="n0_sp8r" sidePair="top-top,center-center"/>
+    </text>
+    <text id="n7_sp8r" name="n7" xy="94,14" size="151,33" font="黑体" fontSize="24" color="#ffffff" align="right" vAlign="middle" autoSize="none" bold="true" strokeColor="#1d4675" strokeSize="2" text="999999">
+      <relation target="n0_sp8r" sidePair="left-left,top-top"/>
+    </text>
+    <text id="n8_sp8r" name="n8" xy="94,64" size="151,33" font="黑体" fontSize="24" color="#ffffff" align="right" vAlign="middle" autoSize="none" bold="true" strokeColor="#1d4675" strokeSize="2" text="999999">
+      <relation target="n0_sp8r" sidePair="left-left,top-top"/>
+    </text>
+    <component id="n9_sp8r" name="n9" src="sp8rg" xy="541,74">
+      <ProgressBar value="100" max="100"/>
+    </component>
+    <component id="n10_sp8r" name="n10" src="sp8rr" xy="646,131" group="n13_sp8r"/>
+    <component id="n11_sp8r" name="n11" src="sp8rs" xy="548,131" group="n13_sp8r"/>
+    <component id="n12_sp8r" name="n12" src="sp8rt" xy="450,131" group="n13_sp8r"/>
+    <group id="n13_sp8r" name="n13" xy="450,131" size="288,92" advanced="true">
+      <relation target="n0_sp8r" sidePair="top-bottom,right-right"/>
+    </group>
+    <component id="n14_rwnu" name="n14" src="rwnuc3l" xy="490,6">
+      <relation target="n0_sp8r" sidePair="right-right,top-top"/>
+    </component>
+  </displayList>
+</component>
