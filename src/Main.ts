@@ -99,9 +99,35 @@ class Main extends egret.DisplayObjectContainer {
         Main.stageWidth = this.stage.stageWidth;
         Main.stageHeight = this.stage.stageHeight;
 
+        const mainScene = MainScene.instance;
+        mainScene.addEventListener(StarEvent.ENTER_LEVEL_SCREEN, this._onEnterLevelScreen, this);
+        mainScene.addEventListener(StarEvent.SHOW_REDEEM_CODE, this._onShowRedeemCode, this);
+        mainScene.addEventListener(StarEvent.SHOW_ACTIVITY, this._onShowActivity, this);
+        mainScene.addEventListener(StarEvent.SHOW_SETTING, this._onShowSetting, this);
+        this.addChild(mainScene);
+    }
+
+    private _onEnterLevelScreen(evt: StarEvent): void {
+        const mainScene = MainScene.instance;
+        if (mainScene.parent == this) {
+            this.removeChild(mainScene);
+        }
         const levelScene = LevelScene.instance;
         this.addChild(levelScene);
         levelScene.addEventListener(StarEvent.ENTER_LEVEL, this._onEnterLevel, this);
+    }
+
+    private _onShowRedeemCode(): void {
+        RedeemCodePanel.instance.show();
+    }
+
+    private _onShowActivity(): void {
+        ActivityPanel.instance.show();
+    }
+
+    private _onShowSetting(): void {
+        SettingPanel.instance.ui.getChild('n0').asCom.getController('c1').selectedIndex = 0;
+        SettingPanel.instance.show();
     }
 
     private _onEnterLevel(evt: StarEvent): void {

@@ -51,6 +51,7 @@ class PlayScene extends egret.DisplayObjectContainer {
 		fairygui.GRoot.inst.removeChildren();
 		fairygui.GRoot.inst.addChild(this._playPanel);
 		this._topBar = this._playPanel.getChild('n1').asCom;
+		this._topBar.getChild('n1').addClickListener(this._showSettingPanel, this);
 
 		this._reset();
 	}
@@ -387,6 +388,11 @@ class PlayScene extends egret.DisplayObjectContainer {
 		let x = zeroX + col * w;
 		let y = zeroY + row * h;
 		return new egret.Point(x, y);
+	}
+
+	private _showSettingPanel(): void {
+		SettingPanel.instance.ui.getChild('n0').asCom.getController('c1').selectedIndex = 1;
+		SettingPanel.instance.show();
 	}
 
 	static get instance(): PlayScene {

@@ -1,6 +1,14 @@
 class StarEvent extends egret.Event {
 
+	static ENTER_LEVEL_SCREEN = 'enterLevelScreen';
+
 	static ENTER_LEVEL = 'enterLevel';
+
+	static SHOW_REDEEM_CODE = 'showRedeemCode';
+
+	static SHOW_ACTIVITY = 'showActivity';
+
+	static SHOW_SETTING = 'showSetting';
 
 	public constructor(type: string, private _level?: number) {
 		super(type);
