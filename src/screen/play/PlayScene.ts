@@ -1,4 +1,4 @@
-class PlayScene extends egret.DisplayObjectContainer {
+class PlayScene extends BaseScreen {
 
 	private static _instance: PlayScene = null;
 
@@ -48,15 +48,18 @@ class PlayScene extends egret.DisplayObjectContainer {
 		super();
 
 		this._playPanel = Main.createPanel('Game');
-		fairygui.GRoot.inst.removeChildren();
-		fairygui.GRoot.inst.addChild(this._playPanel);
 		this._topBar = this._playPanel.getChild('n1').asCom;
 		this._topBar.getChild('n1').addClickListener(this._showSettingPanel, this);
-
-		this._reset();
 	}
 
-	private _reset(): void {
+	reset(): void {
+		for (let i = 0; i < this._starArr.length; i++) {
+			this._removeStar(this._starArr[i]);
+		}
+
+		fairygui.GRoot.inst.removeChildren();
+		fairygui.GRoot.inst.addChild(this._playPanel);
+
 		this._isRemovingLeftStars = false;
 		this._isWinPanelShowed = false;
 		// 初始化顶挂上的数值
@@ -290,7 +293,7 @@ class PlayScene extends egret.DisplayObjectContainer {
 			const levelScore = LocalStorage.getItem(LocalStorageKey.levelScore) as Array<number>;
 			levelScore[curLevel - 1] = this._addScore;
 			LocalStorage.saveToLocal();
-			this._reset();
+			this.reset();
 		}
 		if (playParticle) {
 			// 播放个粒子动画

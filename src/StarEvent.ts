@@ -1,5 +1,7 @@
 class StarEvent extends egret.Event {
 
+	static ENTER_MAIN_SCREEN = 'enterMainScreen';
+
 	static ENTER_LEVEL_SCREEN = 'enterLevelScreen';
 
 	static ENTER_LEVEL = 'enterLevel';

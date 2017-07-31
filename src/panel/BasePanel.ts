@@ -1,8 +1,9 @@
-abstract class BasePanel {
+abstract class BasePanel extends egret.EventDispatcher {
 
 	protected _ui: fairygui.GComponent;
 
 	public constructor() {
+		super();
 		this._init();
 	}
 
@@ -18,8 +19,10 @@ abstract class BasePanel {
 	protected abstract _init(): void;
 
 	protected _onClose(evt?: egret.TouchEvent): void {
-		this._ui.getTransition('t2').play(() => {
-			this._ui.removeFromParent();
-		});
+		this._ui.getTransition('t2').play(this._closed, this);
+	}
+
+	protected _closed(): void {
+		this._ui.removeFromParent();
 	}
 }

@@ -1,4 +1,4 @@
-class MainScene extends egret.DisplayObjectContainer {
+class MainScene extends BaseScreen {
 
 	private static _instance: MainScene;
 
@@ -8,8 +8,6 @@ class MainScene extends egret.DisplayObjectContainer {
 		super();
 
 		this._mainPanel = Main.createPanel('登录的页面');
-		fairygui.GRoot.inst.removeChildren();
-		fairygui.GRoot.inst.addChild(this._mainPanel);
 
 		// 进入关卡的按钮
 		this._mainPanel.getChild('n4').addClickListener(this._onEnterLevelScreen, this);
@@ -19,6 +17,11 @@ class MainScene extends egret.DisplayObjectContainer {
 		this._mainPanel.getChild('n1').addClickListener(this._onActivity, this);
 		// 打开设置面板
 		this._mainPanel.getChild('n2').addClickListener(this._onSetting, this);
+	}
+
+	reset(): void {
+		fairygui.GRoot.inst.removeChildren();
+		fairygui.GRoot.inst.addChild(this._mainPanel);
 	}
 
 	private _onEnterLevelScreen(): void {

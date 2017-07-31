@@ -1,4 +1,4 @@
-class LevelScene extends egret.DisplayObjectContainer {
+class LevelScene extends BaseScreen {
 
 	private static _instance: LevelScene;
 
@@ -61,7 +61,6 @@ class LevelScene extends egret.DisplayObjectContainer {
 		if (curLevel > numRootTreeLevelBtn) {
 			numInitTree = 1 + 2 * Math.ceil((curLevel - numRootTreeLevelBtn) / (numTree1LevelBtn + numTree2LevelBtn));
 		}
-		// console.log('初始化树的数量:' + numInitTree);
 
 		for (let i = 1; i < numInitTree + 2; i++) {
 			if ((i & 1) === 1) {
@@ -125,9 +124,6 @@ class LevelScene extends egret.DisplayObjectContainer {
 		// (Main.stageHeight >> 1) 是屏幕高度的一半，让目标关卡在屏幕上垂直居中
 		// 85 >> 1 是按钮高度的一半
 		this._scrollView.setScrollTop(this._treeHeight - Main.stageHeight - scrollTop + (Main.stageHeight >> 1) + (85 >> 1));
-		this.updateLevelBtnStatus(curLevel);
-
-		this.reset();
 	}
 
 	reset(): void {
@@ -143,9 +139,12 @@ class LevelScene extends egret.DisplayObjectContainer {
 		this._topBar.getChild('n5').addClickListener(() => {
 			RankPanel.instance.show();
 		}, this);
+
+		const curLevel = LocalStorage.getItem(LocalStorageKey.curLevel);
+		this._updateLevelBtnStatus(curLevel);
 	}
 
-	updateLevelBtnStatus(curLevel: number): void {
+	private _updateLevelBtnStatus(curLevel: number): void {
 		const treeArr = this._treeArr;
 		for (let i = 0; i < treeArr.length; i++) {
 			treeArr[i].updateBtnStatus(curLevel);

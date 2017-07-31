@@ -8,7 +8,9 @@ class Main extends egret.DisplayObjectContainer {
      * 加载进度界面
      * Process interface loading
      */
-    private loadingView: LoadingUI;
+    private _loadingView: LoadingUI;
+
+    private _curScreen: egret.DisplayObjectContainer;
 
     public constructor() {
         super();
@@ -18,8 +20,8 @@ class Main extends egret.DisplayObjectContainer {
     private onAddToStage(event: egret.Event) {
         //设置加载进度界面
         //Config to load process interface
-        this.loadingView = new LoadingUI();
-        this.stage.addChild(this.loadingView);
+        this._loadingView = new LoadingUI();
+        this.stage.addChild(this._loadingView);
 
         //初始化Resource资源加载库
         //initiate Resource loading library
@@ -46,7 +48,7 @@ class Main extends egret.DisplayObjectContainer {
      */
     private onResourceLoadComplete(event: RES.ResourceEvent) {
         if (event.groupName == "preload") {
-            this.stage.removeChild(this.loadingView);
+            this.stage.removeChild(this._loadingView);
             RES.removeEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
             RES.removeEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onResourceLoadError, this);
             RES.removeEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
@@ -81,7 +83,7 @@ class Main extends egret.DisplayObjectContainer {
      */
     private onResourceProgress(event: RES.ResourceEvent) {
         if (event.groupName == "preload") {
-            this.loadingView.setProgress(event.itemsLoaded, event.itemsTotal);
+            this._loadingView.setProgress(event.itemsLoaded, event.itemsTotal);
         }
     }
 
@@ -99,21 +101,31 @@ class Main extends egret.DisplayObjectContainer {
         Main.stageWidth = this.stage.stageWidth;
         Main.stageHeight = this.stage.stageHeight;
 
+        SettingPanel.instance.addEventListener(StarEvent.ENTER_MAIN_SCREEN, this._onEnterMainScreen, this);
+        this._onEnterMainScreen();
+    }
+
+    private _onEnterMainScreen(evt?: StarEvent): void {
+        this._removeAllScreen();
         const mainScene = MainScene.instance;
-        mainScene.addEventListener(StarEvent.ENTER_LEVEL_SCREEN, this._onEnterLevelScreen, this);
-        mainScene.addEventListener(StarEvent.SHOW_REDEEM_CODE, this._onShowRedeemCode, this);
-        mainScene.addEventListener(StarEvent.SHOW_ACTIVITY, this._onShowActivity, this);
-        mainScene.addEventListener(StarEvent.SHOW_SETTING, this._onShowSetting, this);
+        mainScene.reset();
+        if (!mainScene.hasEventListener(StarEvent.ENTER_LEVEL_SCREEN)) {
+            mainScene.addEventListener(StarEvent.ENTER_LEVEL_SCREEN, this._onEnterLevelScreen, this);
+            mainScene.addEventListener(StarEvent.SHOW_REDEEM_CODE, this._onShowRedeemCode, this);
+            mainScene.addEventListener(StarEvent.SHOW_ACTIVITY, this._onShowActivity, this);
+            mainScene.addEventListener(StarEvent.SHOW_SETTING, this._onShowSetting, this);
+        }
+
         this.addChild(mainScene);
+        this._curScreen = mainScene;
     }
 
     private _onEnterLevelScreen(evt: StarEvent): void {
-        const mainScene = MainScene.instance;
-        if (mainScene.parent == this) {
-            this.removeChild(mainScene);
-        }
+        this._removeAllScreen();
         const levelScene = LevelScene.instance;
+        levelScene.reset();
         this.addChild(levelScene);
+        this._curScreen = levelScene;
         levelScene.addEventListener(StarEvent.ENTER_LEVEL, this._onEnterLevel, this);
     }
 
@@ -161,13 +173,19 @@ class Main extends egret.DisplayObjectContainer {
 
     private _onLevelSelectorOK(evt: egret.TouchEvent): void {
         this._onLevelSelectorCancel(evt, () => {
-            const levelScene = LevelScene.instance;
-            if (levelScene.parent) {
-                levelScene.parent.removeChild(levelScene);
-            }
+            this._removeAllScreen();
             const playScene = PlayScene.instance;
+            playScene.reset();
             this.addChild(playScene);
+            this._curScreen = playScene;
         });
+    }
+
+    private _removeAllScreen(): void {
+        if (this._curScreen) {
+            this.removeChild(this._curScreen);
+            this._curScreen = null;
+        }
     }
 
     static createPanel(panelName: string): fairygui.GComponent {
