@@ -20,7 +20,7 @@ var game_file_list = [
 	"bin-debug/panel/RankPanel.js",
 	"bin-debug/panel/RedeemCodePanel.js",
 	"bin-debug/panel/SettingPanel.js",
-	"bin-debug/Util.js",
+	"bin-debug/LocalStorage.js",
 	"bin-debug/Main.js",
 	"bin-debug/screen/level/LevelScene.js",
 	"bin-debug/screen/level/LevelTree.js",
@@ -28,7 +28,7 @@ var game_file_list = [
 	"bin-debug/screen/play/PlayScene.js",
 	"bin-debug/screen/play/Star.js",
 	"bin-debug/StarEvent.js",
-	"bin-debug/LocalStorage.js",
+	"bin-debug/Util.js",
 	//----auto game_file_list end----
 ];
 

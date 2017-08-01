@@ -15,6 +15,11 @@ class SettingPanel extends BasePanel {
 
 	show(): void {
 		this._toDoAfterSettingPanelClosed = ToDoAfterSettingPanelClosed.none;
+		const soundEnabled: boolean = LocalStorage.getItem(LocalStorageKey.soundEnabled);
+		const touchType: number = LocalStorage.getItem(LocalStorageKey.touchType);
+		const ui = this._ui.getChild('n0').asCom;
+		ui.getChild('n57').asCom.getController('c1').selectedIndex = soundEnabled ? 0 : 1;
+		ui.getChild('n58').asCom.getController('c1').selectedIndex = touchType - 1;
 		super.show();
 	}
 
@@ -26,6 +31,22 @@ class SettingPanel extends BasePanel {
 		const ui = this._ui.getChild('n0').asCom;
 		ui.getChild('n34').addClickListener(this._onClose, this);
 		ui.getChild('n62').addClickListener(this._onMainScreen, this);
+		ui.getChild('n57').addClickListener(this._onSwitchSoundEnable, this);
+		ui.getChild('n58').addClickListener(this._onSwitchTouchType, this);
+	}
+
+	private _onSwitchSoundEnable(): void {
+		const soundEnabled: boolean = LocalStorage.getItem(LocalStorageKey.soundEnabled);
+		this._ui.getChild('n0').asCom.getChild('n57').asCom.getController('c1').selectedIndex = soundEnabled ? 1 : 0;
+		LocalStorage.setItem(LocalStorageKey.soundEnabled, !soundEnabled);
+		LocalStorage.saveToLocal();
+	}
+
+	private _onSwitchTouchType(): void {
+		const touchType: number = LocalStorage.getItem(LocalStorageKey.touchType);
+		this._ui.getChild('n0').asCom.getChild('n58').asCom.getController('c1').selectedIndex = touchType === 1 ? 1 : 0;
+		LocalStorage.setItem(LocalStorageKey.touchType, touchType === 1 ? 2 : 1);
+		LocalStorage.saveToLocal();
 	}
 
 	/**

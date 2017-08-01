@@ -24,5 +24,6 @@ abstract class BasePanel extends egret.EventDispatcher {
 
 	protected _closed(): void {
 		this._ui.removeFromParent();
+		this.dispatchEvent(new egret.Event(egret.Event.CLOSE));
 	}
 }

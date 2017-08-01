@@ -63,7 +63,8 @@ class PlayScene extends BaseScreen {
 		this._isRemovingLeftStars = false;
 		this._isWinPanelShowed = false;
 		// 初始化顶挂上的数值
-		const curLevel = LocalStorage.getItem(LocalStorageKey.curLevel) + 1;
+		this._topBar.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.dollar).toString();
+		const curLevel = LocalStorage.getItem(LocalStorageKey.lastLevel) + 1;
 		this._topBar.getChild('n5').text = `LEVEL ${curLevel}`;
 		this._initScore = LocalStorage.getItem(LocalStorageKey.totalScore);
 		this._addScore = 0;
@@ -77,6 +78,11 @@ class PlayScene extends BaseScreen {
 		// 过关的分数
 		this._targetSocre = Util.getTargetScore(curLevel);
 		this._topBar.getChild('n8').text = this._targetSocre.toString();
+		this._topBar.getChild('n4').text = Util.getLv().toString();
+		const progress = Util.getExpProgress();
+		const progressBar = this._topBar.getChild('n9').asProgress;
+		progressBar.max = progress.max;
+		progressBar.value = progress.val;
 
 		// 初始化星星
 		this._starArr.length = 0;
@@ -107,8 +113,7 @@ class PlayScene extends BaseScreen {
 			const starTouched = evt.currentTarget as Star;
 			const result = this._findSameStarIndex(starTouched.row, starTouched.col);
 			if (result.length > 1) {
-				// if (LocalStorage.getItem(LocalStorageKey.touchType) === 2) {
-				if (true) {
+				if (LocalStorage.getItem(LocalStorageKey.touchType) === 2) {
 					if (!this._xiaoChuStar) {
 						this._xiaoChuStar = result;
 						let rowAndCol: { row: number, col: number };
@@ -139,13 +144,22 @@ class PlayScene extends BaseScreen {
 		const addScore = Util.getScore(result.length);
 		this._addScore += addScore;
 		this._topBar.getChild('n6').text = (this._initScore + this._addScore).toString();
-		// 判断一下，是否达到了目标分数
-		if (!this._isWinPanelShowed) {
-			if (this._initScore + this._addScore >= this._targetSocre) {
-				this._isWinPanelShowed = true;
-				WinPanel.instance.show();
-			}
+
+		// 算一下这一次消除得了多少经验
+		const addExp = Util.getAwardExp(result.length);
+		// 获得奖励
+		const award = Util.checkAward(addExp);
+		if (award > 0) {
+			const newDollar = LocalStorage.getItem(LocalStorageKey.dollar) + award;
+			LocalStorage.setItem(LocalStorageKey.dollar, newDollar);
+			LocalStorage.saveToLocal();
+			this._topBar.getChild('n2').text = newDollar.toString();
 		}
+		this._topBar.getChild('n4').text = Util.getLv().toString();
+		const progress = Util.getExpProgress();
+		const progressBar = this._topBar.getChild('n9').asProgress;
+		progressBar.max = progress.max;
+		progressBar.value = progress.val;
 
 		const starDataArr = this._starDataArr;
 		let rowAndCol: { row: number, col: number };
@@ -266,18 +280,35 @@ class PlayScene extends BaseScreen {
 			if (isCanGoOn) break;
 		}
 		if (!isCanGoOn) {
-			let starIndex = -1;
-			let waitTime = 0;
-			// 消除剩下的星星，然后到下一关
-			this._isRemovingLeftStars = true;
-			for (let c = 9; c > -1; c--) {
-				for (let r = 0; r < 10; r++) {
-					if (starDataArr[r][c] !== -1) {
-						starIndex = this._getStarIndex(r, c);
-						let removedStar = this._starArr.splice(starIndex, 1)[0];
-						waitTime += 100;
-						egret.Tween.get(removedStar).wait(waitTime).call(this._removeStar, this, [removedStar, r === 9 && c === 0]);
+			// 判断一下，是否达到了目标分数
+			if (this._initScore + this._addScore >= this._targetSocre) {
+				if (!this._isWinPanelShowed) {
+					this._isWinPanelShowed = true;
+					const winPanel = WinPanel.instance;
+					if (!winPanel.hasEventListener(egret.Event.CLOSE)) {
+						winPanel.addEventListener(egret.Event.CLOSE, this._onWinPanelClosed, this);
 					}
+					winPanel.show();
+				}
+			} else {
+				// 失败了
+			}
+		}
+	}
+
+	private _onWinPanelClosed(): void {
+		const starDataArr = this._starDataArr;
+		let starIndex = -1;
+		let waitTime = 0;
+		// 消除剩下的星星，然后到下一关
+		this._isRemovingLeftStars = true;
+		for (let c = 9; c > -1; c--) {
+			for (let r = 0; r < 10; r++) {
+				if (starDataArr[r][c] !== -1) {
+					starIndex = this._getStarIndex(r, c);
+					let removedStar = this._starArr.splice(starIndex, 1)[0];
+					waitTime += 60;
+					egret.Tween.get(removedStar).wait(waitTime).call(this._removeStar, this, [removedStar, r === 9 && c === 0, true]);
 				}
 			}
 		}
@@ -287,11 +318,23 @@ class PlayScene extends BaseScreen {
 		star.removeFromParent();
 		star.dispose();
 		if (goToNextLevel) {
-			const curLevel = LocalStorage.getItem(LocalStorageKey.curLevel) + 1;
-			LocalStorage.setItem(LocalStorageKey.curLevel, curLevel);
+			const curLevel = LocalStorage.getItem(LocalStorageKey.lastLevel) + 1;
+			LocalStorage.setItem(LocalStorageKey.lastLevel, curLevel);
 			LocalStorage.setItem(LocalStorageKey.totalScore, this._initScore + this._addScore);
 			const levelScore = LocalStorage.getItem(LocalStorageKey.levelScore) as Array<number>;
-			levelScore[curLevel - 1] = this._addScore;
+			if (levelScore[curLevel - 1] < this._addScore) {
+				levelScore[curLevel - 1] = this._addScore;
+				// 再算算总分
+				let totalScore = 0;
+				let maxTotalScore = 0;
+				for (let i = 0; i < levelScore.length; i++) {
+					if (i < curLevel)
+						totalScore += levelScore[i];
+					maxTotalScore += levelScore[i];
+				}
+				LocalStorage.setItem(LocalStorageKey.totalScore, totalScore);
+				LocalStorage.setItem(LocalStorageKey.maxTotalScore, maxTotalScore);
+			}
 			LocalStorage.saveToLocal();
 			this.reset();
 		}

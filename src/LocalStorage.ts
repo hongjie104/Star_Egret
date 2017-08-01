@@ -1,6 +1,6 @@
 
 enum LocalStorageKey {
-    curLevel, totalScore, levelScore, touchType
+    lastLevel, totalScore, levelScore, touchType, soundEnabled, dollar, exp, maxTotalScore
 }
 
 class LocalStorage {
@@ -13,7 +13,7 @@ class LocalStorage {
         if (!LocalStorage._isInited) {
             const s = egret.localStorage.getItem('star');
             if (!s) {
-                LocalStorage.localStorageData = [0, 0, [], 1];
+                LocalStorage.localStorageData = [0, 0, [], 1, true, 0, 0, 0];
             } else {
                 LocalStorage.localStorageData = JSON.parse(s);
             }
@@ -21,7 +21,7 @@ class LocalStorage {
     }
 
     static getItem(key: LocalStorageKey): any {
-        return LocalStorage.localStorageData[key];
+        return LocalStorage.localStorageData[key] || 0;
     }
 
     static setItem(key: LocalStorageKey, val: any): void {

@@ -24,19 +24,42 @@ class WinPanel extends BasePanel {
 		this._ui.getController('c1').selectedIndex = 1;
 
 		const ui = this._ui.getChild('n0').asCom;
-		ui.getChild('n17').addClickListener(this._onFetchAward, this);
-		ui.getChild('n18').addClickListener(this._onFetchAward, this);
-		ui.getChild('n19').addClickListener(this._onFetchAward, this);
-		ui.getChild('n20').addClickListener(this._onFetchAward, this);
+		ui.addClickListener(this._onClose, this);
+		ui.getChild('n17').once(egret.TouchEvent.TOUCH_TAP, this._onFetchAward, this);
+		ui.getChild('n18').once(egret.TouchEvent.TOUCH_TAP, this._onFetchAward, this);
+		ui.getChild('n19').once(egret.TouchEvent.TOUCH_TAP, this._onFetchAward, this);
+		ui.getChild('n20').once(egret.TouchEvent.TOUCH_TAP, this._onFetchAward, this);
 	}
 
 	private _onFetchAward(evt: egret.TouchEvent): void {
-		// const btn = evt.currentTarget as fairygui.GButton;
-		const winPanel = this._ui;
-		winPanel.getTransition('t2').play(() => {
-			winPanel.removeFromParent();
-			this._isShowing = false;
-		});
+		const btn = evt.currentTarget as fairygui.GButton;
+		const ui = this._ui.getChild('n0').asCom;
+		ui.getController('c2').selectedIndex = 1;
+		const btn1 = ui.getChild('n17').asCom;
+		btn1.removeEventListener(egret.TouchEvent.TOUCH_TAP, this._onFetchAward, this);
+		const btn2 = ui.getChild('n18').asCom;
+		btn2.removeEventListener(egret.TouchEvent.TOUCH_TAP, this._onFetchAward, this);
+		const btn3 = ui.getChild('n19').asCom;
+		btn3.removeEventListener(egret.TouchEvent.TOUCH_TAP, this._onFetchAward, this);
+		const btn4 = ui.getChild('n20').asCom;
+		btn4.removeEventListener(egret.TouchEvent.TOUCH_TAP, this._onFetchAward, this);
+		btn1.getController('c1').selectedIndex = btn1 === btn ? 1 : 2;
+		btn2.getController('c1').selectedIndex = btn2 === btn ? 1 : 2;
+		btn3.getController('c1').selectedIndex = btn3 === btn ? 1 : 2;
+		btn4.getController('c1').selectedIndex = btn4 === btn ? 1 : 2;
+		evt.stopImmediatePropagation();
+	}
+
+	protected _onClose(evt?: egret.TouchEvent): void {
+		const ui = this._ui.getChild('n0').asCom;
+		if (ui.getController('c2').selectedIndex === 1) {
+			super._onClose(evt);
+		}
+	}
+
+	protected _closed(): void {
+		super._closed();
+		this._isShowing = false;
 	}
 
 	static get instance(): WinPanel {

@@ -57,9 +57,9 @@ class LevelScene extends BaseScreen {
 		this._treeArr[0] = this._rootTree;
 		// 根据当前关卡算出一开始应该初始化多少棵树
 		let numInitTree = 2;
-		const curLevel = LocalStorage.getItem(LocalStorageKey.curLevel);
-		if (curLevel > numRootTreeLevelBtn) {
-			numInitTree = 1 + 2 * Math.ceil((curLevel - numRootTreeLevelBtn) / (numTree1LevelBtn + numTree2LevelBtn));
+		const lastLevel = LocalStorage.getItem(LocalStorageKey.lastLevel);
+		if (lastLevel > numRootTreeLevelBtn) {
+			numInitTree = 1 + 2 * Math.ceil((lastLevel - numRootTreeLevelBtn) / (numTree1LevelBtn + numTree2LevelBtn));
 		}
 
 		for (let i = 1; i < numInitTree + 2; i++) {
@@ -95,11 +95,11 @@ class LevelScene extends BaseScreen {
 		this._scrollView.addEventListener(egret.Event.CHANGE, this._onScrollViewChanged, this);
 		// 根据当前关卡算数树应该滚动到什么位置
 		let scrollTop = 0;
-		if (curLevel < numRootTreeLevelBtn) {
-			if (curLevel < 1) scrollTop = 0;
-			else scrollTop = this._treeLevelHeight[0].treeHeight - this._treeLevelHeight[0].btnHeight[curLevel - 1];
+		if (lastLevel < numRootTreeLevelBtn) {
+			if (lastLevel < 1) scrollTop = 0;
+			else scrollTop = this._treeLevelHeight[0].treeHeight - this._treeLevelHeight[0].btnHeight[lastLevel - 1];
 		} else {
-			let tempLevel = curLevel - numRootTreeLevelBtn;
+			let tempLevel = lastLevel - numRootTreeLevelBtn;
 			let tempScrollTop = 0;
 			let curTree = 1;
 			while (true) {
@@ -124,14 +124,9 @@ class LevelScene extends BaseScreen {
 		// (Main.stageHeight >> 1) 是屏幕高度的一半，让目标关卡在屏幕上垂直居中
 		// 85 >> 1 是按钮高度的一半
 		this._scrollView.setScrollTop(this._treeHeight - Main.stageHeight - scrollTop + (Main.stageHeight >> 1) + (85 >> 1));
-	}
 
-	reset(): void {
 		// 初始化顶部
 		this._topBar = Main.createComponent('选关顶挂', 750, 100);
-		fairygui.GRoot.inst.removeChildren();
-		fairygui.GRoot.inst.addChild(this._topBar);
-
 		this._topBar.getChild('n7').addClickListener(() => {
 			PayPanel.instance.show();
 		}, this);
@@ -140,14 +135,25 @@ class LevelScene extends BaseScreen {
 			RankPanel.instance.show();
 		}, this);
 
-		const curLevel = LocalStorage.getItem(LocalStorageKey.curLevel);
-		this._updateLevelBtnStatus(curLevel);
+		this._topBar.getChild('n1').addClickListener(() => {
+			SettingPanel.instance.ui.getChild('n0').asCom.getController('c1').selectedIndex = 1;
+			SettingPanel.instance.show();
+		}, this);
 	}
 
-	private _updateLevelBtnStatus(curLevel: number): void {
+	reset(): void {
+		fairygui.GRoot.inst.removeChildren();
+		fairygui.GRoot.inst.addChild(this._topBar);
+		this._topBar.getChild('n3').text = LocalStorage.getItem(LocalStorageKey.dollar).toString();
+
+		const lastLevel = LocalStorage.getItem(LocalStorageKey.lastLevel);
+		this._updateLevelBtnStatus(lastLevel);
+	}
+
+	private _updateLevelBtnStatus(lastLevel: number): void {
 		const treeArr = this._treeArr;
 		for (let i = 0; i < treeArr.length; i++) {
-			treeArr[i].updateBtnStatus(curLevel);
+			treeArr[i].updateBtnStatus(lastLevel);
 		}
 	}
 

@@ -12,6 +12,8 @@ class Main extends egret.DisplayObjectContainer {
 
     private _curScreen: egret.DisplayObjectContainer;
 
+    private _targetLevel = 0;
+
     public constructor() {
         super();
         this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
@@ -94,6 +96,7 @@ class Main extends egret.DisplayObjectContainer {
      * Create a game scene
      */
     private createGameScene() {
+        Util.init();
         LocalStorage.init();
 
         fairygui.UIPackage.addPackage("Package1");
@@ -143,20 +146,26 @@ class Main extends egret.DisplayObjectContainer {
     }
 
     private _onEnterLevel(evt: StarEvent): void {
-        const levelSelector = Main.createPanel('选关弹窗1');
-        levelSelector.x = (Main.stageWidth - levelSelector.initWidth) >> 1;
-        levelSelector.y = (Main.stageHeight - levelSelector.initHeight) >> 1;
-        const uiPanel = levelSelector.getChild('n0').asCom;
-        // 本关的最高分
-        const levelScore = LocalStorage.getItem(LocalStorageKey.levelScore) as Array<number>;
-        uiPanel.getChild('n9').text = evt.level > levelScore.length ? '0' : levelScore[evt.level - 1].toString();
-        uiPanel.getChild('n12').text = evt.level.toString();
-        uiPanel.getChild('n4').addClickListener(this._onLevelSelectorCancel, this);
-        uiPanel.getChild('n5').addClickListener(this._onLevelSelectorOK, this);
+        const lastLevel: number = LocalStorage.getItem(LocalStorageKey.lastLevel);
+        if (lastLevel + 1 <= evt.level) {
+            this._enterLevel();
+        } else {
+            this._targetLevel = evt.level;
+            const levelSelector = Main.createPanel('选关弹窗1');
+            levelSelector.x = (Main.stageWidth - levelSelector.initWidth) >> 1;
+            levelSelector.y = (Main.stageHeight - levelSelector.initHeight) >> 1;
+            const uiPanel = levelSelector.getChild('n0').asCom;
+            // 本关的最高分
+            const levelScore = LocalStorage.getItem(LocalStorageKey.levelScore) as Array<number>;
+            uiPanel.getChild('n9').text = evt.level > levelScore.length ? '0' : levelScore[evt.level - 1].toString();
+            uiPanel.getChild('n12').text = evt.level.toString();
+            uiPanel.getChild('n4').addClickListener(this._onLevelSelectorCancel, this);
+            uiPanel.getChild('n5').addClickListener(this._onLevelSelectorOK, this);
 
-        levelSelector.getController('c1').selectedIndex = 1;
-        levelSelector.getTransition('t0').play();
-        fairygui.GRoot.inst.addChild(levelSelector);
+            levelSelector.getController('c1').selectedIndex = 1;
+            levelSelector.getTransition('t0').play();
+            fairygui.GRoot.inst.addChild(levelSelector);
+        }
     }
 
     private _onLevelSelectorCancel(evt: egret.TouchEvent, cb?: Function): void {
@@ -172,13 +181,23 @@ class Main extends egret.DisplayObjectContainer {
     }
 
     private _onLevelSelectorOK(evt: egret.TouchEvent): void {
-        this._onLevelSelectorCancel(evt, () => {
-            this._removeAllScreen();
-            const playScene = PlayScene.instance;
-            playScene.reset();
-            this.addChild(playScene);
-            this._curScreen = playScene;
-        });
+        LocalStorage.setItem(LocalStorageKey.lastLevel, this._targetLevel - 1);
+        const scoreArr = LocalStorage.getItem(LocalStorageKey.levelScore) as Array<number>;
+        let totalScore = 0;
+        for (let i = 0; i < this._targetLevel - 1; i++) {
+            totalScore += scoreArr[i];
+        }
+        LocalStorage.setItem(LocalStorageKey.totalScore, totalScore);
+        LocalStorage.saveToLocal();
+        this._onLevelSelectorCancel(evt, this._enterLevel);
+    }
+
+    private _enterLevel(): void {
+        this._removeAllScreen();
+        const playScene = PlayScene.instance;
+        playScene.reset();
+        this.addChild(playScene);
+        this._curScreen = playScene;
     }
 
     private _removeAllScreen(): void {

@@ -1,47 +1,27 @@
 class Util {
+
+	private static _expSet: number[] = [];
+
+	private static _expAward: number[] = [];
+
 	public constructor() {
+	}
+
+	static init(): void {
+		// 初始化升级所需要的经验
+		for (let i = 0; i < 999; i++) {
+			Util._expSet[i] = 100 * (1 + i) * i / 2;
+			Util._expAward[i] = ((i + 1) % 3) === 0 ? (i + 1) / 3 + 1 : 0;
+		}
 	}
 
 	static getScore(numStar: number): number {
 		return numStar * numStar * 5;
-		// if (numStar == 2) return 20;
-		// if (numStar == 3) return 45;
-		// let r = 0;
-		// for (let i = 2; i < numStar + 1; i++) {
-		// 	r += Util.getScoreGain(i);
-		// }
-		// return r - 10;
 	}
-
-	// private static getScoreGain(numStar: number): number {
-	// 	if (numStar == 2) return 20;
-	// 	if (numStar == 3) return 25;
-	// 	if (numStar == 4) return 45;
-	// 	return (numStar - 1) * 10 + 5;
-	// }
 
 	static getTargetScore(level: number): number {
-		//  this.targetScore = 1000 * (1 + currentLevel) * currentLevel / 2;
 		return 1000 * (1 + level) * level / 2;
-		// if (level == 1) return 1000;
-		// if (level == 2) return 3500;
-		// if (level == 3) return 6000;
-		// if (level == 4) return 10000;
-		// if (level == 5) return 12000;
-		// if (level == 6) return 15000;
-		// if (level == 7) return 30000;
-		// if (level == 8) return 36000;
-		// let r = 36000;
-		// for (let i = 9; i < level + 1; i++) {
-		// 	r += Util.getTargetScoreGain(i);
-		// }
-		// return r;
 	}
-
-	// private static getTargetScoreGain(level: number): number {
-	// 	if (level < 9) return 0;
-	// 	return (level - 8) * 1000 + 8000;
-	// }
 
 	static getAwardSocre(numLeft: number): number {
 		if (numLeft > 9) return 0;
@@ -55,5 +35,39 @@ class Util {
 		if (numLeft === 2) return 1920;
 		if (numLeft === 1) return 1980;
 		if (numLeft === 0) return 2000;
+	}
+
+	static getAwardExp(numStar): number {
+		if (numStar > 10) return Math.min(50, numStar << 1);
+		return numStar + 2;
+	}
+
+	static getLv(exp?: number): number {
+		exp = exp || LocalStorage.getItem(LocalStorageKey.exp);
+		for (let i = 1; i < Util._expSet.length; i++) {
+			if (exp < Util._expSet[i]) return i;
+		}
+		return 1;
+	}
+
+	static getExpProgress(): { max: number, val: number } {
+		const exp: number = LocalStorage.getItem(LocalStorageKey.exp);
+		for (let i = 1; i < Util._expSet.length; i++) {
+			if (exp < Util._expSet[i]) return { max: Util._expSet[i] - Util._expSet[i - 1], val: exp - Util._expSet[i - 1] };
+		}
+		return null;
+	}
+
+	static checkAward(addExp: number): number {
+		const exp: number = LocalStorage.getItem(LocalStorageKey.exp);
+		LocalStorage.setItem(LocalStorageKey.exp, exp + addExp);
+		LocalStorage.saveToLocal();
+
+		const curLv = Util.getLv(exp);
+		const newLv = Util.getLv(exp + addExp);
+		if (curLv != newLv) {
+			return Util._expAward[newLv];
+		}
+		return 0;
 	}
 }
