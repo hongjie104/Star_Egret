@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="283,83" pivot="0.5,0.5" extention="Button">
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
+  <displayList>
+    <image id="n1" name="n1" src="vdprc4m" xy="0,0" size="283,83" aspect="true">
+      <relation target="" sidePair="left-left,top-top"/>
+    </image>
+    <image id="n2_vdpr" name="n2" src="w587c5e" xy="37,17" size="202,48" aspect="true">
+      <relation target="n1" sidePair="width-width,height-height"/>
+    </image>
+  </displayList>
+  <Button downEffect="scale" downEffectValue="0.90"/>
+</component>

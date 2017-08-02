@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="400,400">
+  <displayList>
+    <image id="n0_w587" name="n0" src="w587c54" xy="155,171"/>
+  </displayList>
+  <transition name="t0">
+    <item time="0" type="XY" target="n0_w587" tween="true" startValue="155,171" endValue="155,191" duration="6" repeat="-1" yoyo="true"/>
+    <item time="6" type="XY" target="n0_w587" tween="true" startValue="155,191" endValue="155,171" duration="6"/>
+    <item time="12" type="XY" target="n0_w587" tween="true" startValue="155,171" ease="Linear" repeat="-1" yoyo="true"/>
+  </transition>
+</component>

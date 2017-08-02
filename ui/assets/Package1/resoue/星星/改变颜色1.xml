@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="500,200">
+  <displayList>
+    <image id="n5_w587" name="n5" src="h838c1r" xy="0,0" size="500,200"/>
+    <component id="n0_w587" name="n0" src="sp8rj" xy="42,99" group="n6_w587"/>
+    <component id="n1_w587" name="n1" src="sp8rl" xy="127,98" group="n6_w587"/>
+    <component id="n2_w587" name="n2" src="sp8rm" xy="212,98" group="n6_w587"/>
+    <component id="n3_w587" name="n3" src="sp8rn" xy="297,98" group="n6_w587"/>
+    <component id="n4_w587" name="n4" src="sp8ro" xy="382,98" group="n6_w587"/>
+    <group id="n6_w587" name="n6" xy="42,98" size="415,76" advanced="true">
+      <relation target="n5_w587" sidePair="center-center,bottom-bottom"/>
+    </group>
+    <text id="n7_w587" name="n7" xy="67,43" size="365,34" font="黑体" fontSize="30" color="#663300" text="点击你想要改变颜色的星星"/>
+    <component id="n9_w587" name="n9" src="nb58c2x" xy="450,-8">
+      <relation target="n5_w587" sidePair="right-right,top-top"/>
+    </component>
+  </displayList>
+</component>
