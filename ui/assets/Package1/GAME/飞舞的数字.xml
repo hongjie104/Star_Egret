@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="200,60">
   <displayList>
-    <text id="n0_12czc" name="n0" xy="0,0" size="200,60" font="ui://yejc893v12czc1f" fontSize="12" align="center" vAlign="middle" letterSpacing="-3" autoSize="none" text="9999"/>
+    <text id="n0_12czc" name="n0" xy="0,0" size="200,60" font="ui://yejc893v12czc1f" fontSize="30" color="#ffffff" align="center" vAlign="middle" letterSpacing="-3" autoSize="none" text="9999"/>
   </displayList>
 </component>

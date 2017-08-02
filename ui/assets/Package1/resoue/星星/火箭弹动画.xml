@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="640,640">
+  <displayList>
+    <image id="n4_n86l" name="n4" src="n86lc5h" xy="216,-390" pivot="0.5,1"/>
+  </displayList>
+  <transition name="t3">
+    <item time="0" type="Alpha" target="n4_n86l" tween="true" startValue="0" endValue="1" duration="4" ease="Linear"/>
+    <item time="0" type="Scale" target="n4_n86l" tween="true" startValue="1,1" endValue="0.7,0.7" duration="18" ease="Linear"/>
+    <item time="0" type="XY" target="n4_n86l" tween="true" startValue="216,-390" endValue="216,254" duration="18" ease="Cubic.In"/>
+    <item time="16" type="Alpha" target="n4_n86l" tween="true" startValue="1" endValue="0" duration="2" ease="Linear"/>
+  </transition>
+</component>

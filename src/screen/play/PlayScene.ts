@@ -50,7 +50,9 @@ class PlayScene extends BaseScreen {
 		this._playPanel = Main.createPanel('Game');
 		this._topBar = this._playPanel.getChild('n1').asCom;
 		this._topBar.getChild('n1').addClickListener(this._showSettingPanel, this);
-		this._topBar.getChild('n11').addClickListener(this._transpose, this);
+		this._topBar.getChild('n10').addClickListener(this._removeOnStar, this);
+		this._topBar.getChild('n11').addClickListener(this._transposeStar, this);
+		this._topBar.getChild('n12').addClickListener(this._changeStarType, this);
 	}
 
 	reset(): void {
@@ -70,6 +72,10 @@ class PlayScene extends BaseScreen {
 		this._initScore = LocalStorage.getItem(LocalStorageKey.totalScore);
 		this._addScore = 0;
 		this._topBar.getChild('n6').text = this._initScore.toString();
+		// 三种道具的数量
+		this._topBar.getChild('n10').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item1).toString();
+		this._topBar.getChild('n11').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item2).toString();
+		this._topBar.getChild('n12').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item3).toString();
 		// 当前关卡的最高分
 		const levelScoreArr = LocalStorage.getItem(LocalStorageKey.levelScore) as Array<number>;
 		while (curLevel > levelScoreArr.length) {
@@ -443,45 +449,76 @@ class PlayScene extends BaseScreen {
 	}
 
 	/**
+	 * 消除一个星星
+	 */
+	private _removeOnStar(): void {
+		const itemCount: number = LocalStorage.getItem(LocalStorageKey.item1);
+		if (itemCount > 0) {
+			LocalStorage.setItem(LocalStorageKey.item1, itemCount - 1);
+			LocalStorage.saveToLocal();
+			this._topBar.getChild('n10').asCom.getChild('n2').text = (itemCount - 1).toString();
+		}
+	}
+
+	/**
+	 * 改变一个星星的type
+	 */
+	private _changeStarType(): void {
+		const itemCount: number = LocalStorage.getItem(LocalStorageKey.item3);
+		if (itemCount > 0) {
+			LocalStorage.setItem(LocalStorageKey.item3, itemCount - 1);
+			LocalStorage.saveToLocal();
+			this._topBar.getChild('n12').asCom.getChild('n2').text = (itemCount - 1).toString();
+		}
+	}
+
+	/**
 	 * 所有的星星随机变换下位置
 	 */
-	private _transpose(): void {
-		const starDataArr = this._starDataArr;
-		// 需要变换的位置
-		const oldPositionArr: { row: number, col: number, val: number }[] = [];
-		const tempPositionArr: { row: number, col: number }[] = [];
-		let val = 0;
-		for (let row = 0; row < 10; row++) {
-			for (let col = 0; col < 10; col++) {
-				val = starDataArr[row][col];
-				if (val > -1) {
-					oldPositionArr.push({ row, col, val });
-					tempPositionArr.push({ row, col });
+	private _transposeStar(): void {
+		const itemCount: number = LocalStorage.getItem(LocalStorageKey.item2);
+		if (itemCount > 0) {
+			LocalStorage.setItem(LocalStorageKey.item2, itemCount - 1);
+			LocalStorage.saveToLocal();
+			this._topBar.getChild('n11').asCom.getChild('n2').text = (itemCount - 1).toString();
+
+			const starDataArr = this._starDataArr;
+			// 需要变换的位置
+			const oldPositionArr: { row: number, col: number, val: number }[] = [];
+			const tempPositionArr: { row: number, col: number }[] = [];
+			let val = 0;
+			for (let row = 0; row < 10; row++) {
+				for (let col = 0; col < 10; col++) {
+					val = starDataArr[row][col];
+					if (val > -1) {
+						oldPositionArr.push({ row, col, val });
+						tempPositionArr.push({ row, col });
+					}
 				}
 			}
-		}
-		// 从旧的位置中依次取出位置信息，从临时的位置数组中随机取出一个位置，用取出的位置替换掉从旧位置中取出的位置
-		const newPositionArr: { row: number, col: number, val: number }[] = [];
-		let position: { row: number, col: number, val: number } = null;
-		let tempPosition: { row: number, col: number } = null;
-		for (let i = 0; i < oldPositionArr.length; i++) {
-			position = oldPositionArr[i];
-			tempPosition = tempPositionArr.splice(Math.floor(Math.random() * tempPositionArr.length), 1)[0];
-			newPositionArr[i] = { row: tempPosition.row, col: tempPosition.col, val: position.val };
-			// 替换完成后修改starDataArr的数据
-			starDataArr[tempPosition.row][tempPosition.col] = position.val;
-		}
+			// 从旧的位置中依次取出位置信息，从临时的位置数组中随机取出一个位置，用取出的位置替换掉从旧位置中取出的位置
+			const newPositionArr: { row: number, col: number, val: number }[] = [];
+			let position: { row: number, col: number, val: number } = null;
+			let tempPosition: { row: number, col: number } = null;
+			for (let i = 0; i < oldPositionArr.length; i++) {
+				position = oldPositionArr[i];
+				tempPosition = tempPositionArr.splice(Math.floor(Math.random() * tempPositionArr.length), 1)[0];
+				newPositionArr[i] = { row: tempPosition.row, col: tempPosition.col, val: position.val };
+				// 替换完成后修改starDataArr的数据
+				starDataArr[tempPosition.row][tempPosition.col] = position.val;
+			}
 
-		// 再移动星星
-		for (let i = 0; i < oldPositionArr.length; i++) {
-			position = oldPositionArr[i];
-			const newPosition = newPositionArr[i];
-			const star = this._starArr[this._getStarIndex(position.row, position.col)];
-			const newPoint = this._getStarPoint(newPosition.row, newPosition.col);
-			egret.Tween.get(star).to({ x: newPoint.x, y: newPoint.y }, 400).call(() => {
-				star.row = newPosition.row;
-				star.col = newPosition.col;
-			});
+			// 再移动星星
+			for (let i = 0; i < oldPositionArr.length; i++) {
+				position = oldPositionArr[i];
+				const newPosition = newPositionArr[i];
+				const star = this._starArr[this._getStarIndex(position.row, position.col)];
+				const newPoint = this._getStarPoint(newPosition.row, newPosition.col);
+				egret.Tween.get(star).to({ x: newPoint.x, y: newPoint.y }, 500).call(() => {
+					star.row = newPosition.row;
+					star.col = newPosition.col;
+				});
+			}
 		}
 	}
 

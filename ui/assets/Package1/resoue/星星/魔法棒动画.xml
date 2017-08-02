@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="640,640">
+  <displayList>
+    <image id="n3_n86l" name="n3" src="n86lc5m" xy="70,81" size="500,477"/>
+    <image id="n1_n86l" name="n1" src="n86lc5g" xy="166,192" size="355,331" locked="true" aspect="true"/>
+  </displayList>
+  <transition name="t0">
+    <item time="0" type="Pivot" target="n3_n86l" value="0.5,0.5"/>
+    <item time="0" type="Pivot" target="n1_n86l" value="0.5,0.5"/>
+    <item time="0" type="Alpha" target="n3_n86l" value="0"/>
+    <item time="0" type="Alpha" target="n1_n86l" tween="true" startValue="0" endValue="1" duration="2" ease="Linear"/>
+    <item time="0" type="Rotation" target="n3_n86l" value="0"/>
+    <item time="0" type="Scale" target="n1_n86l" tween="true" startValue="2,2" endValue="0.8,0.8" duration="4" ease="Cubic.In"/>
+    <item time="4" type="Scale" target="n1_n86l" tween="true" startValue="0.8,0.8" endValue="1,1" duration="2" ease="Cubic.Out"/>
+    <item time="6" type="Alpha" target="n3_n86l" tween="true" startValue="0" endValue="1" duration="4" ease="Linear"/>
+    <item time="6" type="Rotation" target="n3_n86l" tween="true" startValue="0" endValue="90" duration="9" ease="Linear"/>
+    <item time="6" type="Scale" target="n3_n86l" tween="true" startValue="1,1" endValue="2,2" duration="38" ease="Linear"/>
+    <item time="15" type="Rotation" target="n3_n86l" tween="true" startValue="90" endValue="180" duration="7" ease="Linear"/>
+    <item time="22" type="Rotation" target="n3_n86l" tween="true" startValue="180" endValue="270" duration="6" ease="Linear"/>
+    <item time="28" type="Rotation" target="n3_n86l" tween="true" startValue="270" endValue="360" duration="6" ease="Linear"/>
+    <item time="34" type="Rotation" target="n3_n86l" tween="true" startValue="360" endValue="450" duration="5" ease="Linear"/>
+    <item time="39" type="Alpha" target="n3_n86l" tween="true" startValue="1" endValue="0" duration="5" ease="Linear"/>
+    <item time="39" type="Alpha" target="n1_n86l" tween="true" startValue="1" endValue="0" duration="5" ease="Linear"/>
+    <item time="39" type="Rotation" target="n3_n86l" tween="true" startValue="450" endValue="540" duration="5" ease="Linear"/>
+    <item time="44" type="Rotation" target="n3_n86l" tween="true" startValue="540" ease="Linear"/>
+  </transition>
+</component>

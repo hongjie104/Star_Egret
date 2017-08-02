@@ -167,21 +167,38 @@
     <component id="vdprc4w" name="活动弹窗.xml" path="/GAME/登录页面的弹窗/" exported="true"/>
     <image id="vdprc4x" name="zhujiemian014_08.png" path="/resoue/登录界面/素材/设置/" exported="true"/>
     <component id="vdprc4y" name="主界面.xml" path="/resoue/登录界面/素材/设置/" exported="true"/>
-    <image id="w587c4z" name="item_color.png" path="/resoue/弹窗/" exported="true"/>
-    <image id="w587c50" name="item_shuffle.png" path="/resoue/弹窗/" exported="true"/>
-    <image id="w587c51" name="hammer.png" path="/resoue/弹窗/" exported="true"/>
     <component id="w587c52" name="skill4.xml" path="/resoue/星星/" exported="true"/>
     <component id="w587c53" name="改变颜色1.xml" path="/resoue/星星/" exported="true"/>
     <image id="w587c54" name="clouer1.png" path="/resoue/排行/"/>
     <component id="w587c55" name="改变颜色2.xml" path="/resoue/星星/" exported="true"/>
-    <movieclip id="w587c57" name="锤子动画.jta" path="/" exported="true"/>
-    <component id="w587c58" name="锤子动画.xml" path="/resoue/星星/" exported="true"/>
+    <component id="w587c58" name="魔法棒动画.xml" path="/resoue/星星/" exported="true"/>
     <image id="w587c59" name="star5-1.png" path="/resoue/弹窗/" exported="true"/>
     <component id="w587c5a" name="失败弹窗.xml" path="/resoue/弹窗/" exported="true"/>
     <image id="w587c5b" name="lose1.png" path="/resoue/弹窗/" exported="true"/>
     <component id="w587c5d" name="继续通关.xml" path="/resoue/登录界面/素材/设置/" exported="true"/>
     <image id="w587c5e" name="lose2.png" path="/resoue/弹窗/" exported="true"/>
     <component id="w587c5f" name="失败弹窗1.xml" path="/GAME/" exported="true"/>
+    <image id="n86lc5g" name="dongxiao1.png" path="/resoue/弹窗/"/>
+    <image id="n86lc5h" name="dongxiao2.png" path="/resoue/弹窗/"/>
+    <image id="n86lc5i" name="item1.png" path="/resoue/弹窗/"/>
+    <image id="n86lc5j" name="item2.png" path="/resoue/弹窗/"/>
+    <image id="n86lc5k" name="item3.png" path="/resoue/弹窗/"/>
+    <image id="n86lc5m" name="dingdianbaopo@2x.png" path="/resoue/弹窗/"/>
+    <component id="n86lc5n" name="火箭弹动画.xml" path="/resoue/星星/" exported="true"/>
+    <image id="n86lc5o" name="ui0020001.png" path="/" exported="true"/>
+    <image id="n86lc5p" name="ui0020002.png" path="/" exported="true"/>
+    <image id="n86lc5q" name="ui0020003.png" path="/" exported="true"/>
+    <image id="n86lc5r" name="ui0020004.png" path="/" exported="true"/>
+    <image id="n86lc5s" name="ui0020005.png" path="/" exported="true"/>
+    <image id="n86lc5t" name="ui0020006.png" path="/" exported="true"/>
+    <image id="n86lc5u" name="ui0020007.png" path="/" exported="true"/>
+    <image id="n86lc5v" name="ui0020008.png" path="/" exported="true"/>
+    <image id="n86lc5w" name="ui0020009.png" path="/" exported="true"/>
+    <image id="n86lc5x" name="ui0020010.png" path="/" exported="true"/>
+    <image id="n86lc5y" name="ui0020011.png" path="/" exported="true"/>
+    <image id="n86lc5z" name="ui0020012.png" path="/" exported="true"/>
+    <image id="n86lc60" name="ui0020013.png" path="/" exported="true"/>
+    <movieclip id="n86lc61" name="火箭弹动画2.jta" path="/resoue/星星/" exported="true" atlas="alone_npot"/>
   </resources>
   <publish name="Package1" path="D:\hongjie\Star_Egret\resource\assets"/>
 </packageDescription>
