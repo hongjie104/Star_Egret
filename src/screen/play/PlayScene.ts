@@ -50,6 +50,7 @@ class PlayScene extends BaseScreen {
 		this._playPanel = Main.createPanel('Game');
 		this._topBar = this._playPanel.getChild('n1').asCom;
 		this._topBar.getChild('n1').addClickListener(this._showSettingPanel, this);
+		this._topBar.getChild('n11').addClickListener(this._transpose, this);
 	}
 
 	reset(): void {
@@ -439,6 +440,49 @@ class PlayScene extends BaseScreen {
 	private _showSettingPanel(): void {
 		SettingPanel.instance.ui.getChild('n0').asCom.getController('c1').selectedIndex = 1;
 		SettingPanel.instance.show();
+	}
+
+	/**
+	 * 所有的星星随机变换下位置
+	 */
+	private _transpose(): void {
+		const starDataArr = this._starDataArr;
+		// 需要变换的位置
+		const oldPositionArr: { row: number, col: number, val: number }[] = [];
+		const tempPositionArr: { row: number, col: number }[] = [];
+		let val = 0;
+		for (let row = 0; row < 10; row++) {
+			for (let col = 0; col < 10; col++) {
+				val = starDataArr[row][col];
+				if (val > -1) {
+					oldPositionArr.push({ row, col, val });
+					tempPositionArr.push({ row, col });
+				}
+			}
+		}
+		// 从旧的位置中依次取出位置信息，从临时的位置数组中随机取出一个位置，用取出的位置替换掉从旧位置中取出的位置
+		const newPositionArr: { row: number, col: number, val: number }[] = [];
+		let position: { row: number, col: number, val: number } = null;
+		let tempPosition: { row: number, col: number } = null;
+		for (let i = 0; i < oldPositionArr.length; i++) {
+			position = oldPositionArr[i];
+			tempPosition = tempPositionArr.splice(Math.floor(Math.random() * tempPositionArr.length), 1)[0];
+			newPositionArr[i] = { row: tempPosition.row, col: tempPosition.col, val: position.val };
+			// 替换完成后修改starDataArr的数据
+			starDataArr[tempPosition.row][tempPosition.col] = position.val;
+		}
+
+		// 再移动星星
+		for (let i = 0; i < oldPositionArr.length; i++) {
+			position = oldPositionArr[i];
+			const newPosition = newPositionArr[i];
+			const star = this._starArr[this._getStarIndex(position.row, position.col)];
+			const newPoint = this._getStarPoint(newPosition.row, newPosition.col);
+			egret.Tween.get(star).to({ x: newPoint.x, y: newPoint.y }, 400).call(() => {
+				star.row = newPosition.row;
+				star.col = newPosition.col;
+			});
+		}
 	}
 
 	static get instance(): PlayScene {
