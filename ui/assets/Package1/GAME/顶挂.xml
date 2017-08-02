@@ -28,14 +28,17 @@
     <component id="n9_sp8r" name="n9" src="sp8rg" xy="541,74">
       <ProgressBar value="100" max="100"/>
     </component>
-    <component id="n10_sp8r" name="n10" src="sp8rr" xy="646,131" group="n13_sp8r"/>
+    <component id="n10_sp8r" name="n10" src="sp8rr" xy="450,131" group="n13_sp8r"/>
     <component id="n11_sp8r" name="n11" src="sp8rs" xy="548,131" group="n13_sp8r"/>
-    <component id="n12_sp8r" name="n12" src="sp8rt" xy="450,131" group="n13_sp8r"/>
+    <component id="n12_sp8r" name="n12" src="sp8rt" xy="646,131" group="n13_sp8r"/>
     <group id="n13_sp8r" name="n13" xy="450,131" size="288,92" advanced="true">
       <relation target="n0_sp8r" sidePair="top-bottom,right-right"/>
     </group>
     <component id="n14_rwnu" name="n14" src="rwnuc3l" xy="490,6">
       <relation target="n0_sp8r" sidePair="right-right,top-top"/>
     </component>
+    <text id="n15_w587" name="n15" xy="12,154" size="423,65" font="黑体" fontSize="30" color="#ffffff" align="center" vAlign="middle" autoSize="none" bold="true" strokeColor="#000000" text="本次使用道具消耗8金币试试看是不是可以放个两行啊啊啊啊">
+      <relation target="n0_sp8r" sidePair="top-top,center-center"/>
+    </text>
   </displayList>
 </component>

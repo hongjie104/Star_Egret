@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="92,92" pivot="0.5,0.5" extention="Button">
   <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
-  <controller name="c1" pages="0,正常,1,动一下" selected="0" transitions="0-1=t0"/>
+  <controller name="c1" pages="0,正常,1,动一下" selected="0">
+    <action type="play_transition" fromPage="0" toPage="1" transition="t0" stopOnExit="true"/>
+  </controller>
   <displayList>
+    <image id="n3_w587" name="n3" src="w587c51" xy="16,16"/>
     <image id="n1" name="n1" src="iz252" xy="0,0" pivot="0.5,0.5">
       <relation target="" sidePair="width-width,height-height"/>
     </image>
