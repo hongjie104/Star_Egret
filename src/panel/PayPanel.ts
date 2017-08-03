@@ -12,8 +12,15 @@ class PayPanel extends BasePanel {
 		this._ui.y = (Main.stageHeight - 700) >> 1;
 		const ui = this._ui.getChild('n0').asCom;
 		ui.getChild('n34').addClickListener(this._onClose, this);
-		ui.getChild('n51').addClickListener(this._onClose, this);
+		ui.getChild('n51').addClickListener(this._onBuy, this);
 		this._ui.getController('c1').selectedIndex = 1;
+	}
+
+	private _onBuy(): void {
+		LocalStorage.setItem(LocalStorageKey.dollar, LocalStorage.getItem(LocalStorageKey.dollar) + 150 + 78);
+		LocalStorage.saveToLocal();
+		this.dispatchEvent(new StarEvent(StarEvent.PAY_SUCCESS));
+		this._onClose();
 	}
 
 	static get instance(): PayPanel {

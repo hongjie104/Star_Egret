@@ -1,3 +1,7 @@
+enum PLAY_STATUS {
+	nomal, changingStarType, removingStar
+}
+
 class PlayScene extends BaseScreen {
 
 	private static _instance: PlayScene = null;
@@ -44,6 +48,8 @@ class PlayScene extends BaseScreen {
 
 	private _xiaoChuStar: { row: number, col: number }[];
 
+	private _status = PLAY_STATUS.nomal;
+
 	public constructor() {
 		super();
 
@@ -53,6 +59,16 @@ class PlayScene extends BaseScreen {
 		this._topBar.getChild('n10').addClickListener(this._removeOnStar, this);
 		this._topBar.getChild('n11').addClickListener(this._transposeStar, this);
 		this._topBar.getChild('n12').addClickListener(this._changeStarType, this);
+		this._topBar.getChild('n14').addClickListener(() => {
+			PayPanel.instance.show();
+		}, this);
+
+		ChangeTypePanel.instance.addEventListener(egret.Event.CLOSE, this._onChangeTypePanelClosed, this);
+		ChangeTypePanel.instance.addEventListener(StarEvent.STAR_TYPE_CHANGED, this._onStarTypeChanged, this);
+	}
+
+	updateDollar(): void {
+		this._topBar.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.dollar).toString();
 	}
 
 	reset(): void {
@@ -102,7 +118,7 @@ class PlayScene extends BaseScreen {
 				random = Math.floor(Math.random() * 5);
 				this._starDataArr[row][col] = random;
 				let star = new Star(random, row, col);
-				star.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onStarClicked, this);
+				star.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onStarTouched, this);
 				this._starArr.push(star);
 				let p: egret.Point = this._getStarPoint(row, col);
 				star.x = p.x;
@@ -113,35 +129,41 @@ class PlayScene extends BaseScreen {
 		}
 	}
 
-	private _onStarClicked(evt: egret.TouchEvent): void {
-		if (this._isRemovingLeftStars) return;
-		if (!this._isActionRunning) {
-			this._isActionRunning = true;
-			const starTouched = evt.currentTarget as Star;
-			const result = this._findSameStarIndex(starTouched.row, starTouched.col);
-			if (result.length > 1) {
-				if (LocalStorage.getItem(LocalStorageKey.touchType) === 2) {
-					if (!this._xiaoChuStar) {
-						this._xiaoChuStar = result;
-						let rowAndCol: { row: number, col: number };
-						let starIndex = -1;
-						for (let i = 0; i < result.length; i++) {
-							rowAndCol = result[i];
-							starIndex = this._getStarIndex(rowAndCol.row, rowAndCol.col);
-							if (starIndex !== -1) {
-								this._starArr[starIndex].isSelected = true;
+	private _onStarTouched(evt: egret.TouchEvent): void {
+		const starTouched = evt.currentTarget as Star;
+		if (this._status == PLAY_STATUS.changingStarType) {
+			ChangeTypePanel.instance.star = starTouched;
+		} else if (this._status == PLAY_STATUS.removingStar) {
+
+		} else {
+			if (this._isRemovingLeftStars) return;
+			if (!this._isActionRunning) {
+				this._isActionRunning = true;
+				const result = this._findSameStarIndex(starTouched.row, starTouched.col);
+				if (result.length > 1) {
+					if (LocalStorage.getItem(LocalStorageKey.touchType) === 2) {
+						if (!this._xiaoChuStar) {
+							this._xiaoChuStar = result;
+							let rowAndCol: { row: number, col: number };
+							let starIndex = -1;
+							for (let i = 0; i < result.length; i++) {
+								rowAndCol = result[i];
+								starIndex = this._getStarIndex(rowAndCol.row, rowAndCol.col);
+								if (starIndex !== -1) {
+									this._starArr[starIndex].isSelected = true;
+								}
 							}
+							this._isActionRunning = false;
+						} else {
+							this._xiaoChu(this._xiaoChuStar);
+							this._xiaoChuStar = null;
 						}
-						this._isActionRunning = false;
 					} else {
-						this._xiaoChu(this._xiaoChuStar);
-						this._xiaoChuStar = null;
+						this._xiaoChu(result);
 					}
 				} else {
-					this._xiaoChu(result);
+					this._isActionRunning = false;
 				}
-			} else {
-				this._isActionRunning = false;
 			}
 		}
 	}
@@ -317,6 +339,7 @@ class PlayScene extends BaseScreen {
 				}
 			} else {
 				// 失败了
+				FailPanel.instance.show();
 			}
 		}
 	}
@@ -458,7 +481,7 @@ class PlayScene extends BaseScreen {
 		const zeroY = Main.stageHeight - 10 * h;
 		let x = zeroX + col * w;
 		let y = zeroY + row * h;
-		return new egret.Point(x, y);
+		return new egret.Point(x + (w >> 1), y + (h >> 1));
 	}
 
 	private _showSettingPanel(): void {
@@ -470,12 +493,26 @@ class PlayScene extends BaseScreen {
 	 * 消除一个星星
 	 */
 	private _removeOnStar(): void {
+		let costDollar = false;
 		const itemCount: number = LocalStorage.getItem(LocalStorageKey.item1);
-		if (itemCount > 0) {
+		if (itemCount < 1) {
+			let dollar: number = LocalStorage.getItem(LocalStorageKey.dollar);
+			if (dollar > 6) {
+				LocalStorage.setItem(LocalStorageKey.dollar, dollar - 6);
+				LocalStorage.saveToLocal();
+				this.updateDollar();
+				costDollar = true;
+			} else {
+				// 道具数量不够，钱也不够
+				return;
+			}
+		}
+		if (!costDollar) {
 			LocalStorage.setItem(LocalStorageKey.item1, itemCount - 1);
 			LocalStorage.saveToLocal();
 			this._topBar.getChild('n10').asCom.getChild('n2').text = (itemCount - 1).toString();
 		}
+		this._status = PLAY_STATUS.removingStar;
 	}
 
 	/**
@@ -483,60 +520,118 @@ class PlayScene extends BaseScreen {
 	 */
 	private _changeStarType(): void {
 		const itemCount: number = LocalStorage.getItem(LocalStorageKey.item3);
-		if (itemCount > 0) {
+		if (itemCount < 1) {
+			let dollar: number = LocalStorage.getItem(LocalStorageKey.dollar);
+			if (dollar < 6) {
+				// 道具数量不够，钱也不够
+				return;
+			}
+		}
+		this._status = PLAY_STATUS.changingStarType;
+		// 弹出个选择颜色的面板
+		const p = ChangeTypePanel.instance;
+		p.star = this._starArr[0];
+		p.show();
+	}
+
+	private _onStarTypeChanged(): void {
+		let costDollar = false;
+		const itemCount: number = LocalStorage.getItem(LocalStorageKey.item3);
+		if (itemCount < 1) {
+			let dollar: number = LocalStorage.getItem(LocalStorageKey.dollar);
+			if (dollar >= 6) {
+				LocalStorage.setItem(LocalStorageKey.dollar, dollar - 6);
+				LocalStorage.saveToLocal();
+				this.updateDollar();
+				costDollar = true;
+			} else {
+				// 道具数量不够，钱也不够
+				return;
+			}
+		}
+		if (!costDollar) {
 			LocalStorage.setItem(LocalStorageKey.item3, itemCount - 1);
 			LocalStorage.saveToLocal();
 			this._topBar.getChild('n12').asCom.getChild('n2').text = (itemCount - 1).toString();
 		}
+		const star = ChangeTypePanel.instance.star;
+		this._starDataArr[star.row][star.col] = star.type;
+	}
+
+	private _onChangeTypePanelClosed(): void {
+		this._status = PLAY_STATUS.nomal;
 	}
 
 	/**
 	 * 所有的星星随机变换下位置
 	 */
 	private _transposeStar(): void {
+		let costDollar = false;
 		const itemCount: number = LocalStorage.getItem(LocalStorageKey.item2);
-		if (itemCount > 0) {
+		if (itemCount < 1) {
+			let dollar: number = LocalStorage.getItem(LocalStorageKey.dollar);
+			if (dollar > 6) {
+				LocalStorage.setItem(LocalStorageKey.dollar, dollar - 6);
+				LocalStorage.saveToLocal();
+				this.updateDollar();
+				costDollar = true;
+			} else {
+				// 道具数量不够，钱也不够
+				return;
+			}
+		}
+		if (!costDollar) {
 			LocalStorage.setItem(LocalStorageKey.item2, itemCount - 1);
 			LocalStorage.saveToLocal();
 			this._topBar.getChild('n11').asCom.getChild('n2').text = (itemCount - 1).toString();
+		}
 
-			const starDataArr = this._starDataArr;
-			// 需要变换的位置
-			const oldPositionArr: { row: number, col: number, val: number }[] = [];
-			const tempPositionArr: { row: number, col: number }[] = [];
-			let val = 0;
-			for (let row = 0; row < 10; row++) {
-				for (let col = 0; col < 10; col++) {
-					val = starDataArr[row][col];
-					if (val > -1) {
-						oldPositionArr.push({ row, col, val });
-						tempPositionArr.push({ row, col });
-					}
+		// 播放个动画
+		const animation = Main.createComponent('魔法棒动画', 640, 640);
+		animation.x = (Main.stageWidth - 640) >> 1;
+		animation.y = (Main.stageHeight - 640) >> 1;
+		fairygui.GRoot.inst.addChild(animation);
+		animation.getTransition('t0').play(() => {
+			animation.removeFromParent();
+			animation.dispose();
+		});
+
+		const starDataArr = this._starDataArr;
+		// 需要变换的位置
+		const oldPositionArr: { row: number, col: number, val: number }[] = [];
+		const tempPositionArr: { row: number, col: number }[] = [];
+		let val = 0;
+		for (let row = 0; row < 10; row++) {
+			for (let col = 0; col < 10; col++) {
+				val = starDataArr[row][col];
+				if (val > -1) {
+					oldPositionArr.push({ row, col, val });
+					tempPositionArr.push({ row, col });
 				}
 			}
-			// 从旧的位置中依次取出位置信息，从临时的位置数组中随机取出一个位置，用取出的位置替换掉从旧位置中取出的位置
-			const newPositionArr: { row: number, col: number, val: number }[] = [];
-			let position: { row: number, col: number, val: number } = null;
-			let tempPosition: { row: number, col: number } = null;
-			for (let i = 0; i < oldPositionArr.length; i++) {
-				position = oldPositionArr[i];
-				tempPosition = tempPositionArr.splice(Math.floor(Math.random() * tempPositionArr.length), 1)[0];
-				newPositionArr[i] = { row: tempPosition.row, col: tempPosition.col, val: position.val };
-				// 替换完成后修改starDataArr的数据
-				starDataArr[tempPosition.row][tempPosition.col] = position.val;
-			}
+		}
+		// 从旧的位置中依次取出位置信息，从临时的位置数组中随机取出一个位置，用取出的位置替换掉从旧位置中取出的位置
+		const newPositionArr: { row: number, col: number, val: number }[] = [];
+		let position: { row: number, col: number, val: number } = null;
+		let tempPosition: { row: number, col: number } = null;
+		for (let i = 0; i < oldPositionArr.length; i++) {
+			position = oldPositionArr[i];
+			tempPosition = tempPositionArr.splice(Math.floor(Math.random() * tempPositionArr.length), 1)[0];
+			newPositionArr[i] = { row: tempPosition.row, col: tempPosition.col, val: position.val };
+			// 替换完成后修改starDataArr的数据
+			starDataArr[tempPosition.row][tempPosition.col] = position.val;
+		}
 
-			// 再移动星星
-			for (let i = 0; i < oldPositionArr.length; i++) {
-				position = oldPositionArr[i];
-				const newPosition = newPositionArr[i];
-				const star = this._starArr[this._getStarIndex(position.row, position.col)];
-				const newPoint = this._getStarPoint(newPosition.row, newPosition.col);
-				egret.Tween.get(star).to({ x: newPoint.x, y: newPoint.y }, 500).call(() => {
-					star.row = newPosition.row;
-					star.col = newPosition.col;
-				});
-			}
+		// 再移动星星
+		for (let i = 0; i < oldPositionArr.length; i++) {
+			position = oldPositionArr[i];
+			const newPosition = newPositionArr[i];
+			const star = this._starArr[this._getStarIndex(position.row, position.col)];
+			const newPoint = this._getStarPoint(newPosition.row, newPosition.col);
+			egret.Tween.get(star).wait(500).to({ x: newPoint.x, y: newPoint.y }, 500).call(() => {
+				star.row = newPosition.row;
+				star.col = newPosition.col;
+			});
 		}
 	}
 

@@ -25,6 +25,10 @@ class MainScene extends BaseScreen {
 		this._mainPanel.getChild('n2').addClickListener(this._onSetting, this);
 	}
 
+	updateDollar(): void {
+		this._topBar.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.dollar).toString();
+	}
+
 	reset(): void {
 		fairygui.GRoot.inst.removeChildren();
 		fairygui.GRoot.inst.addChild(this._mainPanel);

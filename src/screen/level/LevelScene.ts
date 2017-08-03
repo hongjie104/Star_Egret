@@ -141,6 +141,10 @@ class LevelScene extends BaseScreen {
 		}, this);
 	}
 
+	updateDollar(): void {
+		this._topBar.getChild('n3').text = LocalStorage.getItem(LocalStorageKey.dollar).toString();
+	}
+
 	reset(): void {
 		fairygui.GRoot.inst.removeChildren();
 		fairygui.GRoot.inst.addChild(this._topBar);

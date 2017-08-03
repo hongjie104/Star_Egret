@@ -10,7 +10,7 @@ class Main extends egret.DisplayObjectContainer {
      */
     private _loadingView: LoadingUI;
 
-    private _curScreen: egret.DisplayObjectContainer;
+    private _curScreen: BaseScreen;
 
     private _targetLevel = 0;
 
@@ -105,6 +105,9 @@ class Main extends egret.DisplayObjectContainer {
         Main.stageHeight = this.stage.stageHeight;
 
         SettingPanel.instance.addEventListener(StarEvent.ENTER_MAIN_SCREEN, this._onEnterMainScreen, this);
+        FailPanel.instance.addEventListener(StarEvent.ENTER_MAIN_SCREEN, this._onEnterMainScreen, this);
+        FailPanel.instance.addEventListener(StarEvent.RESTAR, PlayScene.instance.reset, PlayScene.instance);
+        PayPanel.instance.addEventListener(StarEvent.PAY_SUCCESS, this._onPaySuccess, this);
         this._onEnterMainScreen();
     }
 
@@ -205,6 +208,10 @@ class Main extends egret.DisplayObjectContainer {
             this.removeChild(this._curScreen);
             this._curScreen = null;
         }
+    }
+
+    private _onPaySuccess(): void {
+        this._curScreen.updateDollar();
     }
 
     static createPanel(panelName: string): fairygui.GComponent {

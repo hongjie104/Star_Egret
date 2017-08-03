@@ -5,4 +5,6 @@ abstract class BaseScreen extends egret.DisplayObjectContainer {
 	}
 
 	abstract reset(): void;
+
+	abstract updateDollar(): void;
 }

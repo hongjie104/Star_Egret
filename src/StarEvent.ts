@@ -12,6 +12,12 @@ class StarEvent extends egret.Event {
 
 	static SHOW_SETTING = 'showSetting';
 
+	static RESTAR = 'restar';
+
+	static PAY_SUCCESS = 'paySuccess';
+
+	static STAR_TYPE_CHANGED = 'starTypeChanged';
+
 	public constructor(type: string, private _level?: number) {
 		super(type);
 	}
