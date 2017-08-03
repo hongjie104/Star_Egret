@@ -62,8 +62,8 @@ class PlayScene extends BaseScreen {
 		this._topBar = this._playPanel.getChild('n1').asCom;
 		this._topBar.getChild('n1').addClickListener(this._showSettingPanel, this);
 		this._topBar.getChild('n10').addClickListener(this._removeOnStar, this);
-		this._topBar.getChild('n11').addClickListener(this._transposeStar, this);
-		this._topBar.getChild('n12').addClickListener(this._changeStarType, this);
+		this._topBar.getChild('n11').addClickListener(this._changeStarType, this);
+		this._topBar.getChild('n12').addClickListener(this._transposeStar, this);
 		this._topBar.getChild('n14').addClickListener(() => {
 			PayPanel.instance.show();
 		}, this);
