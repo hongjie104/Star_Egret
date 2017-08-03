@@ -170,13 +170,31 @@ class PlayScene extends BaseScreen {
 
 		const starDataArr = this._starDataArr;
 		let rowAndCol: { row: number, col: number };
+		let removedStar: Star = null;
 		for (let i = 0; i < result.length; i++) {
+			removedStar = null;
 			rowAndCol = result[i];
 			let starIndex = this._getStarIndex(rowAndCol.row, rowAndCol.col);
 			if (starIndex !== -1) {
-				this._removeStar(this._starArr.splice(starIndex, 1)[0], false, true);
+				removedStar = this._starArr.splice(starIndex, 1)[0];
+				this._removeStar(removedStar, false, true);
 			}
 			starDataArr[rowAndCol.row][rowAndCol.col] = -1;
+
+			if (removedStar) {
+				// 播放飞舞的数字
+				const num = Main.createComponent('飞舞的数字');
+				num.x = removedStar.x;
+				num.y = removedStar.y;
+				num.getChild('n0').text = (Util.getScore(i + 2) - Util.getScore(i + 2 - 1)).toString();
+				egret.Tween.get(num).wait(i * 200).call(() => {
+					fairygui.GRoot.inst.addChild(num);
+					egret.Tween.get(num).to({ x: (Main.stageWidth - 200) >> 1, y: 90, alpha: 1 }, 800).call(() => {
+						num.removeFromParent();
+						num.dispose();
+					});
+				});
+			}
 		}
 
 		// 先整体往下，再往左
