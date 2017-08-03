@@ -50,6 +50,11 @@ class PlayScene extends BaseScreen {
 
 	private _status = PLAY_STATUS.nomal;
 
+	/**
+	 * 将要被消除的星星
+	 */
+	private _willBeRemovedStar: Star;
+
 	public constructor() {
 		super();
 
@@ -134,7 +139,55 @@ class PlayScene extends BaseScreen {
 		if (this._status == PLAY_STATUS.changingStarType) {
 			ChangeTypePanel.instance.star = starTouched;
 		} else if (this._status == PLAY_STATUS.removingStar) {
-
+			if (this._willBeRemovedStar) {
+				this._willBeRemovedStar.isSelected = false;
+				this._willBeRemovedStar.stop();
+				if (this._willBeRemovedStar == starTouched) {
+					this._willBeRemovedStar = null;
+					// 第二次选中了，那就消除了
+					let costDollar = false;
+					const itemCount: number = LocalStorage.getItem(LocalStorageKey.item1);
+					if (itemCount < 1) {
+						let dollar: number = LocalStorage.getItem(LocalStorageKey.dollar);
+						if (dollar >= 6) {
+							LocalStorage.setItem(LocalStorageKey.dollar, dollar - 6);
+							LocalStorage.saveToLocal();
+							this.updateDollar();
+							costDollar = true;
+						}
+					}
+					if (!costDollar) {
+						LocalStorage.setItem(LocalStorageKey.item1, itemCount - 1);
+						LocalStorage.saveToLocal();
+						this._topBar.getChild('n10').asCom.getChild('n2').text = (itemCount - 1).toString();
+					}
+					// 先播个动画
+					const animation = Main.createComponent('火箭弹动画', 640, 640);
+					animation.x = starTouched.x - 320;
+					animation.y = starTouched.y - 500;
+					fairygui.GRoot.inst.addChild(animation);
+					animation.getTransition('t3').play(() => {
+						animation.removeFromParent();
+						animation.dispose();
+						// 在播放一个爆炸的效果
+						const mc = fairygui.UIPackage.createObject("Package1", '火箭弹动画2').asMovieClip;
+						mc.x = starTouched.x - 250;
+						mc.y = starTouched.y - 250;
+						fairygui.GRoot.inst.addChild(mc);
+						mc.setPlaySettings(1, 13, 1, 13, () => {
+							mc.playing = false;
+							mc.removeFromParent();
+							mc.dispose();
+						});
+						this._xiaoChu([{ row: starTouched.row, col: starTouched.col }]);
+					});
+					this._status = PLAY_STATUS.nomal;
+					return;
+				}
+			}
+			this._willBeRemovedStar = starTouched;
+			this._willBeRemovedStar.isSelected = true;
+			this._willBeRemovedStar.play();
 		} else {
 			if (this._isRemovingLeftStars) return;
 			if (!this._isActionRunning) {
@@ -203,12 +256,12 @@ class PlayScene extends BaseScreen {
 			}
 			starDataArr[rowAndCol.row][rowAndCol.col] = -1;
 
-			if (removedStar) {
+			if (removedStar && i > 0) {
 				// 播放飞舞的数字
 				const num = Main.createComponent('飞舞的数字');
 				num.x = removedStar.x;
 				num.y = removedStar.y;
-				num.getChild('n0').text = (Util.getScore(i + 2) - Util.getScore(i + 2 - 1)).toString();
+				num.getChild('n0').text = (Util.getScore(i) - Util.getScore(i - 1)).toString();
 				egret.Tween.get(num).wait(i * 200).call(() => {
 					fairygui.GRoot.inst.addChild(num);
 					egret.Tween.get(num).to({ x: (Main.stageWidth - 200) >> 1, y: 90, alpha: 1 }, 800).call(() => {
@@ -363,6 +416,7 @@ class PlayScene extends BaseScreen {
 	}
 
 	private _removeStar(star: Star, goToNextLevel: boolean = false, playParticle: boolean = false): void {
+		star.removeEventListener(egret.TouchEvent.TOUCH_TAP, this._onStarTouched, this);
 		star.removeFromParent();
 		star.dispose();
 		if (goToNextLevel) {
@@ -493,26 +547,19 @@ class PlayScene extends BaseScreen {
 	 * 消除一个星星
 	 */
 	private _removeOnStar(): void {
-		let costDollar = false;
 		const itemCount: number = LocalStorage.getItem(LocalStorageKey.item1);
 		if (itemCount < 1) {
 			let dollar: number = LocalStorage.getItem(LocalStorageKey.dollar);
-			if (dollar > 6) {
-				LocalStorage.setItem(LocalStorageKey.dollar, dollar - 6);
-				LocalStorage.saveToLocal();
-				this.updateDollar();
-				costDollar = true;
-			} else {
+			if (dollar < 6) {
 				// 道具数量不够，钱也不够
 				return;
 			}
 		}
-		if (!costDollar) {
-			LocalStorage.setItem(LocalStorageKey.item1, itemCount - 1);
-			LocalStorage.saveToLocal();
-			this._topBar.getChild('n10').asCom.getChild('n2').text = (itemCount - 1).toString();
-		}
 		this._status = PLAY_STATUS.removingStar;
+
+		this._willBeRemovedStar = this._starArr[0];
+		this._willBeRemovedStar.isSelected = true;
+		this._willBeRemovedStar.play();
 	}
 
 	/**

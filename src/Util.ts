@@ -16,7 +16,7 @@ class Util {
 	}
 
 	static getScore(numStar: number): number {
-		return numStar < 2 ? 0 : numStar * numStar * 5;
+		return numStar < 1 ? 0 :numStar * numStar * 5;
 	}
 
 	static getTargetScore(level: number): number {
