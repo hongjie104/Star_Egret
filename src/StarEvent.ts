@@ -18,6 +18,8 @@ class StarEvent extends egret.Event {
 
 	static STAR_TYPE_CHANGED = 'starTypeChanged';
 
+	static BUY_ITEM_SUCCESS = 'buyItemSuccess';
+
 	public constructor(type: string, private _level?: number) {
 		super(type);
 	}
