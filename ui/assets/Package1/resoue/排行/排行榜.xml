@@ -5,11 +5,11 @@
     <image id="n1_h838" name="n1" src="h838c1r" xy="17,12" size="580,887">
       <relation target="" sidePair="center-center,middle-middle"/>
     </image>
-    <text id="n22_h838" name="n22" xy="175,100" size="258,24" font="黑体" fontSize="20" color="#347eb4" align="right" bold="true" text="周排行奖励每周日24点结算">
+    <text id="n22_h838" name="n22" xy="280,87" size="133,34" font="黑体" fontSize="30" color="#347eb4" align="right" bold="true" text="Day Left">
       <gearDisplay controller="c1" pages="0"/>
       <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
     </text>
-    <image id="n25_nb58" name="n25" src="nb58c2b" xy="0,-5">
+    <image id="n25_nb58" name="n25" src="nb58c2b" xy="0,-41">
       <relation target="n25_nb58" sidePair="top-top,right-right"/>
     </image>
     <image id="n26_nb58" name="n26" src="h838c1q" xy="45,128" size="524,638">
@@ -34,20 +34,16 @@
       <gearDisplay controller="c1" pages="0"/>
       <relation target="n1_h838" sidePair="right-right,bottom-bottom"/>
     </component>
-    <image id="n33_nb58" name="n33" src="nb58c2u" xy="214,-25">
+    <image id="n33_nb58" name="n33" src="nb58c2u" xy="157,-26" size="300,31" aspect="true">
       <gearDisplay controller="c1" pages="0"/>
       <relation target="n25_nb58" sidePair="center-center,top-top"/>
     </image>
-    <component id="n34_nb58" name="n34" src="nb58c2x" xy="564,-21">
+    <component id="n34_nb58" name="n34" src="nb58c2x" xy="564,-33">
       <relation target="n1_h838" sidePair=""/>
     </component>
-    <image id="n35_rwnu" name="n35" src="nb58c2v" xy="214,-25">
+    <image id="n35_rwnu" name="n35" src="nb58c2v" xy="152,-29" size="310,32" aspect="true">
       <gearDisplay controller="c1" pages="1"/>
     </image>
-    <text id="n36_rwnu" name="n36" xy="173,100" size="269,24" font="黑体" fontSize="20" color="#347eb4" align="right" bold="true" text="月排行奖励每月1日00点结算">
-      <gearDisplay controller="c1" pages="1"/>
-      <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
-    </text>
     <list id="n37_rwnu" name="n37" xy="56,133" size="507,625" overflow="scroll" align="right">
       <gearDisplay controller="c1" pages="1"/>
       <relation target="n1_h838" sidePair="center-center,middle-middle"/>
@@ -72,5 +68,17 @@
     <group id="n45_rwnu" name="n45" xy="320,900" size="271,100" advanced="true">
       <relation target="n1_h838" sidePair="top-bottom,right-right"/>
     </group>
+    <text id="n46_o0um" name="n46" xy="229,82" size="27,50" fontSize="40" color="#ff6600" bold="true" text="4">
+      <gearDisplay controller="c1" pages="0"/>
+      <relation target="n22_h838" sidePair="right-left,middle-middle"/>
+    </text>
+    <text id="n47_o0um" name="n47" xy="280,87" size="133,34" font="黑体" fontSize="30" color="#347eb4" align="right" bold="true" text="Day Left">
+      <gearDisplay controller="c1" pages="1"/>
+      <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
+    </text>
+    <text id="n48_o0um" name="n48" xy="229,82" size="27,50" fontSize="40" color="#ff6600" bold="true" text="4">
+      <gearDisplay controller="c1" pages="1"/>
+      <relation target="n47_o0um" sidePair="right-left,middle-middle"/>
+    </text>
   </displayList>
 </component>

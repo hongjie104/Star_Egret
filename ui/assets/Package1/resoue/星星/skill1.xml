@@ -5,7 +5,7 @@
     <action type="play_transition" fromPage="0" toPage="1" transition="t0" stopOnExit="true"/>
   </controller>
   <displayList>
-    <image id="n3_w587" name="n3" src="n86lc5k" xy="8,10"/>
+    <image id="n3_w587" name="n3" src="n86lc5k" xy="8,8"/>
     <image id="n1" name="n1" src="iz250" xy="0,0" pivot="0.5,0.5">
       <relation target="" sidePair="width-width,height-height"/>
     </image>

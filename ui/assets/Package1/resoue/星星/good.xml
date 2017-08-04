@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="400,400">
+  <displayList>
+    <image id="n0_o0um" name="n0" src="o0umc6p" xy="96,156" pivot="0.5,0.5"/>
+  </displayList>
+  <transition name="t0">
+    <item time="0" type="Alpha" target="n0_o0um" tween="true" startValue="0" endValue="1" duration="3"/>
+    <item time="0" type="Scale" target="n0_o0um" tween="true" startValue="0.5,0.5" endValue="1,1" duration="8" ease="Bounce.Out"/>
+    <item time="42" type="Alpha" target="n0_o0um" tween="true" startValue="1" endValue="0" duration="6"/>
+    <item time="42" type="Scale" target="n0_o0um" tween="true" startValue="1,1" endValue="0.5,0.5" duration="6"/>
+  </transition>
+</component>

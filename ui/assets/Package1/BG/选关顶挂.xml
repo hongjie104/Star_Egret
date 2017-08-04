@@ -2,13 +2,13 @@
 <component size="750,100">
   <displayList>
     <image id="n0_12czc" name="n0" src="12czc1m" xy="5,3" group="n4_12czc"/>
-    <text id="n2_12czc" name="n2" xy="70,19" size="134,28" group="n4_12czc" font="黑体" fontSize="24" color="#ffffff" align="center" vAlign="middle" autoSize="shrink" bold="true" strokeColor="#000033" text="昵称的名字">
+    <text id="n2_12czc" name="n2" xy="73,27" size="134,28" group="n4_12czc" font="黑体" fontSize="24" color="#ffffff" align="center" vAlign="middle" autoSize="shrink" bold="true" strokeColor="#000033" text="昵称的名字">
       <relation target="n0_12czc" sidePair="left-left,middle-middle"/>
     </text>
-    <text id="n3_12czc" name="n3" xy="348,17" size="83,32" group="n4_12czc" font="黑体" fontSize="24" color="#ffffff" align="center" vAlign="middle" autoSize="none" bold="true" strokeColor="#000033" text="8921">
+    <text id="n3_12czc" name="n3" xy="349,25" size="83,32" group="n4_12czc" font="黑体" fontSize="24" color="#ffffff" align="center" vAlign="middle" autoSize="none" bold="true" strokeColor="#000033" text="8921">
       <relation target="n0_12czc" sidePair="left-left,middle-middle"/>
     </text>
-    <group id="n4_12czc" name="n4" xy="5,3" size="498,70" advanced="true">
+    <group id="n4_12czc" name="n4" xy="5,3" size="495,87" advanced="true">
       <relation target="" sidePair="left-left,top-top"/>
     </group>
     <component id="n1_12czc" name="n1" src="12czc1n" xy="666,-6" group="n6_rwnu">
@@ -18,10 +18,10 @@
     <group id="n6_rwnu" name="n6" xy="577,-6" size="171,96" advanced="true">
       <relation target="" sidePair="right-right,top-top"/>
     </group>
-    <component id="n7_rwnu" name="n7" src="rwnuc3l" xy="311,8">
+    <component id="n7_rwnu" name="n7" src="rwnuc3l" xy="311,16">
       <relation target="n4_12czc" sidePair="right-right,middle-middle"/>
     </component>
-    <component id="n8_rwnu" name="n8" src="rwnuc3m" xy="55,9">
+    <component id="n8_rwnu" name="n8" src="rwnuc3m" xy="58,17">
       <relation target="n4_12czc" sidePair="left-left,middle-middle"/>
     </component>
   </displayList>

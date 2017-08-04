@@ -122,7 +122,7 @@
     <image id="rwnuc3k" name="tanchuang013.png" path="/resoue/弹窗/" exported="true"/>
     <component id="rwnuc3l" name="购买金币按钮.xml" path="/GAME/" exported="true"/>
     <component id="rwnuc3m" name="改名.xml" path="/GAME/" exported="true"/>
-    <image id="rwnuc3n" name="tanchuang014.png" path="/resoue/弹窗/" exported="true"/>
+    <image id="rwnuc3n" name="tanchuang014.png" path="/resoue/弹窗/" exported="true" scale="9grid" scale9grid="30,8,2,16"/>
     <image id="t9b6c3o" name="zhujiemian008.png" path="/resoue/登录界面/素材/" exported="true"/>
     <image id="t9b6c3p" name="zhujiemian001.png" path="/resoue/登录界面/素材/" exported="true"/>
     <image id="t9b6c3q" name="zhujiemian002.png" path="/resoue/登录界面/素材/" exported="true"/>
@@ -169,7 +169,7 @@
     <component id="vdprc4y" name="主界面.xml" path="/resoue/登录界面/素材/设置/" exported="true"/>
     <component id="w587c52" name="skill4.xml" path="/resoue/星星/" exported="true"/>
     <component id="w587c53" name="改变颜色1.xml" path="/resoue/星星/" exported="true"/>
-    <image id="w587c54" name="clouer1.png" path="/resoue/排行/"/>
+    <image id="w587c54" name="clouer1.png" path="/resoue/排行/" exported="true"/>
     <component id="w587c55" name="改变颜色2.xml" path="/resoue/星星/" exported="true"/>
     <component id="w587c58" name="魔法棒动画.xml" path="/resoue/星星/" exported="true"/>
     <image id="w587c59" name="star5-1.png" path="/resoue/弹窗/" exported="true"/>
@@ -178,12 +178,12 @@
     <component id="w587c5d" name="继续通关.xml" path="/resoue/登录界面/素材/设置/" exported="true"/>
     <image id="w587c5e" name="lose2.png" path="/resoue/弹窗/" exported="true"/>
     <component id="w587c5f" name="失败弹窗1.xml" path="/GAME/" exported="true"/>
-    <image id="n86lc5g" name="dongxiao1.png" path="/resoue/弹窗/"/>
-    <image id="n86lc5h" name="dongxiao2.png" path="/resoue/弹窗/"/>
-    <image id="n86lc5i" name="item1.png" path="/resoue/弹窗/"/>
-    <image id="n86lc5j" name="item2.png" path="/resoue/弹窗/"/>
-    <image id="n86lc5k" name="item3.png" path="/resoue/弹窗/"/>
-    <image id="n86lc5m" name="dingdianbaopo@2x.png" path="/resoue/弹窗/"/>
+    <image id="n86lc5g" name="dongxiao1.png" path="/resoue/弹窗/" exported="true"/>
+    <image id="n86lc5h" name="dongxiao2.png" path="/resoue/弹窗/" exported="true"/>
+    <image id="n86lc5i" name="item1.png" path="/resoue/弹窗/" exported="true"/>
+    <image id="n86lc5j" name="item2.png" path="/resoue/弹窗/" exported="true"/>
+    <image id="n86lc5k" name="item3.png" path="/resoue/弹窗/" exported="true"/>
+    <image id="n86lc5m" name="dingdianbaopo@2x.png" path="/resoue/弹窗/" exported="true"/>
     <component id="n86lc5n" name="火箭弹动画.xml" path="/resoue/星星/" exported="true"/>
     <image id="n86lc5o" name="ui0020001.png" path="/" exported="true"/>
     <image id="n86lc5p" name="ui0020002.png" path="/" exported="true"/>
@@ -199,6 +199,38 @@
     <image id="n86lc5z" name="ui0020012.png" path="/" exported="true"/>
     <image id="n86lc60" name="ui0020013.png" path="/" exported="true"/>
     <movieclip id="n86lc61" name="火箭弹动画2.jta" path="/resoue/星星/" exported="true" atlas="alone_npot"/>
+    <image id="o0umc6c" name="ziti002_01.png" path="/数字/" exported="true"/>
+    <image id="o0umc6d" name="ziti002_02.png" path="/数字/" exported="true"/>
+    <image id="o0umc6e" name="ziti002_03.png" path="/数字/" exported="true"/>
+    <image id="o0umc6f" name="ziti002_04.png" path="/数字/" exported="true"/>
+    <image id="o0umc6g" name="ziti002_05.png" path="/数字/" exported="true"/>
+    <image id="o0umc6h" name="ziti002_06.png" path="/数字/" exported="true"/>
+    <image id="o0umc6i" name="ziti002_07.png" path="/数字/" exported="true"/>
+    <image id="o0umc6j" name="ziti002_08.png" path="/数字/" exported="true"/>
+    <image id="o0umc6k" name="ziti002_09.png" path="/数字/" exported="true"/>
+    <image id="o0umc6l" name="ziti002_10.png" path="/数字/" exported="true"/>
+    <font id="o0umc6m" name="得分字体.fnt" path="/数字/" exported="true"/>
+    <component id="o0umc6n" name="good.xml" path="/resoue/星星/" exported="true"/>
+    <image id="o0umc6o" name="xiugai11.png" path="/数字/" exported="true"/>
+    <image id="o0umc6p" name="xiugai9.png" path="/数字/" exported="true"/>
+    <image id="o0umc6q" name="xiugai10.png" path="/数字/" exported="true"/>
+    <component id="o0umc6r" name="cool.xml" path="/resoue/星星/" exported="true"/>
+    <component id="o0umc6s" name="PERFECT.xml" path="/resoue/星星/" exported="true"/>
+    <movieclip id="o0umc77" name="烟花1.jta" path="/texiao/" exported="true" atlas="4"/>
+    <movieclip id="o0umc7a" name="烟花2.jta" path="/texiao/" exported="true" atlas="4"/>
+    <movieclip id="o0umc7c" name="烟花3.jta" path="/texiao/" exported="true" atlas="4"/>
+    <movieclip id="o0umc7d" name="烟花4.jta" path="/texiao/" exported="true" atlas="4"/>
+    <component id="o0umc7e" name="购买道具.xml" path="/resoue/弹窗/" exported="true"/>
+    <image id="o0umc7g" name="xiugai12.png" path="/resoue/弹窗/" exported="true"/>
+    <image id="o0umc7h" name="xiugai13.png" path="/resoue/弹窗/" exported="true"/>
+    <image id="o0umc7i" name="xiugai14.png" path="/resoue/弹窗/" exported="true"/>
+    <component id="o0umc7j" name="购买1.xml" path="/resoue/弹窗/" exported="true"/>
+    <image id="o0umc7k" name="xiugai15.png" path="/resoue/弹窗/" exported="true" scale="9grid" scale9grid="24,19,9,8"/>
+    <component id="o0umc7m" name="购买.xml" path="/resoue/弹窗/" exported="true"/>
+    <component id="o0umc7n" name="购买2.xml" path="/resoue/弹窗/" exported="true"/>
+    <component id="o0umc7o" name="购买3.xml" path="/resoue/弹窗/" exported="true"/>
+    <image id="o0umc7p" name="xiugai16.png" path="/resoue/弹窗/" exported="true"/>
+    <component id="o0umc7q" name="购买道具弹窗.xml" path="/GAME/"/>
   </resources>
   <publish name="Package1" path="D:\hongjie\Star_Egret\resource\assets"/>
 </packageDescription>

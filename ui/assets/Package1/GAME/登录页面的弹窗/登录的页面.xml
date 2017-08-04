@@ -19,8 +19,5 @@
     <group id="n10_t9b6" name="n10" xy="584,704" size="158,353" advanced="true" collapsed="true">
       <relation target="n7_t9b6" sidePair="left-right,top-top"/>
     </group>
-    <component id="n13_t9b6" name="n13" src="t9b6c45" xy="0,0">
-      <relation target="" sidePair="top-top,center-center"/>
-    </component>
   </displayList>
 </component>

@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="640,640">
   <displayList>
-    <image id="n4_n86l" name="n4" src="n86lc5h" xy="216,-390" pivot="0.5,1"/>
+    <image id="n4_n86l" name="n4" src="n86lc5h" xy="232,-377" pivot="0.5,1"/>
   </displayList>
   <transition name="t3">
     <item time="0" type="Alpha" target="n4_n86l" tween="true" startValue="0" endValue="1" duration="4" ease="Linear"/>
-    <item time="0" type="Scale" target="n4_n86l" tween="true" startValue="1,1" endValue="0.7,0.7" duration="18" ease="Linear"/>
-    <item time="0" type="XY" target="n4_n86l" tween="true" startValue="216,-390" endValue="216,254" duration="18" ease="Cubic.In"/>
-    <item time="16" type="Alpha" target="n4_n86l" tween="true" startValue="1" endValue="0" duration="2" ease="Linear"/>
+    <item time="0" type="Scale" target="n4_n86l" value="1,1"/>
+    <item time="0" type="XY" target="n4_n86l" tween="true" startValue="216,-390" endValue="216,254" duration="6" ease="Linear"/>
+    <item time="5" type="Scale" target="n4_n86l" value="1,1"/>
+    <item time="6" type="Scale" target="n4_n86l" value="1,0.8"/>
+    <item time="6" type="XY" target="n4_n86l" tween="true" startValue="216,254" endValue="216,204" duration="3"/>
+    <item time="7" type="Scale" target="n4_n86l" tween="true" startValue="1,1" endValue="1,1.1" duration="2" ease="Linear"/>
+    <item time="9" type="Scale" target="n4_n86l" tween="true" startValue="1,1.1" endValue="1,0.9" duration="3" ease="Linear"/>
+    <item time="9" type="XY" target="n4_n86l" tween="true" startValue="216,204" endValue="216,254" duration="3"/>
+    <item time="12" type="Scale" target="n4_n86l" tween="true" startValue="1,0.9" endValue="1,1.05" duration="2"/>
+    <item time="12" type="XY" target="n4_n86l" tween="true" startValue="216,254" endValue="216,234" duration="2"/>
+    <item time="14" type="Scale" target="n4_n86l" tween="true" startValue="1,1.05" endValue="1,1" duration="2"/>
+    <item time="14" type="XY" target="n4_n86l" tween="true" startValue="216,234" endValue="216,254" duration="2"/>
   </transition>
 </component>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="540,135">
+  <displayList>
+    <image id="n0_o0um" name="n0" src="o0umc7h" xy="2,0"/>
+    <text id="n1_o0um" name="n1" xy="93,96" size="31,31" fontSize="24" color="#ffffff" strokeColor="#000000" strokeSize="2" text="99">
+      <relation target="n0_o0um" sidePair="left-left,bottom-bottom"/>
+    </text>
+    <text id="n2_o0um" name="n2" xy="147,26" size="165,44" font="黑体" fontSize="40" color="#ffffff" strokeColor="#125d69" strokeSize="2" text="百变星君"/>
+    <text id="n3_o0um" name="n3" xy="143,79" size="272,28" font="黑体" fontSize="24" color="#ffffff" autoSize="none" strokeColor="#247e8c" strokeSize="2" text="改变方块的颜色"/>
+    <component id="n4_o0um" name="n4" src="o0umc7m" xy="412,64">
+      <relation target="n0_o0um" sidePair="right-right,bottom-bottom"/>
+    </component>
+  </displayList>
+</component>

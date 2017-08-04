@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="670,650">
+  <controller name="c1" pages="0,正常,1,分数最高" selected="0"/>
+  <controller name="c2" pages="0,选奖励前,1,选奖励后1,2,花钱买全部" selected="0"/>
+  <displayList>
+    <image id="n1_h838" name="n1" src="h838c1r" xy="34,54" size="601,596" alpha="0.75">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </image>
+    <image id="n0_h838" name="n0" src="h838c1t" xy="0,8" aspect="true">
+      <relation target="n1_h838" sidePair="top-top,center-center"/>
+    </image>
+    <image id="n14_h838" name="n14" src="o0umc7p" xy="217,11">
+      <relation target="n0_h838" sidePair="center-center,middle-middle"/>
+    </image>
+    <image id="n15_h838" name="n15" src="h838c25" xy="500,98">
+      <gearDisplay controller="c1" pages="1"/>
+    </image>
+    <text id="n24_h838" name="n24" xy="237,515" size="205,28" font="黑体" fontSize="24" color="#347eb4" align="right" bold="true" text="点击进入下一关卡">
+      <gearDisplay controller="c2" pages="1"/>
+      <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
+    </text>
+    <text id="n25_rwnu" name="n25" xy="155,501" size="369,59" font="黑体" fontSize="20" autoSize="none" text="运气不错，           金币就可以获得全部奖励啦！">
+      <gearDisplay controller="c2" pages="2"/>
+      <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
+    </text>
+    <text id="n26_rwnu" name="n26" xy="281,494" size="85,34" font="黑体" fontSize="30" color="#ff6600" align="center" vAlign="middle" bold="true" text="99999">
+      <gearDisplay controller="c2" pages="2"/>
+      <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
+    </text>
+    <component id="n27_rwnu" name="n27" src="rwnuc3c" xy="245,560">
+      <gearDisplay controller="c2" pages="2"/>
+      <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
+    </component>
+    <component id="n48_o0um" name="n48" src="o0umc7j" xy="65,143" group="n51_o0um"/>
+    <component id="n49_o0um" name="n49" src="o0umc7n" xy="65,283" group="n51_o0um"/>
+    <component id="n50_o0um" name="n50" src="o0umc7o" xy="65,423" group="n51_o0um"/>
+    <group id="n51_o0um" name="n51" xy="65,143" size="540,415" advanced="true">
+      <relation target="n1_h838" sidePair="center-center,middle-middle"/>
+    </group>
+    <component id="n55_o0um" name="n55" src="nb58c2x" xy="592,34">
+      <relation target="n0_h838" sidePair="right-right,top-top"/>
+    </component>
+    <text id="n56_o0um" name="n56" xy="218,597" size="233,28" font="黑体" fontSize="24" color="#666666" align="center" vAlign="middle" text="点击购买将支付0.1元">
+      <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
+    </text>
+  </displayList>
+</component>
