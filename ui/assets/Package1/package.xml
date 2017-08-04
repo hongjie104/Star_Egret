@@ -230,7 +230,7 @@
     <component id="o0umc7n" name="购买2.xml" path="/resoue/弹窗/" exported="true"/>
     <component id="o0umc7o" name="购买3.xml" path="/resoue/弹窗/" exported="true"/>
     <image id="o0umc7p" name="xiugai16.png" path="/resoue/弹窗/" exported="true"/>
-    <component id="o0umc7q" name="购买道具弹窗.xml" path="/GAME/"/>
+    <component id="o0umc7q" name="购买道具弹窗.xml" path="/GAME/" exported="true"/>
   </resources>
   <publish name="Package1" path="D:\hongjie\Star_Egret\resource\assets"/>
 </packageDescription>

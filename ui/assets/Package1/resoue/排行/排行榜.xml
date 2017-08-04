@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="615,900">
-  <controller name="c1" pages="0,周排行,1,月排行" selected="0"/>
+  <controller name="c1" pages="0,周排行,1,月排行" selected="1"/>
   <displayList>
-    <image id="n1_h838" name="n1" src="h838c1r" xy="17,12" size="580,887">
+    <image id="n1_h838" name="n1" src="h838c1r" xy="17,-8" size="580,749">
       <relation target="" sidePair="center-center,middle-middle"/>
     </image>
-    <text id="n22_h838" name="n22" xy="280,87" size="133,34" font="黑体" fontSize="30" color="#347eb4" align="right" bold="true" text="Day Left">
-      <gearDisplay controller="c1" pages="0"/>
-      <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
-    </text>
     <image id="n25_nb58" name="n25" src="nb58c2b" xy="0,-41">
       <relation target="n25_nb58" sidePair="top-top,right-right"/>
     </image>
-    <image id="n26_nb58" name="n26" src="h838c1q" xy="45,128" size="524,638">
+    <image id="n26_nb58" name="n26" src="h838c1q" xy="45,122" size="524,515">
       <relation target="n1_h838" sidePair="center-center,top-top"/>
     </image>
-    <list id="n27_nb58" name="n27" xy="56,133" size="507,625" overflow="scroll" align="right">
+    <list id="n27_nb58" name="n27" xy="56,128" size="507,502" overflow="scroll" align="right">
       <gearDisplay controller="c1" pages="0"/>
       <relation target="n1_h838" sidePair="center-center,middle-middle"/>
       <item url="ui://yejc893vnb58c2j"/>
@@ -23,14 +19,14 @@
       <item url="ui://yejc893vnb58c2p"/>
       <item url="ui://yejc893vnb58c2q"/>
     </list>
-    <text id="n28_nb58" name="n28" xy="73,784" size="185,79" group="n31_nb58" font="黑体" fontSize="30" color="#333333" leading="15" text="本人周排名：&#xA;分数："/>
-    <text id="n29_nb58" name="n29" xy="242,779" size="161,44" group="n31_nb58" font="黑体" fontSize="40" color="#660000" leading="10" autoSize="none" bold="true" text="999999&#xA;"/>
-    <text id="n30_nb58" name="n30" xy="151,826" size="253,44" group="n31_nb58" font="黑体" fontSize="40" color="#660000" leading="10" autoSize="none" bold="true" text="1234567890"/>
-    <group id="n31_nb58" name="n31" xy="73,779" size="331,91" advanced="true">
+    <text id="n28_nb58" name="n28" xy="57,647" size="161,71" group="n31_nb58" font="黑体" fontSize="26" color="#333333" leading="15" text="本人周排名：&#xA;分数："/>
+    <text id="n29_nb58" name="n29" xy="211,645" size="161,44" group="n31_nb58" font="ui://yejc893vo0umc6m" fontSize="30" color="#660000" leading="10" letterSpacing="-2" autoSize="none" bold="true" text="999999&#xA;"/>
+    <text id="n30_nb58" name="n30" xy="135,687" size="253,44" group="n31_nb58" font="ui://yejc893vo0umc6m" fontSize="30" color="#660000" leading="10" letterSpacing="-2" autoSize="none" bold="true" text="1234567890"/>
+    <group id="n31_nb58" name="n31" xy="57,645" size="331,86" advanced="true">
       <gearDisplay controller="c1" pages="0"/>
       <relation target="n1_h838" sidePair="bottom-bottom,left-left"/>
     </group>
-    <component id="n32_nb58" name="n32" src="nb58c2s" xy="448,784">
+    <component id="n32_nb58" name="n32" src="nb58c2s" xy="468,646" size="88,77" aspect="true">
       <gearDisplay controller="c1" pages="0"/>
       <relation target="n1_h838" sidePair="right-right,bottom-bottom"/>
     </component>
@@ -44,7 +40,7 @@
     <image id="n35_rwnu" name="n35" src="nb58c2v" xy="152,-29" size="310,32" aspect="true">
       <gearDisplay controller="c1" pages="1"/>
     </image>
-    <list id="n37_rwnu" name="n37" xy="56,133" size="507,625" overflow="scroll" align="right">
+    <list id="n37_rwnu" name="n37" xy="56,128" size="507,504" overflow="scroll" align="right">
       <gearDisplay controller="c1" pages="1"/>
       <relation target="n1_h838" sidePair="center-center,middle-middle"/>
       <item url="ui://yejc893vnb58c2j"/>
@@ -52,33 +48,43 @@
       <item url="ui://yejc893vnb58c2p"/>
       <item url="ui://yejc893vnb58c2q"/>
     </list>
-    <text id="n38_rwnu" name="n38" xy="73,784" size="185,79" group="n41_rwnu" font="黑体" fontSize="30" color="#333333" leading="15" text="本人月排名：&#xA;分数："/>
-    <text id="n39_rwnu" name="n39" xy="242,779" size="161,44" group="n41_rwnu" font="黑体" fontSize="40" color="#660000" leading="10" autoSize="none" bold="true" text="999999&#xA;"/>
-    <text id="n40_rwnu" name="n40" xy="151,826" size="253,44" group="n41_rwnu" font="黑体" fontSize="40" color="#660000" leading="10" autoSize="none" bold="true" text="1234567890"/>
-    <group id="n41_rwnu" name="n41" xy="73,779" size="331,91" advanced="true">
-      <gearDisplay controller="c1" pages="1"/>
-      <relation target="n1_h838" sidePair="bottom-bottom,left-left"/>
-    </group>
-    <component id="n42_rwnu" name="n42" src="nb58c2s" xy="448,784">
+    <component id="n42_rwnu" name="n42" src="nb58c2s" xy="468,646" size="88,77" aspect="true">
       <gearDisplay controller="c1" pages="1"/>
       <relation target="n1_h838" sidePair="right-right,bottom-bottom"/>
     </component>
-    <component id="n43_rwnu" name="n43" src="rwnuc33" xy="456,902" group="n45_rwnu"/>
-    <component id="n44_rwnu" name="n44" src="rwnuc34" xy="320,900" group="n45_rwnu"/>
-    <group id="n45_rwnu" name="n45" xy="320,900" size="271,100" advanced="true">
+    <component id="n43_rwnu" name="n43" src="rwnuc33" xy="456,743" group="n45_rwnu"/>
+    <component id="n44_rwnu" name="n44" src="rwnuc34" xy="320,741" group="n45_rwnu"/>
+    <group id="n45_rwnu" name="n45" xy="320,741" size="271,100" advanced="true">
       <relation target="n1_h838" sidePair="top-bottom,right-right"/>
     </group>
-    <text id="n46_o0um" name="n46" xy="229,82" size="27,50" fontSize="40" color="#ff6600" bold="true" text="4">
+    <text id="n22_h838" name="n22" xy="266,81" size="133,34" group="n49_jze4" font="黑体" fontSize="30" color="#347eb4" align="right" bold="true" text="Day Left">
+      <gearDisplay controller="c1" pages="0"/>
+      <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
+    </text>
+    <text id="n46_o0um" name="n46" xy="215,76" size="27,50" group="n49_jze4" fontSize="40" color="#ff6600" bold="true" text="4">
       <gearDisplay controller="c1" pages="0"/>
       <relation target="n22_h838" sidePair="right-left,middle-middle"/>
     </text>
-    <text id="n47_o0um" name="n47" xy="280,87" size="133,34" font="黑体" fontSize="30" color="#347eb4" align="right" bold="true" text="Day Left">
+    <group id="n49_jze4" name="n49" xy="215,76" size="184,50" advanced="true">
+      <relation target="n1_h838" sidePair="top-top,center-center"/>
+    </group>
+    <text id="n50_jze4" name="n50" xy="57,647" size="161,71" group="n53_jze4" font="黑体" fontSize="26" color="#333333" leading="15" text="本人周排名：&#xA;分数："/>
+    <text id="n51_jze4" name="n51" xy="211,645" size="161,44" group="n53_jze4" font="ui://yejc893vo0umc6m" fontSize="30" color="#660000" leading="10" letterSpacing="-2" autoSize="none" bold="true" text="999999&#xA;"/>
+    <text id="n52_jze4" name="n52" xy="135,687" size="253,44" group="n53_jze4" font="ui://yejc893vo0umc6m" fontSize="30" color="#660000" leading="10" letterSpacing="-2" autoSize="none" bold="true" text="1234567890"/>
+    <group id="n53_jze4" name="n53" xy="57,645" size="331,86" advanced="true">
+      <gearDisplay controller="c1" pages="1"/>
+      <relation target="n1_h838" sidePair="bottom-bottom,left-left"/>
+    </group>
+    <text id="n47_o0um" name="n47" xy="266,81" size="133,34" group="n54_jze4" font="黑体" fontSize="30" color="#347eb4" align="right" bold="true" text="Day Left">
       <gearDisplay controller="c1" pages="1"/>
       <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
     </text>
-    <text id="n48_o0um" name="n48" xy="229,82" size="27,50" fontSize="40" color="#ff6600" bold="true" text="4">
+    <text id="n48_o0um" name="n48" xy="215,76" size="27,50" group="n54_jze4" fontSize="40" color="#ff6600" bold="true" text="4">
       <gearDisplay controller="c1" pages="1"/>
       <relation target="n47_o0um" sidePair="right-left,middle-middle"/>
     </text>
+    <group id="n54_jze4" name="n54" xy="215,76" size="184,50" advanced="true">
+      <relation target="n1_h838" sidePair="top-top,center-center"/>
+    </group>
   </displayList>
 </component>
