@@ -1,5 +1,5 @@
 enum PLAY_STATUS {
-	nomal, changingStarType, removingStar
+	normal, changingStarType, removingStar
 }
 
 class PlayScene extends BaseScreen {
@@ -48,7 +48,7 @@ class PlayScene extends BaseScreen {
 
 	private _xiaoChuStar: { row: number, col: number }[];
 
-	private _status = PLAY_STATUS.nomal;
+	private _status = PLAY_STATUS.normal;
 
 	/**
 	 * 将要被消除的星星
@@ -181,7 +181,7 @@ class PlayScene extends BaseScreen {
 						});
 						this._xiaoChu([{ row: starTouched.row, col: starTouched.col }]);
 					});
-					this._status = PLAY_STATUS.nomal;
+					this._status = PLAY_STATUS.normal;
 					return;
 				}
 			}
@@ -242,6 +242,27 @@ class PlayScene extends BaseScreen {
 		const progressBar = this._topBar.getChild('n9').asProgress;
 		progressBar.max = progress.max;
 		progressBar.value = progress.val;
+
+		// 播放个动画
+		let animationName: string = null, h = 400, w = 640;
+		if (result.length > 11) {
+			animationName = 'PERFECT';
+		} else if (result.length > 7) {
+			animationName = 'cool';
+		} else if (result.length > 5) {
+			animationName = 'good';
+			w = 400;
+		}
+		if (animationName) {
+			const animation = Main.createComponent(animationName, w, h);
+			animation.x = (Main.stageWidth - w) >> 1;
+			animation.y = (Main.stageHeight - h) >> 1;
+			fairygui.GRoot.inst.addChild(animation);
+			animation.getTransition('t0').play(() => {
+				animation.removeFromParent();
+				animation.dispose();
+			});
+		}
 
 		const starDataArr = this._starDataArr;
 		let rowAndCol: { row: number, col: number };
@@ -547,6 +568,18 @@ class PlayScene extends BaseScreen {
 	 * 消除一个星星
 	 */
 	private _removeOnStar(): void {
+		if (this._status == PLAY_STATUS.removingStar) {
+			if (this._willBeRemovedStar) {
+				this._willBeRemovedStar.isSelected = false;
+				this._willBeRemovedStar.stop();
+				this._willBeRemovedStar = null;
+			}
+			this._status = PLAY_STATUS.normal;
+			return;
+		}
+		if (this._status == PLAY_STATUS.changingStarType) {
+			ChangeTypePanel.instance.close();
+		}
 		const itemCount: number = LocalStorage.getItem(LocalStorageKey.item1);
 		if (itemCount < 1) {
 			let dollar: number = LocalStorage.getItem(LocalStorageKey.dollar);
@@ -566,6 +599,18 @@ class PlayScene extends BaseScreen {
 	 * 改变一个星星的type
 	 */
 	private _changeStarType(): void {
+		if (this._status == PLAY_STATUS.changingStarType) {
+			ChangeTypePanel.instance.close();
+			this._status = PLAY_STATUS.normal;
+			return;
+		}
+		if (this._status == PLAY_STATUS.removingStar) {
+			if (this._willBeRemovedStar) {
+				this._willBeRemovedStar.isSelected = false;
+				this._willBeRemovedStar.stop();
+				this._willBeRemovedStar = null;
+			}
+		}
 		const itemCount: number = LocalStorage.getItem(LocalStorageKey.item3);
 		if (itemCount < 1) {
 			let dollar: number = LocalStorage.getItem(LocalStorageKey.dollar);
@@ -606,13 +651,24 @@ class PlayScene extends BaseScreen {
 	}
 
 	private _onChangeTypePanelClosed(): void {
-		this._status = PLAY_STATUS.nomal;
+		this._status = PLAY_STATUS.normal;
 	}
 
 	/**
 	 * 所有的星星随机变换下位置
 	 */
 	private _transposeStar(): void {
+		if (this._status == PLAY_STATUS.changingStarType) {
+			ChangeTypePanel.instance.close();
+		} else if (this._status == PLAY_STATUS.removingStar) {
+			if (this._willBeRemovedStar) {
+				this._willBeRemovedStar.isSelected = false;
+				this._willBeRemovedStar.stop();
+				this._willBeRemovedStar = null;
+			}
+		}
+		this._status = PLAY_STATUS.normal;
+
 		let costDollar = false;
 		const itemCount: number = LocalStorage.getItem(LocalStorageKey.item2);
 		if (itemCount < 1) {

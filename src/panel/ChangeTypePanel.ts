@@ -71,6 +71,10 @@ class ChangeTypePanel extends BasePanel {
 	}
 
 	protected _closed(): void {
+		if (this._star) {
+			this._star.stop();
+			this._star = null;
+		}
 		this._ui.removeFromParent();
 		this._arrow.removeFromParent();
 		this.dispatchEvent(new egret.Event(egret.Event.CLOSE));

@@ -4,16 +4,16 @@ class MainScene extends BaseScreen {
 
 	private _mainPanel: fairygui.GComponent;
 
-	private _topBar: fairygui.GComponent;
+	// private _topBar: fairygui.GComponent;
 
 	public constructor() {
 		super();
 
 		this._mainPanel = Main.createPanel('登录的页面');
-		this._topBar = this._mainPanel.getChild('n13').asCom;
-		this._topBar.getChild('n14').addClickListener(() => {
-			PayPanel.instance.show();
-		}, this);
+		// this._topBar = this._mainPanel.getChild('n13').asCom;
+		// this._topBar.getChild('n14').addClickListener(() => {
+		// 	PayPanel.instance.show();
+		// }, this);
 
 		// 进入关卡的按钮
 		this._mainPanel.getChild('n4').addClickListener(this._onEnterLevelScreen, this);
@@ -26,20 +26,20 @@ class MainScene extends BaseScreen {
 	}
 
 	updateDollar(): void {
-		this._topBar.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.dollar).toString();
+		// this._topBar.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.dollar).toString();
 	}
 
 	reset(): void {
 		fairygui.GRoot.inst.removeChildren();
 		fairygui.GRoot.inst.addChild(this._mainPanel);
 
-		this._topBar.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.dollar).toString();
-		this._topBar.getChild('n4').text = Util.getLv().toString();
-		this._topBar.getChild('n7').text = LocalStorage.getItem(LocalStorageKey.maxTotalScore).toString();
-		const expBar = this._topBar.getChild('n9').asProgress;
-		const progress = Util.getExpProgress();
-		expBar.max = progress.max;
-		expBar.value = progress.val;
+		// this._topBar.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.dollar).toString();
+		// this._topBar.getChild('n4').text = Util.getLv().toString();
+		// this._topBar.getChild('n7').text = LocalStorage.getItem(LocalStorageKey.maxTotalScore).toString();
+		// const expBar = this._topBar.getChild('n9').asProgress;
+		// const progress = Util.getExpProgress();
+		// expBar.max = progress.max;
+		// expBar.value = progress.val;
 	}
 
 	private _onEnterLevelScreen(): void {

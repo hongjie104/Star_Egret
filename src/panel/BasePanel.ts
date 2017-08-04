@@ -16,6 +16,10 @@ abstract class BasePanel extends egret.EventDispatcher {
 		this._ui.getTransition('t0').play();
 	}
 
+	close(): void {
+		this._onClose();
+	}
+
 	protected abstract _init(): void;
 
 	protected _onClose(evt?: egret.TouchEvent): void {
