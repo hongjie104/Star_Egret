@@ -6,6 +6,11 @@ class PlayScene extends BaseScreen {
 
 	private static _instance: PlayScene = null;
 
+	/**
+	 * 四种烟花的帧数
+	 */
+	private static FIRE_FRAME = [12, 10, 10, 11];
+
 	private _playPanel: fairygui.GComponent = null;
 
 	private _topBar: fairygui.GComponent = null;
@@ -264,6 +269,8 @@ class PlayScene extends BaseScreen {
 				animation.removeFromParent();
 				animation.dispose();
 			});
+
+			this._startPlayFire();
 		}
 
 		const starDataArr = this._starDataArr;
@@ -377,6 +384,27 @@ class PlayScene extends BaseScreen {
 			this._isActionRunning = false;
 			this._checkCanGoOn();
 		}
+	}
+
+	private _startPlayFire(): void {
+		// 随机播放几个烟花的动画
+		const count = Util.getRandom(3, 8);
+		for (let i = 0; i < count; i++) {
+			egret.Tween.get(this).wait(1000 + i * 200).call(this._playFire, this);
+		}
+	}
+
+	private _playFire(): void {
+		const index = Util.getRandom(1, PlayScene.FIRE_FRAME.length);
+		const mc = fairygui.UIPackage.createObject("Package1", `烟花${index}`).asMovieClip;
+		mc.x = Util.getRandom(100, Main.stageWidth - 100);
+		mc.y = Util.getRandom(100, 600);
+		fairygui.GRoot.inst.addChild(mc);
+		mc.setPlaySettings(1, PlayScene.FIRE_FRAME[index], 1, PlayScene.FIRE_FRAME[index], () => {
+			mc.playing = false;
+			mc.removeFromParent();
+			mc.dispose();
+		});
 	}
 
 	/**

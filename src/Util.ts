@@ -16,7 +16,7 @@ class Util {
 	}
 
 	static getScore(numStar: number): number {
-		return numStar < 1 ? 0 :numStar * numStar * 5;
+		return numStar < 1 ? 0 : numStar * numStar * 5;
 	}
 
 	static getTargetScore(level: number): number {
@@ -69,5 +69,15 @@ class Util {
 			return Util._expAward[newLv];
 		}
 		return 0;
+	}
+
+	/**
+		* 获取一个区间的随机数
+		* @param from 最小值
+		* @param end 最大值
+		* @returns {number}
+		*/
+	public static getRandom(min: number, max: number): number {
+		return Math.floor(Math.random() * (max - min + 1) + min);
 	}
 }
