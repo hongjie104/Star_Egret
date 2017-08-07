@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="750,1334">
+<component size="750,1334" adaptationTest="FitSize">
   <displayList>
-    <image id="n14_t9b6" name="n14" src="sp8ru" xy="0,0"/>
+    <image id="n14_t9b6" name="n14" src="e65ic7u" xy="0,0" aspect="true"/>
     <component id="n0_t9b6" name="n0" src="t9b6c41" xy="99,1202" group="n3_t9b6"/>
     <component id="n1_t9b6" name="n1" src="t9b6c42" xy="331,1205" group="n3_t9b6"/>
     <component id="n2_t9b6" name="n2" src="t9b6c43" xy="536,1207" group="n3_t9b6"/>
     <group id="n3_t9b6" name="n3" xy="99,1202" size="552,123" advanced="true" collapsed="true">
       <relation target="" sidePair="center-center,bottom-bottom"/>
     </group>
-    <component id="n4_t9b6" name="n4" src="t9b6c3w" xy="174,738" group="n7_t9b6"/>
-    <component id="n5_t9b6" name="n5" src="t9b6c3x" xy="174,879" group="n7_t9b6"/>
-    <component id="n6_t9b6" name="n6" src="t9b6c3y" xy="174,1020" group="n7_t9b6"/>
-    <group id="n7_t9b6" name="n7" xy="174,738" size="398,400" advanced="true" collapsed="true">
+    <component id="n4_t9b6" name="n4" src="t9b6c3w" xy="181,634" group="n7_t9b6"/>
+    <component id="n5_t9b6" name="n5" src="t9b6c3x" xy="181,770" group="n7_t9b6"/>
+    <component id="n6_t9b6" name="n6" src="t9b6c3y" xy="181,906" group="n7_t9b6"/>
+    <component id="n15_e65i" name="n15" src="e65ic7s" xy="181,1042" group="n7_t9b6"/>
+    <group id="n7_t9b6" name="n7" xy="181,634" size="398,526" advanced="true" collapsed="true">
       <relation target="n3_t9b6" sidePair="center-center,bottom-top"/>
     </group>
-    <component id="n8_t9b6" name="n8" src="t9b6c3z" xy="596,704" group="n10_t9b6"/>
-    <component id="n9_t9b6" name="n9" src="t9b6c40" xy="584,905" group="n10_t9b6"/>
-    <group id="n10_t9b6" name="n10" xy="584,704" size="158,353" advanced="true" collapsed="true">
+    <component id="n8_t9b6" name="n8" src="t9b6c3z" xy="603,600" group="n10_t9b6"/>
+    <component id="n9_t9b6" name="n9" src="t9b6c40" xy="591,801" group="n10_t9b6"/>
+    <group id="n10_t9b6" name="n10" xy="591,600" size="158,353" advanced="true" collapsed="true">
       <relation target="n7_t9b6" sidePair="left-right,top-top"/>
     </group>
+    <image id="n16_e65i" name="n16" src="e65ic7t" xy="124,169" size="502,263" aspect="true">
+      <relation target="n14_t9b6" sidePair=""/>
+      <relation target="" sidePair="top-top,center-center"/>
+    </image>
   </displayList>
 </component>
