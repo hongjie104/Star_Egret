@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="615,1000">
+  <displayList>
+    <image id="n1_h838" name="n1" src="h838c1r" xy="17,160" size="580,631">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </image>
+    <image id="n25_nb58" name="n25" src="nb58c2b" xy="1,141">
+      <relation target="n1_h838" sidePair="top-top,right-right"/>
+    </image>
+    <image id="n33_nb58" name="n33" src="h75cc7x" xy="190,117">
+      <relation target="n25_nb58" sidePair="center-center,top-top"/>
+    </image>
+    <component id="n34_nb58" name="n34" src="nb58c2x" xy="565,136">
+      <relation target="n25_nb58" sidePair="top-top,right-right"/>
+    </component>
+    <component id="n53_t9b6" name="n53" src="h838c1x" xy="215,688">
+      <relation target="n1_h838" sidePair="center-center,bottom-bottom"/>
+    </component>
+    <text id="n58_h75c" name="n58" xy="69,281" size="477,379" font="黑体" fontSize="30" color="#663300" autoSize="none" text="这里需要输入关于的内容">
+      <relation target="n1_h838" sidePair="top-top,center-center"/>
+    </text>
+  </displayList>
+  <relation target="n1_h838" sidePair=""/>
+</component>

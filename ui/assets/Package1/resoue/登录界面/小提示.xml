@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="615,1000">
+  <displayList>
+    <image id="n1_h838" name="n1" src="h838c1r" xy="17,66" size="580,863">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </image>
+    <image id="n25_nb58" name="n25" src="nb58c2b" xy="1,47">
+      <relation target="n1_h838" sidePair="top-top,right-right"/>
+    </image>
+    <image id="n33_nb58" name="n33" src="h75cc7y" xy="190,23">
+      <relation target="n25_nb58" sidePair="center-center,top-top"/>
+    </image>
+    <component id="n34_nb58" name="n34" src="nb58c2x" xy="565,42">
+      <relation target="n25_nb58" sidePair="top-top,right-right"/>
+    </component>
+    <component id="n53_t9b6" name="n53" src="h838c1x" xy="215,826">
+      <relation target="n1_h838" sidePair="center-center,bottom-bottom"/>
+    </component>
+    <text id="n58_h75c" name="n58" xy="54,188" size="506,35" group="n74_h75c" font="黑体" fontSize="30" color="#ff3300" autoSize="none" bold="true" text="经典玩法："/>
+    <text id="n59_h75c" name="n59" xy="69,231" size="476,89" group="n74_h75c" font="黑体" fontSize="24" color="#663300" autoSize="none" text="点击相邻的同色星星即可消除，分数打到目标即可过关。一次消灭星星越多，分数越高。每关剩余星星越少，加分越多！"/>
+    <text id="n60_h75c" name="n60" xy="60,329" size="506,35" group="n74_h75c" font="黑体" fontSize="30" color="#ff3300" autoSize="none" bold="true" text="道具："/>
+    <text id="n61_h75c" name="n61" xy="164,400" size="315,40" group="n74_h75c" font="黑体" fontSize="24" color="#663300" autoSize="none" text="炸掉 3x3的方块"/>
+    <image id="n62_h75c" name="n62" src="n86lc5i" xy="70,465" group="n74_h75c"/>
+    <image id="n63_h75c" name="n63" src="n86lc5j" xy="70,552" group="n74_h75c"/>
+    <image id="n64_h75c" name="n64" src="n86lc5k" xy="71,378" group="n74_h75c"/>
+    <text id="n65_h75c" name="n65" xy="166,489" size="315,40" group="n74_h75c" font="黑体" fontSize="24" color="#663300" autoSize="none" text="改变星星的颜色"/>
+    <text id="n66_h75c" name="n66" xy="168,567" size="315,40" group="n74_h75c" font="黑体" fontSize="24" color="#663300" autoSize="none" text="重新排列星星布局"/>
+    <text id="n67_h75c" name="n67" xy="60,635" size="506,35" group="n74_h75c" font="黑体" fontSize="30" color="#ff3300" autoSize="none" bold="true" text="功能推荐："/>
+    <text id="n68_h75c" name="n68" xy="75,677" size="476,61" group="n74_h75c" font="黑体" fontSize="24" color="#663300" autoSize="none" text="登录奖励：每日登录，签到领取金币。&#xA;超值礼包：量身定做，更多优惠。"/>
+    <image id="n70_h75c" name="n70" src="vdprc4m" xy="62,752" size="149,44" group="n72_h75c" aspect="true"/>
+    <image id="n71_h75c" name="n71" src="vdprc4j" xy="86,761" size="106,25" group="n72_h75c" aspect="true"/>
+    <group id="n72_h75c" name="n72" xy="62,752" size="149,44" group="n74_h75c"/>
+    <text id="n73_h75c" name="n73" xy="210,762" size="357,61" group="n74_h75c" font="黑体" fontSize="24" color="#663300" autoSize="none" text="可选择“经典&quot;和&quot;畅爽&quot;消除模式"/>
+    <group id="n74_h75c" name="n74" xy="54,188" size="513,635"/>
+  </displayList>
+</component>

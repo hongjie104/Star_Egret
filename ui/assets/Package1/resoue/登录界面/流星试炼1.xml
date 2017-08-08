@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="615,600">
+  <displayList>
+    <image id="n1_h838" name="n1" src="h838c1r" xy="17,19" size="580,581">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </image>
+    <image id="n25_nb58" name="n25" src="nb58c2b" xy="1,0">
+      <relation target="n1_h838" sidePair="top-top,right-right"/>
+    </image>
+    <image id="n33_nb58" name="n33" src="kcvcc8x" xy="131,-12">
+      <relation target="n25_nb58" sidePair="center-center,top-top"/>
+    </image>
+    <component id="n34_nb58" name="n34" src="nb58c2x" xy="565,-2">
+      <relation target="n25_nb58" sidePair="top-top,right-right"/>
+    </component>
+    <component id="n53_t9b6" name="n53" src="h838c1x" xy="215,497">
+      <relation target="n1_h838" sidePair="center-center,bottom-bottom"/>
+    </component>
+    <text id="n58_kcvc" name="n58" xy="235,140" size="125,34" group="n62_kcvc" font="黑体" fontSize="30" color="#ff6600" text="玩法说明"/>
+    <text id="n59_kcvc" name="n59" xy="80,191" size="455,271" group="n62_kcvc" input="true" font="黑体" fontSize="30" color="#663300" align="center" vAlign="middle" autoSize="none" text="初始限时40秒&#xA;一次连消星星越多，奖励加时越多&#xA;连消    秒&#xA;连消    秒&#xA;连消    秒&#xA;连消    秒&#xA;连消    秒&#xA;看你能持续玩多久"/>
+    <text id="n60_kcvc" name="n60" xy="194,259" size="37,166" group="n62_kcvc" font="黑体" fontSize="30" color="#ff6600" align="right" bold="true" text="6&#xA;8&#xA;11&#xA;14&#xA;20"/>
+    <text id="n61_kcvc" name="n61" xy="296,259" size="53,166" group="n62_kcvc" font="黑体" fontSize="30" color="#ff6600" bold="true" text="+1&#xA;+3&#xA;+6&#xA;+10&#xA;+16"/>
+    <group id="n62_kcvc" name="n62" xy="80,140" size="455,322" advanced="true">
+      <relation target="n1_h838" sidePair="center-center,bottom-bottom"/>
+    </group>
+  </displayList>
+</component>

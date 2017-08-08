@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="615,900" designImageLayer="1">
-  <controller name="c1" pages="0,周排行,1,月排行" selected="1"/>
+  <controller name="c1" pages="0,周排行,1,月排行" selected="0"/>
   <displayList>
     <image id="n1_h838" name="n1" src="h838c1r" xy="17,-8" size="580,749">
       <relation target="" sidePair="center-center,middle-middle"/>
@@ -11,7 +11,7 @@
     <image id="n26_nb58" name="n26" src="h838c1q" xy="45,122" size="524,515">
       <relation target="n1_h838" sidePair="center-center,top-top"/>
     </image>
-    <list id="n27_nb58" name="n27" xy="56,128" size="507,502" overflow="scroll" align="right">
+    <list id="n27_nb58" name="n27" xy="56,130" size="507,502" overflow="scroll" align="right">
       <gearDisplay controller="c1" pages="0"/>
       <relation target="n1_h838" sidePair="center-center,middle-middle"/>
       <item url="ui://yejc893vnb58c2j"/>
@@ -26,7 +26,7 @@
       <gearDisplay controller="c1" pages="0"/>
       <relation target="n1_h838" sidePair="bottom-bottom,left-left"/>
     </group>
-    <component id="n32_nb58" name="n32" src="nb58c2s" xy="468,646" size="88,77" aspect="true">
+    <component id="n32_nb58" name="n32" src="nb58c2s" xy="422,655" aspect="true">
       <gearDisplay controller="c1" pages="0"/>
       <relation target="n1_h838" sidePair="right-right,bottom-bottom"/>
     </component>
@@ -57,15 +57,15 @@
     <group id="n45_rwnu" name="n45" xy="320,741" size="271,100" advanced="true">
       <relation target="n1_h838" sidePair="top-bottom,right-right"/>
     </group>
-    <text id="n22_h838" name="n22" xy="266,81" size="133,34" group="n49_jze4" font="黑体" fontSize="30" color="#347eb4" align="right" bold="true" text="Day Left">
+    <text id="n22_h838" name="n22" xy="250,81" size="149,34" group="n49_jze4" font="黑体" fontSize="30" color="#347eb4" align="right" bold="true" text="Days Left">
       <gearDisplay controller="c1" pages="0"/>
       <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
     </text>
-    <text id="n46_o0um" name="n46" xy="215,76" size="27,50" group="n49_jze4" fontSize="40" color="#ff6600" bold="true" text="4">
+    <text id="n46_o0um" name="n46" xy="199,76" size="27,50" group="n49_jze4" fontSize="40" color="#ff6600" bold="true" text="4">
       <gearDisplay controller="c1" pages="0"/>
       <relation target="n22_h838" sidePair="right-left,middle-middle"/>
     </text>
-    <group id="n49_jze4" name="n49" xy="215,76" size="184,50" advanced="true">
+    <group id="n49_jze4" name="n49" xy="199,76" size="200,50" advanced="true">
       <relation target="n1_h838" sidePair="top-top,center-center"/>
     </group>
     <text id="n50_jze4" name="n50" xy="57,647" size="161,71" group="n53_jze4" font="黑体" fontSize="26" color="#333333" leading="15" text="本人周排名：&#xA;分数："/>
@@ -75,15 +75,15 @@
       <gearDisplay controller="c1" pages="1"/>
       <relation target="n1_h838" sidePair="bottom-bottom,left-left"/>
     </group>
-    <text id="n47_o0um" name="n47" xy="266,81" size="133,34" group="n54_jze4" font="黑体" fontSize="30" color="#347eb4" align="right" bold="true" text="Day Left">
+    <text id="n47_o0um" name="n47" xy="250,81" size="149,34" group="n54_jze4" font="黑体" fontSize="30" color="#347eb4" align="right" bold="true" text="Days Left">
       <gearDisplay controller="c1" pages="1"/>
       <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
     </text>
-    <text id="n48_o0um" name="n48" xy="215,76" size="27,50" group="n54_jze4" fontSize="40" color="#ff6600" bold="true" text="4">
+    <text id="n48_o0um" name="n48" xy="199,76" size="27,50" group="n54_jze4" fontSize="40" color="#ff6600" bold="true" text="4">
       <gearDisplay controller="c1" pages="1"/>
       <relation target="n47_o0um" sidePair="right-left,middle-middle"/>
     </text>
-    <group id="n54_jze4" name="n54" xy="215,76" size="184,50" advanced="true">
+    <group id="n54_jze4" name="n54" xy="199,76" size="200,50" advanced="true">
       <relation target="n1_h838" sidePair="top-top,center-center"/>
     </group>
   </displayList>

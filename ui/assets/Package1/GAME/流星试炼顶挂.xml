@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="750,158">
+  <displayList>
+    <image id="n0_sp8r" name="n0" src="kcvcc91" xy="4,0">
+      <relation target="" sidePair="top-top,center-center"/>
+    </image>
+    <component id="n1_sp8r" name="n1" src="sp8rf" xy="653,4">
+      <relation target="n0_sp8r" sidePair="middle-middle,right-right"/>
+    </component>
+    <text id="n2_sp8r" name="n2" xy="537,16" size="85,33" font="黑体" fontSize="24" color="#ffffff" autoSize="none" bold="true" strokeColor="#1d4675" strokeSize="2" text="999999">
+      <relation target="n0_sp8r" sidePair="right-right,top-top"/>
+    </text>
+    <text id="n6_sp8r" name="n6" xy="298,37" size="150,82" font="ui://yejc893vo0umc6m" fontSize="40" color="#ffffff" align="center" vAlign="middle" letterSpacing="-3" autoSize="shrink" bold="true" text="99999">
+      <relation target="n0_sp8r" sidePair="top-top,center-center"/>
+    </text>
+    <text id="n7_sp8r" name="n7" xy="94,14" size="151,33" font="黑体" fontSize="24" color="#ffffff" align="right" vAlign="middle" autoSize="none" bold="true" strokeColor="#1d4675" strokeSize="2" text="999999">
+      <relation target="n0_sp8r" sidePair="left-left,top-top"/>
+    </text>
+    <text id="n8_sp8r" name="n8" xy="94,64" size="151,33" font="黑体" fontSize="24" color="#ffffff" align="right" vAlign="middle" autoSize="none" bold="true" strokeColor="#1d4675" strokeSize="2" text="999999">
+      <relation target="n0_sp8r" sidePair="left-left,top-top"/>
+    </text>
+    <component id="n10_sp8r" name="n10" src="kcvcc92" xy="450,131" group="n13_sp8r"/>
+    <component id="n11_sp8r" name="n11" src="sp8rs" xy="548,131" group="n13_sp8r"/>
+    <component id="n12_sp8r" name="n12" src="sp8rt" xy="646,131" group="n13_sp8r"/>
+    <group id="n13_sp8r" name="n13" xy="450,131" size="288,92" advanced="true">
+      <relation target="n0_sp8r" sidePair="top-bottom,right-right"/>
+    </group>
+    <component id="n14_rwnu" name="n14" src="rwnuc3l" xy="490,6">
+      <relation target="n0_sp8r" sidePair="right-right,top-top"/>
+    </component>
+    <text id="n17_kcvc" name="n17" xy="495,63" size="132,34" font="黑体" fontSize="24" color="#ffffff" align="right" vAlign="middle" autoSize="none" bold="true" strokeColor="#1d4675" strokeSize="2" text="999999">
+      <relation target="n0_sp8r" sidePair="left-left,top-top"/>
+    </text>
+  </displayList>
+</component>

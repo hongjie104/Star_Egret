@@ -13,16 +13,16 @@
     <component id="n34_nb58" name="n34" src="nb58c2x" xy="565,11">
       <relation target="n25_nb58" sidePair="top-top,right-right"/>
     </component>
-    <text id="n52_rwnu" name="n52" xy="140,130" size="335,100" font="黑体" fontSize="30" color="#999999" align="center" vAlign="middle" text="请在输入框中输入兑换码&#xA;点击确认按钮领取金币&#xA;消消更快乐！">
+    <text id="n52_rwnu" name="n52" xy="140,151" size="335,100" font="黑体" fontSize="30" color="#999999" align="center" vAlign="middle" text="请在输入框中输入兑换码&#xA;点击确认按钮领取金币&#xA;消消更快乐！">
       <relation target="n1_h838" sidePair="center-center,top-bottom"/>
     </text>
-    <component id="n53_t9b6" name="n53" src="h838c1x" xy="215,329">
+    <component id="n53_t9b6" name="n53" src="h838c1x" xy="215,332">
       <relation target="n1_h838" sidePair="center-center,bottom-bottom"/>
     </component>
-    <image id="n54_t9b6" name="n54" src="h838c1p" xy="107,246" size="401,50">
+    <image id="n54_t9b6" name="n54" src="h838c1p" xy="107,257" size="401,50">
       <relation target="n1_h838" sidePair="center-center,middle-middle"/>
     </image>
-    <text id="n55_t9b6" name="n55" xy="112,247" size="390,47" input="true" prompt="点击输入兑换码" keyboardType="4" fontSize="30" align="center" vAlign="middle" autoSize="none" text="">
+    <text id="n55_t9b6" name="n55" xy="112,258" size="390,47" input="true" prompt="点击输入兑换码" keyboardType="4" fontSize="30" align="center" vAlign="middle" autoSize="none" text="">
       <relation target="n54_t9b6" sidePair="center-center,middle-middle"/>
     </text>
   </displayList>

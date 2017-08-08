@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="98,86" pivot="0.5,0.5" extention="Button">
+<component size="150,66" pivot="0.5,0.5" extention="Button">
   <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
   <displayList>
-    <image id="n1" name="n1" src="nb58c2r" xy="0,3">
+    <image id="n1" name="n1" src="h838c1o" xy="9,0" size="135,66">
       <relation target="" sidePair="width-width,height-height"/>
     </image>
+    <text id="n2_h75c" name="n2" xy="35,17" size="74,28" font="黑体" fontSize="24" color="#ffffff" letterSpacing="-3" strokeColor="#333366" text="领取奖励">
+      <relation target="n1" sidePair="width-width,height-height"/>
+    </text>
   </displayList>
   <Button downEffect="scale" downEffectValue="0.90"/>
 </component>

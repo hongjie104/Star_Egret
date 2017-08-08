@@ -7,7 +7,7 @@
     <image id="n25_nb58" name="n25" src="nb58c2b" xy="1,30">
       <relation target="n1_h838" sidePair="top-top,right-right"/>
     </image>
-    <image id="n33_nb58" name="n33" src="vdprc4d" xy="230,6">
+    <image id="n33_nb58" name="n33" src="vdprc4d" xy="190,6">
       <relation target="n25_nb58" sidePair="center-center,top-top"/>
     </image>
     <component id="n34_nb58" name="n34" src="nb58c2x" xy="565,14">

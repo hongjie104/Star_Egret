@@ -40,5 +40,8 @@
     <text id="n15_w587" name="n15" xy="12,154" size="423,65" font="黑体" fontSize="30" color="#ffffff" align="center" vAlign="middle" autoSize="none" bold="true" strokeColor="#000000" text="本次使用道具消耗8金币试试看是不是可以放个两行啊啊啊啊">
       <relation target="n0_sp8r" sidePair="top-top,center-center"/>
     </text>
+    <component id="n16_g75u" name="n16" src="g75uc8v" xy="493,62" size="152,35">
+      <relation target="n0_sp8r" sidePair="right-right,bottom-bottom"/>
+    </component>
   </displayList>
 </component>

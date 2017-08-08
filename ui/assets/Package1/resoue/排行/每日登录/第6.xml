@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="126,150">
+  <controller name="c1" pages="0,未领取,1,可领取,2,已领取" selected="0"/>
+  <displayList>
+    <image id="n0_h75c" name="n0" src="h75cc8e" xy="0,20">
+      <gearDisplay controller="c1" pages="0,2"/>
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </image>
+    <image id="n4_h75c" name="n4" src="h75cc8k" xy="0,20">
+      <gearDisplay controller="c1" pages="1"/>
+    </image>
+    <image id="n1_h75c" name="n1" src="h838c1y" xy="22,38" size="90,81" aspect="true">
+      <relation target="n0_h75c" sidePair="center-center,middle-middle"/>
+    </image>
+    <text id="n2_h75c" name="n2" xy="9,114" size="109,26" font="黑体" fontSize="22" color="#ffffff" align="center" vAlign="middle" autoSize="none" shadowColor="#000000" shadowOffset="1,1" text="9金币">
+      <relation target="n0_h75c" sidePair="bottom-bottom,center-center"/>
+    </text>
+    <text id="n3_h75c" name="n3" xy="7,0" size="111,24" font="黑体" fontSize="20" color="#805408" align="center" vAlign="middle" autoSize="none" strokeColor="#ffffff" strokeSize="2" text="第6天">
+      <relation target="n0_h75c" sidePair="bottom-top,center-center"/>
+    </text>
+    <image id="n5_h75c" name="n5" src="h75cc8f" xy="6,25" size="115,118">
+      <gearDisplay controller="c1" pages="2"/>
+      <relation target="" sidePair="center-center,bottom-bottom"/>
+    </image>
+    <text id="n6_h75c" name="n6" xy="27,65" pivot="0.5,0.5" size="77,28" skew="-19,-19" font="黑体" fontSize="24" color="#ffff33" align="center" vAlign="middle" shadowColor="#663300" shadowOffset="1,1" text="已领取">
+      <gearDisplay controller="c1" pages="2"/>
+      <relation target="" sidePair="bottom-bottom,center-center"/>
+    </text>
+  </displayList>
+</component>
