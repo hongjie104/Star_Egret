@@ -17,6 +17,7 @@ class MainScene extends BaseScreen {
 
 		// 进入关卡的按钮
 		this._mainPanel.getChild('n4').addClickListener(this._onEnterLevelScreen, this);
+		this._mainPanel.getChild('n5').addClickListener(this._onEnterLevel2Screen, this);
 		// 打开兑换码的面板
 		this._mainPanel.getChild('n0').addClickListener(this._onRedeemCode, this);
 		// 打开活动面板
@@ -25,6 +26,8 @@ class MainScene extends BaseScreen {
 		this._mainPanel.getChild('n2').addClickListener(this._onSetting, this);
 		// 打开商店
 		this._mainPanel.getChild('n6').addClickListener(this._onShop, this);
+		// 打开兑换礼品的面板
+		this._mainPanel.getChild('n15').addClickListener(this._onGift, this);
 
 		LoginAwardPanel.instance.addEventListener(egret.Event.CLOSE, this.updateDollar, this);
 	}
@@ -67,6 +70,10 @@ class MainScene extends BaseScreen {
 		this.dispatchEvent(new StarEvent(StarEvent.ENTER_LEVEL_SCREEN));
 	}
 
+	private _onEnterLevel2Screen(): void {
+		this.dispatchEvent(new StarEvent(StarEvent.ENTER_LEVEL_2));
+	}
+
 	/**
 	 * 打开兑换码界面的事件
 	 */
@@ -84,6 +91,10 @@ class MainScene extends BaseScreen {
 
 	private _onShop(): void {
 		ShopPanel.instance.show();
+	}
+
+	private _onGift(): void {
+		FetchGiftPanel.instance.show();
 	}
 
 	static get instance(): MainScene {

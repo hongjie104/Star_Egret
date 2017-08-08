@@ -15,6 +15,18 @@ class Util {
 		}
 	}
 
+	static getNextLvAndAward(): { lv: number, award: number } {
+		const lv = Util.getLv();
+		for (let i = 0; i < Util._expAward.length; i++) {
+			if (i + 1 > lv) {
+				if (Util._expAward[i] !== 0) {
+					return { lv: i + 1, award: Util._expAward[i] };
+				}
+			}
+		}
+		return { lv: 0, award: 0 }
+	}
+
 	static getScore(numStar: number): number {
 		return numStar < 1 ? 0 : numStar * numStar * 5;
 	}

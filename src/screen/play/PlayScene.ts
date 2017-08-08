@@ -2,6 +2,13 @@ enum PLAY_STATUS {
 	normal, changingStarType, removingStar
 }
 
+/**
+ * 游戏模式
+ */
+enum PLAY_TYPE {
+	normal, liuXing
+}
+
 class PlayScene extends BaseScreen {
 
 	private static _instance: PlayScene = null;
@@ -11,9 +18,13 @@ class PlayScene extends BaseScreen {
 	 */
 	private static FIRE_FRAME = [12, 10, 10, 11];
 
-	private _playPanel: fairygui.GComponent = null;
+	private _playPanel1: fairygui.GComponent = null;
 
-	private _topBar: fairygui.GComponent = null;
+	private _playPanel2: fairygui.GComponent = null;
+
+	private _topBar1: fairygui.GComponent = null;
+
+	private _topBar2: fairygui.GComponent = null;
 
 	private _isActionRunning = false;
 
@@ -55,21 +66,40 @@ class PlayScene extends BaseScreen {
 
 	private _status = PLAY_STATUS.normal;
 
+	private _playType = PLAY_TYPE.normal;
+
 	/**
 	 * 将要被消除的星星
 	 */
 	private _willBeRemovedStar: Star;
 
+	private _leftSecond = 0;
+
+	private _timer: egret.Timer;
+
 	public constructor() {
 		super();
+		this._playPanel1 = Main.createPanel('Game');
+		this._topBar1 = this._playPanel1.getChild('n1').asCom;
+		this._topBar1.getChild('n1').addClickListener(this._showSettingPanel, this);
+		this._topBar1.getChild('n10').addClickListener(this._removeOnStar, this);
+		this._topBar1.getChild('n11').addClickListener(this._changeStarType, this);
+		this._topBar1.getChild('n12').addClickListener(this._transposeStar, this);
+		this._topBar1.getChild('n14').addClickListener(() => {
+			PayPanel.instance.show();
+		}, this);
+		this._topBar1.getChild('n16').addClickListener(() => {
+			LvPanel.instance.show();
+		}, this);
 
-		this._playPanel = Main.createPanel('Game');
-		this._topBar = this._playPanel.getChild('n1').asCom;
-		this._topBar.getChild('n1').addClickListener(this._showSettingPanel, this);
-		this._topBar.getChild('n10').addClickListener(this._removeOnStar, this);
-		this._topBar.getChild('n11').addClickListener(this._changeStarType, this);
-		this._topBar.getChild('n12').addClickListener(this._transposeStar, this);
-		this._topBar.getChild('n14').addClickListener(() => {
+		// 流星模式
+		this._playPanel2 = Main.createPanel('Game2');
+		this._topBar2 = this._playPanel2.getChild('n1').asCom;
+		this._topBar2.getChild('n1').addClickListener(this._showSettingPanel, this);
+		this._topBar2.getChild('n10').addClickListener(this._addSecond, this);
+		this._topBar2.getChild('n11').addClickListener(this._changeStarType, this);
+		this._topBar2.getChild('n12').addClickListener(this._transposeStar, this);
+		this._topBar2.getChild('n14').addClickListener(() => {
 			PayPanel.instance.show();
 		}, this);
 
@@ -80,45 +110,80 @@ class PlayScene extends BaseScreen {
 	}
 
 	updateDollar(): void {
-		this._topBar.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.dollar).toString();
+		this._topBar1.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.dollar).toString();
+		this._topBar2.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.dollar).toString();
 	}
 
-	reset(): void {
+	reset(playType?: any): void {
+		this._playType = playType as PLAY_TYPE;
 		for (let i = 0; i < this._starArr.length; i++) {
 			this._removeStar(this._starArr[i]);
 		}
 
-		fairygui.GRoot.inst.removeChildren();
-		fairygui.GRoot.inst.addChild(this._playPanel);
-
 		this._isRemovingLeftStars = false;
 		this._isWinPanelShowed = false;
-		// 初始化顶挂上的数值
-		this._topBar.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.dollar).toString();
-		const curLevel = LocalStorage.getItem(LocalStorageKey.lastLevel) + 1;
-		this._topBar.getChild('n5').text = `LEVEL ${curLevel}`;
-		this._initScore = LocalStorage.getItem(LocalStorageKey.totalScore);
-		this._addScore = 0;
-		this._topBar.getChild('n6').text = this._initScore.toString();
-		// 三种道具的数量
-		this._topBar.getChild('n10').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item1).toString();
-		this._topBar.getChild('n11').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item2).toString();
-		this._topBar.getChild('n12').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item3).toString();
-		// 当前关卡的最高分
-		const levelScoreArr = LocalStorage.getItem(LocalStorageKey.levelScore) as Array<number>;
-		while (curLevel > levelScoreArr.length) {
-			levelScoreArr.push(0);
-		}
-		this._topBar.getChild('n7').text = levelScoreArr[curLevel - 1].toString();
-		// 过关的分数
-		this._targetSocre = Util.getTargetScore(curLevel);
-		this._topBar.getChild('n8').text = this._targetSocre.toString();
-		this._topBar.getChild('n4').text = Util.getLv().toString();
-		const progress = Util.getExpProgress();
-		const progressBar = this._topBar.getChild('n9').asProgress;
-		progressBar.max = progress.max;
-		progressBar.value = progress.val;
 
+		fairygui.GRoot.inst.removeChildren();
+		if (playType == PLAY_TYPE.normal) {
+			fairygui.GRoot.inst.addChild(this._playPanel1);
+			// 初始化顶挂上的数值
+			this._topBar1.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.dollar).toString();
+			const curLevel = LocalStorage.getItem(LocalStorageKey.lastLevel) + 1;
+			this._topBar1.getChild('n5').text = `LEVEL ${curLevel}`;
+			this._initScore = LocalStorage.getItem(LocalStorageKey.totalScore);
+			this._addScore = 0;
+			this._topBar1.getChild('n6').text = this._initScore.toString();
+			// 三种道具的数量
+			this._topBar1.getChild('n10').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item1).toString();
+			this._topBar1.getChild('n11').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item2).toString();
+			this._topBar1.getChild('n12').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item3).toString();
+			// 当前关卡的最高分
+			const levelScoreArr = LocalStorage.getItem(LocalStorageKey.levelScore) as Array<number>;
+			while (curLevel > levelScoreArr.length) {
+				levelScoreArr.push(0);
+			}
+			this._topBar1.getChild('n7').text = levelScoreArr[curLevel - 1].toString();
+			// 过关的分数
+			this._targetSocre = Util.getTargetScore(curLevel);
+			this._topBar1.getChild('n8').text = this._targetSocre.toString();
+			this._topBar1.getChild('n4').text = Util.getLv().toString();
+			const progress = Util.getExpProgress();
+			const progressBar = this._topBar1.getChild('n9').asProgress;
+			progressBar.max = progress.max;
+			progressBar.value = progress.val;
+		} else if (playType == PLAY_TYPE.liuXing) {
+			fairygui.GRoot.inst.addChild(this._playPanel2);
+			// 初始化顶挂上的数值
+			this._topBar2.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.dollar).toString();
+			const curLevel = LocalStorage.getItem(LocalStorageKey.lastLevel) + 1;
+			this._initScore = LocalStorage.getItem(LocalStorageKey.totalScore);
+			this._addScore = 0;
+			this._topBar2.getChild('n6').text = this._initScore.toString();
+			// 三种道具的数量
+			this._topBar2.getChild('n10').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item4).toString();
+			this._topBar2.getChild('n11').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item2).toString();
+			this._topBar2.getChild('n12').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item3).toString();
+			// 当前关卡的最高分
+			const levelScoreArr = LocalStorage.getItem(LocalStorageKey.levelScore) as Array<number>;
+			while (curLevel > levelScoreArr.length) {
+				levelScoreArr.push(0);
+			}
+			this._topBar2.getChild('n7').text = levelScoreArr[curLevel - 1].toString();
+			// 过关的分数
+			this._targetSocre = Util.getTargetScore(curLevel);
+			this._topBar2.getChild('n8').text = this._targetSocre.toString();
+			// 倒计时时间
+			this._leftSecond = 45;
+			this._topBar2.getChild('n17').text = this._leftSecond.toString();
+
+			if (!this._timer) {
+				this._timer = new egret.Timer(1000, 0);
+				this._timer.addEventListener(egret.TimerEvent.TIMER, this._onTimer, this);
+			}
+			this._timer.start();
+		}
+
+		const curPanel = playType == PLAY_TYPE.normal ? this._playPanel1 : this._playPanel2;
 		// 初始化星星
 		this._starArr.length = 0;
 		let random = 0, actionDelay = 0;
@@ -135,7 +200,7 @@ class PlayScene extends BaseScreen {
 				let p: egret.Point = this._getStarPoint(row, col);
 				star.x = p.x;
 				star.y = p.y - Main.stageHeight;
-				this._playPanel.displayListContainer.addChild(star);
+				curPanel.displayListContainer.addChild(star);
 				egret.Tween.get(star).wait(actionDelay).to({ y: p.y }, 200);
 			}
 		}
@@ -166,7 +231,7 @@ class PlayScene extends BaseScreen {
 					if (!costDollar) {
 						LocalStorage.setItem(LocalStorageKey.item1, itemCount - 1);
 						LocalStorage.saveToLocal();
-						this._topBar.getChild('n10').asCom.getChild('n2').text = (itemCount - 1).toString();
+						this._topBar1.getChild('n10').asCom.getChild('n2').text = (itemCount - 1).toString();
 					}
 					// 先播个动画
 					const animation = Main.createComponent('火箭弹动画', 640, 640);
@@ -178,6 +243,7 @@ class PlayScene extends BaseScreen {
 						animation.dispose();
 						// 在播放一个爆炸的效果
 						const mc = fairygui.UIPackage.createObject("Package1", '火箭弹动画2').asMovieClip;
+						mc.touchable = false;
 						mc.x = starTouched.x - 250;
 						mc.y = starTouched.y - 250;
 						fairygui.GRoot.inst.addChild(mc);
@@ -232,7 +298,7 @@ class PlayScene extends BaseScreen {
 		// 算一下这一次消除得了多少分
 		const addScore = Util.getScore(result.length);
 		this._addScore += addScore;
-		this._topBar.getChild('n6').text = (this._initScore + this._addScore).toString();
+		this._topBar1.getChild('n6').text = (this._initScore + this._addScore).toString();
 
 		// 算一下这一次消除得了多少经验
 		const addExp = Util.getAwardExp(result.length);
@@ -242,11 +308,11 @@ class PlayScene extends BaseScreen {
 			const newDollar = LocalStorage.getItem(LocalStorageKey.dollar) + award;
 			LocalStorage.setItem(LocalStorageKey.dollar, newDollar);
 			LocalStorage.saveToLocal();
-			this._topBar.getChild('n2').text = newDollar.toString();
+			this._topBar1.getChild('n2').text = newDollar.toString();
 		}
-		this._topBar.getChild('n4').text = Util.getLv().toString();
+		this._topBar1.getChild('n4').text = Util.getLv().toString();
 		const progress = Util.getExpProgress();
-		const progressBar = this._topBar.getChild('n9').asProgress;
+		const progressBar = this._topBar1.getChild('n9').asProgress;
 		progressBar.max = progress.max;
 		progressBar.value = progress.val;
 
@@ -397,6 +463,7 @@ class PlayScene extends BaseScreen {
 	private _playFire(): void {
 		const index = Util.getRandom(1, PlayScene.FIRE_FRAME.length);
 		const mc = fairygui.UIPackage.createObject("Package1", `烟花${index}`).asMovieClip;
+		mc.touchable = false;
 		mc.x = Util.getRandom(100, Main.stageWidth - 100);
 		mc.y = Util.getRandom(100, 600);
 		fairygui.GRoot.inst.addChild(mc);
@@ -505,7 +572,8 @@ class PlayScene extends BaseScreen {
 			//启动粒子库
 			system.start();
 			//将例子系统添加到舞台
-			this._playPanel.displayListContainer.addChild(system);
+			const curPanel = this._playType == PLAY_TYPE.normal ? this._playPanel1 : this._playPanel2;
+			curPanel.displayListContainer.addChild(system);
 			egret.Tween.get(system).wait(200).call(() => {
 				system.stop();
 			}).wait(400).call(() => {
@@ -673,7 +741,8 @@ class PlayScene extends BaseScreen {
 		if (!costDollar) {
 			LocalStorage.setItem(LocalStorageKey.item2, itemCount - 1);
 			LocalStorage.saveToLocal();
-			this._topBar.getChild('n11').asCom.getChild('n2').text = (itemCount - 1).toString();
+			this._topBar1.getChild('n11').asCom.getChild('n2').text = (itemCount - 1).toString();
+			this._topBar2.getChild('n11').asCom.getChild('n2').text = (itemCount - 1).toString();
 		}
 		const star = ChangeTypePanel.instance.star;
 		this._starDataArr[star.row][star.col] = star.type;
@@ -683,10 +752,41 @@ class PlayScene extends BaseScreen {
 		this._status = PLAY_STATUS.normal;
 	}
 
+	private _addSecond(): void {
+		if (this._status == PLAY_STATUS.changingStarType) {
+			ChangeTypePanel.instance.close();
+		}
+		this._status = PLAY_STATUS.normal;
+
+		let costDollar = false;
+		const itemCount: number = LocalStorage.getItem(LocalStorageKey.item4);
+		if (itemCount < 1) {
+			let dollar: number = LocalStorage.getItem(LocalStorageKey.dollar);
+			if (dollar > 6) {
+				LocalStorage.setItem(LocalStorageKey.dollar, dollar - 6);
+				LocalStorage.saveToLocal();
+				this.updateDollar();
+				costDollar = true;
+			} else {
+				// 道具数量不够，钱也不够
+				BuyItemPanel.instance.show();
+				return;
+			}
+		}
+		if (!costDollar) {
+			LocalStorage.setItem(LocalStorageKey.item4, itemCount - 1);
+			LocalStorage.saveToLocal();
+			this._topBar2.getChild('n10').asCom.getChild('n2').text = (itemCount - 1).toString();
+		}
+	}
+
 	private _onUpdateItemCount(): void {
-		this._topBar.getChild('n10').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item1).toString();
-		this._topBar.getChild('n11').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item2).toString();
-		this._topBar.getChild('n12').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item3).toString();
+		this._topBar1.getChild('n10').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item1).toString();
+		this._topBar1.getChild('n11').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item2).toString();
+		this._topBar1.getChild('n12').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item3).toString();
+		this._topBar2.getChild('n10').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item4).toString();
+		this._topBar2.getChild('n11').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item2).toString();
+		this._topBar2.getChild('n12').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item3).toString();
 	}
 
 	/**
@@ -722,7 +822,8 @@ class PlayScene extends BaseScreen {
 		if (!costDollar) {
 			LocalStorage.setItem(LocalStorageKey.item3, itemCount - 1);
 			LocalStorage.saveToLocal();
-			this._topBar.getChild('n12').asCom.getChild('n2').text = (itemCount - 1).toString();
+			this._topBar1.getChild('n12').asCom.getChild('n2').text = (itemCount - 1).toString();
+			this._topBar2.getChild('n12').asCom.getChild('n2').text = (itemCount - 1).toString();
 		}
 
 		// 播放个动画
@@ -772,6 +873,15 @@ class PlayScene extends BaseScreen {
 				star.col = newPosition.col;
 			});
 		}
+	}
+
+	private _onTimer(): void {
+		if (--this._leftSecond < 0) {
+			this._leftSecond = 0;
+			// 时间到
+			this._timer.stop();
+		}
+		this._topBar2.getChild('n17').text = this._leftSecond.toString();
 	}
 
 	static get instance(): PlayScene {

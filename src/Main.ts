@@ -120,6 +120,7 @@ class Main extends egret.DisplayObjectContainer {
             mainScene.addEventListener(StarEvent.SHOW_REDEEM_CODE, this._onShowRedeemCode, this);
             mainScene.addEventListener(StarEvent.SHOW_ACTIVITY, this._onShowActivity, this);
             mainScene.addEventListener(StarEvent.SHOW_SETTING, this._onShowSetting, this);
+            mainScene.addEventListener(StarEvent.ENTER_LEVEL_2, this._enterLevel2, this);
         }
 
         this.addChild(mainScene);
@@ -198,7 +199,15 @@ class Main extends egret.DisplayObjectContainer {
     private _enterLevel(): void {
         this._removeAllScreen();
         const playScene = PlayScene.instance;
-        playScene.reset();
+        playScene.reset(PLAY_TYPE.normal);
+        this.addChild(playScene);
+        this._curScreen = playScene;
+    }
+
+    private _enterLevel2(): void {
+        this._removeAllScreen();
+        const playScene = PlayScene.instance;
+        playScene.reset(PLAY_TYPE.liuXing);
         this.addChild(playScene);
         this._curScreen = playScene;
     }

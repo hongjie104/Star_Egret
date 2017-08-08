@@ -243,7 +243,7 @@
     <component id="h75cc82" name="关于弹窗.xml" path="/GAME/登录页面的弹窗/" exported="true"/>
     <component id="h75cc83" name="商店.xml" path="/resoue/排行/" exported="true"/>
     <image id="h75cc84" name="zhujiemian016.png" path="/resoue/排行/" exported="true"/>
-    <component id="h75cc85" name="商店内容.xml" path="/resoue/排行/"/>
+    <component id="h75cc85" name="商店内容.xml" path="/resoue/排行/" exported="true"/>
     <image id="h75cc86" name="zhujiemian017.png" path="/数字/" exported="true"/>
     <image id="h75cc87" name="zhujiemian018.png" path="/数字/" exported="true"/>
     <component id="h75cc88" name="Button1.xml" path="/数字/" exported="true"/>
@@ -267,9 +267,9 @@
     <image id="h75cc8s" name="meiri004.png" path="/resoue/排行/" exported="true"/>
     <component id="h75cc8t" name="领取.xml" path="/resoue/排行/每日登录/" exported="true"/>
     <component id="h75cc8u" name="每日登录奖励弹窗.xml" path="/GAME/登录页面的弹窗/" exported="true"/>
-    <component id="g75uc8v" name="等级按钮.xml" path="/GAME/"/>
+    <component id="g75uc8v" name="等级按钮.xml" path="/GAME/" exported="true"/>
     <component id="kcvcc8w" name="流星试炼1.xml" path="/resoue/登录界面/" exported="true"/>
-    <image id="kcvcc8x" name="zhujiemian021.png" path="/resoue/弹窗/"/>
+    <image id="kcvcc8x" name="zhujiemian021.png" path="/resoue/弹窗/" exported="true"/>
     <component id="kcvcc8z" name="流星试炼弹窗1.xml" path="/GAME/" exported="true"/>
     <component id="kcvcc90" name="流星试炼顶挂.xml" path="/GAME/" exported="true"/>
     <image id="kcvcc91" name="ui001_8.png" path="/" exported="true"/>
@@ -277,6 +277,18 @@
     <image id="kcvcc93" name="变换的.png" path="/resoue/星星/" exported="true"/>
     <component id="kcvcc94" name="流星试炼结算界面.xml" path="/GAME/" exported="true"/>
     <component id="kcvcc95" name="流星试炼结算.xml" path="/resoue/弹窗/" exported="true"/>
+    <component id="fi1ac96" name="兑换礼品内容1.xml" path="/resoue/排行/" exported="true"/>
+    <image id="fi1ac97" name="zhujiemian022.png" path="/resoue/排行/" exported="true"/>
+    <image id="fi1ac98" name="zhujiemian023.png" path="/resoue/排行/" exported="true"/>
+    <image id="fi1ac99" name="zhujiemian024_1.png" path="/resoue/排行/" exported="true"/>
+    <image id="fi1ac9a" name="zhujiemian024_2.png" path="/resoue/排行/" exported="true"/>
+    <image id="fi1ac9b" name="zhujiemian024_3.png" path="/resoue/排行/" exported="true"/>
+    <image id="fi1ac9c" name="zhujiemian024_4.png" path="/resoue/排行/" exported="true"/>
+    <component id="fi1ac9d" name="兑换礼品内容2.xml" path="/resoue/排行/" exported="true"/>
+    <component id="fi1ac9e" name="兑换礼品内容3.xml" path="/resoue/排行/" exported="true"/>
+    <component id="fi1ac9f" name="兑换礼品.xml" path="/resoue/排行/" exported="true"/>
+    <component id="fi1ac9g" name="兑换礼品弹窗.xml" path="/GAME/登录页面的弹窗/" exported="true"/>
+    <component id="brpnc9h" name="Game2.xml" path="/GAME/" exported="true"/>
   </resources>
   <publish name="Package1" path="D:\hongjie\Star_Egret\resource\assets"/>
 </packageDescription>

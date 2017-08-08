@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="504,165">
+  <displayList>
+    <image id="n0_h75c" name="n0" src="fi1ac98" xy="0,1">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </image>
+    <component id="n8_h75c" name="n8" src="h75cc88" xy="312,84" group="n10_h75c"/>
+    <text id="n9_h75c" name="n9" xy="360,95" size="65,34" group="n10_h75c" font="黑体" fontSize="30" color="#ffffff" strokeColor="#663300" text="兑换"/>
+    <group id="n10_h75c" name="n10" xy="312,84" size="150,60" advanced="true">
+      <relation target="n0_h75c" sidePair="right-right,bottom-bottom"/>
+    </group>
+    <image id="n12_fi1a" name="n12" src="fi1ac9b" xy="16,11">
+      <relation target="n0_h75c" sidePair="left-left,middle-middle"/>
+    </image>
+    <text id="n14_fi1a" name="n14" xy="271,35" size="125,34" group="n17_fi1a" font="黑体" fontSize="30" color="#ffffff" strokeColor="#333399" text="需要    "/>
+    <image id="n15_fi1a" name="n15" src="fi1ac9c" xy="351,34" size="36,34" group="n17_fi1a" aspect="true"/>
+    <text id="n16_fi1a" name="n16" xy="402,36" size="84,34" group="n17_fi1a" font="ui://yejc893vo0umc6m" fontSize="30" color="#ffffff" text="4200"/>
+    <group id="n17_fi1a" name="n17" xy="271,34" size="215,36" advanced="true">
+      <relation target="n0_h75c" sidePair="right-right,top-top"/>
+    </group>
+  </displayList>
+</component>
