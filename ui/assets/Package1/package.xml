@@ -275,7 +275,7 @@
     <image id="kcvcc91" name="ui001_8.png" path="/" exported="true"/>
     <component id="kcvcc92" name="skill5.xml" path="/resoue/星星/" exported="true"/>
     <image id="kcvcc93" name="变换的.png" path="/resoue/星星/" exported="true"/>
-    <component id="kcvcc94" name="流星试炼结算界面.xml" path="/GAME/"/>
+    <component id="kcvcc94" name="流星试炼结算界面.xml" path="/GAME/" exported="true"/>
     <component id="kcvcc95" name="流星试炼结算.xml" path="/resoue/弹窗/" exported="true"/>
   </resources>
   <publish name="Package1" path="D:\hongjie\Star_Egret\resource\assets"/>
