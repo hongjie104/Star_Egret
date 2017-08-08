@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "Package1@atlas_sp8ru_jpg,Package1@atlas0_png,Package1,Package1@atlas_12czcy_jpg,Package1@atlas_12czcz_jpg,Package1@atlas_12czcx_jpg,star001_01_2_json,star001_01_2_png,star001_02_2_json,star001_02_2_png,star001_03_2_json,star001_03_2_png,star001_04_2_json,star001_04_2_png,star001_05_2_json,star001_05_2_png,flystar_json,flystar_png,Package1@atlas0_1_png,Package1@atlas_n86lc61_png,Package1@atlas4_png",
+			"keys": "Package1@atlas_sp8ru_jpg,Package1@atlas0_png,Package1,Package1@atlas_12czcy_jpg,Package1@atlas_12czcz_jpg,Package1@atlas_12czcx_jpg,star001_01_2_json,star001_01_2_png,star001_02_2_json,star001_02_2_png,star001_03_2_json,star001_03_2_png,star001_04_2_json,star001_04_2_png,star001_05_2_json,star001_05_2_png,flystar_json,flystar_png,Package1@atlas0_1_png,Package1@atlas_n86lc61_png,Package1@atlas4_png,Package1@atlas0_2_png",
 			"name": "preload"
 		}
 	],
@@ -110,6 +110,11 @@
 			"name": "Package1@atlas4_png",
 			"type": "image",
 			"url": "assets/Package1@atlas4.png"
+		},
+		{
+			"name": "Package1@atlas0_2_png",
+			"type": "image",
+			"url": "assets/Package1@atlas0_2.png"
 		}
 	]
 }
