@@ -23,6 +23,10 @@ class MainScene extends BaseScreen {
 		this._mainPanel.getChild('n1').addClickListener(this._onActivity, this);
 		// 打开设置面板
 		this._mainPanel.getChild('n2').addClickListener(this._onSetting, this);
+		// 打开商店
+		this._mainPanel.getChild('n6').addClickListener(this._onShop, this);
+
+		LoginAwardPanel.instance.addEventListener(egret.Event.CLOSE, this.updateDollar, this);
 	}
 
 	updateDollar(): void {
@@ -40,6 +44,23 @@ class MainScene extends BaseScreen {
 		// const progress = Util.getExpProgress();
 		// expBar.max = progress.max;
 		// expBar.value = progress.val;
+
+		egret.Tween.get(this).wait(500).call(() => {
+			// 判断一下是否应该弹出每日登录的奖励面板
+			const fetchLoginAwardCount = LocalStorage.getItem(LocalStorageKey.fetchLoginAwardCount);
+			// 领了7次以上，那就不弹窗了
+			if (fetchLoginAwardCount < 7) {
+				const lastFetchLoginAwardTime = LocalStorage.getItem(LocalStorageKey.lastFetchLoginAwardTime);
+				const lastFetchLoginAwardDate = new Date(lastFetchLoginAwardTime);
+				const nowDate = new Date();
+				// 如果上一次领取奖励的时间就在今天，那么也不弹窗
+				if (lastFetchLoginAwardDate.getFullYear() !== nowDate.getFullYear() ||
+					lastFetchLoginAwardDate.getMonth() !== nowDate.getMonth() ||
+					lastFetchLoginAwardDate.getDate() !== nowDate.getDate()) {
+					LoginAwardPanel.instance.show();
+				}
+			}
+		})
 	}
 
 	private _onEnterLevelScreen(): void {
@@ -59,6 +80,10 @@ class MainScene extends BaseScreen {
 
 	private _onSetting(): void {
 		this.dispatchEvent(new StarEvent(StarEvent.SHOW_SETTING));
+	}
+
+	private _onShop(): void {
+		ShopPanel.instance.show();
 	}
 
 	static get instance(): MainScene {
