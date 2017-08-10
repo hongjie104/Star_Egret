@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="670,500">
+  <controller name="c1" pages="0,正常,1,分数最高" selected="0"/>
+  <controller name="c2" pages="0,选奖励前,1,选奖励后1,2,花钱买全部" selected="0"/>
+  <displayList>
+    <image id="n1_h838" name="n1" src="h838c1r" xy="83,43" size="503,457">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </image>
+    <image id="n2_h838" name="n2" src="h838c1p" xy="136,80" size="390,50">
+      <relation target="n1_h838" sidePair="top-top,center-center"/>
+    </image>
+    <text id="n7_h838" name="n7" xy="245,88" size="179,34" font="黑体" fontSize="30" color="#347eb4" letterSpacing="-2" bold="true" text="每周竞赛规则">
+      <relation target="n2_h838" sidePair="left-left,middle-middle"/>
+    </text>
+    <image id="n15_h838" name="n15" src="h838c25" xy="500,98">
+      <gearDisplay controller="c1" pages="1"/>
+    </image>
+    <text id="n22_h838" name="n22" xy="139,156" size="396,189" font="黑体" fontSize="24" color="#347eb4" leading="10" autoSize="none" bold="true" text="排行榜于每周日晚23点59分截止并根据排名发放奖品。请在下周五前与客服联系，&#xA;客服电话400840211.&#xA;逾期视为放弃奖品。">
+      <gearDisplay controller="c2" pages="0"/>
+      <relation target="n1_h838" sidePair="top-top,center-center"/>
+    </text>
+    <text id="n24_h838" name="n24" xy="237,365" size="205,28" font="黑体" fontSize="24" color="#347eb4" align="right" bold="true" text="点击进入下一关卡">
+      <gearDisplay controller="c2" pages="1"/>
+      <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
+    </text>
+    <text id="n25_rwnu" name="n25" xy="155,351" size="369,59" font="黑体" fontSize="20" autoSize="none" text="运气不错，           金币就可以获得全部奖励啦！">
+      <gearDisplay controller="c2" pages="2"/>
+      <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
+    </text>
+    <text id="n26_rwnu" name="n26" xy="281,344" size="85,34" font="黑体" fontSize="30" color="#ff6600" align="center" vAlign="middle" bold="true" text="99999">
+      <gearDisplay controller="c2" pages="2"/>
+      <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
+    </text>
+    <component id="n27_rwnu" name="n27" src="rwnuc3c" xy="245,410">
+      <gearDisplay controller="c2" pages="2"/>
+      <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
+    </component>
+    <component id="n28_wtlt" name="n28" src="h838c1x" xy="241,383"/>
+  </displayList>
+</component>

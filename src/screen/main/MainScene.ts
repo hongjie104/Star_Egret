@@ -28,6 +28,10 @@ class MainScene extends BaseScreen {
 		this._mainPanel.getChild('n6').addClickListener(this._onShop, this);
 		// 打开兑换礼品的面板
 		this._mainPanel.getChild('n15').addClickListener(this._onGift, this);
+		// 新手礼包
+		this._mainPanel.getChild('n9').addClickListener(this._onNewFish, this);
+		// 超值大礼包
+		this._mainPanel.getChild('n8').addClickListener(this._onPeckOfGifts, this);
 
 		LoginAwardPanel.instance.addEventListener(egret.Event.CLOSE, this.updateDollar, this);
 	}
@@ -95,6 +99,14 @@ class MainScene extends BaseScreen {
 
 	private _onGift(): void {
 		FetchGiftPanel.instance.show();
+	}
+
+	private _onNewFish(): void {
+		NewFishPanel.instance.show();
+	}
+
+	private _onPeckOfGifts(): void {
+		PeckOfGiftsPanel.instance.show();
 	}
 
 	static get instance(): MainScene {

@@ -241,9 +241,9 @@
     <image id="h75cc7y" name="zhujiemian014.png" path="/resoue/登录界面/素材/" exported="true"/>
     <component id="h75cc81" name="小提示弹窗.xml" path="/GAME/登录页面的弹窗/" exported="true"/>
     <component id="h75cc82" name="关于弹窗.xml" path="/GAME/登录页面的弹窗/" exported="true"/>
-    <component id="h75cc83" name="商店.xml" path="/resoue/排行/" exported="true"/>
+    <component id="h75cc83" name="商店.xml" path="/resoue/商店内容/" exported="true"/>
     <image id="h75cc84" name="zhujiemian016.png" path="/resoue/排行/" exported="true"/>
-    <component id="h75cc85" name="商店内容.xml" path="/resoue/排行/" exported="true"/>
+    <component id="h75cc85" name="商店内容1.xml" path="/resoue/商店内容/" exported="true"/>
     <image id="h75cc86" name="zhujiemian017.png" path="/数字/" exported="true"/>
     <image id="h75cc87" name="zhujiemian018.png" path="/数字/" exported="true"/>
     <component id="h75cc88" name="Button1.xml" path="/数字/" exported="true"/>
@@ -284,11 +284,29 @@
     <image id="fi1ac9a" name="zhujiemian024_2.png" path="/resoue/排行/" exported="true"/>
     <image id="fi1ac9b" name="zhujiemian024_3.png" path="/resoue/排行/" exported="true"/>
     <image id="fi1ac9c" name="zhujiemian024_4.png" path="/resoue/排行/" exported="true"/>
-    <component id="fi1ac9d" name="兑换礼品内容2.xml" path="/resoue/排行/" exported="true"/>
-    <component id="fi1ac9e" name="兑换礼品内容3.xml" path="/resoue/排行/" exported="true"/>
     <component id="fi1ac9f" name="兑换礼品.xml" path="/resoue/排行/" exported="true"/>
     <component id="fi1ac9g" name="兑换礼品弹窗.xml" path="/GAME/登录页面的弹窗/" exported="true"/>
     <component id="brpnc9h" name="Game2.xml" path="/GAME/" exported="true"/>
+    <component id="wtltc9i" name="每周领取奖励说明.xml" path="/resoue/弹窗/" exported="true"/>
+    <component id="wtltc9j" name="每月领取奖励说明.xml" path="/resoue/弹窗/" exported="true"/>
+    <component id="wtltc9k" name="每月奖励规则弹窗.xml" path="/GAME/" exported="true"/>
+    <component id="wtltc9l" name="每周奖励规则弹窗.xml" path="/GAME/" exported="true"/>
+    <component id="wtltc9m" name="商店内容2.xml" path="/resoue/商店内容/" exported="true"/>
+    <component id="wtltc9n" name="商店内容3.xml" path="/resoue/商店内容/" exported="true"/>
+    <component id="wtltc9o" name="商店内容4.xml" path="/resoue/商店内容/" exported="true"/>
+    <component id="wtltc9p" name="商店内容5.xml" path="/resoue/商店内容/" exported="true"/>
+    <component id="wtltc9q" name="商店内容6.xml" path="/resoue/商店内容/" exported="true"/>
+    <component id="wtltc9r" name="兑换礼品内容2.xml" path="/resoue/排行/"/>
+    <component id="wtltc9s" name="兑换礼品内容3.xml" path="/resoue/排行/"/>
+    <component id="wtltc9t" name="兑换礼品内容4.xml" path="/resoue/排行/"/>
+    <component id="wtltc9u" name="兑换礼品内容5.xml" path="/resoue/排行/"/>
+    <image id="wtltc9v" name="礼包1.png" path="/resoue/星星/" exported="true"/>
+    <component id="wtltc9w" name="礼包1组件.xml" path="/resoue/星星/" exported="true"/>
+    <component id="wtltc9x" name="点击范围1.xml" path="/resoue/星星/"/>
+    <component id="wtltc9y" name="超值大礼包弹窗.xml" path="/GAME/登录页面的弹窗/" exported="true"/>
+    <image id="wtltc9z" name="礼包2.png" path="/resoue/星星/" exported="true"/>
+    <component id="wtltca0" name="礼包2组件.xml" path="/resoue/星星/" exported="true"/>
+    <component id="wtltca1" name="新手礼包弹窗.xml" path="/GAME/登录页面的弹窗/" exported="true"/>
   </resources>
   <publish name="Package1" path="D:\hongjie\Star_Egret\resource\assets"/>
 </packageDescription>

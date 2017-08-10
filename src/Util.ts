@@ -92,4 +92,23 @@ class Util {
 	public static getRandom(min: number, max: number): number {
 		return Math.floor(Math.random() * (max - min + 1) + min);
 	}
+
+	public static createWinAward(): [{ type: string, count: number }] {
+		const r = Math.random();
+		// 20里面四个人分
+		// 7 6 4 2 1
+		if (r <= .8) {
+			return [{ type: 'dollar', count: 1 }, { type: 'dollar', count: 5 }, { type: 'dollar', count: 3 }, { type: 'diamonds', count: 1 }];
+		} else if (r <= .8 + .07) {
+			return [{ type: 'dollar', count: 2 }, { type: 'dollar', count: 1 }, { type: 'diamonds', count: 1 }, { type: 'dollar', count: 5 }];
+		} else if (r <= .8 + .07 + .06) {
+			return [{ type: 'dollar', count: 3 }, { type: 'dollar', count: 4 }, { type: 'diamonds', count: 1 }, { type: 'dollar', count: 5 }];
+		} else if (r <= .8 + .07 + .06 + .04) {
+			return [{ type: 'dollar', count: 4 }, { type: 'diamonds', count: 1 }, { type: 'dollar', count: 5 }, { type: 'dollar', count: 3 }];
+		} else if (r <= .8 + .07 + .06 + .04 + .02) {
+			return [{ type: 'dollar', count: 5 }, { type: 'diamonds', count: 1 }, { type: 'dollar', count: 3 }, { type: 'dollar', count: 4 }];
+		} else {
+			return [{ type: 'diamonds', count: 1 }, { type: 'dollar', count: 5 }, { type: 'dollar', count: 2 }, { type: 'dollar', count: 4 }];
+		}
+	}
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="504,100">
+  <displayList>
+    <image id="n0_h75c" name="n0" src="h75cc84" xy="0,0">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </image>
+    <component id="n8_h75c" name="n8" src="h75cc88" xy="362,35" size="123,49" group="n10_h75c" aspect="true"/>
+    <text id="n9_h75c" name="n9" xy="402,41" size="50,34" group="n10_h75c" font="黑体" fontSize="30" color="#ffffff" strokeColor="#663300" text="2元"/>
+    <group id="n10_h75c" name="n10" xy="362,35" size="123,49" advanced="true">
+      <relation target="n0_h75c" sidePair="right-right,bottom-bottom"/>
+    </group>
+    <image id="n1_h75c" name="n1" src="h838c1y" xy="5,15" size="82,74" group="n11_h75c" aspect="true">
+      <relation target="n0_h75c" sidePair="left-left,bottom-bottom"/>
+    </image>
+    <text id="n2_h75c" name="n2" xy="69,21" size="28,49" group="n4_h75c" font="黑体" fontSize="45" color="#ffffff" strokeColor="#003366" text="x"/>
+    <text id="n3_h75c" name="n3" xy="104,24" size="65,49" group="n4_h75c" font="ui://yejc893v12czc1f" fontSize="45" color="#ffffff" letterSpacing="-4" text="30"/>
+    <group id="n4_h75c" name="n4" xy="69,21" size="100,52" group="n11_h75c"/>
+    <group id="n11_h75c" name="n11" xy="5,15" size="164,74" advanced="true">
+      <relation target="n0_h75c" sidePair="left-left,bottom-bottom"/>
+    </group>
+  </displayList>
+</component>

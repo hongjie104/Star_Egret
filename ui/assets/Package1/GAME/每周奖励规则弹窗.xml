@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="670,500">
+  <controller name="c1" pages="0,没,1,弹出" selected="1">
+    <action type="play_transition" fromPage="1" toPage="0" transition="t1" stopOnExit="true"/>
+    <action type="play_transition" fromPage="0" toPage="1" transition="t0" stopOnExit="true"/>
+  </controller>
+  <displayList>
+    <component id="n0_h838" name="n0" src="wtltc9i" xy="0,-20" pivot="0.5,0.5">
+      <gearDisplay controller="c1" pages="1"/>
+    </component>
+  </displayList>
+  <transition name="t0">
+    <item time="0" type="Alpha" target="n0_h838" tween="true" startValue="0" endValue="1" duration="8" ease="Linear"/>
+    <item time="0" type="Scale" target="n0_h838" tween="true" startValue="0.5,0.5" endValue="1,1" duration="8" ease="Back.Out"/>
+  </transition>
+  <transition name="t2">
+    <item time="0" type="Alpha" target="n0_h838" tween="true" startValue="1" endValue="0" duration="8" ease="Linear"/>
+    <item time="0" type="Scale" target="n0_h838" tween="true" startValue="1,1" endValue="0.5,0.5" duration="8" ease="Back.In"/>
+    <item time="8" type="Scale" target="n0_h838" tween="true" startValue="0.5,0.5" ease="Back.Out"/>
+  </transition>
+</component>

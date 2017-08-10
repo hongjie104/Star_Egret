@@ -25,28 +25,44 @@ class WinPanel extends BasePanel {
 
 		const ui = this._ui.getChild('n0').asCom;
 		ui.addClickListener(this._onClose, this);
-		ui.getChild('n17').once(egret.TouchEvent.TOUCH_TAP, this._onFetchAward, this);
-		ui.getChild('n18').once(egret.TouchEvent.TOUCH_TAP, this._onFetchAward, this);
-		ui.getChild('n19').once(egret.TouchEvent.TOUCH_TAP, this._onFetchAward, this);
-		ui.getChild('n20').once(egret.TouchEvent.TOUCH_TAP, this._onFetchAward, this);
+		ui.getChild('n17').addClickListener(this._onFetchAward, this);
+		ui.getChild('n18').addClickListener(this._onFetchAward, this);
+		ui.getChild('n19').addClickListener(this._onFetchAward, this);
+		ui.getChild('n20').addClickListener(this._onFetchAward, this);
 	}
 
 	private _onFetchAward(evt: egret.TouchEvent): void {
+		const awardArr = Util.createWinAward();
 		const btn = evt.currentTarget as fairygui.GButton;
+		if (awardArr[0].type == 'dollar') {
+			btn.getController('c1').selectedIndex = 1;
+			LocalStorage.setItem(LocalStorageKey.dollar, LocalStorage.getItem(LocalStorageKey.dollar) + awardArr[0].count);
+		} else {
+			btn.getController('c1').selectedIndex = 2;
+			LocalStorage.setItem(LocalStorageKey.diamonds, LocalStorage.getItem(LocalStorageKey.diamonds) + awardArr[0].count);
+		}
+		LocalStorage.saveToLocal();
+		btn.getChild('n3').text = awardArr[0].count.toString();
+
 		const ui = this._ui.getChild('n0').asCom;
 		ui.getController('c2').selectedIndex = 1;
-		const btn1 = ui.getChild('n17').asCom;
-		btn1.removeEventListener(egret.TouchEvent.TOUCH_TAP, this._onFetchAward, this);
-		const btn2 = ui.getChild('n18').asCom;
-		btn2.removeEventListener(egret.TouchEvent.TOUCH_TAP, this._onFetchAward, this);
-		const btn3 = ui.getChild('n19').asCom;
-		btn3.removeEventListener(egret.TouchEvent.TOUCH_TAP, this._onFetchAward, this);
-		const btn4 = ui.getChild('n20').asCom;
-		btn4.removeEventListener(egret.TouchEvent.TOUCH_TAP, this._onFetchAward, this);
-		btn1.getController('c1').selectedIndex = btn1 === btn ? 1 : 2;
-		btn2.getController('c1').selectedIndex = btn2 === btn ? 1 : 2;
-		btn3.getController('c1').selectedIndex = btn3 === btn ? 1 : 2;
-		btn4.getController('c1').selectedIndex = btn4 === btn ? 1 : 2;
+		// const btnArr = [
+		// 	ui.getChild('n17').asCom,
+		// 	ui.getChild('n18').asCom,
+		// 	ui.getChild('n19').asCom,
+		// 	ui.getChild('n20').asCom
+		// ];
+		// let awardIndex = 1;
+		// for (let i = 0; i < btnArr.length; i++) {
+		// 	if (btnArr[i] !== btn) {
+		// 		if (awardArr[awardIndex].type == 'dollar') {
+		// 			btnArr[i].getController('c1').selectedIndex = 3;
+		// 		} else {
+		// 			btnArr[i].getController('c1').selectedIndex = 4;
+		// 		}
+		// 		btnArr[i].getChild('n3').text = awardArr[awardIndex++].count.toString();
+		// 	}
+		// }
 		evt.stopImmediatePropagation();
 	}
 
@@ -60,6 +76,11 @@ class WinPanel extends BasePanel {
 	protected _closed(): void {
 		super._closed();
 		this._isShowing = false;
+		const ui = this._ui.getChild('n0').asCom;
+		ui.getChild('n17').asCom.getController('c1').selectedIndex = 0;
+		ui.getChild('n18').asCom.getController('c1').selectedIndex = 0;
+		ui.getChild('n19').asCom.getController('c1').selectedIndex = 0;
+		ui.getChild('n20').asCom.getController('c1').selectedIndex = 0;
 	}
 
 	static get instance(): WinPanel {

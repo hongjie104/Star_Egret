@@ -516,6 +516,7 @@ class PlayScene extends BaseScreen {
 	}
 
 	private _onWinPanelClosed(): void {
+		this.updateDollar();
 		const starDataArr = this._starDataArr;
 		let starIndex = -1;
 		let waitTime = 0;
@@ -556,7 +557,7 @@ class PlayScene extends BaseScreen {
 				LocalStorage.setItem(LocalStorageKey.maxTotalScore, maxTotalScore);
 			}
 			LocalStorage.saveToLocal();
-			this.reset();
+			this.reset(this._playType);
 		}
 		if (playParticle) {
 			// 播放个粒子动画

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="615,900" designImageLayer="1">
-  <controller name="c1" pages="0,周排行,1,月排行" selected="0"/>
+  <controller name="c1" pages="0,周排行,1,月排行" selected="1"/>
   <displayList>
     <image id="n1_h838" name="n1" src="h838c1r" xy="17,-8" size="580,749">
       <relation target="" sidePair="center-center,middle-middle"/>
@@ -48,7 +48,7 @@
       <item url="ui://yejc893vnb58c2p"/>
       <item url="ui://yejc893vnb58c2q"/>
     </list>
-    <component id="n42_rwnu" name="n42" src="nb58c2s" xy="468,646" size="88,77" aspect="true">
+    <component id="n42_rwnu" name="n42" src="nb58c2s" xy="430,648" aspect="true">
       <gearDisplay controller="c1" pages="1"/>
       <relation target="n1_h838" sidePair="right-right,bottom-bottom"/>
     </component>
@@ -75,15 +75,15 @@
       <gearDisplay controller="c1" pages="1"/>
       <relation target="n1_h838" sidePair="bottom-bottom,left-left"/>
     </group>
-    <text id="n47_o0um" name="n47" xy="250,81" size="149,34" group="n54_jze4" font="黑体" fontSize="30" color="#347eb4" align="right" bold="true" text="Days Left">
+    <text id="n47_o0um" name="n47" xy="251,81" size="149,34" group="n54_jze4" font="黑体" fontSize="30" color="#347eb4" align="right" bold="true" text="Days Left">
       <gearDisplay controller="c1" pages="1"/>
       <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
     </text>
-    <text id="n48_o0um" name="n48" xy="199,76" size="27,50" group="n54_jze4" fontSize="40" color="#ff6600" bold="true" text="4">
+    <text id="n48_o0um" name="n48" xy="203,79" size="30,44" group="n54_jze4" font="ui://yejc893vo0umc6m" fontSize="40" color="#ff6600" bold="true" text="4">
       <gearDisplay controller="c1" pages="1"/>
       <relation target="n47_o0um" sidePair="right-left,middle-middle"/>
     </text>
-    <group id="n54_jze4" name="n54" xy="199,76" size="200,50" advanced="true">
+    <group id="n54_jze4" name="n54" xy="203,79" size="197,44" advanced="true">
       <relation target="n1_h838" sidePair="top-top,center-center"/>
     </group>
   </displayList>

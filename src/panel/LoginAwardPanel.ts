@@ -18,6 +18,11 @@ class LoginAwardPanel extends BasePanel {
 		ui.getChild('n64').addClickListener(this._onFetchAward, this);
 	}
 
+	show(): void {
+		this._updateAwardStatus();
+		super.show();
+	}
+
 	private _updateAwardStatus(): void {
 		const ui = this._ui.getChild('n0').asCom;
 		const fetchLoginAwardCount = LocalStorage.getItem(LocalStorageKey.fetchLoginAwardCount);

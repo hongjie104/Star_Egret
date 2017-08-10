@@ -22,6 +22,8 @@ class StarEvent extends egret.Event {
 
 	static ENTER_LEVEL_2 = 'enterLevel2';
 
+	static PLAY_LIU_XING = 'playLiuXing';
+
 	public constructor(type: string, private _level?: number) {
 		super(type);
 	}

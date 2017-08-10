@@ -40,7 +40,7 @@
     <component id="n55_o0um" name="n55" src="nb58c2x" xy="592,34">
       <relation target="n0_h838" sidePair="right-right,top-top"/>
     </component>
-    <text id="n56_o0um" name="n56" xy="218,597" size="233,28" font="黑体" fontSize="24" color="#666666" align="center" vAlign="middle" text="点击购买将支付0.1元">
+    <text id="n56_o0um" name="n56" xy="130,584" size="410,43" font="黑体" fontSize="18" color="#666666" align="center" vAlign="middle" text="点击购买将支付0.1元&#xA;游戏道具每个消耗6金币，最终解释权归本公司所有">
       <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
     </text>
   </displayList>

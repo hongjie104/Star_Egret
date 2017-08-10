@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="615,900" designImageLayer="1">
+  <displayList>
+    <image id="n1_h838" name="n1" src="h838c1r" xy="17,59" size="580,840">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </image>
+    <image id="n25_nb58" name="n25" src="nb58c2b" xy="0,17">
+      <relation target="n25_nb58" sidePair="top-top,right-right"/>
+    </image>
+    <image id="n26_nb58" name="n26" src="h838c1q" xy="45,190" size="524,620">
+      <relation target="n1_h838" sidePair="center-center,top-top"/>
+    </image>
+    <image id="n33_nb58" name="n33" src="h75cc89" xy="238,5" aspect="true">
+      <relation target="n25_nb58" sidePair="center-center,top-top"/>
+    </image>
+    <component id="n34_nb58" name="n34" src="nb58c2x" xy="564,17">
+      <relation target="n1_h838" sidePair=""/>
+    </component>
+    <text id="n47_o0um" name="n47" xy="172,144" size="272,34" group="n54_jze4" font="黑体" fontSize="30" color="#347eb4" align="right" bold="true" text="你拥有       金币">
+      <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
+    </text>
+    <text id="n48_o0um" name="n48" xy="308,137" size="27,50" group="n54_jze4" fontSize="40" color="#ff6600" bold="true" text="4">
+      <relation target="n47_o0um" sidePair="right-left,middle-middle"/>
+    </text>
+    <group id="n54_jze4" name="n54" xy="172,137" size="272,50" advanced="true">
+      <relation target="n25_nb58" sidePair="top-bottom,center-center"/>
+    </group>
+    <list id="n55_h75c" name="n55" xy="56,199" size="502,604" overflow="scroll">
+      <relation target="n1_h838" sidePair="center-center,top-top"/>
+      <item url="ui://yejc893vh75cc85"/>
+      <item url="ui://yejc893vwtltc9m"/>
+      <item url="ui://yejc893vwtltc9n"/>
+      <item url="ui://yejc893vwtltc9o"/>
+      <item url="ui://yejc893vwtltc9p"/>
+      <item url="ui://yejc893vwtltc9q"/>
+    </list>
+    <text id="n56_wtlt" name="n56" xy="107,821" size="401,51" font="黑体" fontSize="22" color="#666666" align="center" text="客服电话400840211&#xA;本游戏金币价格最终解释权归本公司所有">
+      <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
+    </text>
+  </displayList>
+</component>

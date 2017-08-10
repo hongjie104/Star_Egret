@@ -20,9 +20,9 @@
     <group id="n10_t9b6" name="n10" xy="591,600" size="158,353" advanced="true" collapsed="true">
       <relation target="n7_t9b6" sidePair="left-right,top-top"/>
     </group>
-    <image id="n16_e65i" name="n16" src="h75cc7t" xy="124,169" size="502,263" aspect="true">
+    <image id="n16_e65i" name="n16" src="h75cc7t" xy="145,315" size="502,263" aspect="true">
       <relation target="n14_t9b6" sidePair=""/>
-      <relation target="" sidePair="top-top,center-center"/>
+      <relation target="n7_t9b6" sidePair="bottom-top,center-center"/>
     </image>
   </displayList>
 </component>
