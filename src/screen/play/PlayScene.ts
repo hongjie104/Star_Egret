@@ -352,15 +352,26 @@ class PlayScene extends BaseScreen {
 			}
 			starDataArr[rowAndCol.row][rowAndCol.col] = -1;
 
-			if (removedStar && i > 0) {
+			if (removedStar) {
 				// 播放飞舞的数字
 				const num = Main.createComponent('飞舞的数字');
+				num.displayObject.anchorOffsetX = 100;
+				num.displayObject.anchorOffsetY = 30;
 				num.x = removedStar.x;
 				num.y = removedStar.y;
-				num.getChild('n0').text = (Util.getScore(i) - Util.getScore(i - 1)).toString();
+				num.getChild('n0').text = (Util.getScore(i + 1) - Util.getScore(i)).toString();
+
 				egret.Tween.get(num).wait(i * 200).call(() => {
+					const system = new particle.GravityParticleSystem(RES.getRes('flystar_png'), RES.getRes('flystar_json'));
+					system.x = 100;
+					system.y = 30;
+					num.displayListContainer.addChild(system);
+					system.start();
 					fairygui.GRoot.inst.addChild(num);
-					egret.Tween.get(num).to({ x: (Main.stageWidth - 200) >> 1, y: 90, alpha: 1 }, 800).call(() => {
+					num.scaleX = 2;
+					num.scaleY = 2;
+					egret.Tween.get(num).to({ x: Main.stageWidth >> 1, y: 120, alpha: 1, scaleX: 1, scaleY: 1 }, 1000, egret.Ease.quadOut).call(() => {
+						system.stop();
 						num.removeFromParent();
 						num.dispose();
 					});

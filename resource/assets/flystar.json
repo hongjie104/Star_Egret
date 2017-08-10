@@ -14,7 +14,7 @@
 ,"minRadius":20
 ,"rotatePerSecondVariance":10
 ,"endSize":20
-,"emitter":{"x":1416,"y":13}
+,"emitter":{"x":0,"y":0}
 ,"emitterType":0
 ,"startAlphaVariance":0.45098039215686275
 ,"emitAngle":225
