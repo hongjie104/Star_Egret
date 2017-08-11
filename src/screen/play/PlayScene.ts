@@ -107,6 +107,7 @@ class PlayScene extends BaseScreen {
 		ChangeTypePanel.instance.addEventListener(StarEvent.STAR_TYPE_CHANGED, this._onStarTypeChanged, this);
 
 		BuyItemPanel.instance.addEventListener(StarEvent.BUY_ITEM_SUCCESS, this._onUpdateItemCount, this);
+		LevelUpAwardPanel.instance.addEventListener(egret.Event.CLOSE, this.updateDollar, this);
 	}
 
 	updateDollar(): void {
@@ -304,13 +305,15 @@ class PlayScene extends BaseScreen {
 		const addExp = Util.getAwardExp(result.length);
 		// 获得奖励
 		const award = Util.checkAward(addExp);
-		if (award > 0) {
+		if (award >= 0) {
 			// 升级了，那就弹个窗
 			LevelUpAwardPanel.instance.show();
-			const newDollar = LocalStorage.getItem(LocalStorageKey.dollar) + award;
-			LocalStorage.setItem(LocalStorageKey.dollar, newDollar);
-			LocalStorage.saveToLocal();
-			this._topBar1.getChild('n2').text = newDollar.toString();
+			if (award > 0) {
+				const newDollar = LocalStorage.getItem(LocalStorageKey.dollar) + award;
+				LocalStorage.setItem(LocalStorageKey.dollar, newDollar);
+				LocalStorage.saveToLocal();
+				this._topBar1.getChild('n2').text = newDollar.toString();
+			}
 		}
 		this._topBar1.getChild('n4').text = Util.getLv().toString();
 		const progress = Util.getExpProgress();

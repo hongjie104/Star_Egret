@@ -27,7 +27,12 @@ class LevelUpAwardPanel extends BasePanel {
 	}
 
 	private _onFetchAward(): void {
-
+		const lvAndAward = Util.getCurLvAndAward();
+		if (lvAndAward.award > 0) {
+			LocalStorage.setItem(LocalStorageKey.dollar, LocalStorage.getItem(LocalStorageKey.dollar + lvAndAward.award));
+			LocalStorage.saveToLocal();
+		}
+		this._onClose();
 	}
 
 	static get instance(): LevelUpAwardPanel {
