@@ -305,6 +305,8 @@ class PlayScene extends BaseScreen {
 		// 获得奖励
 		const award = Util.checkAward(addExp);
 		if (award > 0) {
+			// 升级了，那就弹个窗
+			LevelUpAwardPanel.instance.show();
 			const newDollar = LocalStorage.getItem(LocalStorageKey.dollar) + award;
 			LocalStorage.setItem(LocalStorageKey.dollar, newDollar);
 			LocalStorage.saveToLocal();

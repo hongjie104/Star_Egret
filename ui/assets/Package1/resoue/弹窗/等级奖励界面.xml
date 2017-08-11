@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="670,500">
+  <displayList>
+    <image id="n1_h838" name="n1" src="h838c1r" xy="83,43" size="503,434">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </image>
+    <image id="n0_h838" name="n0" src="h838c1t" xy="0,5">
+      <relation target="n1_h838" sidePair="top-top,center-center"/>
+    </image>
+    <image id="n14_h838" name="n14" src="i5ccca3" xy="217,16">
+      <relation target="n0_h838" sidePair="center-center,middle-middle"/>
+    </image>
+    <text id="n7_h838" name="n7" xy="143,121" size="395,87" group="n16_i5cc" font="黑体" fontSize="40" color="#ff6600" align="center" letterSpacing="-2" bold="true" text="恭喜升级&#xA;补充金币继续战斗吧！"/>
+    <text id="n8_h838" name="n8" xy="141,233" size="398,40" group="n16_i5cc" font="黑体" fontSize="30" color="#ff6600" leading="30" letterSpacing="-2" autoSize="none" bold="true" text="当前等级：    奖励：   x"/>
+    <image id="n10_h838" name="n10" src="h838c1y" xy="416,225" group="n16_i5cc"/>
+    <text id="n12_h838" name="n12" xy="141,290" size="387,37" group="n16_i5cc" font="黑体" fontSize="30" color="#663300" letterSpacing="-2" autoSize="none" bold="true" text="目标等级：    奖励：   x"/>
+    <image id="n15_i5cc" name="n15" src="h838c1y" xy="416,282" group="n16_i5cc"/>
+    <group id="n16_i5cc" name="n16" xy="141,121" size="398,221" advanced="true">
+      <relation target="n1_h838" sidePair="top-top,center-center"/>
+    </group>
+    <text id="n17_i5cc" name="n17" xy="281,234" size="44,34" group="n21_i5cc" font="ui://yejc893vo0umc6m" fontSize="30" text="99"/>
+    <text id="n18_i5cc" name="n18" xy="282,294" size="44,34" group="n21_i5cc" font="ui://yejc893vo0umc6m" fontSize="30" text="99"/>
+    <text id="n19_i5cc" name="n19" xy="488,236" size="44,34" group="n21_i5cc" font="ui://yejc893vo0umc6m" fontSize="30" text="99"/>
+    <text id="n20_i5cc" name="n20" xy="490,291" size="44,34" group="n21_i5cc" font="ui://yejc893vo0umc6m" fontSize="30" text="99"/>
+    <group id="n21_i5cc" name="n21" xy="281,234" size="253,94" advanced="true">
+      <relation target="n16_i5cc" sidePair="left-left,top-top"/>
+    </group>
+    <component id="n22_i5cc" name="n22" src="nb58c2s" xy="213,362" size="236,79"/>
+  </displayList>
+</component>

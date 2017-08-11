@@ -5,8 +5,8 @@
     <image id="n1" name="n1" src="h838c1o" xy="9,0" size="135,66">
       <relation target="" sidePair="width-width,height-height"/>
     </image>
-    <text id="n2_h75c" name="n2" xy="35,17" size="74,28" font="黑体" fontSize="24" color="#ffffff" letterSpacing="-3" strokeColor="#333366" text="领取奖励">
-      <relation target="n1" sidePair="width-width,height-height"/>
+    <text id="n2_h75c" name="n2" xy="27,17" size="101,28" font="黑体" fontSize="24" color="#ffffff" align="center" vAlign="middle" strokeColor="#333366" text="领取奖励">
+      <relation target="n1" sidePair="center-center,middle-middle"/>
     </text>
   </displayList>
   <Button downEffect="scale" downEffectValue="0.90"/>

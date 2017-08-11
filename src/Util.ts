@@ -15,6 +15,14 @@ class Util {
 		}
 	}
 
+	static getCurLvAndAward():{ lv: number, award: number }{
+		const lv = Util.getLv();
+		return {
+			lv,
+			award: Util._expAward[lv - 1]
+		};
+	}
+
 	static getNextLvAndAward(): { lv: number, award: number } {
 		const lv = Util.getLv();
 		for (let i = 0; i < Util._expAward.length; i++) {
@@ -80,7 +88,7 @@ class Util {
 		if (curLv != newLv) {
 			return Util._expAward[newLv];
 		}
-		return 0;
+		return -1;
 	}
 
 	/**
