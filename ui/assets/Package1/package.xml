@@ -310,6 +310,8 @@
     <component id="i5ccca2" name="等级奖励界面.xml" path="/resoue/弹窗/" exported="true"/>
     <image id="i5ccca3" name="ui99911.png" path="/数字/" exported="true"/>
     <component id="i5ccca4" name="等级奖励弹窗.xml" path="/GAME/" exported="true"/>
+    <component id="vbeuca5" name="抽卡获得道具.xml" path="/resoue/弹窗/" exported="true"/>
+    <component id="vbeuca6" name="抽卡获得奖励弹窗.xml" path="/GAME/" exported="true"/>
   </resources>
-  <publish name="Package1" path="D:\hongjie\Star_Egret\resource\assets"/>
+  <publish name="Package1" path="C:\hongjie\Star_Egret\resource\assets"/>
 </packageDescription>

@@ -13,8 +13,8 @@
     <text id="n25_rwnu" name="n25" xy="217,410" size="235,32" font="黑体" fontSize="20" color="#666666" autoSize="none" text="挑战一次需要     枚金币">
       <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
     </text>
-    <text id="n26_rwnu" name="n26" xy="355,402" size="21,34" font="黑体" fontSize="30" color="#ff6600" align="center" vAlign="middle" bold="true" text="6">
-      <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
+    <text id="n26_rwnu" name="n26" xy="344,402" size="44,34" font="黑体" fontSize="30" color="#ff6600" align="center" vAlign="middle" autoSize="none" bold="true" text="6">
+      <relation target="n25_rwnu" sidePair="left-left,middle-middle"/>
     </text>
     <image id="n28_w587" name="n28" src="w587c59" xy="151,67">
       <relation target="n1_h838" sidePair="center-center,middle-middle"/>

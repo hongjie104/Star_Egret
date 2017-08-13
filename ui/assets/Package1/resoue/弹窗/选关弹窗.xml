@@ -7,35 +7,44 @@
     <image id="n0_h838" name="n0" src="h838c1t" xy="0,5">
       <relation target="n1_h838" sidePair="top-top,center-center"/>
     </image>
-    <image id="n2_h838" name="n2" src="h838c1p" xy="140,120" size="390,50">
+    <image id="n2_h838" name="n2" src="h838c1p" xy="140,163" size="390,50">
       <relation target="n1_h838" sidePair="top-top,center-center"/>
     </image>
-    <image id="n3_h838" name="n3" src="h838c1q" xy="145,184" size="390,185">
+    <image id="n3_h838" name="n3" src="h838c1q" xy="139,222" size="390,147">
       <relation target="n1_h838" sidePair="center-center,middle-middle"/>
     </image>
-    <component id="n4_h838" name="n4" src="h838c1w" xy="142,383" group="n6_h838"/>
-    <component id="n5_h838" name="n5" src="h838c1x" xy="345,383" group="n6_h838"/>
-    <group id="n6_h838" name="n6" xy="142,383" size="388,66" advanced="true">
+    <component id="n4_h838" name="n4" src="h838c1w" xy="150,383" group="n6_h838"/>
+    <component id="n5_h838" name="n5" src="h838c1x" xy="364,391" size="145,52" group="n6_h838"/>
+    <group id="n6_h838" name="n6" xy="150,383" size="359,66" advanced="true">
       <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
     </group>
-    <text id="n7_h838" name="n7" xy="153,129" size="179,34" locked="true" font="黑体" fontSize="30" color="#347eb4" letterSpacing="-2" bold="true" text="本关最高分：">
+    <text id="n7_h838" name="n7" xy="153,172" size="179,34" locked="true" font="黑体" fontSize="30" color="#347eb4" letterSpacing="-2" bold="true" text="本关最高分：">
       <relation target="n2_h838" sidePair="left-left,middle-middle"/>
     </text>
-    <text id="n8_h838" name="n8" xy="173,213" size="335,101" locked="true" font="黑体" fontSize="30" color="#347eb4" leading="30" letterSpacing="-2" autoSize="none" bold="true" text="从       关继续开始游戏&#xA;需要 ">
+    <text id="n8_h838" name="n8" xy="167,251" size="335,101" locked="true" font="黑体" fontSize="30" color="#347eb4" leading="30" letterSpacing="-2" autoSize="none" bold="true" text="从       关继续开始游戏&#xA;需要 ">
       <relation target="n3_h838" sidePair="center-center,top-top"/>
     </text>
-    <text id="n9_h838" name="n9" xy="335,124" size="171,44" font="黑体" fontSize="40" color="#347eb4" align="right" letterSpacing="-2" autoSize="none" bold="true" text="9999999">
+    <text id="n9_h838" name="n9" xy="335,167" size="171,44" font="黑体" fontSize="40" color="#347eb4" align="right" letterSpacing="-2" autoSize="none" bold="true" text="9999999">
       <relation target="n2_h838" sidePair="right-right,middle-middle"/>
     </text>
-    <image id="n10_h838" name="n10" src="h838c1y" xy="235,264"/>
-    <text id="n12_h838" name="n12" xy="201,207" size="97,44" font="黑体" fontSize="40" color="#1f567d" align="center" letterSpacing="-2" autoSize="none" bold="true" text="9999999">
+    <image id="n10_h838" name="n10" src="h838c1y" xy="235,295"/>
+    <text id="n12_h838" name="n12" xy="202,246" size="97,44" font="黑体" fontSize="40" color="#1f567d" align="center" letterSpacing="-2" autoSize="none" bold="true" text="9999999">
       <relation target="n3_h838" sidePair="left-left,middle-middle"/>
     </text>
-    <text id="n13_h838" name="n13" xy="296,266" size="171,44" font="黑体" fontSize="40" color="#347eb4" letterSpacing="-2" autoSize="none" bold="true" text="9999999">
+    <text id="n13_h838" name="n13" xy="291,302" size="171,44" font="黑体" fontSize="40" color="#347eb4" letterSpacing="-2" autoSize="none" bold="true" text="9999999">
       <relation target="n3_h838" sidePair="center-center,middle-middle"/>
     </text>
     <image id="n14_h838" name="n14" src="h838c1s" xy="217,7">
       <relation target="n0_h838" sidePair="center-center,middle-middle"/>
     </image>
+    <text id="n15_vbeu" name="n15" xy="111,116" size="223,44" group="n17_vbeu" font="黑体" fontSize="24" color="#ff6600" align="right" vAlign="middle" letterSpacing="-2" autoSize="none" bold="true" text="本关目标得分：">
+      <relation target="n2_h838" sidePair="right-right,middle-middle"/>
+    </text>
+    <text id="n16_vbeu" name="n16" xy="326,116" size="171,44" group="n17_vbeu" font="黑体" fontSize="40" color="#ff6600" align="right" letterSpacing="-2" autoSize="none" bold="true" text="9999999">
+      <relation target="n2_h838" sidePair="right-right,middle-middle"/>
+    </text>
+    <group id="n17_vbeu" name="n17" xy="111,116" size="386,44" advanced="true">
+      <relation target="n1_h838" sidePair="top-top,center-center"/>
+    </group>
   </displayList>
 </component>

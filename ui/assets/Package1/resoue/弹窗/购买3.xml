@@ -4,7 +4,7 @@
     <image id="n0_o0um" name="n0" src="o0umc7i" xy="2,0"/>
     <text id="n2_o0um" name="n2" xy="147,26" size="165,44" font="黑体" fontSize="40" color="#ffffff" strokeColor="#125d69" strokeSize="2" text="超炫魔棒"/>
     <text id="n3_o0um" name="n3" xy="143,79" size="272,28" font="黑体" fontSize="24" color="#ffffff" autoSize="none" strokeColor="#247e8c" strokeSize="2" text="重新排列星星布局"/>
-    <component id="n4_o0um" name="n4" src="o0umc7m" xy="412,64">
+    <component id="n4_o0um" name="n4" src="o0umc7m" xy="370,20">
       <relation target="n0_o0um" sidePair="right-right,bottom-bottom"/>
     </component>
   </displayList>

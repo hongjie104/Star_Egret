@@ -9,9 +9,9 @@
     <group id="n7_h75c" name="n7" xy="232,8" size="72,86" advanced="true">
       <relation target="n0_h75c" sidePair="center-center,middle-middle"/>
     </group>
-    <component id="n8_h75c" name="n8" src="h75cc88" xy="362,35" size="123,49" group="n10_h75c" aspect="true"/>
-    <text id="n9_h75c" name="n9" xy="389,41" size="65,34" group="n10_h75c" font="黑体" fontSize="30" color="#ffffff" strokeColor="#663300" text=" 2元"/>
-    <group id="n10_h75c" name="n10" xy="362,35" size="123,49" advanced="true">
+    <component id="n8_h75c" name="n8" src="h75cc88" xy="114,0" size="390,100" group="n10_h75c" aspect="true"/>
+    <text id="n9_h75c" name="n9" xy="384,31" size="76,45" group="n10_h75c" font="黑体" fontSize="30" color="#ffffff" autoSize="none" strokeColor="#663300" text="4元"/>
+    <group id="n10_h75c" name="n10" xy="114,0" size="390,100" advanced="true">
       <relation target="n0_h75c" sidePair="right-right,bottom-bottom"/>
     </group>
     <image id="n1_h75c" name="n1" src="h838c1y" xy="5,15" size="82,74" group="n11_h75c" aspect="true">
