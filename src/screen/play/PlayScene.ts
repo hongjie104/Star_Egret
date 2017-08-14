@@ -116,6 +116,12 @@ class PlayScene extends BaseScreen {
 	}
 
 	reset(playType?: any): void {
+		if (!playType) {
+			playType = PLAY_TYPE.normal;
+		}
+		if (playType instanceof StarEvent) {
+			playType = PLAY_TYPE.normal;
+		}
 		this._playType = playType as PLAY_TYPE;
 		for (let i = 0; i < this._starArr.length; i++) {
 			this._removeStar(this._starArr[i]);

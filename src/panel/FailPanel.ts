@@ -30,8 +30,17 @@ class FailPanel extends BasePanel {
 	}
 
 	private _onGoOn(): void {
-		this._toDoAfterFailPanelClosed = ToDoAfterFailPanelClosed.none;
-		this._onClose();
+		// 消耗6个金币继续
+		const dollar = LocalStorage.getItem(LocalStorageKey.dollar);
+		if (dollar > 5) {
+			LocalStorage.setItem(LocalStorageKey.dollar, dollar - 6);
+			LocalStorage.saveToLocal();
+			this._toDoAfterFailPanelClosed = ToDoAfterFailPanelClosed.none;
+			this._onClose();
+		} else {
+			// 金币不够
+			PayPanel.instance.show();
+		}
 	}
 
 	protected _closed(): void {

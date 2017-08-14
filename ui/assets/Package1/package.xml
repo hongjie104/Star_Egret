@@ -313,5 +313,5 @@
     <component id="vbeuca5" name="抽卡获得道具.xml" path="/resoue/弹窗/" exported="true"/>
     <component id="vbeuca6" name="抽卡获得奖励弹窗.xml" path="/GAME/" exported="true"/>
   </resources>
-  <publish name="Package1" path="D:\hongjie\Star_Egret\resource\assets"/>
+  <publish name="Package1" path="C:\hongjie\Star_Egret\resource\assets"/>
 </packageDescription>
