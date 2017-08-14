@@ -2,19 +2,8 @@ class WinPanel extends BasePanel {
 
 	private static _instance: WinPanel;
 
-	private _isShowing = false;
-
 	public constructor() {
 		super();
-	}
-
-	get isShowing(): boolean {
-		return this._isShowing;
-	}
-
-	show(): void {
-		super.show();
-		this._isShowing = true;
 	}
 
 	protected _init(): void {
@@ -34,7 +23,7 @@ class WinPanel extends BasePanel {
 	private _onFetchAward(evt: egret.TouchEvent): void {
 		const awardArr = Util.createWinAward();
 		const btn = evt.currentTarget as fairygui.GButton;
-		if (awardArr[0].type == 'dollar') {
+		if (awardArr[0].type == AWARD_TYPE.dollar) {
 			btn.getController('c1').selectedIndex = 1;
 			LocalStorage.setItem(LocalStorageKey.dollar, LocalStorage.getItem(LocalStorageKey.dollar) + awardArr[0].count);
 		} else {
@@ -64,6 +53,8 @@ class WinPanel extends BasePanel {
 		// 	}
 		// }
 		evt.stopImmediatePropagation();
+
+		AwardPanel.instance.show(awardArr[0]);
 	}
 
 	protected _onClose(evt?: egret.TouchEvent): void {
@@ -75,7 +66,6 @@ class WinPanel extends BasePanel {
 
 	protected _closed(): void {
 		super._closed();
-		this._isShowing = false;
 		const ui = this._ui.getChild('n0').asCom;
 		ui.getChild('n17').asCom.getController('c1').selectedIndex = 0;
 		ui.getChild('n18').asCom.getController('c1').selectedIndex = 0;

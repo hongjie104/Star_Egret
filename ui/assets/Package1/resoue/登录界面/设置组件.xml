@@ -22,9 +22,5 @@
     <group id="n61_vdpr" name="n61" xy="112,154" size="398,610" advanced="true">
       <relation target="n1_h838" sidePair="center-center,top-top"/>
     </group>
-    <component id="n62_vdpr" name="n62" src="vdprc4y" xy="112,797">
-      <gearDisplay controller="c1" pages="1"/>
-      <relation target="n61_vdpr" sidePair="top-bottom,center-center"/>
-    </component>
   </displayList>
 </component>

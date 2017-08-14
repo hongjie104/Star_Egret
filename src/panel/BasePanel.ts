@@ -2,6 +2,8 @@ abstract class BasePanel extends egret.EventDispatcher {
 
 	protected _ui: fairygui.GComponent;
 
+	protected _isShowing = false;
+
 	public constructor() {
 		super();
 		this._init();
@@ -11,9 +13,12 @@ abstract class BasePanel extends egret.EventDispatcher {
 		return this._ui;
 	}
 
-	show(): void {
-		fairygui.GRoot.inst.addChild(this._ui);
-		this._ui.getTransition('t0').play();
+	show(param?: any): void {
+		if (!this._isShowing) {
+			this._isShowing = true;
+			fairygui.GRoot.inst.addChild(this._ui);
+			this._ui.getTransition('t0').play();
+		}
 	}
 
 	close(): void {
@@ -23,11 +28,16 @@ abstract class BasePanel extends egret.EventDispatcher {
 	protected abstract _init(): void;
 
 	protected _onClose(evt?: egret.TouchEvent): void {
-		this._ui.getTransition('t2').play(this._closed, this);
+		if (this._isShowing) {
+			this._ui.getTransition('t2').play(this._closed, this);
+		}
 	}
 
 	protected _closed(): void {
-		this._ui.removeFromParent();
-		this.dispatchEvent(new egret.Event(egret.Event.CLOSE));
+		if (this._isShowing) {
+			this._isShowing = false;
+			this._ui.removeFromParent();
+			this.dispatchEvent(new egret.Event(egret.Event.CLOSE));
+		}
 	}
 }

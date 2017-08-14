@@ -30,7 +30,7 @@ class SettingPanel extends BasePanel {
 		this._ui.getController('c1').selectedIndex = 1;
 		const ui = this._ui.getChild('n0').asCom;
 		ui.getChild('n34').addClickListener(this._onClose, this);
-		ui.getChild('n62').addClickListener(this._onMainScreen, this);
+		ui.getChild('n63').addClickListener(this._onMainScreen, this);
 		ui.getChild('n57').addClickListener(this._onSwitchSoundEnable, this);
 		ui.getChild('n58').addClickListener(this._onSwitchTouchType, this);
 		ui.getChild('n59').addClickListener(this._onShowAbout, this);

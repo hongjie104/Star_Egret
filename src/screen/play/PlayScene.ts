@@ -165,7 +165,9 @@ class PlayScene extends BaseScreen {
 			const curLevel = LocalStorage.getItem(LocalStorageKey.lastLevel) + 1;
 			this._initScore = LocalStorage.getItem(LocalStorageKey.totalScore);
 			this._addScore = 0;
-			this._topBar2.getChild('n6').text = this._initScore.toString();
+			this._topBar2.getChild('n6').text = '0';
+			// 最高记录
+			this._topBar2.getChild('n7').text = LocalStorage.getItem(LocalStorageKey.liuXingMax).toString();
 			// 三种道具的数量
 			this._topBar2.getChild('n10').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item4).toString();
 			this._topBar2.getChild('n11').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item2).toString();
@@ -175,12 +177,11 @@ class PlayScene extends BaseScreen {
 			while (curLevel > levelScoreArr.length) {
 				levelScoreArr.push(0);
 			}
-			this._topBar2.getChild('n7').text = levelScoreArr[curLevel - 1].toString();
-			// 过关的分数
+			// 排名
 			this._targetSocre = Util.getTargetScore(curLevel);
-			this._topBar2.getChild('n8').text = this._targetSocre.toString();
+			this._topBar2.getChild('n8').text = '36';
 			// 倒计时时间
-			this._leftSecond = 45;
+			this._leftSecond = 40;
 			this._topBar2.getChild('n17').text = this._leftSecond.toString();
 
 			if (!this._timer) {
@@ -305,27 +306,35 @@ class PlayScene extends BaseScreen {
 		// 算一下这一次消除得了多少分
 		const addScore = Util.getScore(result.length);
 		this._addScore += addScore;
-		this._topBar1.getChild('n6').text = (this._initScore + this._addScore).toString();
-
-		// 算一下这一次消除得了多少经验
-		const addExp = Util.getAwardExp(result.length);
-		// 获得奖励
-		const award = Util.checkAward(addExp);
-		if (award >= 0) {
-			// 升级了，那就弹个窗
-			LevelUpAwardPanel.instance.show();
-			if (award > 0) {
-				const newDollar = LocalStorage.getItem(LocalStorageKey.dollar) + award;
-				LocalStorage.setItem(LocalStorageKey.dollar, newDollar);
-				LocalStorage.saveToLocal();
-				this._topBar1.getChild('n2').text = newDollar.toString();
+		if (this._playType == PLAY_TYPE.normal) {
+			this._topBar1.getChild('n6').text = (this._initScore + this._addScore).toString();
+			// 算一下这一次消除得了多少经验
+			const addExp = Util.getAwardExp(result.length);
+			// 获得奖励
+			const award = Util.checkAward(addExp);
+			if (award >= 0) {
+				// 升级了，那就弹个窗
+				LevelUpAwardPanel.instance.show();
+				if (award > 0) {
+					const newDollar = LocalStorage.getItem(LocalStorageKey.dollar) + award;
+					LocalStorage.setItem(LocalStorageKey.dollar, newDollar);
+					LocalStorage.saveToLocal();
+					this._topBar1.getChild('n2').text = newDollar.toString();
+				}
+			}
+			this._topBar1.getChild('n4').text = Util.getLv().toString();
+			const progress = Util.getExpProgress();
+			const progressBar = this._topBar1.getChild('n9').asProgress;
+			progressBar.max = progress.max;
+			progressBar.value = progress.val;
+		} else {
+			this._topBar2.getChild('n6').text = this._addScore.toString();
+			const awardSecond = Util.getAwardSecond(result.length);
+			if (awardSecond > 0) {
+				this._leftSecond += awardSecond;
+				this._topBar2.getChild('n17').text = this._leftSecond.toString();
 			}
 		}
-		this._topBar1.getChild('n4').text = Util.getLv().toString();
-		const progress = Util.getExpProgress();
-		const progressBar = this._topBar1.getChild('n9').asProgress;
-		progressBar.max = progress.max;
-		progressBar.value = progress.val;
 
 		// 播放个动画
 		let animationName: string = null, h = 400, w = 640;
@@ -339,6 +348,7 @@ class PlayScene extends BaseScreen {
 		}
 		if (animationName) {
 			const animation = Main.createComponent(animationName, w, h);
+			animation.touchable = false;
 			animation.x = (Main.stageWidth - w) >> 1;
 			animation.y = (Main.stageHeight - h) >> 1;
 			fairygui.GRoot.inst.addChild(animation);
@@ -366,6 +376,7 @@ class PlayScene extends BaseScreen {
 			if (removedStar) {
 				// 播放飞舞的数字
 				const num = Main.createComponent('飞舞的数字');
+				num.touchable = false;
 				num.displayObject.anchorOffsetX = 100;
 				num.displayObject.anchorOffsetY = 30;
 				num.x = removedStar.x;
@@ -472,6 +483,26 @@ class PlayScene extends BaseScreen {
 			this._isActionRunning = false;
 			this._checkCanGoOn();
 		}
+		if (this._playType == PLAY_TYPE.liuXing) {
+			// 补上空位上的星星
+			let random = 0;
+			for (let r = 0; r < 10; r++) {
+				for (let c = 0; c < 10; c++) {
+					if (starDataArr[r][c] == -1) {
+						random = Math.floor(Math.random() * 5);
+						this._starDataArr[r][c] = random;
+						let star = new Star(random, r, c);
+						star.addEventListener(egret.TouchEvent.TOUCH_TAP, this._onStarTouched, this);
+						this._starArr.push(star);
+						let p: egret.Point = this._getStarPoint(r, c);
+						star.x = p.x;
+						star.y = p.y - Main.stageHeight;
+						this._playPanel2.displayListContainer.addChild(star);
+						egret.Tween.get(star).to({ y: p.y }, 200);
+					}
+				}
+			}
+		}
 	}
 
 	private _startPlayFire(): void {
@@ -500,39 +531,41 @@ class PlayScene extends BaseScreen {
 	 * 每一次消除后都要判断一下，是否还能继续消除
 	 */
 	private _checkCanGoOn(): void {
-		let isCanGoOn = false;
-		const starDataArr = this._starDataArr;
-		let val = -1;
-		for (let r = 0; r < 10; r++) {
-			for (let c = 0; c < 10; c++) {
-				val = starDataArr[r][c];
-				if (val !== -1) {
-					if (c < 9 && val === starDataArr[r][c + 1]) {
-						isCanGoOn = true;
-						break;
-					}
-					if (r < 9 && val === starDataArr[r + 1][c]) {
-						isCanGoOn = true;
-						break;
+		if (this._playType == PLAY_TYPE.normal) {
+			let isCanGoOn = false;
+			const starDataArr = this._starDataArr;
+			let val = -1;
+			for (let r = 0; r < 10; r++) {
+				for (let c = 0; c < 10; c++) {
+					val = starDataArr[r][c];
+					if (val !== -1) {
+						if (c < 9 && val === starDataArr[r][c + 1]) {
+							isCanGoOn = true;
+							break;
+						}
+						if (r < 9 && val === starDataArr[r + 1][c]) {
+							isCanGoOn = true;
+							break;
+						}
 					}
 				}
+				if (isCanGoOn) break;
 			}
-			if (isCanGoOn) break;
-		}
-		if (!isCanGoOn) {
-			// 判断一下，是否达到了目标分数
-			if (this._initScore + this._addScore >= this._targetSocre) {
-				if (!this._isWinPanelShowed) {
-					this._isWinPanelShowed = true;
-					const winPanel = WinPanel.instance;
-					if (!winPanel.hasEventListener(egret.Event.CLOSE)) {
-						winPanel.addEventListener(egret.Event.CLOSE, this._onWinPanelClosed, this);
+			if (!isCanGoOn) {
+				// 判断一下，是否达到了目标分数
+				if (this._initScore + this._addScore >= this._targetSocre) {
+					if (!this._isWinPanelShowed) {
+						this._isWinPanelShowed = true;
+						const winPanel = WinPanel.instance;
+						if (!winPanel.hasEventListener(egret.Event.CLOSE)) {
+							winPanel.addEventListener(egret.Event.CLOSE, this._onWinPanelClosed, this);
+						}
+						winPanel.show();
 					}
-					winPanel.show();
+				} else {
+					// 失败了
+					FailPanel.instance.show();
 				}
-			} else {
-				// 失败了
-				FailPanel.instance.show();
 			}
 		}
 	}
@@ -905,6 +938,16 @@ class PlayScene extends BaseScreen {
 			this._timer.stop();
 		}
 		this._topBar2.getChild('n17').text = this._leftSecond.toString();
+		if (this._leftSecond < 1) {
+			const maxScore = LocalStorage.getItem(LocalStorageKey.liuXingMax);
+			if (maxScore < this._addScore) {
+				LocalStorage.setItem(LocalStorageKey.liuXingMax, this._addScore);
+				LocalStorage.saveToLocal();
+			}
+
+			// 流行模式结束了
+			LiuXingResultPanel.instance.show();
+		}
 	}
 
 	static get instance(): PlayScene {

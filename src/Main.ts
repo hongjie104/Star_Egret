@@ -109,6 +109,7 @@ class Main extends egret.DisplayObjectContainer {
         FailPanel.instance.addEventListener(StarEvent.RESTAR, PlayScene.instance.reset, PlayScene.instance);
         PayPanel.instance.addEventListener(StarEvent.PAY_SUCCESS, this._onPaySuccess, this);
         LiuXingPanel.instance.addEventListener(StarEvent.PLAY_LIU_XING, this._onPlayLiuXing, this);
+        LiuXingResultPanel.instance.addEventListener(StarEvent.ENTER_MAIN_SCREEN, this._onEnterMainScreen, this);
         this._onEnterMainScreen();
     }
 
@@ -166,6 +167,9 @@ class Main extends egret.DisplayObjectContainer {
             uiPanel.getChild('n12').text = evt.level.toString();
             uiPanel.getChild('n4').addClickListener(this._onLevelSelectorCancel, this);
             uiPanel.getChild('n5').addClickListener(this._onLevelSelectorOK, this);
+            uiPanel.getChild('n16').text = Util.getTargetScore(evt.level).toString();
+            // 从这一关开始玩所需要消耗的金币
+            uiPanel.getChild('n13').text = '0';
 
             levelSelector.getController('c1').selectedIndex = 1;
             levelSelector.getTransition('t0').play();

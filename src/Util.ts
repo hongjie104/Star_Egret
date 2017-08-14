@@ -15,7 +15,7 @@ class Util {
 		}
 	}
 
-	static getCurLvAndAward():{ lv: number, award: number }{
+	static getCurLvAndAward(): { lv: number, award: number } {
 		const lv = Util.getLv();
 		return {
 			lv,
@@ -97,26 +97,39 @@ class Util {
 		* @param end 最大值
 		* @returns {number}
 		*/
-	public static getRandom(min: number, max: number): number {
+	static getRandom(min: number, max: number): number {
 		return Math.floor(Math.random() * (max - min + 1) + min);
 	}
 
-	public static createWinAward(): [{ type: string, count: number }] {
+	static createWinAward(): [{ type: AWARD_TYPE, count: number }] {
 		const r = Math.random();
 		// 20里面四个人分
 		// 7 6 4 2 1
 		if (r <= .8) {
-			return [{ type: 'dollar', count: 1 }, { type: 'dollar', count: 5 }, { type: 'dollar', count: 3 }, { type: 'diamonds', count: 1 }];
+			return [{ type: AWARD_TYPE.dollar, count: 1 }, { type: AWARD_TYPE.dollar, count: 5 }, { type: AWARD_TYPE.dollar, count: 3 }, { type: AWARD_TYPE.diamonds, count: 1 }];
 		} else if (r <= .8 + .07) {
-			return [{ type: 'dollar', count: 2 }, { type: 'dollar', count: 1 }, { type: 'diamonds', count: 1 }, { type: 'dollar', count: 5 }];
+			return [{ type: AWARD_TYPE.dollar, count: 2 }, { type: AWARD_TYPE.dollar, count: 1 }, { type: AWARD_TYPE.diamonds, count: 1 }, { type: AWARD_TYPE.dollar, count: 5 }];
 		} else if (r <= .8 + .07 + .06) {
-			return [{ type: 'dollar', count: 3 }, { type: 'dollar', count: 4 }, { type: 'diamonds', count: 1 }, { type: 'dollar', count: 5 }];
+			return [{ type: AWARD_TYPE.dollar, count: 3 }, { type: AWARD_TYPE.dollar, count: 4 }, { type: AWARD_TYPE.diamonds, count: 1 }, { type: AWARD_TYPE.dollar, count: 5 }];
 		} else if (r <= .8 + .07 + .06 + .04) {
-			return [{ type: 'dollar', count: 4 }, { type: 'diamonds', count: 1 }, { type: 'dollar', count: 5 }, { type: 'dollar', count: 3 }];
+			return [{ type: AWARD_TYPE.dollar, count: 4 }, { type: AWARD_TYPE.diamonds, count: 1 }, { type: AWARD_TYPE.dollar, count: 5 }, { type: AWARD_TYPE.dollar, count: 3 }];
 		} else if (r <= .8 + .07 + .06 + .04 + .02) {
-			return [{ type: 'dollar', count: 5 }, { type: 'diamonds', count: 1 }, { type: 'dollar', count: 3 }, { type: 'dollar', count: 4 }];
+			return [{ type: AWARD_TYPE.dollar, count: 5 }, { type: AWARD_TYPE.diamonds, count: 1 }, { type: AWARD_TYPE.dollar, count: 3 }, { type: AWARD_TYPE.dollar, count: 4 }];
 		} else {
-			return [{ type: 'diamonds', count: 1 }, { type: 'dollar', count: 5 }, { type: 'dollar', count: 2 }, { type: 'dollar', count: 4 }];
+			return [{ type: AWARD_TYPE.diamonds, count: 1 }, { type: AWARD_TYPE.dollar, count: 5 }, { type: AWARD_TYPE.dollar, count: 2 }, { type: AWARD_TYPE.dollar, count: 4 }];
 		}
+	}
+
+	/**
+	 * 流星模式下
+	 * 消除了一些星星，看看奖励多少时间
+	 */
+	static getAwardSecond(numStar: number): number {
+		if (numStar >= 20) return 16;
+		if (numStar >= 14) return 10;
+		if (numStar >= 11) return 6;
+		if (numStar >= 8) return 3;
+		if (numStar >= 6) return 1;
+		return 0;
 	}
 }
