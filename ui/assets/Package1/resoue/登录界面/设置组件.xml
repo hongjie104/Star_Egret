@@ -11,17 +11,18 @@
     <image id="n33_nb58" name="n33" src="vdprc4c" xy="190,-18">
       <relation target="n25_nb58" sidePair="center-center,top-top"/>
     </image>
-    <component id="n34_nb58" name="n34" src="nb58c2x" xy="567,-10">
+    <component id="n34_nb58" name="n34" src="nb58c2x" xy="570,4">
       <relation target="n25_nb58" sidePair="top-top,right-right"/>
     </component>
-    <component id="n57_vdpr" name="n57" src="vdprc4t" xy="115,123" group="n61_vdpr"/>
-    <component id="n58_vdpr" name="n58" src="vdprc4q" xy="115,246" group="n61_vdpr"/>
-    <component id="n59_vdpr" name="n59" src="vdprc4o" xy="115,369" group="n61_vdpr"/>
-    <component id="n60_vdpr" name="n60" src="vdprc4p" xy="115,493" group="n61_vdpr"/>
-    <group id="n61_vdpr" name="n61" xy="115,123" size="398,488" advanced="true">
+    <component id="n57_vdpr" name="n57" src="vdprc4t" xy="112,154" group="n61_vdpr"/>
+    <component id="n58_vdpr" name="n58" src="vdprc4q" xy="112,277" group="n61_vdpr"/>
+    <component id="n59_vdpr" name="n59" src="vdprc4o" xy="112,400" group="n61_vdpr"/>
+    <component id="n60_vdpr" name="n60" src="vdprc4p" xy="112,523" group="n61_vdpr"/>
+    <component id="n63_vbeu" name="n63" src="vdprc4y" xy="112,646" group="n61_vdpr"/>
+    <group id="n61_vdpr" name="n61" xy="112,154" size="398,610" advanced="true">
       <relation target="n1_h838" sidePair="center-center,top-top"/>
     </group>
-    <component id="n62_vdpr" name="n62" src="vdprc4y" xy="115,644">
+    <component id="n62_vdpr" name="n62" src="vdprc4y" xy="112,797">
       <gearDisplay controller="c1" pages="1"/>
       <relation target="n61_vdpr" sidePair="top-bottom,center-center"/>
     </component>

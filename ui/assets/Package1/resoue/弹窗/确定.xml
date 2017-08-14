@@ -5,7 +5,9 @@
     <image id="n1" name="n1" src="h838c1o" xy="-19,-9" size="225,80" aspect="true">
       <relation target="" sidePair="width-width,height-height"/>
     </image>
-    <text id="n2_h838" name="n2" xy="60,13" size="80,34" font="黑体" fontSize="30" color="#ffffff" shadowColor="#000000" shadowOffset="1,1" text="确 定"/>
+    <text id="n2_h838" name="n2" xy="-11,-1" size="209,60" font="黑体" fontSize="30" color="#ffffff" align="center" vAlign="middle" autoSize="none" shadowColor="#000000" shadowOffset="1,1" text="确 定">
+      <relation target="n1" sidePair="center-center,middle-middle"/>
+    </text>
   </displayList>
   <Button downEffect="scale" downEffectValue="0.90"/>
 </component>

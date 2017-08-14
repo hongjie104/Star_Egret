@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="670,500">
-  <controller name="c1" pages="0,正常,1,分数最高" selected="1"/>
+  <controller name="c1" pages="0,正常,1,分数最高" selected="0"/>
   <controller name="c2" pages="0,选奖励前,1,选奖励后1,2,花钱买全部" selected="2"/>
   <displayList>
     <image id="n1_h838" name="n1" src="h838c1r" xy="83,43" size="503,457">

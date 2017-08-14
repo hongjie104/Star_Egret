@@ -4,9 +4,9 @@
     <image id="n0_h75c" name="n0" src="h75cc84" xy="0,0">
       <relation target="" sidePair="center-center,middle-middle"/>
     </image>
-    <component id="n8_h75c" name="n8" src="h75cc88" xy="362,35" size="123,49" group="n10_h75c" aspect="true"/>
-    <text id="n9_h75c" name="n9" xy="402,41" size="50,34" group="n10_h75c" font="黑体" fontSize="30" color="#ffffff" strokeColor="#663300" text="2元"/>
-    <group id="n10_h75c" name="n10" xy="362,35" size="123,49" advanced="true">
+    <component id="n8_h75c" name="n8" src="h75cc88" xy="117,0" size="390,100" group="n10_h75c" aspect="true"/>
+    <text id="n9_h75c" name="n9" xy="395,31" size="54,41" group="n10_h75c" font="黑体" fontSize="30" color="#ffffff" autoSize="none" strokeColor="#663300" text="2元"/>
+    <group id="n10_h75c" name="n10" xy="117,0" size="390,100" advanced="true">
       <relation target="n0_h75c" sidePair="right-right,bottom-bottom"/>
     </group>
     <image id="n1_h75c" name="n1" src="h838c1y" xy="5,15" size="82,74" group="n11_h75c" aspect="true">
