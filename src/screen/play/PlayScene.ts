@@ -108,6 +108,7 @@ class PlayScene extends BaseScreen {
 
 		BuyItemPanel.instance.addEventListener(StarEvent.BUY_ITEM_SUCCESS, this._onUpdateItemCount, this);
 		LevelUpAwardPanel.instance.addEventListener(egret.Event.CLOSE, this.updateDollar, this);
+		FailPanel.instance.addEventListener(egret.Event.CLOSE, this.updateDollar, this);
 	}
 
 	updateDollar(): void {
