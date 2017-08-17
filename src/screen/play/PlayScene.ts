@@ -149,7 +149,11 @@ class PlayScene extends BaseScreen {
 			while (curLevel > levelScoreArr.length) {
 				levelScoreArr.push(0);
 			}
-			this._topBar1.getChild('n7').text = levelScoreArr[curLevel - 1].toString();
+			let maxScore = 0;
+			for (let i = 0; i < curLevel; i++) {
+				maxScore += levelScoreArr[i];
+			}
+			this._topBar1.getChild('n7').text = maxScore.toString();
 			// 过关的分数
 			this._targetSocre = Util.getTargetScore(curLevel);
 			this._topBar1.getChild('n8').text = this._targetSocre.toString();
@@ -179,7 +183,7 @@ class PlayScene extends BaseScreen {
 			}
 			// 排名
 			this._targetSocre = Util.getTargetScore(curLevel);
-			this._topBar2.getChild('n8').text = '36';
+			this._topBar2.getChild('n8').text = '1';
 			// 倒计时时间
 			this._leftSecond = 40;
 			this._topBar2.getChild('n17').text = this._leftSecond.toString();
@@ -211,6 +215,12 @@ class PlayScene extends BaseScreen {
 				curPanel.displayListContainer.addChild(star);
 				egret.Tween.get(star).wait(actionDelay).to({ y: p.y }, 200);
 			}
+		}
+	}
+
+	closed(): void {
+		if (this._timer.running) {
+			this._timer.stop();
 		}
 	}
 
@@ -379,23 +389,25 @@ class PlayScene extends BaseScreen {
 				num.touchable = false;
 				num.displayObject.anchorOffsetX = 100;
 				num.displayObject.anchorOffsetY = 30;
-				num.x = removedStar.x;
-				num.y = removedStar.y;
 				num.getChild('n0').text = (Util.getScore(i + 1) - Util.getScore(i)).toString();
+				const numContainer = new egret.DisplayObjectContainer();
+				numContainer.touchEnabled = false;
+				numContainer.addChild(num.displayObject);
+				numContainer.x = removedStar.x;
+				numContainer.y = removedStar.y;
 
 				egret.Tween.get(num).wait(i * 200).call(() => {
 					const system = new particle.GravityParticleSystem(RES.getRes('flystar_png'), RES.getRes('flystar_json'));
-					system.x = 100;
-					system.y = 30;
-					num.displayListContainer.addChild(system);
+					numContainer.addChildAt(system, 0);
 					system.start();
-					fairygui.GRoot.inst.addChild(num);
-					num.scaleX = 2;
-					num.scaleY = 2;
-					egret.Tween.get(num).to({ x: Main.stageWidth >> 1, y: 120, alpha: 1, scaleX: 1, scaleY: 1 }, 1000, egret.Ease.quadOut).call(() => {
+					this.stage.addChild(numContainer);
+					numContainer.scaleX = 2;
+					numContainer.scaleY = 2;
+					egret.Tween.get(numContainer).to({ x: Main.stageWidth >> 1, y: 120, alpha: 1, scaleX: 1, scaleY: 1 }, 1000, egret.Ease.quadOut).call(() => {
 						system.stop();
 						num.removeFromParent();
 						num.dispose();
+						this.stage.removeChild(numContainer);
 					});
 				});
 			}

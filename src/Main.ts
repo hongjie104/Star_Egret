@@ -163,7 +163,11 @@ class Main extends egret.DisplayObjectContainer {
             const uiPanel = levelSelector.getChild('n0').asCom;
             // 本关的最高分
             const levelScore = LocalStorage.getItem(LocalStorageKey.levelScore) as Array<number>;
-            uiPanel.getChild('n9').text = evt.level > levelScore.length ? '0' : levelScore[evt.level - 1].toString();
+            let max = 0;
+            for (let i = 0; i < evt.level; i++) {
+                max += levelScore[i];
+            }
+            uiPanel.getChild('n9').text = max.toString();
             uiPanel.getChild('n12').text = evt.level.toString();
             uiPanel.getChild('n4').addClickListener(this._onLevelSelectorCancel, this);
             uiPanel.getChild('n5').addClickListener(this._onLevelSelectorOK, this);
@@ -224,6 +228,7 @@ class Main extends egret.DisplayObjectContainer {
     private _removeAllScreen(): void {
         if (this._curScreen) {
             this.removeChild(this._curScreen);
+            this._curScreen.closed();
             this._curScreen = null;
         }
     }

@@ -10,10 +10,10 @@ class LevelUpAwardPanel extends BasePanel {
 		const ui = this._ui.getChild('n0').asCom;
 		const lvAndAward = Util.getCurLvAndAward();
 		ui.getChild('n17').text = lvAndAward.lv.toString();
-		ui.getChild('n19').text = lvAndAward.lv.toString();
+		ui.getChild('n19').text = lvAndAward.award.toString();
 		const nextLvAndAward = Util.getNextLvAndAward();
 		ui.getChild('n18').text = nextLvAndAward.lv.toString();
-		ui.getChild('n20').text = nextLvAndAward.lv.toString();
+		ui.getChild('n20').text = nextLvAndAward.award.toString();
 		super.show();
 	}
 
