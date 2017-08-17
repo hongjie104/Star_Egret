@@ -19,6 +19,7 @@ var game_file_list = [
 	"bin-debug/panel/AwardPanel.js",
 	"bin-debug/LoadingUI.js",
 	"bin-debug/panel/BuyItemPanel.js",
+	"bin-debug/panel/ChangeNamePanel.js",
 	"bin-debug/panel/ChangeTypePanel.js",
 	"bin-debug/panel/FailPanel.js",
 	"bin-debug/panel/FetchGiftPanel.js",
@@ -28,7 +29,7 @@ var game_file_list = [
 	"bin-debug/panel/LoginAwardPanel.js",
 	"bin-debug/panel/LvPanel.js",
 	"bin-debug/panel/NewFishPanel.js",
-	"bin-debug/Util.js",
+	"bin-debug/LocalStorage.js",
 	"bin-debug/panel/PeckOfGiftsPanel.js",
 	"bin-debug/panel/RankMonthPanel.js",
 	"bin-debug/panel/RankPanel.js",
@@ -45,7 +46,7 @@ var game_file_list = [
 	"bin-debug/screen/play/PlayScene.js",
 	"bin-debug/screen/play/Star.js",
 	"bin-debug/StarEvent.js",
-	"bin-debug/LocalStorage.js",
+	"bin-debug/Util.js",
 	//----auto game_file_list end----
 ];
 

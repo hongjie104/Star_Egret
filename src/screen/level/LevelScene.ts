@@ -139,6 +139,13 @@ class LevelScene extends BaseScreen {
 			SettingPanel.instance.ui.getChild('n0').asCom.getController('c1').selectedIndex = 1;
 			SettingPanel.instance.show();
 		}, this);
+
+		// 改名字
+		this._topBar.getChild('n8').addClickListener(() => {
+			ChangeNamePanel.instance.show();
+		}, this);
+
+		ChangeNamePanel.instance.addEventListener(StarEvent.CHANGE_NAME, this._onChangeName, this);
 	}
 
 	updateDollar(): void {
@@ -190,6 +197,10 @@ class LevelScene extends BaseScreen {
 			this._scrollView.setContent(this._scrollContentContainer);
 			this._scrollView.setScrollTop(vh);
 		}
+	}
+
+	private _onChangeName(evt: StarEvent): void {
+		const newName = evt.data;
 	}
 
 	static get instance(): LevelScene {
