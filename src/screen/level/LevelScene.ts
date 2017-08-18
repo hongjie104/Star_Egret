@@ -156,6 +156,11 @@ class LevelScene extends BaseScreen {
 		fairygui.GRoot.inst.removeChildren();
 		fairygui.GRoot.inst.addChild(this._topBar);
 		this._topBar.getChild('n3').text = LocalStorage.getItem(LocalStorageKey.dollar).toString();
+		let userName = LocalStorage.getItem(LocalStorageKey.userName).toString();
+		if (userName == '0') {
+			userName = '玩家名字';
+		}
+		this._topBar.getChild('n2').text = userName;
 
 		const lastLevel = LocalStorage.getItem(LocalStorageKey.lastLevel);
 		this._updateLevelBtnStatus(lastLevel);
@@ -201,6 +206,9 @@ class LevelScene extends BaseScreen {
 
 	private _onChangeName(evt: StarEvent): void {
 		const newName = evt.data;
+		this._topBar.getChild('n2').text = newName;
+		LocalStorage.setItem(LocalStorageKey.userName, newName);
+		LocalStorage.saveToLocal();
 	}
 
 	static get instance(): LevelScene {

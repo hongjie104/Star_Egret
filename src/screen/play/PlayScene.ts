@@ -107,6 +107,7 @@ class PlayScene extends BaseScreen {
 		ChangeTypePanel.instance.addEventListener(StarEvent.STAR_TYPE_CHANGED, this._onStarTypeChanged, this);
 
 		BuyItemPanel.instance.addEventListener(StarEvent.BUY_ITEM_SUCCESS, this._onUpdateItemCount, this);
+		BuyItemPanel.instance.addEventListener(egret.Event.CLOSE, this._onBuyItemPanelClosed, this);
 		LevelUpAwardPanel.instance.addEventListener(egret.Event.CLOSE, this.updateDollar, this);
 		FailPanel.instance.addEventListener(egret.Event.CLOSE, this.updateDollar, this);
 	}
@@ -220,7 +221,7 @@ class PlayScene extends BaseScreen {
 	}
 
 	closed(): void {
-		if (this._timer.running) {
+		if (this._timer && this._timer.running) {
 			this._timer.stop();
 		}
 	}
@@ -573,7 +574,7 @@ class PlayScene extends BaseScreen {
 						if (!winPanel.hasEventListener(egret.Event.CLOSE)) {
 							winPanel.addEventListener(egret.Event.CLOSE, this._onWinPanelClosed, this);
 						}
-						winPanel.show();
+						winPanel.show(this._initScore + this._addScore);
 					}
 				} else {
 					// 失败了
@@ -752,7 +753,10 @@ class PlayScene extends BaseScreen {
 			let dollar: number = LocalStorage.getItem(LocalStorageKey.dollar);
 			if (dollar < 6) {
 				// 道具数量不够，钱也不够
-				BuyItemPanel.instance.show();
+				BuyItemPanel.instance.show(this._playType);
+				if (this._timer) {
+					this._timer.stop();
+				}
 				return;
 			}
 		}
@@ -784,7 +788,10 @@ class PlayScene extends BaseScreen {
 			let dollar: number = LocalStorage.getItem(LocalStorageKey.dollar);
 			if (dollar < 6) {
 				// 道具数量不够，钱也不够
-				BuyItemPanel.instance.show();
+				BuyItemPanel.instance.show(this._playType);
+				if (this._timer) {
+					this._timer.stop();
+				}
 				return;
 			}
 		}
@@ -838,7 +845,10 @@ class PlayScene extends BaseScreen {
 				costDollar = true;
 			} else {
 				// 道具数量不够，钱也不够
-				BuyItemPanel.instance.show();
+				BuyItemPanel.instance.show(this._playType);
+				if (this._timer) {
+					this._timer.stop();
+				}
 				return;
 			}
 		}
@@ -847,6 +857,8 @@ class PlayScene extends BaseScreen {
 			LocalStorage.saveToLocal();
 			this._topBar2.getChild('n10').asCom.getChild('n2').text = (itemCount - 1).toString();
 		}
+		this._leftSecond += 5;
+		this._topBar2.getChild('n17').text = this._leftSecond.toString();
 	}
 
 	private _onUpdateItemCount(): void {
@@ -856,6 +868,12 @@ class PlayScene extends BaseScreen {
 		this._topBar2.getChild('n10').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item4).toString();
 		this._topBar2.getChild('n11').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item2).toString();
 		this._topBar2.getChild('n12').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item3).toString();
+	}
+
+	private _onBuyItemPanelClosed(): void {
+		if (this._timer) {
+			this._timer.start();
+		}
 	}
 
 	/**
@@ -884,7 +902,10 @@ class PlayScene extends BaseScreen {
 				costDollar = true;
 			} else {
 				// 道具数量不够，钱也不够
-				BuyItemPanel.instance.show();
+				BuyItemPanel.instance.show(this._playType);
+				if (this._timer) {
+					this._timer.stop();
+				}
 				return;
 			}
 		}
