@@ -132,4 +132,17 @@ class Util {
 		if (numStar >= 6) return 1;
 		return 0;
 	}
+	
+	/**
+	 * 通关大礼包
+	 */
+	static getAwardGift(): [{ type: AWARD_TYPE, count: number }] {
+		// 第一个道具显示50金币，第二个显示5钻石，第三个显示40金币，第四个显示30金币
+		return [
+			{ type: AWARD_TYPE.dollar, count: 50 },
+			{ type: AWARD_TYPE.diamonds, count: 5 },
+			{ type: AWARD_TYPE.dollar, count: 40 },
+			{ type: AWARD_TYPE.dollar, count: 30 }
+		];
+	}
 }

@@ -49,34 +49,41 @@ class WinPanel extends BasePanel {
 			btn.getTransition('t0').play(() => {
 				egret.Tween.get(btn).wait(200).call(() => {
 					AwardPanel.instance.show(awardArr[0]);
+					const ui = this._ui.getChild('n0').asCom;
+					// 1是显示“点击关闭”
+					// 2是显示“购买全部”
+					// ui.getController('c2').selectedIndex = 1;
+					ui.getController('c2').selectedIndex = 2;
+					// 购买所有奖励需要的金币
+					ui.getChild('n26').text = '150';
+					const btnArr = [
+						ui.getChild('n17').asCom,
+						ui.getChild('n20').asCom,
+						ui.getChild('n19').asCom,
+						ui.getChild('n18').asCom
+					];
+					// let awardIndex = 1;
+					const awardGift = Util.getAwardGift();
+					for (let i = 0; i < btnArr.length; i++) {
+						if (awardGift[i].type == AWARD_TYPE.dollar) {
+							btnArr[i].getController('c1').selectedIndex = 3;
+						} else {
+							btnArr[i].getController('c1').selectedIndex = 4;
+						}
+						btnArr[i].getChild('n3').text = awardGift[i].count.toString();
+						btnArr[i].getTransition('t0').play();
+						// if (btnArr[i] !== btn) {
+						// 	if (awardArr[awardIndex].type == AWARD_TYPE.dollar) {
+						// 		btnArr[i].getController('c1').selectedIndex = 3;
+						// 	} else {
+						// 		btnArr[i].getController('c1').selectedIndex = 4;
+						// 	}
+						// 	btnArr[i].getChild('n3').text = awardArr[awardIndex++].count.toString();
+						// 	btnArr[i].getTransition('t0').play();
+						// }
+					}
 				});
 			});
-
-			const ui = this._ui.getChild('n0').asCom;
-			// 1是显示“点击关闭”
-			// 2是显示“购买全部”
-			// ui.getController('c2').selectedIndex = 1;
-			ui.getController('c2').selectedIndex = 2;
-			// 购买所有奖励需要的金币
-			ui.getChild('n26').text = '150';
-			const btnArr = [
-				ui.getChild('n17').asCom,
-				ui.getChild('n18').asCom,
-				ui.getChild('n19').asCom,
-				ui.getChild('n20').asCom
-			];
-			let awardIndex = 1;
-			for (let i = 0; i < btnArr.length; i++) {
-				if (btnArr[i] !== btn) {
-					if (awardArr[awardIndex].type == AWARD_TYPE.dollar) {
-						btnArr[i].getController('c1').selectedIndex = 3;
-					} else {
-						btnArr[i].getController('c1').selectedIndex = 4;
-					}
-					btnArr[i].getChild('n3').text = awardArr[awardIndex++].count.toString();
-					btnArr[i].getTransition('t0').play();
-				}
-			}
 			evt.stopImmediatePropagation();
 		}
 	}
