@@ -36,6 +36,10 @@
     {
 			"name": "particle",
 			"path": "libs/particle"
-		}
+		},
+    {
+      "name": "talkingdata",
+      "path": "libs/talkingdata"
+    }
   ]
 }

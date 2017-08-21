@@ -111,6 +111,8 @@ class Main extends egret.DisplayObjectContainer {
         LiuXingPanel.instance.addEventListener(StarEvent.PLAY_LIU_XING, this._onPlayLiuXing, this);
         LiuXingResultPanel.instance.addEventListener(StarEvent.ENTER_MAIN_SCREEN, this._onEnterMainScreen, this);
         this._onEnterMainScreen();
+
+        console.log(TDGA.getDeviceId());
     }
 
     private _onEnterMainScreen(evt?: StarEvent): void {
