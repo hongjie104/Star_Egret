@@ -37,13 +37,16 @@
     <image id="n14_h838" name="n14" src="h838c1s" xy="217,7">
       <relation target="n0_h838" sidePair="center-center,middle-middle"/>
     </image>
-    <text id="n15_vbeu" name="n15" xy="111,116" size="223,44" group="n17_vbeu" font="黑体" fontSize="24" color="#ff6600" align="right" vAlign="middle" letterSpacing="-2" autoSize="none" bold="true" text="本关目标得分：">
+    <image id="n18_rp82" name="n18" src="h838c1p" xy="139,103" size="390,50">
+      <relation target="n1_h838" sidePair="top-top,center-center"/>
+    </image>
+    <text id="n15_vbeu" name="n15" xy="109,107" size="223,44" group="n17_vbeu" font="黑体" fontSize="26" color="#336699" align="right" vAlign="middle" letterSpacing="-2" autoSize="none" bold="true" text="本关目标得分：">
       <relation target="n2_h838" sidePair="right-right,middle-middle"/>
     </text>
-    <text id="n16_vbeu" name="n16" xy="326,116" size="171,44" group="n17_vbeu" font="黑体" fontSize="40" color="#ff6600" align="right" letterSpacing="-2" autoSize="none" bold="true" text="9999999">
+    <text id="n16_vbeu" name="n16" xy="332,107" size="171,44" group="n17_vbeu" font="黑体" fontSize="40" color="#336699" align="right" letterSpacing="-2" autoSize="none" bold="true" text="9999999">
       <relation target="n2_h838" sidePair="right-right,middle-middle"/>
     </text>
-    <group id="n17_vbeu" name="n17" xy="111,116" size="386,44" advanced="true">
+    <group id="n17_vbeu" name="n17" xy="109,107" size="394,44" advanced="true" collapsed="true">
       <relation target="n1_h838" sidePair="top-top,center-center"/>
     </group>
   </displayList>

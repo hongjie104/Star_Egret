@@ -8,7 +8,7 @@
     <graph id="n1_rwnu" name="n1" xy="-875,43" pivot="0.5,0.5" size="236,245" type="rect" fillColor="#ff000000">
       <gearDisplay controller="c1" pages="1"/>
     </graph>
-    <component id="n0_h838" name="n0" src="vbeuca5" xy="100,276" pivot="0.5,0.5">
+    <component id="n0_h838" name="n0" src="vbeuca5" xy="100,325" pivot="0.5,0.5" size="450,305">
       <gearDisplay controller="c1" pages="1"/>
     </component>
   </displayList>

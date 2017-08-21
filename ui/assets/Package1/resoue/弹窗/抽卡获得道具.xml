@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="450,320">
-  <controller name="c1" pages="0,奖励是金币,1,奖励是钻石" selected="0"/>
+  <controller name="c1" pages="0,奖励是金币,1,奖励是钻石" selected="1"/>
   <displayList>
-    <image id="n1_h838" name="n1" src="h838c1r" xy="0,0" size="450,320">
+    <image id="n1_h838" name="n1" src="h838c1r" xy="36,51" size="376,259">
       <relation target="" sidePair="center-center,middle-middle"/>
     </image>
-    <text id="n7_h838" name="n7" xy="133,44" size="183,55" group="n16_i5cc" font="黑体" fontSize="40" color="#ff6600" vAlign="middle" letterSpacing="-2" autoSize="none" bold="true" text="恭喜获得"/>
-    <image id="n24_vbeu" name="n24" src="h838c1y" xy="144,131" group="n16_i5cc">
+    <text id="n7_h838" name="n7" xy="89,134" size="122,41" group="n16_i5cc" font="黑体" fontSize="26" color="#ff6600" align="right" vAlign="middle" letterSpacing="-2" autoSize="none" bold="true" text="恭喜获得:"/>
+    <image id="n24_vbeu" name="n24" src="h838c1y" xy="208,127" group="n16_i5cc">
       <gearDisplay controller="c1" pages="0"/>
     </image>
-    <text id="n25_vbeu" name="n25" xy="210,134" size="65,44" group="n16_i5cc" font="黑体" fontSize="40" color="#663300" text="999"/>
-    <image id="n26_vbeu" name="n26" src="fi1ac9c" xy="153,137" size="45,43" group="n16_i5cc">
+    <text id="n25_vbeu" name="n25" xy="266,131" size="96,44" group="n16_i5cc" font="黑体" fontSize="40" color="#663300" autoSize="none" text="999"/>
+    <image id="n26_vbeu" name="n26" src="fi1ac9c" xy="216,130" size="45,43" group="n16_i5cc">
       <gearDisplay controller="c1" pages="1"/>
     </image>
-    <group id="n16_i5cc" name="n16" xy="133,44" size="183,147" advanced="true">
+    <group id="n16_i5cc" name="n16" xy="88,127" size="274,60" advanced="true">
       <relation target="n1_h838" sidePair="top-top,center-center"/>
     </group>
-    <component id="n27_vbeu" name="n27" src="h75cc88" xy="72,201" group="n29_vbeu"/>
-    <text id="n28_vbeu" name="n28" xy="164,232" size="125,34" group="n29_vbeu" font="黑体" fontSize="30" color="#ffffff" strokeColor="#663300" text="领取奖励"/>
-    <group id="n29_vbeu" name="n29" xy="72,201" size="250,100" advanced="true">
+    <component id="n27_vbeu" name="n27" src="h75cc88" xy="71,199" group="n29_vbeu"/>
+    <text id="n28_vbeu" name="n28" xy="163,230" size="125,34" group="n29_vbeu" font="黑体" fontSize="30" color="#ffffff" strokeColor="#663300" text="领取奖励"/>
+    <group id="n29_vbeu" name="n29" xy="71,199" size="250,100" advanced="true">
       <relation target="n1_h838" sidePair="center-center,bottom-bottom"/>
     </group>
   </displayList>
