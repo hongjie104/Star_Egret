@@ -12,10 +12,13 @@ class WinPanel extends BasePanel {
 		this._isFetched = false;
 		const ui = this._ui.getChild('n0').asCom;
 		ui.getController('c2').selectedIndex = 0;
-		ui.getChild('n17').asCom.getController('c1').selectedIndex = 0;
-		ui.getChild('n18').asCom.getController('c1').selectedIndex = 0;
-		ui.getChild('n19').asCom.getController('c1').selectedIndex = 0;
-		ui.getChild('n20').asCom.getController('c1').selectedIndex = 0;
+		let btn: fairygui.GComponent = null;
+		for (let i = 17; i < 21; i++) {
+			btn = ui.getChild(`n${i}`).asCom;
+			btn.getController('c1').selectedIndex = 0;
+			btn.getTransition('t1').play();
+		}
+
 		// 本关得分
 		ui.getChild('n9').text = param.toString();
 		super.show(param);
@@ -102,15 +105,6 @@ class WinPanel extends BasePanel {
 		if (ui.getController('c2').selectedIndex != 0) {
 			super._onClose(evt);
 		}
-	}
-
-	protected _closed(): void {
-		super._closed();
-		const ui = this._ui.getChild('n0').asCom;
-		ui.getChild('n17').asCom.getController('c1').selectedIndex = 0;
-		ui.getChild('n18').asCom.getController('c1').selectedIndex = 0;
-		ui.getChild('n19').asCom.getController('c1').selectedIndex = 0;
-		ui.getChild('n20').asCom.getController('c1').selectedIndex = 0;
 	}
 
 	static get instance(): WinPanel {

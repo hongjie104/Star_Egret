@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="102,108" pivot="0.5,0.5" extention="Button">
   <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
-  <controller name="c1" pages="0,没抽,1,抽中的金币,3,抽中的钻石,2,没抽中的金币,4,没抽中的钻石" selected="2">
+  <controller name="c1" pages="0,没抽,1,抽中的金币,3,抽中的钻石,2,没抽中的金币,4,没抽中的钻石" selected="0">
     <action type="play_transition" fromPage="0" toPage="1,3,2,4" transition="t0"/>
   </controller>
   <displayList>
@@ -29,5 +29,9 @@
     <item time="0" type="Scale" target="n1" tween="true" startValue="1,1" endValue="1,1" duration="3"/>
     <item time="3" type="Scale" target="n1" tween="true" startValue="1,1" endValue="0.1,1" duration="6" ease="Cubic.In"/>
     <item time="9" type="Scale" target="n1" tween="true" startValue="0.1,1" endValue="0.01,1" duration="5"/>
+  </transition>
+  <transition name="t1">
+    <item time="0" type="Scale" target="n1" value="0.01,1"/>
+    <item time="1" type="Scale" target="n1" value="1,1"/>
   </transition>
 </component>
