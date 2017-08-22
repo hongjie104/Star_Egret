@@ -11,6 +11,11 @@ class WinPanel extends BasePanel {
 	show(param?: any): void {
 		this._isFetched = false;
 		const ui = this._ui.getChild('n0').asCom;
+		ui.getController('c2').selectedIndex = 0;
+		ui.getChild('n17').asCom.getController('c1').selectedIndex = 0;
+		ui.getChild('n18').asCom.getController('c1').selectedIndex = 0;
+		ui.getChild('n19').asCom.getController('c1').selectedIndex = 0;
+		ui.getChild('n20').asCom.getController('c1').selectedIndex = 0;
 		// 本关得分
 		ui.getChild('n9').text = param.toString();
 		super.show(param);
