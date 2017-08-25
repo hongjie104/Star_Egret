@@ -97,8 +97,8 @@ class PlayScene extends BaseScreen {
 		this._topBar2 = this._playPanel2.getChild('n1').asCom;
 		this._topBar2.getChild('n1').addClickListener(this._showSettingPanel, this);
 		this._topBar2.getChild('n10').addClickListener(this._addSecond, this);
-		this._topBar2.getChild('n11').addClickListener(this._changeStarType, this);
-		this._topBar2.getChild('n12').addClickListener(this._transposeStar, this);
+		this._topBar2.getChild('n11').addClickListener(this._transposeStar, this);
+		this._topBar2.getChild('n12').addClickListener(this._removeOnStar, this);
 		this._topBar2.getChild('n14').addClickListener(() => {
 			PayPanel.instance.show();
 		}, this);
@@ -176,8 +176,8 @@ class PlayScene extends BaseScreen {
 			this._topBar2.getChild('n7').text = LocalStorage.getItem(LocalStorageKey.liuXingMax).toString();
 			// 三种道具的数量
 			this._topBar2.getChild('n10').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item4).toString();
-			this._topBar2.getChild('n11').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item2).toString();
-			this._topBar2.getChild('n12').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item3).toString();
+			this._topBar2.getChild('n11').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item3).toString();
+			this._topBar2.getChild('n12').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item2).toString();
 			// 当前关卡的最高分
 			const levelScoreArr = LocalStorage.getItem(LocalStorageKey.levelScore) as Array<number>;
 			while (curLevel > levelScoreArr.length) {
@@ -818,7 +818,7 @@ class PlayScene extends BaseScreen {
 			LocalStorage.setItem(LocalStorageKey.item2, itemCount - 1);
 			LocalStorage.saveToLocal();
 			this._topBar1.getChild('n11').asCom.getChild('n2').text = (itemCount - 1).toString();
-			this._topBar2.getChild('n11').asCom.getChild('n2').text = (itemCount - 1).toString();
+			// this._topBar2.getChild('n11').asCom.getChild('n2').text = (itemCount - 1).toString();
 		}
 		const star = ChangeTypePanel.instance.star;
 		this._starDataArr[star.row][star.col] = star.type;
@@ -866,8 +866,8 @@ class PlayScene extends BaseScreen {
 		this._topBar1.getChild('n11').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item2).toString();
 		this._topBar1.getChild('n12').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item3).toString();
 		this._topBar2.getChild('n10').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item4).toString();
-		this._topBar2.getChild('n11').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item2).toString();
-		this._topBar2.getChild('n12').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item3).toString();
+		this._topBar2.getChild('n11').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item3).toString();
+		this._topBar2.getChild('n12').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item2).toString();
 	}
 
 	private _onBuyItemPanelClosed(): void {
@@ -913,7 +913,7 @@ class PlayScene extends BaseScreen {
 			LocalStorage.setItem(LocalStorageKey.item3, itemCount - 1);
 			LocalStorage.saveToLocal();
 			this._topBar1.getChild('n12').asCom.getChild('n2').text = (itemCount - 1).toString();
-			this._topBar2.getChild('n12').asCom.getChild('n2').text = (itemCount - 1).toString();
+			this._topBar2.getChild('n11').asCom.getChild('n2').text = (itemCount - 1).toString();
 		}
 
 		// 播放个动画
