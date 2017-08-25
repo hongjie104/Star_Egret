@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="670,500">
   <controller name="c1" pages="0,正常,1,分数最高" selected="0"/>
-  <controller name="c2" pages="0,选奖励前,1,选奖励后1,2,花钱买全部" selected="0"/>
+  <controller name="c2" pages="0,选奖励前,1,选奖励后1,2,花钱买全部" selected="2"/>
   <displayList>
-    <image id="n1_h838" name="n1" src="h838c1r" xy="83,43" size="503,457">
+    <image id="n1_h838" name="n1" src="h838c1r" xy="64,43" size="541,457">
       <relation target="" sidePair="center-center,middle-middle"/>
     </image>
     <image id="n0_h838" name="n0" src="h838c1t" xy="0,5">
@@ -24,14 +24,17 @@
     <image id="n15_h838" name="n15" src="h838c25" xy="500,98">
       <gearDisplay controller="c1" pages="1"/>
     </image>
-    <image id="n16_h838" name="n16" src="h838c26" xy="127,186">
+    <image id="n33_w7am" name="n33" src="h838c1q" xy="107,200" size="455,141">
+      <relation target="n1_h838" sidePair="center-center,bottom-bottom"/>
+    </image>
+    <image id="n16_h838" name="n16" src="h838c26" xy="127,179">
       <relation target="n1_h838" sidePair="center-center,top-top"/>
     </image>
-    <component id="n17_h838" name="n17" src="h838c28" xy="127,239" group="n21_h838"/>
-    <component id="n18_h838" name="n18" src="h838c28" xy="439,239" group="n21_h838"/>
-    <component id="n19_h838" name="n19" src="h838c28" xy="335,239" group="n21_h838"/>
-    <component id="n20_h838" name="n20" src="h838c28" xy="231,239" group="n21_h838"/>
-    <group id="n21_h838" name="n21" xy="127,239" size="414,108" advanced="true">
+    <component id="n17_h838" name="n17" src="h838c28" xy="127,226" group="n21_h838"/>
+    <component id="n18_h838" name="n18" src="h838c28" xy="439,226" group="n21_h838"/>
+    <component id="n19_h838" name="n19" src="h838c28" xy="335,226" group="n21_h838"/>
+    <component id="n20_h838" name="n20" src="h838c28" xy="231,226" group="n21_h838"/>
+    <group id="n21_h838" name="n21" xy="127,226" size="414,108" advanced="true">
       <relation target="n1_h838" sidePair="center-center,bottom-bottom"/>
     </group>
     <text id="n22_h838" name="n22" xy="246,363" size="180,28" font="黑体" fontSize="24" color="#347eb4" align="right" bold="true" text="请选择一个奖励">
@@ -46,23 +49,20 @@
       <gearDisplay controller="c2" pages="2"/>
       <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
     </component>
-    <text id="n25_rwnu" name="n25" xy="109,352" size="453,59" group="n30_rp82" font="黑体" fontSize="20" leading="8" autoSize="none" text="运气不错，所有金币和钻石面值总和     枚金币，价值   元，现在只需   元即可获得所有金币。">
+    <text id="n25_rwnu" name="n25" xy="109,356" size="453,59" group="n30_rp82" font="黑体" fontSize="20" leading="8" autoSize="none" text="运气不错，所有金币和钻石面值总和     枚金币，价值   元，现在只需   元即可获得所有金币。">
       <gearDisplay controller="c2" pages="2"/>
       <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
     </text>
-    <text id="n26_rwnu" name="n26" xy="431,342" size="47,34" group="n30_rp82" font="黑体" fontSize="30" color="#ff6600" align="center" vAlign="middle" letterSpacing="-2" bold="true" text="160">
+    <text id="n26_rwnu" name="n26" xy="431,350" size="47,34" group="n30_rp82" font="黑体" fontSize="30" color="#ff6600" align="center" vAlign="middle" letterSpacing="-2" bold="true" text="160">
       <gearDisplay controller="c2" pages="2"/>
-      <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
     </text>
-    <text id="n28_rp82" name="n28" xy="149,369" size="33,34" group="n30_rp82" font="黑体" fontSize="30" color="#ff6600" align="center" vAlign="middle" letterSpacing="-2" bold="true" text="12">
+    <text id="n28_rp82" name="n28" xy="186,378" size="33,34" group="n30_rp82" font="黑体" fontSize="30" color="#ff6600" align="center" vAlign="middle" letterSpacing="-2" bold="true" text="12">
       <gearDisplay controller="c2" pages="2"/>
-      <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
     </text>
-    <text id="n29_rp82" name="n29" xy="308,371" size="19,34" group="n30_rp82" font="黑体" fontSize="30" color="#ff6600" align="center" vAlign="middle" letterSpacing="-2" bold="true" text="8">
+    <text id="n29_rp82" name="n29" xy="347,379" size="19,34" group="n30_rp82" font="黑体" fontSize="30" color="#ff6600" align="center" vAlign="middle" letterSpacing="-2" bold="true" text="8">
       <gearDisplay controller="c2" pages="2"/>
-      <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
     </text>
-    <group id="n30_rp82" name="n30" xy="109,342" size="453,69" advanced="true">
+    <group id="n30_rp82" name="n30" xy="109,350" size="453,65" advanced="true">
       <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
     </group>
     <component id="n32_rp82" name="n32" src="nb58c2x" xy="575,33">
