@@ -139,6 +139,13 @@ class LevelScene extends BaseScreen {
 			SettingPanel.instance.ui.getChild('n0').asCom.getController('c1').selectedIndex = 1;
 			SettingPanel.instance.show();
 		}, this);
+
+		// 改名字
+		this._topBar.getChild('n8').addClickListener(() => {
+			ChangeNamePanel.instance.show();
+		}, this);
+
+		ChangeNamePanel.instance.addEventListener(StarEvent.CHANGE_NAME, this._onChangeName, this);
 	}
 
 	updateDollar(): void {
@@ -149,6 +156,11 @@ class LevelScene extends BaseScreen {
 		fairygui.GRoot.inst.removeChildren();
 		fairygui.GRoot.inst.addChild(this._topBar);
 		this._topBar.getChild('n3').text = LocalStorage.getItem(LocalStorageKey.dollar).toString();
+		let userName = LocalStorage.getItem(LocalStorageKey.userName).toString();
+		if (userName == '0') {
+			userName = '玩家名字';
+		}
+		this._topBar.getChild('n2').text = userName;
 
 		const lastLevel = LocalStorage.getItem(LocalStorageKey.lastLevel);
 		this._updateLevelBtnStatus(lastLevel);
@@ -190,6 +202,13 @@ class LevelScene extends BaseScreen {
 			this._scrollView.setContent(this._scrollContentContainer);
 			this._scrollView.setScrollTop(vh);
 		}
+	}
+
+	private _onChangeName(evt: StarEvent): void {
+		const newName = evt.data;
+		this._topBar.getChild('n2').text = newName;
+		LocalStorage.setItem(LocalStorageKey.userName, newName);
+		LocalStorage.saveToLocal();
 	}
 
 	static get instance(): LevelScene {

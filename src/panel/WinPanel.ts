@@ -2,19 +2,26 @@ class WinPanel extends BasePanel {
 
 	private static _instance: WinPanel;
 
-	private _isShowing = false;
+	private _isFetched = false;
 
 	public constructor() {
 		super();
 	}
 
-	get isShowing(): boolean {
-		return this._isShowing;
-	}
+	show(param?: any): void {
+		this._isFetched = false;
+		const ui = this._ui.getChild('n0').asCom;
+		ui.getController('c2').selectedIndex = 0;
+		let btn: fairygui.GComponent = null;
+		for (let i = 17; i < 21; i++) {
+			btn = ui.getChild(`n${i}`).asCom;
+			btn.getController('c1').selectedIndex = 0;
+			btn.getTransition('t1').play();
+		}
 
-	show(): void {
-		super.show();
-		this._isShowing = true;
+		// 本关得分
+		ui.getChild('n9').text = param.toString();
+		super.show(param);
 	}
 
 	protected _init(): void {
@@ -29,58 +36,75 @@ class WinPanel extends BasePanel {
 		ui.getChild('n18').addClickListener(this._onFetchAward, this);
 		ui.getChild('n19').addClickListener(this._onFetchAward, this);
 		ui.getChild('n20').addClickListener(this._onFetchAward, this);
+		ui.getChild('n27').addClickListener(this._onFetchAll, this);
 	}
 
 	private _onFetchAward(evt: egret.TouchEvent): void {
-		const awardArr = Util.createWinAward();
-		const btn = evt.currentTarget as fairygui.GButton;
-		if (awardArr[0].type == 'dollar') {
-			btn.getController('c1').selectedIndex = 1;
-			LocalStorage.setItem(LocalStorageKey.dollar, LocalStorage.getItem(LocalStorageKey.dollar) + awardArr[0].count);
-		} else {
-			btn.getController('c1').selectedIndex = 2;
-			LocalStorage.setItem(LocalStorageKey.diamonds, LocalStorage.getItem(LocalStorageKey.diamonds) + awardArr[0].count);
-		}
-		LocalStorage.saveToLocal();
-		btn.getChild('n3').text = awardArr[0].count.toString();
+		if (!this._isFetched) {
+			this._isFetched = true;
 
-		const ui = this._ui.getChild('n0').asCom;
-		ui.getController('c2').selectedIndex = 1;
-		// const btnArr = [
-		// 	ui.getChild('n17').asCom,
-		// 	ui.getChild('n18').asCom,
-		// 	ui.getChild('n19').asCom,
-		// 	ui.getChild('n20').asCom
-		// ];
-		// let awardIndex = 1;
-		// for (let i = 0; i < btnArr.length; i++) {
-		// 	if (btnArr[i] !== btn) {
-		// 		if (awardArr[awardIndex].type == 'dollar') {
-		// 			btnArr[i].getController('c1').selectedIndex = 3;
-		// 		} else {
-		// 			btnArr[i].getController('c1').selectedIndex = 4;
-		// 		}
-		// 		btnArr[i].getChild('n3').text = awardArr[awardIndex++].count.toString();
-		// 	}
-		// }
-		evt.stopImmediatePropagation();
+			const awardArr = Util.createWinAward();
+			const btn = evt.currentTarget as fairygui.GButton;
+			if (awardArr[0].type == AWARD_TYPE.dollar) {
+				btn.getController('c1').selectedIndex = 1;
+				LocalStorage.setItem(LocalStorageKey.dollar, LocalStorage.getItem(LocalStorageKey.dollar) + awardArr[0].count);
+			} else {
+				btn.getController('c1').selectedIndex = 2;
+				LocalStorage.setItem(LocalStorageKey.diamonds, LocalStorage.getItem(LocalStorageKey.diamonds) + awardArr[0].count);
+			}
+			LocalStorage.saveToLocal();
+			btn.getChild('n3').text = awardArr[0].count.toString();
+			btn.getTransition('t0').play(() => {
+				egret.Tween.get(btn).wait(200).call(() => {
+					AwardPanel.instance.show(awardArr[0]);
+					const ui = this._ui.getChild('n0').asCom;
+					// 1是显示“点击关闭”
+					// 2是显示“购买全部”
+					// ui.getController('c2').selectedIndex = 1;
+					ui.getController('c2').selectedIndex = 2;
+					// 购买所有奖励需要的金币
+					ui.getChild('n26').text = '150';
+					const btnArr = [
+						ui.getChild('n17').asCom,
+						ui.getChild('n20').asCom,
+						ui.getChild('n19').asCom,
+						ui.getChild('n18').asCom
+					];
+					// let awardIndex = 1;
+					const awardGift = Util.getAwardGift();
+					for (let i = 0; i < btnArr.length; i++) {
+						if (awardGift[i].type == AWARD_TYPE.dollar) {
+							btnArr[i].getController('c1').selectedIndex = 3;
+						} else {
+							btnArr[i].getController('c1').selectedIndex = 4;
+						}
+						btnArr[i].getChild('n3').text = awardGift[i].count.toString();
+						btnArr[i].getTransition('t0').play();
+						// if (btnArr[i] !== btn) {
+						// 	if (awardArr[awardIndex].type == AWARD_TYPE.dollar) {
+						// 		btnArr[i].getController('c1').selectedIndex = 3;
+						// 	} else {
+						// 		btnArr[i].getController('c1').selectedIndex = 4;
+						// 	}
+						// 	btnArr[i].getChild('n3').text = awardArr[awardIndex++].count.toString();
+						// 	btnArr[i].getTransition('t0').play();
+						// }
+					}
+				});
+			});
+			evt.stopImmediatePropagation();
+		}
+	}
+
+	private _onFetchAll(): void {
+		this._onClose();
 	}
 
 	protected _onClose(evt?: egret.TouchEvent): void {
 		const ui = this._ui.getChild('n0').asCom;
-		if (ui.getController('c2').selectedIndex === 1) {
+		if (ui.getController('c2').selectedIndex != 0) {
 			super._onClose(evt);
 		}
-	}
-
-	protected _closed(): void {
-		super._closed();
-		this._isShowing = false;
-		const ui = this._ui.getChild('n0').asCom;
-		ui.getChild('n17').asCom.getController('c1').selectedIndex = 0;
-		ui.getChild('n18').asCom.getController('c1').selectedIndex = 0;
-		ui.getChild('n19').asCom.getController('c1').selectedIndex = 0;
-		ui.getChild('n20').asCom.getController('c1').selectedIndex = 0;
 	}
 
 	static get instance(): WinPanel {

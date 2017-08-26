@@ -10,10 +10,10 @@ class LevelUpAwardPanel extends BasePanel {
 		const ui = this._ui.getChild('n0').asCom;
 		const lvAndAward = Util.getCurLvAndAward();
 		ui.getChild('n17').text = lvAndAward.lv.toString();
-		ui.getChild('n19').text = lvAndAward.lv.toString();
+		ui.getChild('n19').text = lvAndAward.award.toString();
 		const nextLvAndAward = Util.getNextLvAndAward();
 		ui.getChild('n18').text = nextLvAndAward.lv.toString();
-		ui.getChild('n20').text = nextLvAndAward.lv.toString();
+		ui.getChild('n20').text = nextLvAndAward.award.toString();
 		super.show();
 	}
 
@@ -29,7 +29,7 @@ class LevelUpAwardPanel extends BasePanel {
 	private _onFetchAward(): void {
 		const lvAndAward = Util.getCurLvAndAward();
 		if (lvAndAward.award > 0) {
-			LocalStorage.setItem(LocalStorageKey.dollar, LocalStorage.getItem(LocalStorageKey.dollar + lvAndAward.award));
+			LocalStorage.setItem(LocalStorageKey.dollar, LocalStorage.getItem(LocalStorageKey.dollar) + lvAndAward.award);
 			LocalStorage.saveToLocal();
 		}
 		this._onClose();

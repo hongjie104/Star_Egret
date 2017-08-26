@@ -24,11 +24,17 @@ class StarEvent extends egret.Event {
 
 	static PLAY_LIU_XING = 'playLiuXing';
 
-	public constructor(type: string, private _level?: number) {
+	static CHANGE_NAME = 'changeName';
+
+	public constructor(type: string, private _level?: number, private _data?: string) {
 		super(type);
 	}
 
 	get level(): number {
 		return this._level;
+	}
+
+	get data(): string {
+		return this._data;
 	}
 }

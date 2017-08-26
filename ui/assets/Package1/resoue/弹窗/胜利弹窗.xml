@@ -46,8 +46,30 @@
       <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
     </text>
     <component id="n27_rwnu" name="n27" src="rwnuc3c" xy="245,410">
+<<<<<<< HEAD
+=======
       <gearDisplay controller="c2" pages="2"/>
       <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
+    </component>
+    <text id="n25_rwnu" name="n25" xy="109,356" size="453,59" group="n30_rp82" font="黑体" fontSize="20" leading="8" autoSize="none" text="运气不错，所有金币和钻石面值总和     枚金币，价值   元，现在只需   元即可获得所有金币。">
+      <gearDisplay controller="c2" pages="2"/>
+      <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
+    </text>
+    <text id="n26_rwnu" name="n26" xy="431,350" size="47,34" group="n30_rp82" font="黑体" fontSize="30" color="#ff6600" align="center" vAlign="middle" letterSpacing="-2" autoSize="none" bold="true" text="160">
+>>>>>>> 0624dc326d902116655b27bc355a5ae39cd30bf1
+      <gearDisplay controller="c2" pages="2"/>
+    </text>
+    <text id="n28_rp82" name="n28" xy="186,378" size="33,34" group="n30_rp82" font="黑体" fontSize="30" color="#ff6600" align="center" vAlign="middle" letterSpacing="-2" autoSize="none" bold="true" text="12">
+      <gearDisplay controller="c2" pages="2"/>
+    </text>
+    <text id="n29_rp82" name="n29" xy="347,379" size="19,34" group="n30_rp82" font="黑体" fontSize="30" color="#ff6600" align="center" vAlign="middle" letterSpacing="-2" autoSize="none" bold="true" text="8">
+      <gearDisplay controller="c2" pages="2"/>
+    </text>
+    <group id="n30_rp82" name="n30" xy="109,350" size="453,65" advanced="true">
+      <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
+    </group>
+    <component id="n32_rp82" name="n32" src="nb58c2x" xy="575,33">
+      <relation target="n0_h838" sidePair="right-right,top-top"/>
     </component>
     <component id="n32_rp82" name="n32" src="nb58c2x" xy="575,33">
       <relation target="n0_h838" sidePair="right-right,top-top"/>
