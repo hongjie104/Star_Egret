@@ -7,26 +7,33 @@
     <image id="n0_h838" name="n0" src="h838c1t" xy="0,1">
       <relation target="n1_h838" sidePair="top-top,center-center"/>
     </image>
-    <image id="n42_kcvc" name="n42" src="h838c1q" xy="117,219" size="436,182">
-      <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
-    </image>
     <image id="n14_h838" name="n14" src="kcvcc8x" xy="158,7">
       <relation target="n0_h838" sidePair="center-center,middle-middle"/>
     </image>
+    <image id="n42_kcvc" name="n42" src="h838c1q" xy="117,257" size="436,163" group="n46_rp82">
+      <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
+    </image>
+    <image id="n44_rp82" name="n44" src="h838c1p" xy="154,119" size="358,50" group="n46_rp82">
+      <relation target="n1_h838" sidePair="top-top,center-center"/>
+    </image>
+    <image id="n45_rp82" name="n45" src="h838c1p" xy="155,174" size="357,50" group="n46_rp82">
+      <relation target="n1_h838" sidePair="top-top,center-center"/>
+    </image>
+    <group id="n46_rp82" name="n46" xy="117,119" size="436,301" collapsed="true"/>
     <component id="n30_w587" name="n30" src="nb58c2x" xy="576,33">
       <relation target="n1_h838" sidePair="left-right,top-top"/>
     </component>
-    <text id="n32_kcvc" name="n32" xy="139,121" size="156,91" group="n40_kcvc" font="黑体" fontSize="30" color="#336699" align="right" leading="10" autoSize="none" text="最高分:&#xA;RANK:"/>
-    <text id="n33_kcvc" name="n33" xy="300,123" size="212,44" group="n40_kcvc" font="ui://yejc893vo0umc6m" fontSize="30" color="#ffffff" letterSpacing="-3" autoSize="none" text="99999&#xA;"/>
-    <text id="n34_kcvc" name="n34" xy="300,163" size="212,44" group="n40_kcvc" font="ui://yejc893vo0umc6m" fontSize="30" color="#ffffff" letterSpacing="-3" autoSize="none" text="99999&#xA;"/>
-    <text id="n35_kcvc" name="n35" xy="110,235" size="452,64" group="n40_kcvc" font="黑体" fontSize="60" color="#ff6600" align="center" letterSpacing="-3" autoSize="none" strokeColor="#ffffff" text="99999"/>
-    <text id="n37_kcvc" name="n37" xy="189,332" size="86,59" group="n40_kcvc" font="黑体" fontSize="30" color="#660000" letterSpacing="-3" autoSize="none" text="奖励："/>
-    <image id="n38_kcvc" name="n38" src="h838c1y" xy="282,328" group="n40_kcvc"/>
-    <text id="n39_kcvc" name="n39" xy="329,322" size="171,64" group="n40_kcvc" font="黑体" fontSize="60" color="#660000" align="center" letterSpacing="-3" autoSize="none" text="99999"/>
-    <group id="n40_kcvc" name="n40" xy="110,121" size="452,270" advanced="true">
+    <text id="n32_kcvc" name="n32" xy="116,130" size="156,91" group="n40_kcvc" font="黑体" fontSize="30" color="#336699" align="right" leading="25" autoSize="none" text="最高分:&#xA;RANK:"/>
+    <text id="n33_kcvc" name="n33" xy="274,122" size="203,44" group="n40_kcvc" font="黑体" fontSize="40" color="#336699" align="right" autoSize="none" bold="true" text="99999&#xA;"/>
+    <text id="n34_kcvc" name="n34" xy="271,177" size="207,44" group="n40_kcvc" font="黑体" fontSize="40" color="#336699" align="right" autoSize="none" bold="true" text="99999&#xA;"/>
+    <text id="n35_kcvc" name="n35" xy="121,262" size="433,64" group="n40_kcvc" font="黑体" fontSize="60" color="#ff6600" align="center" letterSpacing="-3" autoSize="none" strokeColor="#ffffff" text="99999"/>
+    <text id="n37_kcvc" name="n37" xy="185,347" size="100,56" group="n40_kcvc" font="黑体" fontSize="30" color="#660000" letterSpacing="-3" autoSize="none" text="奖励："/>
+    <image id="n38_kcvc" name="n38" src="h838c1y" xy="272,340" group="n40_kcvc"/>
+    <text id="n39_kcvc" name="n39" xy="313,336" size="171,64" group="n40_kcvc" font="黑体" fontSize="50" color="#660000" align="center" letterSpacing="-3" autoSize="none" text="99999"/>
+    <group id="n40_kcvc" name="n40" xy="116,122" size="438,281" advanced="true" collapsed="true">
       <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
     </group>
-    <component id="n43_kcvc" name="n43" src="h838c1x" xy="242,433">
+    <component id="n43_kcvc" name="n43" src="h838c1x" xy="242,440">
       <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
     </component>
   </displayList>

@@ -2,6 +2,7 @@
 <component size="670,650">
   <controller name="c1" pages="0,正常,1,分数最高" selected="0"/>
   <controller name="c2" pages="0,选奖励前,1,选奖励后1,2,花钱买全部" selected="0"/>
+  <controller name="c3" pages="0,普通游戏,1,流星试炼" selected="1"/>
   <displayList>
     <image id="n1_h838" name="n1" src="h838c1r" xy="34,54" size="601,596" alpha="0.75">
       <relation target="" sidePair="center-center,middle-middle"/>
@@ -31,10 +32,15 @@
       <gearDisplay controller="c2" pages="2"/>
       <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
     </component>
-    <component id="n48_o0um" name="n48" src="o0umc7j" xy="65,143" group="n51_o0um"/>
-    <component id="n49_o0um" name="n49" src="o0umc7n" xy="65,283" group="n51_o0um"/>
-    <component id="n50_o0um" name="n50" src="o0umc7o" xy="65,423" group="n51_o0um"/>
-    <group id="n51_o0um" name="n51" xy="65,143" size="540,415" advanced="true">
+    <component id="n48_o0um" name="n48" src="o0umc7j" xy="64,143" group="n51_o0um"/>
+    <component id="n49_o0um" name="n49" src="o0umc7n" xy="64,283" group="n51_o0um">
+      <gearDisplay controller="c3" pages="0"/>
+    </component>
+    <component id="n50_o0um" name="n50" src="o0umc7o" xy="64,423" group="n51_o0um"/>
+    <component id="n57_qf9l" name="n57" src="qf9lca7" xy="65,283" group="n51_o0um">
+      <gearDisplay controller="c3" pages="1"/>
+    </component>
+    <group id="n51_o0um" name="n51" xy="64,143" size="541,415" advanced="true">
       <relation target="n1_h838" sidePair="center-center,middle-middle"/>
     </group>
     <component id="n55_o0um" name="n55" src="nb58c2x" xy="592,34">

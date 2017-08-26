@@ -312,6 +312,11 @@
     <component id="i5ccca4" name="等级奖励弹窗.xml" path="/GAME/" exported="true"/>
     <component id="vbeuca5" name="抽卡获得道具.xml" path="/resoue/弹窗/" exported="true"/>
     <component id="vbeuca6" name="抽卡获得奖励弹窗.xml" path="/GAME/" exported="true"/>
+    <component id="qf9lca7" name="购买4.xml" path="/resoue/弹窗/" exported="true"/>
+    <image id="qf9lca8" name="xiugai17.png" path="/resoue/弹窗/" exported="true"/>
+    <component id="qf9lca9" name="改名.xml" path="/resoue/登录界面/" exported="true"/>
+    <component id="qf9lcaa" name="改名弹窗.xml" path="/GAME/" exported="true"/>
+    <image id="a8ghcab" name="ui0020014.png" path="/" exported="true"/>
   </resources>
   <publish name="Package1" path="C:\hongjie\Star_Egret\resource\assets"/>
 </packageDescription>

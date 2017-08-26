@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="540,135">
+  <displayList>
+    <image id="n0_o0um" name="n0" src="qf9lca8" xy="2,0"/>
+    <text id="n2_o0um" name="n2" xy="147,26" size="165,44" font="黑体" fontSize="40" color="#ffffff" strokeColor="#125d69" strokeSize="2" text="时钟道具"/>
+    <text id="n3_o0um" name="n3" xy="143,79" size="272,28" font="黑体" fontSize="24" color="#ffffff" autoSize="none" strokeColor="#247e8c" strokeSize="2" text="增加5秒时间"/>
+    <component id="n4_o0um" name="n4" src="o0umc7m" xy="240,18">
+      <relation target="n0_o0um" sidePair="right-right,bottom-bottom"/>
+    </component>
+  </displayList>
+</component>
