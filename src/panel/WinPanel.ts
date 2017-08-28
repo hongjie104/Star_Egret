@@ -63,7 +63,7 @@ class WinPanel extends BasePanel {
 					// ui.getController('c2').selectedIndex = 1;
 					ui.getController('c2').selectedIndex = 2;
 					// 购买所有奖励需要的金币
-					ui.getChild('n26').text = '150';
+					// ui.getChild('n26').text = '150';
 					const btnArr = [
 						ui.getChild('n17').asCom,
 						ui.getChild('n20').asCom,

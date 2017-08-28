@@ -316,10 +316,7 @@
     <image id="qf9lca8" name="xiugai17.png" path="/resoue/弹窗/" exported="true"/>
     <component id="qf9lca9" name="改名.xml" path="/resoue/登录界面/" exported="true"/>
     <component id="qf9lcaa" name="改名弹窗.xml" path="/GAME/" exported="true"/>
-<<<<<<< HEAD
     <image id="a8ghcab" name="ui0020014.png" path="/" exported="true"/>
-=======
->>>>>>> 0624dc326d902116655b27bc355a5ae39cd30bf1
   </resources>
-  <publish name="Package1" path="D:\hongjie\Star_Egret\resource\assets"/>
+  <publish name="Package1" path="C:\hongjie\Star_Egret\resource\assets"/>
 </packageDescription>

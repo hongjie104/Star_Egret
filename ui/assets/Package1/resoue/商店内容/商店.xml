@@ -16,13 +16,13 @@
     <component id="n34_nb58" name="n34" src="nb58c2x" xy="564,17">
       <relation target="n1_h838" sidePair=""/>
     </component>
-    <text id="n47_o0um" name="n47" xy="162,149" size="253,34" group="n54_jze4" font="黑体" fontSize="30" color="#347eb4" align="right" bold="true" text="你拥有的金币数：">
+    <text id="n47_o0um" name="n47" xy="108,147" size="253,34" group="n54_jze4" font="黑体" fontSize="30" color="#347eb4" align="right" bold="true" text="你拥有的金币数：">
       <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
     </text>
-    <text id="n48_o0um" name="n48" xy="423,144" size="30,44" group="n54_jze4" font="ui://yejc893vo0umc6m" fontSize="40" color="#ff6600" bold="true" text="4">
-      <relation target="n47_o0um" sidePair="right-left,middle-middle"/>
+    <text id="n48_o0um" name="n48" xy="369,142" size="136,44" group="n54_jze4" font="ui://yejc893vo0umc6m" fontSize="40" color="#ff6600" autoSize="none" bold="true" text="9999">
+      <relation target="n47_o0um" sidePair="left-right,middle-middle"/>
     </text>
-    <group id="n54_jze4" name="n54" xy="162,144" size="291,44" advanced="true">
+    <group id="n54_jze4" name="n54" xy="108,142" size="397,44" advanced="true">
       <relation target="n25_nb58" sidePair="top-bottom,center-center"/>
     </group>
     <list id="n55_h75c" name="n55" xy="56,199" size="502,604" overflow="scroll">
