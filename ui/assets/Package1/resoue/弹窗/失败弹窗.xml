@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="670,550">
   <displayList>
-    <image id="n1_h838" name="n1" src="h838c1r" xy="83,39" size="503,513">
+    <image id="n1_h838" name="n1" src="h838c1r" xy="83,43" size="503,513">
       <relation target="" sidePair="center-center,middle-middle"/>
     </image>
-    <image id="n0_h838" name="n0" src="h838c1t" xy="0,1">
+    <image id="n0_h838" name="n0" src="h838c1t" xy="0,5">
       <relation target="n1_h838" sidePair="top-top,center-center"/>
     </image>
-    <image id="n14_h838" name="n14" src="w587c5b" xy="195,3">
+    <image id="n14_h838" name="n14" src="w587c5b" xy="195,7">
       <relation target="n0_h838" sidePair="center-center,middle-middle"/>
     </image>
-    <image id="n28_w587" name="n28" src="w587c59" xy="151,67">
+    <image id="n28_w587" name="n28" src="w587c59" xy="151,71">
       <relation target="n1_h838" sidePair="center-center,middle-middle"/>
     </image>
-    <component id="n30_w587" name="n30" src="nb58c2x" xy="576,33">
+    <component id="n30_w587" name="n30" src="nb58c2x" xy="576,37">
       <relation target="n1_h838" sidePair="left-right,top-top"/>
     </component>
-    <component id="n31_w587" name="n31" src="w587c5d" xy="193,438" aspect="true">
+    <component id="n31_w587" name="n31" src="w587c5d" xy="193,442" aspect="true">
       <relation target="n1_h838" sidePair="center-center,bottom-bottom"/>
     </component>
-    <text id="n25_rwnu" name="n25" xy="217,410" size="235,32" group="n32_htyw" font="黑体" fontSize="20" color="#666666" autoSize="none" text="挑战一次需要     枚金币">
+    <text id="n25_rwnu" name="n25" xy="219,407" size="235,32" group="n32_htyw" font="黑体" fontSize="20" color="#666666" autoSize="none" text="挑战一次需要     枚金币">
       <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
     </text>
-    <text id="n26_rwnu" name="n26" xy="344,402" size="44,34" group="n32_htyw" font="黑体" fontSize="30" color="#ff6600" align="center" vAlign="middle" autoSize="none" bold="true" text="6">
-      <relation target="n25_rwnu" sidePair="center-center,middle-middle"/>
+    <text id="n26_rwnu" name="n26" xy="356,395" size="44,44" group="n32_htyw" font="黑体" fontSize="40" color="#ff6600" vAlign="middle" autoSize="none" bold="true" text="6">
+      <relation target="n25_rwnu" sidePair="left-left,middle-middle"/>
     </text>
-    <group id="n32_htyw" name="n32" xy="217,402" size="235,40"/>
+    <group id="n32_htyw" name="n32" xy="219,395" size="235,44" advanced="true">
+      <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
+    </group>
   </displayList>
 </component>

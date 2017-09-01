@@ -324,15 +324,13 @@ class PlayScene extends BaseScreen {
 			const addExp = Util.getAwardExp(result.length);
 			// 获得奖励
 			const award = Util.checkAward(addExp);
-			if (award >= 0) {
-				// 升级了，那就弹个窗
+			if (award > 0) {
+				// 升级了并且有奖励，那就弹个窗
 				LevelUpAwardPanel.instance.show();
-				if (award > 0) {
-					const newDollar = LocalStorage.getItem(LocalStorageKey.dollar) + award;
-					LocalStorage.setItem(LocalStorageKey.dollar, newDollar);
-					LocalStorage.saveToLocal();
-					this._topBar1.getChild('n2').text = newDollar.toString();
-				}
+				const newDollar = LocalStorage.getItem(LocalStorageKey.dollar) + award;
+				LocalStorage.setItem(LocalStorageKey.dollar, newDollar);
+				LocalStorage.saveToLocal();
+				this._topBar1.getChild('n2').text = newDollar.toString();
 			}
 			this._topBar1.getChild('n4').text = Util.getLv().toString();
 			const progress = Util.getExpProgress();
@@ -549,21 +547,32 @@ class PlayScene extends BaseScreen {
 			let isCanGoOn = false;
 			const starDataArr = this._starDataArr;
 			let val = -1;
+			let isAllStarRemoved = true;
 			for (let r = 0; r < 10; r++) {
 				for (let c = 0; c < 10; c++) {
-					val = starDataArr[r][c];
-					if (val !== -1) {
-						if (c < 9 && val === starDataArr[r][c + 1]) {
-							isCanGoOn = true;
-							break;
-						}
-						if (r < 9 && val === starDataArr[r + 1][c]) {
-							isCanGoOn = true;
-							break;
-						}
+					if (starDataArr[r][c] != -1) {
+						isAllStarRemoved = false;
+						break;
 					}
 				}
-				if (isCanGoOn) break;
+			}
+			if (!isAllStarRemoved) {
+				for (let r = 0; r < 10; r++) {
+					for (let c = 0; c < 10; c++) {
+						val = starDataArr[r][c];
+						if (val !== -1) {
+							if (c < 9 && val === starDataArr[r][c + 1]) {
+								isCanGoOn = true;
+								break;
+							}
+							if (r < 9 && val === starDataArr[r + 1][c]) {
+								isCanGoOn = true;
+								break;
+							}
+						}
+					}
+					if (isCanGoOn) break;
+				}
 			}
 			if (!isCanGoOn) {
 				// 判断一下，是否达到了目标分数
@@ -591,22 +600,39 @@ class PlayScene extends BaseScreen {
 		let waitTime = 0;
 		// 消除剩下的星星，然后到下一关
 		this._isRemovingLeftStars = true;
-		for (let c = 9; c > -1; c--) {
+		let hasLeftStar = false;
+		for (let c = 0; c < 10; c++) {
 			for (let r = 0; r < 10; r++) {
-				if (starDataArr[r][c] !== -1) {
-					starIndex = this._getStarIndex(r, c);
-					let removedStar = this._starArr.splice(starIndex, 1)[0];
-					waitTime += 60;
-					egret.Tween.get(removedStar).wait(waitTime).call(this._removeStar, this, [removedStar, r === 9 && c === 0, true]);
+				if (starDataArr[r][c] != -1) {
+					hasLeftStar = true;
+					break;
 				}
 			}
 		}
+		if (hasLeftStar) {
+			for (let c = 9; c > -1; c--) {
+				for (let r = 0; r < 10; r++) {
+					if (starDataArr[r][c] !== -1) {
+						starIndex = this._getStarIndex(r, c);
+						let removedStar = this._starArr.splice(starIndex, 1)[0];
+						waitTime += 60;
+						egret.Tween.get(removedStar).wait(waitTime).call(this._removeStar, this, [removedStar, r === 9 && c === 0, true]);
+					}
+				}
+			}
+		} else {
+			this._removeStar(null, true);
+		}
+
 	}
 
 	private _removeStar(star: Star, goToNextLevel: boolean = false, playParticle: boolean = false): void {
-		star.removeEventListener(egret.TouchEvent.TOUCH_TAP, this._onStarTouched, this);
-		star.removeFromParent();
-		star.dispose();
+		if (star) {
+			star.removeEventListener(egret.TouchEvent.TOUCH_TAP, this._onStarTouched, this);
+			star.removeFromParent();
+			star.dispose();
+		}
+
 		if (goToNextLevel) {
 			const curLevel = LocalStorage.getItem(LocalStorageKey.lastLevel) + 1;
 			LocalStorage.setItem(LocalStorageKey.lastLevel, curLevel);
@@ -628,7 +654,7 @@ class PlayScene extends BaseScreen {
 			LocalStorage.saveToLocal();
 			this.reset(this._playType);
 		}
-		if (playParticle) {
+		if (playParticle && star) {
 			// 播放个粒子动画
 			//获取纹理
 			const texture = RES.getRes(`star001_0${star.type + 1}_2_png`);

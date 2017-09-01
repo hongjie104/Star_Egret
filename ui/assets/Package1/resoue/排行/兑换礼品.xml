@@ -16,10 +16,14 @@
     <component id="n34_nb58" name="n34" src="nb58c2x" xy="564,17">
       <relation target="n1_h838" sidePair=""/>
     </component>
-    <text id="n47_o0um" name="n47" xy="201,135" size="98,34" group="n54_jze4" font="黑体" fontSize="30" color="#347eb4" align="right" bold="true" text="你拥有    "/>
-    <text id="n48_o0um" name="n48" xy="359,132" size="91,37" group="n54_jze4" font="ui://yejc893vo0umc6m" fontSize="35" color="#ffffff" autoSize="none" bold="true" text="4"/>
-    <image id="n56_fi1a" name="n56" src="fi1ac9c" xy="317,134" size="34,33" group="n54_jze4" aspect="true"/>
-    <group id="n54_jze4" name="n54" xy="201,132" size="249,37" advanced="true">
+    <text id="n47_o0um" name="n47" xy="190,135" size="98,34" group="n54_jze4" font="黑体" fontSize="30" color="#347eb4" align="right" autoSize="none" bold="true" text="你拥有    ">
+      <relation target="n56_fi1a" sidePair="right-left,middle-middle"/>
+    </text>
+    <text id="n48_o0um" name="n48" xy="348,132" size="113,37" group="n54_jze4" font="ui://yejc893vo0umc6m" fontSize="35" color="#ffffff" autoSize="none" bold="true" text="4">
+      <relation target="n56_fi1a" sidePair="left-right"/>
+    </text>
+    <image id="n56_fi1a" name="n56" src="fi1ac9c" xy="306,134" size="34,33" group="n54_jze4" aspect="true"/>
+    <group id="n54_jze4" name="n54" xy="190,132" size="271,37" advanced="true">
       <relation target="n25_nb58" sidePair="top-bottom,center-center"/>
     </group>
     <list id="n55_h75c" name="n55" xy="58,186" size="502,553" overflow="scroll">
@@ -31,7 +35,9 @@
       <item url="ui://yejc893vwtltc9u"/>
     </list>
     <text id="n57_wtlt" name="n57" xy="93,794" size="429,48" group="n59_wtlt" font="黑体" fontSize="18" color="#666666" align="center" autoSize="none" text="奖品兑换后，工作人员将在3个工作日内与您联系。&#xA;本活动最终解释权归本公司所有。"/>
-    <text id="n58_wtlt" name="n58" xy="93,758" size="429,48" group="n59_wtlt" font="黑体" fontSize="24" color="#ff6600" align="center" autoSize="none" text="客服电话400840211"/>
+    <text id="n58_wtlt" name="n58" xy="93,758" size="429,36" group="n59_wtlt" font="黑体" fontSize="24" color="#ff6600" align="center" autoSize="none" text="客服电话400840211">
+      <relation target="n57_wtlt" sidePair="center-center,bottom-top"/>
+    </text>
     <group id="n59_wtlt" name="n59" xy="93,758" size="429,84" advanced="true">
       <relation target="n1_h838" sidePair="center-center,bottom-bottom"/>
     </group>
