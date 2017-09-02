@@ -317,6 +317,7 @@
     <component id="qf9lca9" name="改名.xml" path="/resoue/登录界面/" exported="true"/>
     <component id="qf9lcaa" name="改名弹窗.xml" path="/GAME/" exported="true"/>
     <image id="a8ghcab" name="ui0020014.png" path="/" exported="true"/>
+    <image id="pq8ccac" name="moye1.png" path="/" exported="true"/>
   </resources>
   <publish name="Package1" path="D:\hongjie\Star_Egret\resource\assets"/>
 </packageDescription>

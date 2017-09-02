@@ -19,14 +19,8 @@
     <component id="n31_w587" name="n31" src="w587c5d" xy="193,442" aspect="true">
       <relation target="n1_h838" sidePair="center-center,bottom-bottom"/>
     </component>
-    <text id="n25_rwnu" name="n25" xy="219,407" size="235,32" group="n32_htyw" font="黑体" fontSize="20" color="#666666" autoSize="none" text="挑战一次需要     枚金币">
+    <image id="n33_pq8c" name="n33" src="pq8ccac" xy="217,395">
       <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
-    </text>
-    <text id="n26_rwnu" name="n26" xy="356,395" size="44,44" group="n32_htyw" font="黑体" fontSize="40" color="#ff6600" vAlign="middle" autoSize="none" bold="true" text="6">
-      <relation target="n25_rwnu" sidePair="left-left,middle-middle"/>
-    </text>
-    <group id="n32_htyw" name="n32" xy="219,395" size="235,44" advanced="true">
-      <relation target="n1_h838" sidePair="bottom-bottom,center-center"/>
-    </group>
+    </image>
   </displayList>
 </component>

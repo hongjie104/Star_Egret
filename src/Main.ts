@@ -99,6 +99,12 @@ class Main extends egret.DisplayObjectContainer {
         Util.init();
         LocalStorage.init();
 
+        // 更新一下周排行和月排行的数据
+        // const now = new Date();
+        // const lastWeekRankRecoed:number = LocalStorage.getItem(LocalStorageKey.weekRankRecord);
+        // const nowWeekRankRecoed = Util.getWeekIndex(now);
+        // if(lastWeekRankRecoed !=)
+
         fairygui.UIPackage.addPackage("Package1");
         this.stage.addChild(fairygui.GRoot.inst.displayObject);
         Main.stageWidth = this.stage.stageWidth;
@@ -112,7 +118,7 @@ class Main extends egret.DisplayObjectContainer {
         LiuXingResultPanel.instance.addEventListener(StarEvent.ENTER_MAIN_SCREEN, this._onEnterMainScreen, this);
         this._onEnterMainScreen();
 
-        console.log(TDGA.getDeviceId());
+        console.log('设备号：' + TDGA.getDeviceId());
     }
 
     private _onEnterMainScreen(evt?: StarEvent): void {
@@ -155,7 +161,8 @@ class Main extends egret.DisplayObjectContainer {
 
     private _onEnterLevel(evt: StarEvent): void {
         const lastLevel: number = LocalStorage.getItem(LocalStorageKey.lastLevel);
-        if (lastLevel + 1 <= evt.level) {
+        const lastFailedLevel: number = LocalStorage.getItem(LocalStorageKey.lastFailedLevel);
+        if (lastLevel + 1 < evt.level || (lastLevel + 1 == evt.level && lastFailedLevel != evt.level)) {
             this._enterLevel();
         } else {
             this._targetLevel = evt.level;
@@ -175,7 +182,8 @@ class Main extends egret.DisplayObjectContainer {
             uiPanel.getChild('n5').addClickListener(this._onLevelSelectorOK, this);
             uiPanel.getChild('n16').text = Util.getTargetScore(evt.level).toString();
             // 从这一关开始玩所需要消耗的金币
-            uiPanel.getChild('n13').text = '0';
+            uiPanel.data = lastFailedLevel == evt.level ? 6 : 0;
+            uiPanel.getChild('n13').text = uiPanel.data.toString();
 
             levelSelector.getController('c1').selectedIndex = 1;
             levelSelector.getTransition('t0').play();
@@ -186,12 +194,28 @@ class Main extends egret.DisplayObjectContainer {
     private _onLevelSelectorCancel(evt: egret.TouchEvent, cb?: Function): void {
         const levelSelector = (evt.currentTarget as fairygui.GButton).parent.parent;
         const uiPanel = levelSelector.getChild('n0').asCom;
+        let paySuccess = true;
+        const costDollar: number = uiPanel.data;
+        if (costDollar > 0) {
+            const myDollar: number = LocalStorage.getItem(LocalStorageKey.dollar);
+            if (myDollar >= costDollar) {
+                LocalStorage.setItem(LocalStorageKey.dollar, myDollar - costDollar);
+                LocalStorage.saveToLocal();
+            } else {
+                paySuccess = false;
+            }
+        }
         uiPanel.getChild('n4').removeClickListener(this._onLevelSelectorCancel, this);
         uiPanel.getChild('n5').removeClickListener(this._onLevelSelectorOK, this);
         levelSelector.getTransition('t2').play(() => {
             levelSelector.removeFromParent();
             levelSelector.dispose();
-            if (cb) cb.call(this);
+            if (paySuccess) {
+                if (cb) cb.call(this);
+            } else {
+                // 钱不够
+                PayPanel.instance.show();
+            }
         }, this);
     }
 

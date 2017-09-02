@@ -28,6 +28,17 @@ class RankPanel extends BasePanel {
 
 		ui.getChild('n32').addClickListener(this._onFetchWeekAward, this);
 		ui.getChild('n42').addClickListener(this._onFetchMonthAward, this);
+
+		const now = new Date();
+		// 周排行剩余天数
+		const nowday = now.getDay();
+		let leftDay = 1;
+		if (nowday > 0) {
+			leftDay = 8 - nowday;
+		}
+		ui.getChild('n46').text = leftDay.toString();
+		// 月排行剩余天数
+		ui.getChild('n48').text = Util.getLeftDaysInMonth(now).toString();
 	}
 
 	/**

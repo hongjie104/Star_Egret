@@ -18,9 +18,9 @@ class LevelUpAwardPanel extends BasePanel {
 	}
 
 	protected _init(): void {
-		this._ui = Main.createComponent('等级奖励弹窗', 670, 550);
+		this._ui = Main.createComponent('等级奖励弹窗', 670, 500);
 		this._ui.x = (Main.stageWidth - 670) >> 1;
-		this._ui.y = (Main.stageHeight - 550) >> 1;
+		this._ui.y = (Main.stageHeight - 500) >> 1;
 		this._ui.getController('c1').selectedIndex = 1;
 		const ui = this._ui.getChild('n0').asCom;
 		ui.getChild('n22').addClickListener(this._onFetchAward, this);
