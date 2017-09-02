@@ -25,6 +25,7 @@ class FetchGiftPanel extends BasePanel {
 		console.log(LocalStorage.getItem(LocalStorageKey.diamonds).toString());
 		
 		ui.getChild('n48').text = LocalStorage.getItem(LocalStorageKey.diamonds).toString();
+		// ui.getChild('n48').text = '1500';
 	}
 
 	static get instance(): FetchGiftPanel {

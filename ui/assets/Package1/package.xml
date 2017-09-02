@@ -318,5 +318,5 @@
     <component id="qf9lcaa" name="改名弹窗.xml" path="/GAME/" exported="true"/>
     <image id="a8ghcab" name="ui0020014.png" path="/" exported="true"/>
   </resources>
-  <publish name="Package1" path="C:\hongjie\Star_Egret\resource\assets"/>
+  <publish name="Package1" path="D:\hongjie\Star_Egret\resource\assets"/>
 </packageDescription>

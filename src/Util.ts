@@ -132,7 +132,7 @@ class Util {
 		if (numStar >= 6) return 1;
 		return 0;
 	}
-	
+
 	/**
 	 * 通关大礼包
 	 */
@@ -144,5 +144,14 @@ class Util {
 			{ type: AWARD_TYPE.dollar, count: 40 },
 			{ type: AWARD_TYPE.dollar, count: 30 }
 		];
+	}
+
+	static getRank(score: number): number {
+		if (score > 10000) return 6;
+		if (score > 9000) return 38;
+		if (score > 8000) return 53;
+		if (score > 7000) return 172;
+		if (score > 6000) return 637;
+		return score - (score - 6000);
 	}
 }
