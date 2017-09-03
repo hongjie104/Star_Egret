@@ -146,13 +146,19 @@ class Util {
 		];
 	}
 
-	static getRank(score: number): number {
-		if (score > 10000) return 6;
-		if (score > 9000) return 38;
-		if (score > 8000) return 53;
-		if (score > 7000) return 172;
-		if (score > 6000) return 637;
-		return score - (score - 6000);
+	static getLiuXingRank(score: number): { rank: number, dollar: number } {
+		if (score < 10000) return { rank: 0, dollar: 0 };
+		if (score < 15000) return { rank: 1, dollar: 1 };
+		if (score < 25000) return { rank: 2, dollar: 2 };
+		if (score < 35000) return { rank: 3, dollar: 3 };
+		if (score < 45000) return { rank: 4, dollar: 4 };
+		if (score < 55000) return { rank: 5, dollar: 5 };
+		if (score < 65000) return { rank: 6, dollar: 6 };
+		if (score < 75000) return { rank: 7, dollar: 7 };
+		if (score < 85000) return { rank: 8, dollar: 8 };
+		if (score < 95000) return { rank: 9, dollar: 9 };
+		if (score < 105000) return { rank: 10, dollar: 10 };
+		return { rank: 11, dollar: 11 };
 	}
 
 	static getLeftDaysInMonth(nowDate) {

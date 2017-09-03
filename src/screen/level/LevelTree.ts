@@ -45,7 +45,7 @@ class LevelTree extends egret.EventDispatcher {
 	private _onLevelBtnClicked(evt: egret.TouchEvent): void {
 		const btn = evt.currentTarget as fairygui.GButton;
 		const level: number = btn.data;
-		if (level <= LocalStorage.getItem(LocalStorageKey.lastLevel) + 1) {
+		if (level <= LocalStorage.getItem(LocalStorageKey.maxLevel) + 1) {
 			this.dispatchEvent(new StarEvent(StarEvent.ENTER_LEVEL, level));
 		}
 	}

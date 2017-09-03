@@ -160,7 +160,7 @@ class Main extends egret.DisplayObjectContainer {
     }
 
     private _onEnterLevel(evt: StarEvent): void {
-        const lastLevel: number = LocalStorage.getItem(LocalStorageKey.lastLevel);
+        const lastLevel: number = LocalStorage.getItem(LocalStorageKey.maxLevel);
         const lastFailedLevel: number = LocalStorage.getItem(LocalStorageKey.lastFailedLevel);
         if (lastLevel + 1 < evt.level || (lastLevel + 1 == evt.level && lastFailedLevel != evt.level)) {
             this._enterLevel();
@@ -273,6 +273,8 @@ class Main extends egret.DisplayObjectContainer {
 
     static createComponent(name: string, w?: number, h?: number): fairygui.GComponent {
         const p = fairygui.UIPackage.createObject("Package1", name).asCom;
+        // p.viewWidth = Main.stageWidth;
+        // p.viewHeight = Main.stageHeight;
         if (w) {
             p.viewWidth = w;
         }

@@ -110,6 +110,8 @@ class PlayScene extends BaseScreen {
 		BuyItemPanel.instance.addEventListener(egret.Event.CLOSE, this._onBuyItemPanelClosed, this);
 		LevelUpAwardPanel.instance.addEventListener(egret.Event.CLOSE, this.updateDollar, this);
 		FailPanel.instance.addEventListener(egret.Event.CLOSE, this.updateDollar, this);
+
+		SettingPanel.instance.addEventListener(egret.Event.CLOSE, this._onSettingPanelClosed, this);
 	}
 
 	updateDollar(): void {
@@ -224,6 +226,10 @@ class PlayScene extends BaseScreen {
 		if (this._timer && this._timer.running) {
 			this._timer.stop();
 		}
+	}
+
+	private _updateRank(rank: number) {
+		this._topBar2.getChild('n8').text = rank.toString();
 	}
 
 	private _onStarTouched(evt: egret.TouchEvent): void {
@@ -344,6 +350,9 @@ class PlayScene extends BaseScreen {
 				this._leftSecond += awardSecond;
 				this._topBar2.getChild('n17').text = this._leftSecond.toString();
 			}
+			// 算算排名
+			const rankAndDollar = Util.getLiuXingRank(this._addScore);
+			this._updateRank(rankAndDollar.rank);
 		}
 
 		// 播放个动画
@@ -638,6 +647,10 @@ class PlayScene extends BaseScreen {
 
 		if (goToNextLevel) {
 			const curLevel = LocalStorage.getItem(LocalStorageKey.lastLevel) + 1;
+			const maxLevel: number = LocalStorage.getItem(LocalStorageKey.maxLevel);
+			if (curLevel > maxLevel) {
+				LocalStorage.setItem(LocalStorageKey.maxLevel, curLevel);
+			}
 			LocalStorage.setItem(LocalStorageKey.lastLevel, curLevel);
 			LocalStorage.setItem(LocalStorageKey.totalScore, this._initScore + this._addScore);
 			const levelScore = LocalStorage.getItem(LocalStorageKey.levelScore) as Array<number>;
@@ -759,6 +772,11 @@ class PlayScene extends BaseScreen {
 	private _showSettingPanel(): void {
 		SettingPanel.instance.ui.getChild('n0').asCom.getController('c1').selectedIndex = 1;
 		SettingPanel.instance.show();
+		if (this._playType == PLAY_TYPE.liuXing) {
+			if (this._timer && this._timer.running) {
+				this._timer.stop();
+			}
+		}
 	}
 
 	/**
@@ -855,6 +873,14 @@ class PlayScene extends BaseScreen {
 
 	private _onChangeTypePanelClosed(): void {
 		this._status = PLAY_STATUS.normal;
+	}
+
+	private _onSettingPanelClosed(): void {
+		if (this._playType == PLAY_TYPE.liuXing) {
+			if (this._timer && !this._timer.running) {
+				this._timer.start();
+			}
+		}
 	}
 
 	private _addSecond(): void {
@@ -1002,14 +1028,8 @@ class PlayScene extends BaseScreen {
 		}
 		this._topBar2.getChild('n17').text = this._leftSecond.toString();
 		if (this._leftSecond < 1) {
-			const maxScore = LocalStorage.getItem(LocalStorageKey.liuXingMax);
-			if (maxScore < this._addScore) {
-				LocalStorage.setItem(LocalStorageKey.liuXingMax, this._addScore);
-				LocalStorage.saveToLocal();
-			}
-
 			// 流行模式结束了
-			LiuXingResultPanel.instance.show();
+			LiuXingResultPanel.instance.show(this._addScore);
 		}
 	}
 

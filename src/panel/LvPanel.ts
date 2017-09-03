@@ -10,6 +10,7 @@ class LvPanel extends BasePanel {
 		this._ui = Main.createComponent('等级弹窗', 650, 1000);
 		this._ui.x = (Main.stageWidth - 650) >> 1;
 		this._ui.y = (Main.stageHeight - 1000) >> 1;
+		// this._ui = Main.createComponent('等级弹窗');
 		this._ui.getController('c1').selectedIndex = 1;
 		const ui = this._ui.getChild('n0').asCom;
 		ui.getChild('n34').addClickListener(this._onClose, this);

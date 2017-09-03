@@ -5,8 +5,28 @@ class LiuXingResultPanel extends BasePanel {
 
 	private static _instance: LiuXingResultPanel;
 
+	private _rankAndDollar: { rank: number, dollar: number } = null;
+
 	public constructor() {
 		super();
+	}
+
+	show(param?: any): void {
+		let maxScore: number = LocalStorage.getItem(LocalStorageKey.liuXingMax);
+		const curScore: number = param;
+		if (maxScore < curScore) {
+			maxScore = curScore;
+			LocalStorage.setItem(LocalStorageKey.liuXingMax, maxScore);
+			LocalStorage.saveToLocal();
+		}
+
+		const ui = this._ui.getChild('n0').asCom;
+		ui.getChild('n33').text = maxScore.toString();
+		this._rankAndDollar = Util.getLiuXingRank(curScore);
+		ui.getChild('n34').text = this._rankAndDollar.rank.toString();
+		ui.getChild('n35').text = curScore.toString();
+		ui.getChild('n39').text = this._rankAndDollar.dollar.toString();
+		super.show(param);
 	}
 
 	protected _init(): void {
@@ -20,6 +40,11 @@ class LiuXingResultPanel extends BasePanel {
 	}
 
 	protected _closed(): void {
+		const dollar = this._rankAndDollar.dollar;
+		if (dollar > 0) {
+			LocalStorage.setItem(LocalStorageKey.dollar, LocalStorage.getItem(LocalStorageKey.dollar) + dollar);
+			LocalStorage.saveToLocal();
+		}
 		super._closed();
 		this.dispatchEvent(new StarEvent(StarEvent.ENTER_MAIN_SCREEN));
 	}

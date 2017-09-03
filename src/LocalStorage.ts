@@ -1,6 +1,6 @@
 
 enum LocalStorageKey {
-    lastLevel, totalScore, levelScore, touchType, soundEnabled, dollar, exp, maxTotalScore, item1, item2, item3, lastFetchLoginAwardTime, fetchLoginAwardCount, diamonds, item4, liuXingMax, userName, lastFailedLevel, weekRankRecord, weekRank, weekScore, monthRankRecord, monthRank, monthScore
+    lastLevel, totalScore, levelScore, touchType, soundEnabled, dollar, exp, maxTotalScore, item1, item2, item3, lastFetchLoginAwardTime, fetchLoginAwardCount, diamonds, item4, liuXingMax, userName, lastFailedLevel, weekRankRecord, weekRank, weekScore, monthRankRecord, monthRank, monthScore, maxLevel
 }
 
 class LocalStorage {
@@ -13,7 +13,7 @@ class LocalStorage {
         if (!LocalStorage._isInited) {
             const s = egret.localStorage.getItem('star');
             if (!s) {
-                LocalStorage.localStorageData = [0, 0, [], 1, true, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, -1, 0, 0];
+                LocalStorage.localStorageData = [0, 0, [], 1, true, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, -1, 0, 0, 0];
             } else {
                 LocalStorage.localStorageData = JSON.parse(s);
             }

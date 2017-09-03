@@ -162,14 +162,14 @@ class LevelScene extends BaseScreen {
 		}
 		this._topBar.getChild('n2').text = userName;
 
-		const lastLevel = LocalStorage.getItem(LocalStorageKey.lastLevel);
-		this._updateLevelBtnStatus(lastLevel);
+		const maxLevel = LocalStorage.getItem(LocalStorageKey.maxLevel);
+		this._updateLevelBtnStatus(maxLevel);
 	}
 
-	private _updateLevelBtnStatus(lastLevel: number): void {
+	private _updateLevelBtnStatus(maxLevel: number): void {
 		const treeArr = this._treeArr;
 		for (let i = 0; i < treeArr.length; i++) {
-			treeArr[i].updateBtnStatus(lastLevel);
+			treeArr[i].updateBtnStatus(maxLevel);
 		}
 	}
 
