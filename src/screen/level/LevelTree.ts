@@ -46,6 +46,7 @@ class LevelTree extends egret.EventDispatcher {
 		const btn = evt.currentTarget as fairygui.GButton;
 		const level: number = btn.data;
 		if (level <= LocalStorage.getItem(LocalStorageKey.maxLevel) + 1) {
+			Util.playSound('select_mp3');
 			this.dispatchEvent(new StarEvent(StarEvent.ENTER_LEVEL, level));
 		}
 	}

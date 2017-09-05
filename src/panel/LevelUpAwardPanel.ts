@@ -31,6 +31,7 @@ class LevelUpAwardPanel extends BasePanel {
 		if (lvAndAward.award > 0) {
 			LocalStorage.setItem(LocalStorageKey.dollar, LocalStorage.getItem(LocalStorageKey.dollar) + lvAndAward.award);
 			LocalStorage.saveToLocal();
+			Util.playSound('pop_mp3');
 		}
 		this._onClose();
 	}

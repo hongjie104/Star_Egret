@@ -10,13 +10,17 @@ class Main extends egret.DisplayObjectContainer {
      */
     private _loadingView: LoadingUI;
 
-    private _curScreen: BaseScreen;
+    private static _curScreen: BaseScreen;
 
     private _targetLevel = 0;
 
     public constructor() {
         super();
         this.addEventListener(egret.Event.ADDED_TO_STAGE, this.onAddToStage, this);
+    }
+
+    static get curScene(): BaseScreen {
+        return Main._curScreen;
     }
 
     private onAddToStage(event: egret.Event) {
@@ -134,7 +138,7 @@ class Main extends egret.DisplayObjectContainer {
         }
 
         this.addChild(mainScene);
-        this._curScreen = mainScene;
+        Main._curScreen = mainScene;
     }
 
     private _onEnterLevelScreen(evt: StarEvent): void {
@@ -142,7 +146,7 @@ class Main extends egret.DisplayObjectContainer {
         const levelScene = LevelScene.instance;
         levelScene.reset();
         this.addChild(levelScene);
-        this._curScreen = levelScene;
+        Main._curScreen = levelScene;
         levelScene.addEventListener(StarEvent.ENTER_LEVEL, this._onEnterLevel, this);
     }
 
@@ -162,7 +166,7 @@ class Main extends egret.DisplayObjectContainer {
     private _onEnterLevel(evt: StarEvent): void {
         const lastLevel: number = LocalStorage.getItem(LocalStorageKey.maxLevel);
         const lastFailedLevel: number = LocalStorage.getItem(LocalStorageKey.lastFailedLevel);
-        if (lastLevel + 1 < evt.level || (lastLevel + 1 == evt.level && lastFailedLevel != evt.level)) {
+        if ((lastLevel + 1 == evt.level && lastFailedLevel > evt.level) || (lastFailedLevel == 0)) {
             this._enterLevel();
         } else {
             this._targetLevel = evt.level;
@@ -182,7 +186,7 @@ class Main extends egret.DisplayObjectContainer {
             uiPanel.getChild('n5').addClickListener(this._onLevelSelectorOK, this);
             uiPanel.getChild('n16').text = Util.getTargetScore(evt.level).toString();
             // 从这一关开始玩所需要消耗的金币
-            uiPanel.data = lastFailedLevel == evt.level ? 6 : 0;
+            uiPanel.data = lastFailedLevel <= evt.level ? 6 : 0;
             uiPanel.getChild('n13').text = uiPanel.data.toString();
 
             levelSelector.getController('c1').selectedIndex = 1;
@@ -196,7 +200,7 @@ class Main extends egret.DisplayObjectContainer {
         const uiPanel = levelSelector.getChild('n0').asCom;
         let paySuccess = true;
         const costDollar: number = uiPanel.data;
-        if (costDollar > 0) {
+        if (cb && costDollar > 0) {
             const myDollar: number = LocalStorage.getItem(LocalStorageKey.dollar);
             if (myDollar >= costDollar) {
                 LocalStorage.setItem(LocalStorageKey.dollar, myDollar - costDollar);
@@ -210,11 +214,13 @@ class Main extends egret.DisplayObjectContainer {
         levelSelector.getTransition('t2').play(() => {
             levelSelector.removeFromParent();
             levelSelector.dispose();
-            if (paySuccess) {
-                if (cb) cb.call(this);
-            } else {
-                // 钱不够
-                PayPanel.instance.show();
+            if (cb) {
+                if (paySuccess) {
+                    cb.call(this);
+                } else {
+                    // 钱不够
+                    PayPanel.instance.show();
+                }
             }
         }, this);
     }
@@ -236,7 +242,7 @@ class Main extends egret.DisplayObjectContainer {
         const playScene = PlayScene.instance;
         playScene.reset(PLAY_TYPE.normal);
         this.addChild(playScene);
-        this._curScreen = playScene;
+        Main._curScreen = playScene;
     }
 
     private _enterLevel2(): void {
@@ -248,19 +254,19 @@ class Main extends egret.DisplayObjectContainer {
         const playScene = PlayScene.instance;
         playScene.reset(PLAY_TYPE.liuXing);
         this.addChild(playScene);
-        this._curScreen = playScene;
+        Main._curScreen = playScene;
     }
 
     private _removeAllScreen(): void {
-        if (this._curScreen) {
-            this.removeChild(this._curScreen);
-            this._curScreen.closed();
-            this._curScreen = null;
+        if (Main._curScreen) {
+            this.removeChild(Main._curScreen);
+            Main._curScreen.closed();
+            Main._curScreen = null;
         }
     }
 
     private _onPaySuccess(): void {
-        this._curScreen.updateDollar();
+        Main._curScreen.updateDollar();
     }
 
     static createPanel(panelName: string): fairygui.GComponent {

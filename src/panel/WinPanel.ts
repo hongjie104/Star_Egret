@@ -48,6 +48,7 @@ class WinPanel extends BasePanel {
 			if (awardArr[0].type == AWARD_TYPE.dollar) {
 				btn.getController('c1').selectedIndex = 1;
 				LocalStorage.setItem(LocalStorageKey.dollar, LocalStorage.getItem(LocalStorageKey.dollar) + awardArr[0].count);
+				Util.playSound('pop_mp3');
 			} else {
 				btn.getController('c1').selectedIndex = 2;
 				LocalStorage.setItem(LocalStorageKey.diamonds, LocalStorage.getItem(LocalStorageKey.diamonds) + awardArr[0].count);

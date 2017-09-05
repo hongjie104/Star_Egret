@@ -71,10 +71,12 @@ class MainScene extends BaseScreen {
 	}
 
 	private _onEnterLevelScreen(): void {
+		Util.playSound('select_mp3');
 		this.dispatchEvent(new StarEvent(StarEvent.ENTER_LEVEL_SCREEN));
 	}
 
 	private _onEnterLevel2Screen(): void {
+		Util.playSound('select_mp3');
 		this.dispatchEvent(new StarEvent(StarEvent.ENTER_LEVEL_2));
 	}
 
@@ -82,30 +84,37 @@ class MainScene extends BaseScreen {
 	 * 打开兑换码界面的事件
 	 */
 	private _onRedeemCode(): void {
+		Util.playSound('select_mp3');
 		this.dispatchEvent(new StarEvent(StarEvent.SHOW_REDEEM_CODE));
 	}
 
 	private _onActivity(): void {
+		Util.playSound('select_mp3');
 		this.dispatchEvent(new StarEvent(StarEvent.SHOW_ACTIVITY));
 	}
 
 	private _onSetting(): void {
+		Util.playSound('select_mp3');
 		this.dispatchEvent(new StarEvent(StarEvent.SHOW_SETTING));
 	}
 
 	private _onShop(): void {
+		Util.playSound('select_mp3');
 		ShopPanel.instance.show();
 	}
 
 	private _onGift(): void {
+		Util.playSound('select_mp3');
 		FetchGiftPanel.instance.show();
 	}
 
 	private _onNewFish(): void {
+		Util.playSound('select_mp3');
 		NewFishPanel.instance.show();
 	}
 
 	private _onPeckOfGifts(): void {
+		Util.playSound('select_mp3');
 		PeckOfGiftsPanel.instance.show();
 	}
 

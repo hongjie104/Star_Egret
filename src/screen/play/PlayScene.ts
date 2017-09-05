@@ -279,6 +279,8 @@ class PlayScene extends BaseScreen {
 							mc.dispose();
 						});
 						this._xiaoChu([{ row: starTouched.row, col: starTouched.col }]);
+
+						Util.playSound('props_bomb_mp3');
 					});
 					this._status = PLAY_STATUS.normal;
 					return;
@@ -321,6 +323,7 @@ class PlayScene extends BaseScreen {
 	}
 
 	private _xiaoChu(result: { row: number, col: number }[]): void {
+		Util.playSound('pop_mp3');
 		// 算一下这一次消除得了多少分
 		const addScore = Util.getScore(result.length);
 		this._addScore += addScore;
@@ -336,6 +339,7 @@ class PlayScene extends BaseScreen {
 				const newDollar = LocalStorage.getItem(LocalStorageKey.dollar) + award;
 				LocalStorage.setItem(LocalStorageKey.dollar, newDollar);
 				LocalStorage.saveToLocal();
+				Util.playSound('pop_mp3');
 				this._topBar1.getChild('n2').text = newDollar.toString();
 			}
 			this._topBar1.getChild('n4').text = Util.getLv().toString();
@@ -359,10 +363,13 @@ class PlayScene extends BaseScreen {
 		let animationName: string = null, h = 400, w = 640;
 		if (result.length > 11) {
 			animationName = 'PERFECT';
+			Util.playSound('combo_3_mp3');
 		} else if (result.length > 7) {
 			animationName = 'cool';
+			Util.playSound('V_combo20_mp3');
 		} else if (result.length > 5) {
 			animationName = 'good';
+			Util.playSound('combo_1_mp3');
 			w = 400;
 		}
 		if (animationName) {
@@ -646,6 +653,7 @@ class PlayScene extends BaseScreen {
 		}
 
 		if (goToNextLevel) {
+			Util.playSound('nextgameround_mp3');
 			const curLevel = LocalStorage.getItem(LocalStorageKey.lastLevel) + 1;
 			const maxLevel: number = LocalStorage.getItem(LocalStorageKey.maxLevel);
 			if (curLevel > maxLevel) {
@@ -869,6 +877,8 @@ class PlayScene extends BaseScreen {
 		}
 		const star = ChangeTypePanel.instance.star;
 		this._starDataArr[star.row][star.col] = star.type;
+
+		Util.playSound('props_paint_mp3');
 	}
 
 	private _onChangeTypePanelClosed(): void {
@@ -980,6 +990,8 @@ class PlayScene extends BaseScreen {
 			animation.removeFromParent();
 			animation.dispose();
 		});
+
+		Util.playSound('props_rainbow_mp3');
 
 		const starDataArr = this._starDataArr;
 		// 需要变换的位置

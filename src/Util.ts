@@ -206,4 +206,9 @@ class Util {
 	static isLeapYear(year) {
 		return (year % 400 == 0) || (year % 4 == 0 && year % 100 != 0);
 	}
+
+	static playSound(soundName: string, loops: number = 1): void {
+		const sound: egret.Sound = RES.getRes(soundName);
+		sound.play(0, loops);
+	}
 }
