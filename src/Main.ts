@@ -138,6 +138,7 @@ class Main extends egret.DisplayObjectContainer {
         }
 
         this.addChild(mainScene);
+        mainScene.show();
         Main._curScreen = mainScene;
     }
 
@@ -146,6 +147,7 @@ class Main extends egret.DisplayObjectContainer {
         const levelScene = LevelScene.instance;
         levelScene.reset();
         this.addChild(levelScene);
+        levelScene.show();
         Main._curScreen = levelScene;
         levelScene.addEventListener(StarEvent.ENTER_LEVEL, this._onEnterLevel, this);
     }
@@ -242,6 +244,7 @@ class Main extends egret.DisplayObjectContainer {
         const playScene = PlayScene.instance;
         playScene.reset(PLAY_TYPE.normal);
         this.addChild(playScene);
+        playScene.show();
         Main._curScreen = playScene;
     }
 
@@ -254,6 +257,7 @@ class Main extends egret.DisplayObjectContainer {
         const playScene = PlayScene.instance;
         playScene.reset(PLAY_TYPE.liuXing);
         this.addChild(playScene);
+        playScene.show();
         Main._curScreen = playScene;
     }
 

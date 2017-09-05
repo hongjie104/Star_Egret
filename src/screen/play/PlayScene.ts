@@ -119,6 +119,10 @@ class PlayScene extends BaseScreen {
 		this._topBar2.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.dollar).toString();
 	}
 
+	show(): void {
+		SettingPanel.instance.addEventListener(StarEvent.ENTER_MAIN_SCREEN, this._onEnterMainScreen, this);
+	}
+
 	reset(playType?: any): void {
 		if (!playType) {
 			playType = PLAY_TYPE.normal;
@@ -226,6 +230,8 @@ class PlayScene extends BaseScreen {
 		if (this._timer && this._timer.running) {
 			this._timer.stop();
 		}
+
+		SettingPanel.instance.removeEventListener(StarEvent.ENTER_MAIN_SCREEN, this._onEnterMainScreen, this);
 	}
 
 	private _updateRank(rank: number) {
@@ -1042,6 +1048,17 @@ class PlayScene extends BaseScreen {
 		if (this._leftSecond < 1) {
 			// 流行模式结束了
 			LiuXingResultPanel.instance.show(this._addScore);
+		}
+	}
+
+	// 中途退出，那么就算是失败了
+	private _onEnterMainScreen(): void {
+		const curLevel = LocalStorage.getItem(LocalStorageKey.lastLevel) + 1;
+		LocalStorage.setItem(LocalStorageKey.lastFailedLevel, curLevel);
+		LocalStorage.saveToLocal();
+
+		if (this._timer && this._timer.running) {
+			this._timer.stop();
 		}
 	}
 
