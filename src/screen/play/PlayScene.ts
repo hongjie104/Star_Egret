@@ -179,7 +179,7 @@ class PlayScene extends BaseScreen {
 			this._addScore = 0;
 			this._topBar2.getChild('n6').text = '0';
 			// 最高记录
-			this._topBar2.getChild('n7').text = LocalStorage.getItem(LocalStorageKey.liuXingMax).toString();
+			this._topBar2.getChild('n7').text = LocalStorage.getItem(LocalStorageKey.liuXingMax).toString();	
 			// 三种道具的数量
 			this._topBar2.getChild('n10').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item4).toString();
 			this._topBar2.getChild('n11').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item3).toString();
@@ -191,7 +191,7 @@ class PlayScene extends BaseScreen {
 			}
 			// 排名
 			this._targetSocre = Util.getTargetScore(curLevel);
-			this._topBar2.getChild('n8').text = '1';
+			this._updateRank(0);
 			// 倒计时时间
 			this._leftSecond = 40;
 			this._topBar2.getChild('n17').text = this._leftSecond.toString();
