@@ -208,7 +208,9 @@ class Util {
 	}
 
 	static playSound(soundName: string, loops: number = 1): void {
-		const sound: egret.Sound = RES.getRes(soundName);
-		sound.play(0, loops);
+		if (LocalStorage.getItem(LocalStorageKey.soundEnabled)) {
+			const sound: egret.Sound = RES.getRes(soundName);
+			sound.play(0, loops);
+		}
 	}
 }

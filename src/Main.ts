@@ -168,7 +168,7 @@ class Main extends egret.DisplayObjectContainer {
     private _onEnterLevel(evt: StarEvent): void {
         const lastLevel: number = LocalStorage.getItem(LocalStorageKey.maxLevel);
         const lastFailedLevel: number = LocalStorage.getItem(LocalStorageKey.lastFailedLevel);
-        if ((lastLevel + 1 == evt.level && lastFailedLevel > evt.level) || (lastFailedLevel == 0)) {
+        if (evt.level == 1 || (lastLevel + 1 == evt.level && lastFailedLevel > evt.level) || (lastFailedLevel == 0)) {
             this._enterLevel();
         } else {
             this._targetLevel = evt.level;

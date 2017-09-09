@@ -183,7 +183,7 @@ class PlayScene extends BaseScreen {
 			// 三种道具的数量
 			this._topBar2.getChild('n10').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item4).toString();
 			this._topBar2.getChild('n11').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item3).toString();
-			this._topBar2.getChild('n12').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item2).toString();
+			this._topBar2.getChild('n12').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item1).toString();
 			// 当前关卡的最高分
 			const levelScoreArr = LocalStorage.getItem(LocalStorageKey.levelScore) as Array<number>;
 			while (curLevel > levelScoreArr.length) {
@@ -264,6 +264,7 @@ class PlayScene extends BaseScreen {
 						LocalStorage.setItem(LocalStorageKey.item1, itemCount - 1);
 						LocalStorage.saveToLocal();
 						this._topBar1.getChild('n10').asCom.getChild('n2').text = (itemCount - 1).toString();
+						this._topBar2.getChild('n12').asCom.getChild('n2').text = (itemCount - 1).toString();
 					}
 					// 先播个动画
 					const animation = Main.createComponent('火箭弹动画', 640, 640);
@@ -879,7 +880,6 @@ class PlayScene extends BaseScreen {
 			LocalStorage.setItem(LocalStorageKey.item2, itemCount - 1);
 			LocalStorage.saveToLocal();
 			this._topBar1.getChild('n11').asCom.getChild('n2').text = (itemCount - 1).toString();
-			// this._topBar2.getChild('n11').asCom.getChild('n2').text = (itemCount - 1).toString();
 		}
 		const star = ChangeTypePanel.instance.star;
 		this._starDataArr[star.row][star.col] = star.type;
@@ -938,7 +938,7 @@ class PlayScene extends BaseScreen {
 		this._topBar1.getChild('n12').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item3).toString();
 		this._topBar2.getChild('n10').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item4).toString();
 		this._topBar2.getChild('n11').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item3).toString();
-		this._topBar2.getChild('n12').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item2).toString();
+		this._topBar2.getChild('n12').asCom.getChild('n2').text = LocalStorage.getItem(LocalStorageKey.item1).toString();
 	}
 
 	private _onBuyItemPanelClosed(): void {

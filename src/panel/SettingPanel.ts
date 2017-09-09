@@ -35,6 +35,12 @@ class SettingPanel extends BasePanel {
 		ui.getChild('n58').addClickListener(this._onSwitchTouchType, this);
 		ui.getChild('n59').addClickListener(this._onShowAbout, this);
 		ui.getChild('n60').addClickListener(this._onShowTips, this);
+
+		const soundEnabled: boolean = LocalStorage.getItem(LocalStorageKey.soundEnabled);
+		ui.getChild('n57').asCom.getController('c1').selectedIndex = soundEnabled ? 1 : 0;
+
+		const touchType: number = LocalStorage.getItem(LocalStorageKey.touchType);
+		ui.getChild('n58').asCom.getController('c1').selectedIndex = touchType === 1 ? 1 : 0;
 	}
 
 	private _onSwitchSoundEnable(): void {
