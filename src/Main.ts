@@ -123,6 +123,9 @@ class Main extends egret.DisplayObjectContainer {
         this._onEnterMainScreen();
 
         console.log('设备号：' + TDGA.getDeviceId());
+        // Net.instance.getData(API.login(TDGA.getDeviceId()), result => {
+        //     console.log(result);
+        // });
     }
 
     private _onEnterMainScreen(evt?: StarEvent): void {
