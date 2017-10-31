@@ -34,6 +34,8 @@ class MainScene extends BaseScreen {
 		this._mainPanel.getChild('n8').addClickListener(this._onPeckOfGifts, this);
 
 		LoginAwardPanel.instance.addEventListener(egret.Event.CLOSE, this.updateDollar, this);
+
+		Net.instance.getData(API.login());
 	}
 
 	updateDollar(): void {
