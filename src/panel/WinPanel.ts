@@ -72,16 +72,18 @@ class WinPanel extends BasePanel {
 			if (awardArr[0].type == AWARD_TYPE.dollar) {
 				btn.getController('c1').selectedIndex = 1;
 				LocalStorage.setItem(LocalStorageKey.dollar, LocalStorage.getItem(LocalStorageKey.dollar) + awardArr[0].count);
+				Net.instance.getData(API.dollarChanged('levelWin', awardArr[0].count));
 				Util.playSound('pop_mp3');
 			} else {
 				btn.getController('c1').selectedIndex = 2;
 				LocalStorage.setItem(LocalStorageKey.diamonds, LocalStorage.getItem(LocalStorageKey.diamonds) + awardArr[0].count);
+				Net.instance.getData(API.diamondsChanged('levelWin', awardArr[0].count));
 			}
 			LocalStorage.saveToLocal();
 			// 给服务器发消息，记录一下
 			this._endDollar = LocalStorage.getItem(LocalStorageKey.dollar);
 			this._endDiamonds = LocalStorage.getItem(LocalStorageKey.diamonds);
-			Net.instance.getData(API.levelWin(LocalStorage.getItem(LocalStorageKey.lastLevel) + 1, this._startTimer, this._endTimer, this._startNumItem[0], this._startNumItem[1], this._startNumItem[2], this._startNumItem[3], this._endNumItem[0], this._endNumItem[1], this._endNumItem[2], this._endNumItem[3], this._startDollar, this._endDollar, this._endDiamonds));
+			Net.instance.getData(API.levelWin(LocalStorage.getItem(LocalStorageKey.lastLevel) + 1, this._startTimer, this._endTimer, this._startNumItem[0], this._startNumItem[1], this._startNumItem[2], this._startNumItem[3], this._endNumItem[0], this._endNumItem[1], this._endNumItem[2], this._endNumItem[3], this._startDollar, this._endDollar, this._endDiamonds, JSON.stringify(awardArr[0])));
 
 			btn.getChild('n3').text = awardArr[0].count.toString();
 			btn.getTransition('t0').play(() => {

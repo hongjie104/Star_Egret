@@ -35,6 +35,7 @@ class FailPanel extends BasePanel {
 		if (dollar > 5) {
 			LocalStorage.setItem(LocalStorageKey.dollar, dollar - 6);
 			LocalStorage.saveToLocal();
+			Net.instance.getData(API.dollarChanged('levelAgain', -6, (LocalStorage.getItem(LocalStorageKey.lastLevel) + 1).toString()));
 			this._toDoAfterFailPanelClosed = ToDoAfterFailPanelClosed.none;
 			this._onClose();
 		} else {

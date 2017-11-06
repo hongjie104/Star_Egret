@@ -1,6 +1,6 @@
 module API {
 
-    const HOST = 'http://103.55.27.4:3000';
+    const HOST = 'http://45.77.90.167:3000';
     // const HOST = 'http://127.0.0.1:3000';
 
     /**
@@ -18,8 +18,28 @@ module API {
         return `${HOST}/users/login/${TDGA.getDeviceId()}/${egret.Capabilities.runtimeType}`;
     }
 
-    export function levelWin(level: number, startTimer: number, endTimer: number, startNumItem1: number, startNumItem2: number, startNumItem3: number, startNumItem4: number, endNumItem1: number, endNumItem2: number, endNumItem3: number, endNumItem4: number, startDollar: number, endDollar: number, endDiamonds:number): string {
+    export function levelWin(level: number, startTimer: number, endTimer: number, startNumItem1: number, startNumItem2: number, startNumItem3: number, startNumItem4: number, endNumItem1: number, endNumItem2: number, endNumItem3: number, endNumItem4: number, startDollar: number, endDollar: number, endDiamonds:number, awardString: string): string {
         // 可查看指定用户的关卡详细记录，包含关卡数，关卡打开时间，打开时的道具数量，金币数量, 关卡通过时间，关卡奖励，通关时道具数量，金币数量
-        return `${HOST}/users/levelWin/${TDGA.getDeviceId()}/${level}/${startTimer}/${endTimer}/${startNumItem1}/${startNumItem2}/${startNumItem3}/${startNumItem4}/${endNumItem1}/${endNumItem2}/${endNumItem3}/${endNumItem4}/${startDollar}/${endDollar}/${endDiamonds}`;
+        return `${HOST}/users/levelWin/${TDGA.getDeviceId()}/${level}/${startTimer}/${endTimer}/${startNumItem1}/${startNumItem2}/${startNumItem3}/${startNumItem4}/${endNumItem1}/${endNumItem2}/${endNumItem3}/${endNumItem4}/${startDollar}/${endDollar}/${endDiamonds}/${awardString}`;
+    }
+
+    export function changeName(name: string): string {
+        return `${HOST}/users/changeName/${TDGA.getDeviceId()}/${name}`;
+    }
+
+    export function dollarChanged(reason: string, val: number, params: string = ''): string {
+        const url = `${HOST}/users/dollarChanged/${TDGA.getDeviceId()}/${reason}/${val}`;
+        if (params) {
+            return `${url}/${params}`;
+        }
+        return url;
+    }
+
+    export function diamondsChanged(reason: string, val: number, params: string = ''): string {
+        const url = `${HOST}/users/diamondsChanged/${TDGA.getDeviceId()}/${reason}/${val}`;
+        if (params) {
+            return `${url}/${params}`;
+        }
+        return url;
     }
 }

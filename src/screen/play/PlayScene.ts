@@ -271,6 +271,7 @@ class PlayScene extends BaseScreen {
 						if (dollar >= 6) {
 							LocalStorage.setItem(LocalStorageKey.dollar, dollar - 6);
 							LocalStorage.saveToLocal();
+							Net.instance.getData(API.dollarChanged('useItem0', -6, (LocalStorage.getItem(LocalStorageKey.lastLevel) + 1).toString()));
 							this.updateDollar();
 							costDollar = true;
 						}
@@ -361,6 +362,7 @@ class PlayScene extends BaseScreen {
 				const newDollar = LocalStorage.getItem(LocalStorageKey.dollar) + award;
 				LocalStorage.setItem(LocalStorageKey.dollar, newDollar);
 				LocalStorage.saveToLocal();
+				Net.instance.getData(API.dollarChanged('levelUp', award));
 				Util.playSound('pop_mp3');
 				this._topBar1.getChild('n2').text = newDollar.toString();
 			}
@@ -892,6 +894,7 @@ class PlayScene extends BaseScreen {
 			if (dollar >= 6) {
 				LocalStorage.setItem(LocalStorageKey.dollar, dollar - 6);
 				LocalStorage.saveToLocal();
+				Net.instance.getData(API.dollarChanged('useItem1', -6, (LocalStorage.getItem(LocalStorageKey.lastLevel) + 1).toString()));
 				this.updateDollar();
 				costDollar = true;
 			}
@@ -932,6 +935,7 @@ class PlayScene extends BaseScreen {
 			if (dollar > 6) {
 				LocalStorage.setItem(LocalStorageKey.dollar, dollar - 6);
 				LocalStorage.saveToLocal();
+				Net.instance.getData(API.dollarChanged('useItem3', -6, (LocalStorage.getItem(LocalStorageKey.lastLevel) + 1).toString()));
 				this.updateDollar();
 				costDollar = true;
 			} else {
@@ -989,6 +993,7 @@ class PlayScene extends BaseScreen {
 			if (dollar > 6) {
 				LocalStorage.setItem(LocalStorageKey.dollar, dollar - 6);
 				LocalStorage.saveToLocal();
+				Net.instance.getData(API.dollarChanged('useItem2', -6, (LocalStorage.getItem(LocalStorageKey.lastLevel) + 1).toString()));
 				this.updateDollar();
 				costDollar = true;
 			} else {

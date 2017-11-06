@@ -46,6 +46,7 @@ class LiuXingResultPanel extends BasePanel {
 		if (dollar > 0) {
 			LocalStorage.setItem(LocalStorageKey.dollar, LocalStorage.getItem(LocalStorageKey.dollar) + dollar);
 			LocalStorage.saveToLocal();
+			Net.instance.getData(API.dollarChanged('liuXingAward', dollar));
 			Util.playSound('pop_mp3');
 		}
 		super._closed();

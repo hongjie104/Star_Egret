@@ -209,6 +209,7 @@ class LevelScene extends BaseScreen {
 		this._topBar.getChild('n2').text = newName;
 		LocalStorage.setItem(LocalStorageKey.userName, newName);
 		LocalStorage.saveToLocal();
+		Net.instance.getData(API.changeName(newName));
 	}
 
 	static get instance(): LevelScene {

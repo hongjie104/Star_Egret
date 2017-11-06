@@ -210,6 +210,7 @@ class Main extends egret.DisplayObjectContainer {
             if (myDollar >= costDollar) {
                 LocalStorage.setItem(LocalStorageKey.dollar, myDollar - costDollar);
                 LocalStorage.saveToLocal();
+                Net.instance.getData(API.dollarChanged('levelRestar', -costDollar));
             } else {
                 paySuccess = false;
             }
