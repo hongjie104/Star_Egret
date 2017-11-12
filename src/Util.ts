@@ -82,6 +82,7 @@ class Util {
 		const exp: number = LocalStorage.getItem(LocalStorageKey.exp);
 		LocalStorage.setItem(LocalStorageKey.exp, exp + addExp);
 		LocalStorage.saveToLocal();
+		Net.instance.getData(API.updateExp());
 
 		const curLv = Util.getLv(exp);
 		const newLv = Util.getLv(exp + addExp);

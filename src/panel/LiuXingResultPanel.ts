@@ -19,6 +19,7 @@ class LiuXingResultPanel extends BasePanel {
 				maxScore = curScore;
 				LocalStorage.setItem(LocalStorageKey.liuXingMax, maxScore);
 				LocalStorage.saveToLocal();
+				Net.instance.getData(API.updateLiuXingMax());
 			}
 
 			const ui = this._ui.getChild('n0').asCom;

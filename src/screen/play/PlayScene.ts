@@ -163,6 +163,10 @@ class PlayScene extends BaseScreen {
 			while (curLevel > levelScoreArr.length) {
 				levelScoreArr.push(0);
 			}
+			Net.instance.postData(API.updateLevelScore(), {
+				account: TDGA.getDeviceId(),
+				levelScore: levelScoreArr
+			});
 			let maxScore = 0;
 			for (let i = 0; i < curLevel; i++) {
 				maxScore += levelScoreArr[i];
@@ -204,6 +208,10 @@ class PlayScene extends BaseScreen {
 			while (curLevel > levelScoreArr.length) {
 				levelScoreArr.push(0);
 			}
+			Net.instance.postData(API.updateLevelScore(), {
+				account: TDGA.getDeviceId(),
+				levelScore: levelScoreArr
+			});
 			// 排名
 			this._targetSocre = Util.getTargetScore(curLevel);
 			this._updateRank(0);
@@ -689,6 +697,7 @@ class PlayScene extends BaseScreen {
 				LocalStorage.setItem(LocalStorageKey.maxLevel, curLevel);
 			}
 			LocalStorage.setItem(LocalStorageKey.lastLevel, curLevel);
+			Net.instance.getData(API.updateLastLevel());
 			LocalStorage.setItem(LocalStorageKey.totalScore, this._initScore + this._addScore);
 			const levelScore = LocalStorage.getItem(LocalStorageKey.levelScore) as Array<number>;
 			if (levelScore[curLevel - 1] < this._addScore) {
@@ -703,8 +712,15 @@ class PlayScene extends BaseScreen {
 				}
 				LocalStorage.setItem(LocalStorageKey.totalScore, totalScore);
 				LocalStorage.setItem(LocalStorageKey.maxTotalScore, maxTotalScore);
+				
+				Net.instance.getData(API.updateMaxTotalScore());
+				Net.instance.postData(API.updateLevelScore(), {
+					account: TDGA.getDeviceId(),
+					levelScore: levelScore,
+				});
 			}
 			LocalStorage.saveToLocal();
+			Net.instance.getData(API.updateTotalScore());
 			this.reset(this._playType);
 		}
 		if (playParticle && star) {

@@ -15,7 +15,7 @@ module API {
         // const numItem2: number = LocalStorage.getItem(LocalStorageKey.item2);
         // const numItem3: number = LocalStorage.getItem(LocalStorageKey.item3);
         // const numItem4: number = LocalStorage.getItem(LocalStorageKey.item4);
-        return `${HOST}/users/login/${TDGA.getDeviceId()}/${egret.Capabilities.runtimeType}`;
+        return `${HOST}/users/login`;
     }
 
     export function levelWin(level: number, startTimer: number, endTimer: number, startNumItem1: number, startNumItem2: number, startNumItem3: number, startNumItem4: number, endNumItem1: number, endNumItem2: number, endNumItem3: number, endNumItem4: number, startDollar: number, endDollar: number, endDiamonds:number, awardString: string): string {
@@ -41,5 +41,33 @@ module API {
             return `${url}/${params}`;
         }
         return url;
+    }
+
+    export function updateLastLevel(): string {
+        return `${HOST}/users/updateLastLevel/${TDGA.getDeviceId()}/${LocalStorage.getItem(LocalStorageKey.lastLevel)}`;
+    }
+
+    export function updateTotalScore(): string {
+        return `${HOST}/users/updateTotalScore/${TDGA.getDeviceId()}/${LocalStorage.getItem(LocalStorageKey.totalScore)}`;
+    }
+
+    export function updateExp(): string {
+        return `${HOST}/users/updateExp/${TDGA.getDeviceId()}/${LocalStorage.getItem(LocalStorageKey.exp)}`;
+    }
+
+    export function updateMaxTotalScore(): string {
+        return `${HOST}/users/updateMaxTotalScore/${TDGA.getDeviceId()}/${LocalStorage.getItem(LocalStorageKey.maxTotalScore)}`;
+    }
+
+    export function updateLastFetchLoginAwardTime(): string {
+        return `${HOST}/users/updateLastFetchLoginAwardTime/${TDGA.getDeviceId()}/${LocalStorage.getItem(LocalStorageKey.lastFetchLoginAwardTime)}/${LocalStorage.getItem(LocalStorageKey.fetchLoginAwardCount)}`;
+    }
+
+    export function updateLiuXingMax(): string {
+        return `${HOST}/users/updateLiuXingMax/${TDGA.getDeviceId()}/${LocalStorage.getItem(LocalStorageKey.liuXingMax)}`;
+    }  
+
+    export function updateLevelScore(): string {
+        return `${HOST}/users/updateLevelScore`;
     }
 }
