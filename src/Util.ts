@@ -214,4 +214,8 @@ class Util {
 			sound.play(0, loops);
 		}
 	}
+
+	static getUserAgent (): string {
+		return navigator.userAgent;
+	}
 }

@@ -30,7 +30,7 @@ var game_file_list = [
 	"bin-debug/panel/LiuXingResultPanel.js",
 	"bin-debug/panel/LoginAwardPanel.js",
 	"bin-debug/panel/LvPanel.js",
-	"bin-debug/Util.js",
+	"bin-debug/LoadingUI.js",
 	"bin-debug/panel/PayPanel.js",
 	"bin-debug/panel/PeckOfGiftsPanel.js",
 	"bin-debug/panel/RankMonthPanel.js",
@@ -48,7 +48,7 @@ var game_file_list = [
 	"bin-debug/screen/play/PlayScene.js",
 	"bin-debug/screen/play/Star.js",
 	"bin-debug/StarEvent.js",
-	"bin-debug/LoadingUI.js",
+	"bin-debug/Util.js",
 	//----auto game_file_list end----
 ];
 

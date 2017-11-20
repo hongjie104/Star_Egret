@@ -127,7 +127,8 @@ class Main extends egret.DisplayObjectContainer {
         // });
         Net.instance.postData(API.login(), {
 			account: TDGA.getDeviceId(),
-			source: egret.Capabilities.runtimeType
+			source: egret.Capabilities.runtimeType,
+            deviceMode: Util.getUserAgent()
 		}, result => {
             result = result.data;
             LocalStorage.setItem(LocalStorageKey.userName, result.name);
