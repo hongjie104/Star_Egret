@@ -643,7 +643,12 @@ class PlayScene extends BaseScreen {
 					const curLevel = LocalStorage.getItem(LocalStorageKey.lastLevel) + 1;
 					LocalStorage.setItem(LocalStorageKey.lastFailedLevel, curLevel);
 					LocalStorage.saveToLocal();
-					FailPanel.instance.show();
+					FailPanel.instance.show({
+						score: this._initScore + this._addScore,
+						startNumItem: this._startNumItem.slice(),
+						startDollar: this._startDollar,
+						startTimer: this._startTimer
+					});
 				}
 			}
 		}
