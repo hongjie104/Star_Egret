@@ -141,9 +141,10 @@ class LevelScene extends BaseScreen {
 		}, this);
 
 		// 改名字
-		this._topBar.getChild('n8').addClickListener(() => {
-			ChangeNamePanel.instance.show();
-		}, this);
+		// this._topBar.getChild('n8').addClickListener(() => {
+		// 	ChangeNamePanel.instance.show();
+		// }, this);
+		this._topBar.getChild('n8').visible = false;
 
 		ChangeNamePanel.instance.addEventListener(StarEvent.CHANGE_NAME, this._onChangeName, this);
 	}
@@ -209,6 +210,7 @@ class LevelScene extends BaseScreen {
 		this._topBar.getChild('n2').text = newName;
 		LocalStorage.setItem(LocalStorageKey.userName, newName);
 		LocalStorage.saveToLocal();
+		Net.instance.getData(API.changeName(newName));
 	}
 
 	static get instance(): LevelScene {

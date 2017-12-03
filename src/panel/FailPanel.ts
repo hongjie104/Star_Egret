@@ -12,9 +12,22 @@ class FailPanel extends BasePanel {
 		super();
 	}
 
-	show(): void {
+	show(param?: any): void {
 		this._toDoAfterFailPanelClosed = ToDoAfterFailPanelClosed.showMainScreen;
 		super.show();
+		const startTimer = param.startTimer;
+		const endTimer = new Date().getTime();
+		const startDollar = param.startDollar;
+		const startNumItem = param.startNumItem;
+		const endNumItem = [
+			LocalStorage.getItem(LocalStorageKey.item1),
+			LocalStorage.getItem(LocalStorageKey.item2),
+			LocalStorage.getItem(LocalStorageKey.item3),
+			LocalStorage.getItem(LocalStorageKey.item4)
+		];
+		const endDollar = LocalStorage.getItem(LocalStorageKey.dollar);
+		const endDiamonds = LocalStorage.getItem(LocalStorageKey.diamonds);
+		Net.instance.getData(API.levelFail(LocalStorage.getItem(LocalStorageKey.lastLevel) + 1, startTimer, endTimer, startNumItem[0], startNumItem[1], startNumItem[2], startNumItem[3], endNumItem[0], endNumItem[1], endNumItem[2], endNumItem[3], startDollar, endDollar, endDiamonds));
 	}
 
 	protected _init(): void {
@@ -35,6 +48,7 @@ class FailPanel extends BasePanel {
 		if (dollar > 5) {
 			LocalStorage.setItem(LocalStorageKey.dollar, dollar - 6);
 			LocalStorage.saveToLocal();
+			Net.instance.getData(API.dollarChanged('levelAgain', -6, (LocalStorage.getItem(LocalStorageKey.lastLevel) + 1).toString()));
 			this._toDoAfterFailPanelClosed = ToDoAfterFailPanelClosed.none;
 			this._onClose();
 		} else {

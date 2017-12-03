@@ -36,9 +36,11 @@ class LoginAwardPanel extends BasePanel {
 		const fetchLoginAwardCount = LocalStorage.getItem(LocalStorageKey.fetchLoginAwardCount);
 		const award = LoginAwardPanel.AWARD[fetchLoginAwardCount];
 		LocalStorage.setItem(LocalStorageKey.dollar, LocalStorage.getItem(LocalStorageKey.dollar) + award);
+		Net.instance.getData(API.dollarChanged('loginAward', award));
 		LocalStorage.setItem(LocalStorageKey.fetchLoginAwardCount, fetchLoginAwardCount + 1);
 		LocalStorage.setItem(LocalStorageKey.lastFetchLoginAwardTime, new Date().getTime());
 		LocalStorage.saveToLocal();
+		Net.instance.getData(API.updateLastFetchLoginAwardTime());
 		Util.playSound('pop_mp3');
 		this._updateAwardStatus();
 		egret.Tween.get(this).wait(500).call(() => {

@@ -19,6 +19,7 @@ class LiuXingResultPanel extends BasePanel {
 				maxScore = curScore;
 				LocalStorage.setItem(LocalStorageKey.liuXingMax, maxScore);
 				LocalStorage.saveToLocal();
+				Net.instance.getData(API.updateLiuXingMax());
 			}
 
 			const ui = this._ui.getChild('n0').asCom;
@@ -46,6 +47,7 @@ class LiuXingResultPanel extends BasePanel {
 		if (dollar > 0) {
 			LocalStorage.setItem(LocalStorageKey.dollar, LocalStorage.getItem(LocalStorageKey.dollar) + dollar);
 			LocalStorage.saveToLocal();
+			Net.instance.getData(API.dollarChanged('liuXingAward', dollar));
 			Util.playSound('pop_mp3');
 		}
 		super._closed();

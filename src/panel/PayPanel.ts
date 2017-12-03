@@ -19,6 +19,7 @@ class PayPanel extends BasePanel {
 	private _onBuy(): void {
 		LocalStorage.setItem(LocalStorageKey.dollar, LocalStorage.getItem(LocalStorageKey.dollar) + 150 + 78);
 		LocalStorage.saveToLocal();
+		Net.instance.getData(API.dollarChanged('pay', 150 + 78));
 		Util.playSound('pop_mp3');
 		this.dispatchEvent(new StarEvent(StarEvent.PAY_SUCCESS));
 		this._onClose();
