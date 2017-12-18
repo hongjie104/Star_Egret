@@ -75,4 +75,20 @@ module API {
     export function updateLevelScore(): string {
         return `${HOST}/users/updateLevelScore`;
     }
+
+    export function updateLastFailedLevel(lastFailedLevel: number): string {
+        return `${HOST}/users/updateLastFailedLevel/${TDGA.getDeviceId()}/${lastFailedLevel}`;
+    }
+
+    export function updateWeekRankRecord(weekRankRecord: number): string {
+        return `${HOST}/users/updateWeekRankRecord/${TDGA.getDeviceId()}/${weekRankRecord}`;
+    }
+
+    export function updateMaxLevel(maxLevel: number): string {
+        return `${HOST}/users/updateMaxLevel/${TDGA.getDeviceId()}/${maxLevel}`;
+    }
+
+    export function getActivityNotice(): string {
+        return `${HOST}/users/getActivityNotice`;
+    }    
 }

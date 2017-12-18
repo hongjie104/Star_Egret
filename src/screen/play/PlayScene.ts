@@ -643,6 +643,7 @@ class PlayScene extends BaseScreen {
 					const curLevel = LocalStorage.getItem(LocalStorageKey.lastLevel) + 1;
 					LocalStorage.setItem(LocalStorageKey.lastFailedLevel, curLevel);
 					LocalStorage.saveToLocal();
+					Net.instance.getData(API.updateLastFailedLevel(curLevel));
 					FailPanel.instance.show({
 						score: this._initScore + this._addScore,
 						startNumItem: this._startNumItem.slice(),
@@ -700,6 +701,7 @@ class PlayScene extends BaseScreen {
 			const maxLevel: number = LocalStorage.getItem(LocalStorageKey.maxLevel);
 			if (curLevel > maxLevel) {
 				LocalStorage.setItem(LocalStorageKey.maxLevel, curLevel);
+				Net.instance.getData(API.updateMaxLevel(curLevel));
 			}
 			LocalStorage.setItem(LocalStorageKey.lastLevel, curLevel);
 			Net.instance.getData(API.updateLastLevel());
@@ -1102,6 +1104,7 @@ class PlayScene extends BaseScreen {
 		const curLevel = LocalStorage.getItem(LocalStorageKey.lastLevel) + 1;
 		LocalStorage.setItem(LocalStorageKey.lastFailedLevel, curLevel);
 		LocalStorage.saveToLocal();
+		Net.instance.getData(API.updateLastFailedLevel(curLevel));
 
 		if (this._timer && this._timer.running) {
 			this._timer.stop();

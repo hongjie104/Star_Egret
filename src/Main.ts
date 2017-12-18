@@ -140,8 +140,8 @@ class Main extends egret.DisplayObjectContainer {
             LocalStorage.setItem(LocalStorageKey.lastFetchLoginAwardTime, result.lastFetchLoginAwardTime);
             LocalStorage.setItem(LocalStorageKey.fetchLoginAwardCount, result.fetchLoginAwardCount);
             LocalStorage.setItem(LocalStorageKey.liuXingMax, result.liuXingMax);
-            // 做到这
             LocalStorage.setItem(LocalStorageKey.lastFailedLevel, result.lastFailedLevel);
+            // 做到这
             LocalStorage.setItem(LocalStorageKey.weekRankRecord, result.weekRankRecord);
             LocalStorage.setItem(LocalStorageKey.weekRank, result.weekRank);
             LocalStorage.setItem(LocalStorageKey.weekScore, result.weekScore);
