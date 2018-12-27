@@ -1,13 +1,10 @@
 {
-  "native": {
-    "path_ignore": []
+  "engineVersion": "5.2.13",
+  "compilerVersion": "5.2.13",
+  "template": {},
+  "target": {
+    "current": "web"
   },
-  "publish": {
-    "web": 0,
-    "native": 1,
-    "path": "bin-release"
-  },
-  "egret_version": "4.1.0",
   "modules": [
     {
       "name": "egret"
@@ -16,30 +13,21 @@
       "name": "game"
     },
     {
-      "name": "res"
-    },
-    {
       "name": "tween"
     },
     {
-			"name": "polyfill",
-			"path": "polyfill"
-		},
-		{
-			"name": "fairygui",
-			"path": "libs/fairygui"
-		},
-		{
-			"name": "rawinflate",
-			"path": "libs/rawinflate"
-		},
+      "name": "assetsmanager"
+    },
     {
-			"name": "particle",
-			"path": "libs/particle"
-		},
+      "name": "promise"
+    },
     {
-      "name": "talkingdata",
-      "path": "libs/talkingdata"
+      "name": "fairygui",
+      "path": "./libs/fairygui"
+    },
+    {
+      "name": "particle",
+      "path": "./libs/particle"
     }
   ]
 }

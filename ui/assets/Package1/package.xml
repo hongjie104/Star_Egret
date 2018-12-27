@@ -320,5 +320,5 @@
     <image id="pq8ccac" name="moye1.png" path="/" exported="true"/>
     <image id="gs4scad" name="dengji111.png" path="/GAME/登录页面的弹窗/" exported="true"/>
   </resources>
-  <publish name="Package1" path="C:\hongjie\Star_Egret\resource\assets"/>
+  <publish name="Package1" path="/Users/eddie104/Documents/hongjie/Star_Egret_new/resource/assets"/>
 </packageDescription>

@@ -82,7 +82,6 @@ class Util {
 		const exp: number = LocalStorage.getItem(LocalStorageKey.exp);
 		LocalStorage.setItem(LocalStorageKey.exp, exp + addExp);
 		LocalStorage.saveToLocal();
-		Net.instance.getData(API.updateExp());
 
 		const curLv = Util.getLv(exp);
 		const newLv = Util.getLv(exp + addExp);
@@ -102,7 +101,7 @@ class Util {
 		return Math.floor(Math.random() * (max - min + 1) + min);
 	}
 
-	static createWinAward(): [{ type: AWARD_TYPE, count: number }] {
+	static createWinAward(): Array<IAward> {
 		const r = Math.random();
 		// 20里面四个人分
 		// 7 6 4 2 1
@@ -137,7 +136,7 @@ class Util {
 	/**
 	 * 通关大礼包
 	 */
-	static getAwardGift(): [{ type: AWARD_TYPE, count: number }] {
+	static getAwardGift(): Array<IAward> {
 		// 第一个道具显示50金币，第二个显示5钻石，第三个显示40金币，第四个显示30金币
 		return [
 			{ type: AWARD_TYPE.dollar, count: 50 },
@@ -211,7 +210,9 @@ class Util {
 	static playSound(soundName: string, loops: number = 1): void {
 		if (LocalStorage.getItem(LocalStorageKey.soundEnabled)) {
 			const sound: egret.Sound = RES.getRes(soundName);
-			sound.play(0, loops);
+			if (sound) {
+				sound.play(0, loops);
+			}
 		}
 	}
 

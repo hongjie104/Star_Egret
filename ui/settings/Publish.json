@@ -1,4 +1,5 @@
 {
+	"binaryFormat":true,
 	"codeGeneration":{
 		"classNamePrefix":"UI_",
 		"codePath":"",
@@ -8,6 +9,7 @@
 		"memberNamePrefix":"m_",
 		"packageName":""
 	},
+	"compressDesc":false,
 	"fileExtension":"",
 	"packageCount":2,
 	"path":""

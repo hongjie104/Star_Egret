@@ -11,14 +11,14 @@ class ActivityPanel extends BasePanel {
 	show(param?: any): void {
 		if (!this._isShowing) {
 			super.show(param);
-			Net.instance.getData(API.getActivityNotice(), result => {
-				if (result.status === 1) {
-					console.log(result.data);
-					for (let i = 0; i < result.data.length; i++) {
-						this._addNotive(result.data[i].content);
-					}
-				}
-			});
+			// Net.instance.getData(API.getActivityNotice(), result => {
+			// 	if (result.status === 1) {
+			// 		console.log(result.data);
+			// 		for (let i = 0; i < result.data.length; i++) {
+			// 			this._addNotive(result.data[i].content);
+			// 		}
+			// 	}
+			// });
 		}
 	}
 

@@ -1,14 +1,15 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>Egret</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <meta name="full-screen" content="true"/>
-    <meta name="screen-orientation" content="portrait"/>
-    <meta name="x5-fullscreen" content="true"/>
-    <meta name="360-fullscreen" content="true"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="full-screen" content="true" />
+    <meta name="screen-orientation" content="portrait" />
+    <meta name="x5-fullscreen" content="true" />
+    <meta name="360-fullscreen" content="true" />
     <style>
         html, body {
             -ms-touch-action: none;
@@ -19,90 +20,76 @@
             height: 100%;
         }
     </style>
-
-    <script src="http://sdk.talkingdata.com/g/h5/v1/F0281EC01D0D4F2CAA707CE77D7A488D" type="text/javascript"></script>
-
-    <!--这个标签为通过egret提供的第三方库的方式生成的 javascript 文件。删除 modules_files 标签后，库文件加载列表将不会变化，请谨慎操作！-->
-    <!--modules_files_start-->
-	<script egret="lib" src="libs/modules/egret/egret.js" src-release="libs/modules/egret/egret.min.js"></script>
-	<script egret="lib" src="libs/modules/egret/egret.web.js" src-release="libs/modules/egret/egret.web.min.js"></script>
-	<script egret="lib" src="libs/modules/game/game.js" src-release="libs/modules/game/game.min.js"></script>
-	<script egret="lib" src="libs/modules/res/res.js" src-release="libs/modules/res/res.min.js"></script>
-	<script egret="lib" src="libs/modules/tween/tween.js" src-release="libs/modules/tween/tween.min.js"></script>
-	<script egret="lib" src="libs/fairygui/fairygui.js" src-release="libs/fairygui/fairygui.min.js"></script>
-	<script egret="lib" src="libs/particle/particle.js" src-release="libs/particle/particle.min.js"></script>
-	<!--modules_files_end-->
-
-    <!--这个标签为不通过egret提供的第三方库的方式使用的 javascript 文件，请将这些文件放在libs下，但不要放在modules下面。-->
-    <script egret="lib" src="polyfill/promise.js" src-release="polyfill/promise.min.js"></script>
-    <script egret="lib" src="libs/rawinflate/rawinflate.min.js" src-release="libs/rawinflate/rawinflate.min.js"></script>    
-
-    <!--这个标签会被替换为项目中所有的 javascript 文件。删除 game_files 标签后，项目文件加载列表将不会变化，请谨慎操作！-->
-    <!--game_files_start-->
-	<script egret="game" src="bin-debug/panel/BasePanel.js"></script>
-	<script egret="game" src="bin-debug/screen/BaseScreen.js"></script>
-	<script egret="game" src="bin-debug/panel/NewFishPanel.js"></script>
-	<script egret="game" src="bin-debug/Main.js"></script>
-	<script egret="game" src="bin-debug/Net.js"></script>
-	<script egret="game" src="bin-debug/panel/AboutPanel.js"></script>
-	<script egret="game" src="bin-debug/panel/ActivityPanel.js"></script>
-	<script egret="game" src="bin-debug/panel/AwardPanel.js"></script>
-	<script egret="game" src="bin-debug/API.js"></script>
-	<script egret="game" src="bin-debug/panel/BuyItemPanel.js"></script>
-	<script egret="game" src="bin-debug/panel/ChangeNamePanel.js"></script>
-	<script egret="game" src="bin-debug/panel/ChangeTypePanel.js"></script>
-	<script egret="game" src="bin-debug/panel/FailPanel.js"></script>
-	<script egret="game" src="bin-debug/panel/FetchGiftPanel.js"></script>
-	<script egret="game" src="bin-debug/panel/LevelUpAwardPanel.js"></script>
-	<script egret="game" src="bin-debug/panel/LiuXingPanel.js"></script>
-	<script egret="game" src="bin-debug/panel/LiuXingResultPanel.js"></script>
-	<script egret="game" src="bin-debug/panel/LoginAwardPanel.js"></script>
-	<script egret="game" src="bin-debug/panel/LvPanel.js"></script>
-	<script egret="game" src="bin-debug/LoadingUI.js"></script>
-	<script egret="game" src="bin-debug/panel/PayPanel.js"></script>
-	<script egret="game" src="bin-debug/panel/PeckOfGiftsPanel.js"></script>
-	<script egret="game" src="bin-debug/panel/RankMonthPanel.js"></script>
-	<script egret="game" src="bin-debug/panel/RankPanel.js"></script>
-	<script egret="game" src="bin-debug/panel/RankWeekPanel.js"></script>
-	<script egret="game" src="bin-debug/panel/RedeemCodePanel.js"></script>
-	<script egret="game" src="bin-debug/panel/SettingPanel.js"></script>
-	<script egret="game" src="bin-debug/panel/ShopPanel.js"></script>
-	<script egret="game" src="bin-debug/panel/TipsPanel.js"></script>
-	<script egret="game" src="bin-debug/panel/WinPanel.js"></script>
-	<script egret="game" src="bin-debug/LocalStorage.js"></script>
-	<script egret="game" src="bin-debug/screen/level/LevelScene.js"></script>
-	<script egret="game" src="bin-debug/screen/level/LevelTree.js"></script>
-	<script egret="game" src="bin-debug/screen/main/MainScene.js"></script>
-	<script egret="game" src="bin-debug/screen/play/PlayScene.js"></script>
-	<script egret="game" src="bin-debug/screen/play/Star.js"></script>
-	<script egret="game" src="bin-debug/StarEvent.js"></script>
-	<script egret="game" src="bin-debug/Util.js"></script>
-	<!--game_files_end-->
 </head>
-<body>
 
+<body>
     <div style="margin: auto;width: 100%;height: 100%;" class="egret-player"
          data-entry-class="Main"
          data-orientation="portrait"
-         data-scale-mode="fixedWidth"
+         data-scale-mode="fixedHeight"
          data-frame-rate="30"
-         data-content-width="750"
-         data-content-height="1334"
-         data-show-paint-rect="false"
+         data-content-width="640"
+         data-content-height="1136"
          data-multi-fingered="2"
          data-show-fps="false" data-show-log="false"
          data-show-fps-style="x:0,y:0,size:12,textColor:0xffffff,bgAlpha:0.9">
     </div>
-    <script>
-        /**
-         * {
-         * "renderMode":, //引擎渲染模式，"canvas" 或者 "webgl"
-         * "audioType": 0 //使用的音频类型，0:默认，1:qq audio，2:web audio，3:audio
-         * "antialias": //WebGL模式下是否开启抗锯齿，true:开启，false:关闭，默认为false
-         * "retina": //是否基于devicePixelRatio缩放画布
-         * }
-         **/
-        egret.runEgret({renderMode:"webgl", audioType:0});
-    </script>
+<script>
+    var loadScript = function (list, callback) {
+        var loaded = 0;
+        var loadNext = function () {
+            loadSingleScript(list[loaded], function () {
+                loaded++;
+                if (loaded >= list.length) {
+                    callback();
+                }
+                else {
+                    loadNext();
+                }
+            })
+        };
+        loadNext();
+    };
+
+    var loadSingleScript = function (src, callback) {
+        var s = document.createElement('script');
+        s.async = false;
+        s.src = src;
+        s.addEventListener('load', function () {
+            s.parentNode.removeChild(s);
+            s.removeEventListener('load', arguments.callee, false);
+            callback();
+        }, false);
+        document.body.appendChild(s);
+    };
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', './manifest.json?v=' + Math.random(), true);
+    xhr.addEventListener("load", function () {
+        var manifest = JSON.parse(xhr.response);
+        var list = manifest.initial.concat(manifest.game);
+        loadScript(list, function () {
+            /**
+             * {
+             * "renderMode":, //Engine rendering mode, "canvas" or "webgl"
+             * "audioType": 0 //Use the audio type, 0: default, 2: web audio, 3: audio
+             * "antialias": //Whether the anti-aliasing is enabled in WebGL mode, true: on, false: off, defaults to false
+             * "calculateCanvasScaleFactor": //a function return canvas scale factor
+             * }
+             **/
+            egret.runEgret({ renderMode: "webgl", audioType: 0, calculateCanvasScaleFactor:function(context) {
+                var backingStore = context.backingStorePixelRatio ||
+                    context.webkitBackingStorePixelRatio ||
+                    context.mozBackingStorePixelRatio ||
+                    context.msBackingStorePixelRatio ||
+                    context.oBackingStorePixelRatio ||
+                    context.backingStorePixelRatio || 1;
+                return (window.devicePixelRatio || 1) / backingStore;
+            }});
+        });
+    });
+    xhr.send(null);
+</script>
 </body>
+
 </html>

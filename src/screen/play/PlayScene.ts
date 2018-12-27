@@ -163,10 +163,10 @@ class PlayScene extends BaseScreen {
 			while (curLevel > levelScoreArr.length) {
 				levelScoreArr.push(0);
 			}
-			Net.instance.postData(API.updateLevelScore(), {
-				account: TDGA.getDeviceId(),
-				levelScore: levelScoreArr
-			});
+			// Net.instance.postData(API.updateLevelScore(), {
+			// 	account: TDGA.getDeviceId(),
+			// 	levelScore: levelScoreArr
+			// });
 			let maxScore = 0;
 			for (let i = 0; i < curLevel; i++) {
 				maxScore += levelScoreArr[i];
@@ -208,10 +208,10 @@ class PlayScene extends BaseScreen {
 			while (curLevel > levelScoreArr.length) {
 				levelScoreArr.push(0);
 			}
-			Net.instance.postData(API.updateLevelScore(), {
-				account: TDGA.getDeviceId(),
-				levelScore: levelScoreArr
-			});
+			// Net.instance.postData(API.updateLevelScore(), {
+			// 	account: TDGA.getDeviceId(),
+			// 	levelScore: levelScoreArr
+			// });
 			// 排名
 			this._targetSocre = Util.getTargetScore(curLevel);
 			this._updateRank(0);
@@ -279,7 +279,7 @@ class PlayScene extends BaseScreen {
 						if (dollar >= 6) {
 							LocalStorage.setItem(LocalStorageKey.dollar, dollar - 6);
 							LocalStorage.saveToLocal();
-							Net.instance.getData(API.dollarChanged('useItem0', -6, (LocalStorage.getItem(LocalStorageKey.lastLevel) + 1).toString()));
+							// Net.instance.getData(API.dollarChanged('useItem0', -6, (LocalStorage.getItem(LocalStorageKey.lastLevel) + 1).toString()));
 							this.updateDollar();
 							costDollar = true;
 						}
@@ -370,7 +370,7 @@ class PlayScene extends BaseScreen {
 				const newDollar = LocalStorage.getItem(LocalStorageKey.dollar) + award;
 				LocalStorage.setItem(LocalStorageKey.dollar, newDollar);
 				LocalStorage.saveToLocal();
-				Net.instance.getData(API.dollarChanged('levelUp', award));
+				// Net.instance.getData(API.dollarChanged('levelUp', award));
 				Util.playSound('pop_mp3');
 				this._topBar1.getChild('n2').text = newDollar.toString();
 			}
@@ -643,7 +643,7 @@ class PlayScene extends BaseScreen {
 					const curLevel = LocalStorage.getItem(LocalStorageKey.lastLevel) + 1;
 					LocalStorage.setItem(LocalStorageKey.lastFailedLevel, curLevel);
 					LocalStorage.saveToLocal();
-					Net.instance.getData(API.updateLastFailedLevel(curLevel));
+					// Net.instance.getData(API.updateLastFailedLevel(curLevel));
 					FailPanel.instance.show({
 						score: this._initScore + this._addScore,
 						startNumItem: this._startNumItem.slice(),
@@ -701,10 +701,10 @@ class PlayScene extends BaseScreen {
 			const maxLevel: number = LocalStorage.getItem(LocalStorageKey.maxLevel);
 			if (curLevel > maxLevel) {
 				LocalStorage.setItem(LocalStorageKey.maxLevel, curLevel);
-				Net.instance.getData(API.updateMaxLevel(curLevel));
+				// Net.instance.getData(API.updateMaxLevel(curLevel));
 			}
 			LocalStorage.setItem(LocalStorageKey.lastLevel, curLevel);
-			Net.instance.getData(API.updateLastLevel());
+			// Net.instance.getData(API.updateLastLevel());
 			LocalStorage.setItem(LocalStorageKey.totalScore, this._initScore + this._addScore);
 			const levelScore = LocalStorage.getItem(LocalStorageKey.levelScore) as Array<number>;
 			if (levelScore[curLevel - 1] < this._addScore) {
@@ -719,15 +719,14 @@ class PlayScene extends BaseScreen {
 				}
 				LocalStorage.setItem(LocalStorageKey.totalScore, totalScore);
 				LocalStorage.setItem(LocalStorageKey.maxTotalScore, maxTotalScore);
-				
-				Net.instance.getData(API.updateMaxTotalScore());
-				Net.instance.postData(API.updateLevelScore(), {
-					account: TDGA.getDeviceId(),
-					levelScore: levelScore,
-				});
+				// Net.instance.getData(API.updateMaxTotalScore());
+				// Net.instance.postData(API.updateLevelScore(), {
+				// 	account: TDGA.getDeviceId(),
+				// 	levelScore: levelScore,
+				// });
 			}
 			LocalStorage.saveToLocal();
-			Net.instance.getData(API.updateTotalScore());
+			// Net.instance.getData(API.updateTotalScore());
 			this.reset(this._playType);
 		}
 		if (playParticle && star) {
@@ -917,7 +916,7 @@ class PlayScene extends BaseScreen {
 			if (dollar >= 6) {
 				LocalStorage.setItem(LocalStorageKey.dollar, dollar - 6);
 				LocalStorage.saveToLocal();
-				Net.instance.getData(API.dollarChanged('useItem1', -6, (LocalStorage.getItem(LocalStorageKey.lastLevel) + 1).toString()));
+				// Net.instance.getData(API.dollarChanged('useItem1', -6, (LocalStorage.getItem(LocalStorageKey.lastLevel) + 1).toString()));
 				this.updateDollar();
 				costDollar = true;
 			}
@@ -958,7 +957,7 @@ class PlayScene extends BaseScreen {
 			if (dollar > 6) {
 				LocalStorage.setItem(LocalStorageKey.dollar, dollar - 6);
 				LocalStorage.saveToLocal();
-				Net.instance.getData(API.dollarChanged('useItem3', -6, (LocalStorage.getItem(LocalStorageKey.lastLevel) + 1).toString()));
+				// Net.instance.getData(API.dollarChanged('useItem3', -6, (LocalStorage.getItem(LocalStorageKey.lastLevel) + 1).toString()));
 				this.updateDollar();
 				costDollar = true;
 			} else {
@@ -1016,7 +1015,7 @@ class PlayScene extends BaseScreen {
 			if (dollar > 6) {
 				LocalStorage.setItem(LocalStorageKey.dollar, dollar - 6);
 				LocalStorage.saveToLocal();
-				Net.instance.getData(API.dollarChanged('useItem2', -6, (LocalStorage.getItem(LocalStorageKey.lastLevel) + 1).toString()));
+				// Net.instance.getData(API.dollarChanged('useItem2', -6, (LocalStorage.getItem(LocalStorageKey.lastLevel) + 1).toString()));
 				this.updateDollar();
 				costDollar = true;
 			} else {
@@ -1104,7 +1103,7 @@ class PlayScene extends BaseScreen {
 		const curLevel = LocalStorage.getItem(LocalStorageKey.lastLevel) + 1;
 		LocalStorage.setItem(LocalStorageKey.lastFailedLevel, curLevel);
 		LocalStorage.saveToLocal();
-		Net.instance.getData(API.updateLastFailedLevel(curLevel));
+		// Net.instance.getData(API.updateLastFailedLevel(curLevel));
 
 		if (this._timer && this._timer.running) {
 			this._timer.stop();

@@ -121,45 +121,11 @@ class Main extends egret.DisplayObjectContainer {
         LiuXingPanel.instance.addEventListener(StarEvent.PLAY_LIU_XING, this._onPlayLiuXing, this);
         LiuXingResultPanel.instance.addEventListener(StarEvent.ENTER_MAIN_SCREEN, this._onEnterMainScreen, this);
 
-        console.log('设备号：' + TDGA.getDeviceId());
+        // console.log('设备号：' + TDGA.getDeviceId());
         // Net.instance.getData(API.login(TDGA.getDeviceId()), result => {
         //     console.log(result);
         // });
-        Net.instance.postData(API.login(), {
-			account: TDGA.getDeviceId(),
-			source: egret.Capabilities.runtimeType,
-            deviceMode: Util.getUserAgent()
-		}, result => {
-            result = result.data;
-            LocalStorage.setItem(LocalStorageKey.userName, result.name);
-            LocalStorage.setItem(LocalStorageKey.lastLevel, result.lastLevel);
-            LocalStorage.setItem(LocalStorageKey.totalScore, result.totalScore);
-            LocalStorage.setItem(LocalStorageKey.levelScore, result.levelScore);
-            LocalStorage.setItem(LocalStorageKey.exp, result.exp);
-            LocalStorage.setItem(LocalStorageKey.maxTotalScore, result.maxTotalScore);
-            LocalStorage.setItem(LocalStorageKey.lastFetchLoginAwardTime, result.lastFetchLoginAwardTime);
-            LocalStorage.setItem(LocalStorageKey.fetchLoginAwardCount, result.fetchLoginAwardCount);
-            LocalStorage.setItem(LocalStorageKey.liuXingMax, result.liuXingMax);
-            LocalStorage.setItem(LocalStorageKey.lastFailedLevel, result.lastFailedLevel);
-            // 做到这
-            LocalStorage.setItem(LocalStorageKey.weekRankRecord, result.weekRankRecord);
-            LocalStorage.setItem(LocalStorageKey.weekRank, result.weekRank);
-            LocalStorage.setItem(LocalStorageKey.weekScore, result.weekScore);
-            LocalStorage.setItem(LocalStorageKey.monthRankRecord, result.monthRankRecord);
-            LocalStorage.setItem(LocalStorageKey.monthRank, result.monthRank);
-            LocalStorage.setItem(LocalStorageKey.monthScore, result.monthScore);
-            LocalStorage.setItem(LocalStorageKey.maxLevel, result.maxLevel);
-            LocalStorage.setItem(LocalStorageKey.item1, result.items[0]);
-            LocalStorage.setItem(LocalStorageKey.item2, result.items[1]);
-            LocalStorage.setItem(LocalStorageKey.item3, result.items[2]);
-            LocalStorage.setItem(LocalStorageKey.item4, result.items[3]);
-            LocalStorage.setItem(LocalStorageKey.diamonds, result.diamonds);
-            LocalStorage.setItem(LocalStorageKey.dollar, result.dollar);
-            LocalStorage.saveToLocal();
-            this._onEnterMainScreen();
-        }, () => {
-            this._onEnterMainScreen();
-        });
+        this._onEnterMainScreen();
     }
 
     private _onEnterMainScreen(evt?: StarEvent): void {
@@ -244,7 +210,6 @@ class Main extends egret.DisplayObjectContainer {
             if (myDollar >= costDollar) {
                 LocalStorage.setItem(LocalStorageKey.dollar, myDollar - costDollar);
                 LocalStorage.saveToLocal();
-                Net.instance.getData(API.dollarChanged('levelRestar', -costDollar));
             } else {
                 paySuccess = false;
             }
@@ -267,7 +232,6 @@ class Main extends egret.DisplayObjectContainer {
 
     private _onLevelSelectorOK(evt: egret.TouchEvent): void {
         LocalStorage.setItem(LocalStorageKey.lastLevel, this._targetLevel - 1);
-        Net.instance.getData(API.updateLastLevel());
         const scoreArr = LocalStorage.getItem(LocalStorageKey.levelScore) as Array<number>;
         let totalScore = 0;
         for (let i = 0; i < this._targetLevel - 1; i++) {
@@ -275,7 +239,6 @@ class Main extends egret.DisplayObjectContainer {
         }
         LocalStorage.setItem(LocalStorageKey.totalScore, totalScore);
         LocalStorage.saveToLocal();
-        Net.instance.getData(API.updateTotalScore());
         this._onLevelSelectorCancel(evt, this._enterLevel);
     }
 

@@ -27,7 +27,7 @@ class FailPanel extends BasePanel {
 		];
 		const endDollar = LocalStorage.getItem(LocalStorageKey.dollar);
 		const endDiamonds = LocalStorage.getItem(LocalStorageKey.diamonds);
-		Net.instance.getData(API.levelFail(LocalStorage.getItem(LocalStorageKey.lastLevel) + 1, startTimer, endTimer, startNumItem[0], startNumItem[1], startNumItem[2], startNumItem[3], endNumItem[0], endNumItem[1], endNumItem[2], endNumItem[3], startDollar, endDollar, endDiamonds));
+		// Net.instance.getData(API.levelFail(LocalStorage.getItem(LocalStorageKey.lastLevel) + 1, startTimer, endTimer, startNumItem[0], startNumItem[1], startNumItem[2], startNumItem[3], endNumItem[0], endNumItem[1], endNumItem[2], endNumItem[3], startDollar, endDollar, endDiamonds));
 	}
 
 	protected _init(): void {
@@ -48,7 +48,7 @@ class FailPanel extends BasePanel {
 		if (dollar > 5) {
 			LocalStorage.setItem(LocalStorageKey.dollar, dollar - 6);
 			LocalStorage.saveToLocal();
-			Net.instance.getData(API.dollarChanged('levelAgain', -6, (LocalStorage.getItem(LocalStorageKey.lastLevel) + 1).toString()));
+			// Net.instance.getData(API.dollarChanged('levelAgain', -6, (LocalStorage.getItem(LocalStorageKey.lastLevel) + 1).toString()));
 			this._toDoAfterFailPanelClosed = ToDoAfterFailPanelClosed.none;
 			this._onClose();
 		} else {
